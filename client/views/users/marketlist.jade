@@ -1,0 +1,9 @@
+// Copyright 2015 Kjetil Thuen
+// Distributed under the GPLv3
+
+template(name='MarketList')
+  each Markets
+    div.market(id="market-#{_id}")
+      h2.title {{filterUntranslatedText title}}
+      +markdown
+        {{filterUntranslatedText description}}

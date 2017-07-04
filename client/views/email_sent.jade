@@ -1,0 +1,21 @@
+template(name='EmailSent')
+  div.dialog-container
+    div.container-fluid
+      div.row
+        div.col-md-6.col-md-push-3
+          &nbsp;
+  div.dialog-container
+    div.container-fluid
+      div.row
+        form.form.col-md-4.col-md-push-4.center-block(role="form")
+          div.panel.panel-default
+            div.panel-body
+              div.row
+                div.col-md-6.col-md-push-3
+                  +markdown
+                    {{_ 'text_email_sent'}}
+              form(role="form")
+                div.form-group.pull-right
+                  button.btn.btn-success#ok(type="button")
+                    i.fa.fa-check {{_ "button_ok"}}
+    div#footer

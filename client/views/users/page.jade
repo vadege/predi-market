@@ -1,0 +1,8 @@
+// Copyright 2015 Kjetil Thuen
+// Distributed under the GPLv3
+
+template(name='Page')
+  div.page
+    h2.title #{Page.title}
+    +markdown
+      #{Page.content}

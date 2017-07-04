@@ -1,0 +1,13 @@
+// Copyright 2015 Kjetil Thuen
+// Distributed under the GPLv3
+
+template(name='AdminFilter')
+  div.row.filter
+    div.col-md-4
+      +InputText field="filter" value=filter id=_id method="editFilter" type="text"
+    div.col-md-4
+      +InputText field="filter_label" value=label id=_id method="editFilterLabel" type="text"
+    div.col-md-2
+      label &nbsp;
+      button.delete_filter.btn.btn-danger(type='button' value='#{_id}')
+        i.fa.fa-trash {{_ 'button_delete_filter'}}

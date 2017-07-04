@@ -1,0 +1,53 @@
+// Copyright 2015 Kjetil Thuen
+// Distributed under the GPLv3
+
+template(name='Contractset')
+  div.panel.contractset(id="contractset-#{_id}")
+    if isActive
+      div.panel-heading
+        h3.title
+          if endingSoon
+            i.pull-right.fa.fa-clock-o
+          if isHot
+            i.pull-right.fa.fa-fire
+          span {{filterUntranslatedText title}}
+      div.panel-body
+        div.chart(id='chart_container_#{_id}')
+          +ActivitiesChart set_id=_id
+        each Contracts
+          +Contract
+      div.panel-footer.clearfix
+        if iframebound
+          div.pull-left
+            +Wallet
+             
+        div.form-group.pull-right
+          button.cancel-trade.btn.btn-sm.btn-danger.submit(type='submit')
+            i.fa.fa-close
+            span {{_ 'button_cancel'}}
+          button.do-trade.btn.btn-sm.btn-success.submit(type='submit' disabled='#{notSubmittable}')
+            i.fa.fa-check
+            span {{tradeDetails}}
+    else
+      div.panel-heading
+        h3.title
+          if endingSoon
+            i.pull-right.fa.fa-clock-o
+          if isHot
+            i.pull-right.fa.fa-fire
+          span {{filterUntranslatedText title}}
+      div.panel-body
+        div.info.clearfix
+          with Image
+            URL: #{url}
+            img.contractset-image(src="{{url store='images'}}")
+          +markdown
+            {{filterUntranslatedText description}}
+        table.contractsnippets
+          each Contracts
+            tr
+              +ContractSnippet
+      div.panel-footer.clearfix
+        button.btn.btn-primary.start-trade.pull-right
+          i.fa.fa-exchange
+          span {{_ 'button_change_prices'}}

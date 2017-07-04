@@ -1,0 +1,20 @@
+// Copyright 2015 Kjetil Thuen
+// Distributed under the GPLv3
+
+template(name='ContractSnippet')
+  td
+    i.fa.fa-square(style='color: #{color}')
+  td.title
+    span {{filterUntranslatedText title}}
+  td.price
+    span #{price}%
+  td
+    if owed
+      div.label.label-danger
+        i.fa.fa-briefcase
+        span {{owned}}
+    else
+      if owned
+        div.label.label-primary
+          i.fa.fa-briefcase
+          span {{owned}}

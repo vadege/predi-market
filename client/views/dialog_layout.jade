@@ -1,0 +1,9 @@
+// Copyright 2015 Kjetil Thuen
+// Distributed under the GPLv3
+
+template(name='DialogLayout')
+  div#dialog.wrapper
+    div.container-fluid
+      +yield
+      div#errors_list
+        +meteorErrors

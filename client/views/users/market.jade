@@ -1,0 +1,42 @@
+// Copyright 2015 Kjetil Thuen
+// Distributed under the GPLv3
+
+template(name='Market')
+  div.market
+    h2.title {{removeUntranslatedText Market.title}}
+
+    +markdown
+      {{removeUntranslatedText Market.description}}
+
+    div.form-group.filter-controls.clearfix
+      input.form-control.filtertext(placeholder='{{_ "form_filter_placeholdertext"}}' value='#{filter_value}' autofocus='autofocus')
+
+      div.form-group
+        label(for="filter_portfolio_only")
+          input#filter_portfolio_only(type="checkbox" checked='#{portfolio_only_filter_on}')
+          span {{_ "text_filter_portfolio_only"}}
+
+        label(for="filter_closing_soon")
+          input#filter_closing_soon(type="checkbox" checked='#{closing_soon_filter_on}')
+          span {{_ "text_filter_closing_soon"}}
+
+        each Filters
+          label(for="filter-{{filter}}")
+            input.custom-filter(id="filter-{{filter}}" type="checkbox" value=filter checked='{{filter_on filter}}')
+            span #{label}
+
+
+    div.contractsetlist.row
+      each Contractsets
+        +Contractset
+
+      unless Contractsets
+        if filterActive
+          div.emptylist_message
+            +markdown
+              {{_ "text_to_strict_filter"}}
+
+      unless hasOpenContracts
+        div.emptylist_message
+          +markdown
+            {{_ "text_no_contracts"}}

@@ -1,0 +1,20 @@
+// Copyright 2015 Kjetil Thuen
+// Distributed under the GPLv3
+
+template(name='Leaderboard')
+  div.leaderboard
+    h2.title {{_ 'text_leaderboard'}}
+    ul.nav.nav-pills
+      each markets
+        if link
+          li
+            a(href="/leaderboard/#{link}") #{title}
+        else
+          li.active
+            a(gref="#") #{title}
+    p {{_ 'text_leaderboard_intro'}}
+    ol
+      each leaders
+        li.me(class="#{me}")
+          span #{username}
+          span {{to_fixed worth}}

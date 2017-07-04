@@ -1,0 +1,46 @@
+// Copyright 2015 Kjetil Thuen
+// Distributed under the GPLv3
+
+template(name='AdminSidebar')
+  ul.nav
+    li
+      a.visible-xs.text-center(href="#" data-toggle="offcanvas")
+        i.fa.fa-chevron-right
+  ul.nav.hidden-xs#lg-menu
+    li
+      a#go_markets
+        i.fa.fa-bank
+        span {{_ 'menu_markets'}}
+    li
+      a#go_pages
+        i.fa.fa-dot-circle-o
+        span {{_ 'menu_pages'}}
+    li
+      a#go_users
+        i.fa.fa-user
+        span {{_ 'menu_users'}}
+    li
+      a#go_log
+        i.fa.fa-list
+        span {{_ 'menu_log'}}
+    li
+      a#go_settings
+        i.fa.fa-sliders
+        span {{_ 'menu_settings'}}
+
+  ul.nav.visible-xs.text-center#xs-menu
+    li
+      a#go_markets
+        i.fa.fa-bank
+    li
+      a#go_pages
+        i.fa.fa-dot-circle-o
+    li
+      a#go_users
+        i.fa.fa-user
+    li
+      a#go_log
+        i.fa.fa-list
+    li
+      a#go_settings
+        i.fa.fa-sliders

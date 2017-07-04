@@ -1,0 +1,29 @@
+// Copyright 2015 Kjetil Thuen
+// Distributed under the GPLv3
+
+template(name='AdminLog')
+  div.container-fluid
+    button.btn.btn-default.save.pull-right
+      i#download-button.fa.fa-download
+      span {{_ "button_download_tradelog"}}
+
+    p Removed the list for performance reasons. Will come back
+    // table.table.table-striped.table-hover
+    //   thead
+    //     tr
+    //       th {{_ 'time'}}
+    //       th {{_ 'type'}}
+    //       th {{_ 'user'}}
+    //       th
+    //   tbody
+    //     each LogEntries
+    //       tr(id=_id)
+    //         td= time
+    //         td= type
+    //         td= name
+    //         td &nbsp;
+    //           button.btn.btn-default.loginfo(value="#{_id}")
+    //             i.fa.fa-info
+    // if postsReady
+    //   unless allPostsLoaded
+    //     button.loadMore Load more entries (should be triggered by scroll)

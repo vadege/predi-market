@@ -1,0 +1,22 @@
+// Copyright 2015 Kjetil Thuen
+// Distributed under the GPLv3
+
+template(name='AdminMain')
+  if markets
+    div.container-fluid
+      each Markets
+        +AdminMarket
+      button.add_market.btn.btn-success
+        i.fa.fa-plus {{_ 'button_add_market'}}
+  if pages
+    div.container-fluid
+      each Pages
+        +AdminPage
+      button.add_page.btn.btn-success
+        i.fa.fa-plus {{_ 'button_add_page'}}
+  if users
+    +AdminUsers
+  if log
+    +AdminLog logOptions
+  if settings
+    +AdminSettings

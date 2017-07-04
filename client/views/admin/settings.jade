@@ -1,0 +1,12 @@
+// Copyright 2015 Kjetil Thuen
+// Distributed under the GPLv3
+
+template(name='AdminSettings')
+  h3 {{_ 'form_enabled_languages'}}
+  ul.language-picker
+    each Languages
+      li(class='language-disabled-{{language_disabled this}}')
+        input.default-language(type="radio" name="default-language" checked='{{language_default this}}' disabled='{{language_disabled this}}' value=this.code title="{{_ 'form_default_language'}}")
+        label( title="{{_ 'form_enabled_languages'}}")
+          input.enabled-language(type="checkbox" checked='{{language_enabled this}}' disabled='{{language_default this}}' value=this.code title="{{_ 'form_enabled_languages'}}")
+          =this.label

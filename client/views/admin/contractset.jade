@@ -1,0 +1,62 @@
+// Copyright 2015 Kjetil Thuen
+// Distributed under the GPLv3
+
+template(name='AdminContractset')
+  if started
+    div.row
+      div.chart-url.pull-right
+        a.chart-api-link(href="api/pricehistory/#{_id}")
+          i.fa.fa-line-chart
+          span {{_ 'text_chart_url'}}
+  +InputText field="title" value=title id=_id method="renameContractset" type="text"
+  +InputText field="image" value=image id=_id method="setContractsetImage" type="file"
+  +InputText field="description" value=description id=_id method="editContractsetDescription" type="textarea"
+  +InputText field="liquidity" value=liquidity id=_id method="setContractsetLiquidity" type="number" ro=started
+  +InputText field="min_price" value=min_price id=_id method="setContractsetMinPrice" type="number" ro=started
+  +InputText field="max_price" value=max_price id=_id method="setContractsetMaxPrice" type="number" ro=started
+  +InputText field="freeze_amount" value=freeze_amount id=_id method="setContractsetFreezeAmount" type="number" ro=started
+  if protovo_eligible
+    +InputText field="protovo_low" value=protovo_low id=_id method="setContractsetProtovoLow" type="number"
+    +InputText field="protovo_high" value=protovo_high id=_id method="setContractsetProtovoHigh" type="number"
+  div.row
+    div.col-md-6
+      label(for='dtp-date-component') {{_ 'form_open_at'}}
+      if started
+        div.input {{formattedDate launchtime}}
+      else
+        div.input-group.date.launchtime
+          input.set-launchtime.form-control(id="set-launchtime-#{_id}" type='text' placeholder='{{formattedDate launchtime}}' readonly='{{started}}')
+          span.input-group-addon
+            i.fa.fa-calendar
+      label(for='dtp-date-component') {{_ 'form_settle_at'}}
+      div.input-group.date.settletime
+        input.set-settletime.form-control(id="set-settletime-#{_id}" type='text' placeholder='{{formattedDate settletime}}')
+        span.input-group-addon
+          i.fa.fa-calendar
+  each Contracts
+    +AdminContract
+  if voteshare
+    unless started
+      div.row
+        div.col-md-6
+          div.form-group
+            button.btn.btn-danger.add_contract(type='button' value='#{_id}')
+              i.fa.fa-plus {{_ 'button_add_voteshare_contract'}}
+  div.row
+    div.col-md-12
+      div.form-group
+        if closeable
+          button.btn.btn-danger.close_contractset(type='button' value='#{_id}')
+            i.fa.fa-lock {{_ 'button_close_contractset'}}
+        if reopenable
+          button.btn.btn-danger.reopen_contractset(type='button' value='#{_id}')
+            i.fa.fa-unlock {{_ 'button_reopen_contractset'}}
+        if settleable
+          if settling
+            +AdminSettle
+          else
+            button.btn.btn-danger.settle_contractset(type='button' value='#{_id}')
+              i.fa.fa-cogs {{_ 'button_settle_contractset'}}
+        if deleteable
+          button.btn.btn-danger.delete_contractset(type='button' value='#{_id}')
+            i.fa.fa-trash {{_ 'button_delete_contractset'}}

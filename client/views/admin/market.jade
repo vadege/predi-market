@@ -1,0 +1,35 @@
+// Copyright 2015 Kjetil Thuen
+// Distributed under the GPLv3
+
+// TODO: See if it is possible to indicate missing translations in the header
+template(name='AdminMarket')
+  +InputText field="title" value=title id=_id method="renameMarket" type="text"
+  +InputText field="description" value=description id=_id method="editMarketDescription" type="textarea"
+  +InputText field="initial_money" value=initial_money id=_id method="updateMarketInitialMoney" type="number"
+  +InputText field="market_tags" value=tags id=_id method="updateMarketTags" type="tags"
+
+  h4 {{_ "text_filters"}}
+  each Filters
+    +AdminFilter
+
+  button.add_filter.btn.btn-success(type='button' value='#{_id}')
+    i.fa.fa-plus {{_ 'button_add_filter'}}
+
+  div.panel.panel-default
+    div.panel-body
+      each Contractsets
+        +AdminContractset
+      div
+        button.add_voteshare_set.btn.btn-success(type='button' value='#{_id}')
+          i.fa.fa-plus {{_ 'button_add_voteshare_set'}}
+        button.add_prob.btn.btn-success(type='button' value='#{_id}')
+          i.fa.fa-plus {{_ 'button_add_prob'}}
+  div.row
+    div.col-md-6
+      div.form-group
+        if hasOpenContracts
+          button.btn.btn-danger.close_market(type='button' value='#{_id}')
+            i.fa.fa-lock {{_ 'button_close_market'}}
+        if deleteable
+          button.btn.btn-danger.delete_market(type='button' value='#{_id}')
+            i.fa.fa-trash {{_ 'button_delete_market'}}

@@ -1,0 +1,11 @@
+// Copyright 2015 Kjetil Thuen
+// Distributed under the GPLv3
+
+template(name='AdminPage')
+  +InputText field="title" value=title id=_id method="renamePage" type="text"
+  +InputText field="content" value=content id=_id method="editPageContent" type="textarea"
+  div.row
+    div.col-md-6
+      div.form-group
+        button.btn.btn-danger.delete_page(type='button' value='#{_id}')
+          i.fa.fa-trash {{_ 'button_delete_page'}}

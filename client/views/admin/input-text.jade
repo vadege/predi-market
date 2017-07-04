@@ -1,0 +1,46 @@
+// Copyright 2015 Kjetil Thuen
+// Distributed under the GPLv3
+
+template(name='InputText')
+  div.form-group
+    if is_readonly
+      div
+        label #{label}
+        if is_textarea
+          +markdown
+            #{val}
+        else
+          div.input #{val}
+    else
+      label(for='set-#{field}-#{id}') #{label}
+      div.input-group
+        if is_numbertype
+          input.form-control.input-text-set-field(id='set-#{field}-#{id}' type='number' value='#{val}' readonly='#{ro}' data='#{data}')
+        else if is_textarea
+          textarea.form-control.input-text-set-field(id='set-#{field}-#{id}') #{val}
+        else if is_tags
+          input.form-control.input-text-set-field(id='set-#{field}-#{id}' data-toggle='tagsinput' data-role='tagsinput' type='text' value='#{val}' placeholder='{{_ "form_placeholdertags"}}')
+        else if is_range
+          input.form-control.input-range-set-field(id='set-#{field}-#{id}' type='range' value='#{val}' min='#{min}' max='#{max}' step='0.01')
+        else if is_file
+          div.dropzone.form-control.upload-file(id='upload-file-#{field}-#{id}' type='file' data='#{val}')
+            if image
+              with Image
+                img.dropzone-image(src="{{url store='images'}}")
+              a.remove(data='#{val}')
+                i.fa.fa-trash
+            else
+              div.dropzone-text {{_ "text_drop_to_upload"}}
+        else
+          input.form-control.input-text-set-field(id='set-#{field}-#{id}' type='text' value='#{val}' placeholder='{{_ "form_placeholdertext"}}')
+        if is_range
+          span.input-group-addon
+            div.rangeval #{val}
+        else
+          span.input-group-btn
+            if ro
+              i.fa.fa-stop
+            else
+              unless is_file
+                button.btn.btn.btn-success.apply.input-text-save-button(tabindex='-1' type='button' value='#{id}')
+                  i.fa.fa-save

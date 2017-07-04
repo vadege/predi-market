@@ -1,0 +1,36 @@
+// Copyright 2015 Kjetil Thuen
+// Distributed under the GPLv3
+
+template(name='Sidebar')
+  ul.nav
+    li
+      a.visible-xs.text-center(href="#" data-toggle="offcanvas")
+        i.fa.fa-chevron-right
+  ul.menu.nav
+    if has_multiple_markets
+      each Markets
+        li
+          a.go_market(href='/market/#{_id}' class='#{maybe_selected}')
+            i.fa.fa-bank
+            span.hidden-collapsed {{title}}
+            span.hidden-collapsed.badge
+              i.fa.fa-suitcase
+              span {{owned}}
+    else
+      li
+        a(href='/markets/' class='#{marketplace_selected}')
+          i.fa.fa-bank
+          span.hidden-collapsed {{_ "text_marketplace"}}
+    li
+      a(href='#{leaderboard_link}' class='#{maybe_selected}')
+        i.fa.fa-trophy
+        span.hidden-collapsed {{_ "text_leaderboard"}}
+    each Pages
+      li
+        a.go_page(href='/page/#{_id}' class='#{maybe_selected}')
+          i.fa.fa-dot-circle-o
+          span.hidden-collapsed {{_ title}}
+
+  div#sidebar-footer.market-stats.col-sm-2(class=iframewallet)
+    if market_selected
+      +Wallet

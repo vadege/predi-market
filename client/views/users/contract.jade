@@ -1,0 +1,50 @@
+// Copyright 2015 Kjetil Thuen
+// Distributed under the GPLv3
+
+template(name='Contract')
+  div.contract(class="#{extra_class} #{trading_class}")
+    if Image
+      div.price.v-center(style="border-color: #{color}")
+        with Image
+          img.contract-image(src="{{url store='images'}}")
+        span #{price}%
+        if price_delta
+          span.delta ({{price_delta}})
+    else
+      div.price.v-center(style="background-color: #{color}; border-color: #{color}")
+        span #{price}%
+        if price_delta
+          span.delta ({{price_delta}})
+
+    h5.title {{filterUntranslatedText title}}
+
+    div.slider-controls
+      div.left-group
+        button.btn.btn-default.btn-xs.sellten(type='submit' disabled='#{cannotSellTen}') -10
+        button.btn.btn-default.btn-xs.sellone(type='submit' disabled='#{cannotSellOne}') -1
+      div.center
+        button.btn.btn-default.btn-xs.reset_slider(type='submit' disabled='#{notSubmittable}') {{_  "button_reset"}}
+      div.right-group
+        button.btn.btn-default.btn-xs.buyone(type='submit' disabled='#{cannotBuyOne}') +1
+        button.btn.btn-default.btn-xs.buyten(type='submit' disabled='#{cannotBuyTen}') +10
+
+    div.dragdealer(id="trade-drag-dealer-#{_id}")
+      div.slide-text
+        div.pull-left
+          i.fa.fa-arrow-left
+          span {{_ "text_slide_left"}}
+        div.pull-right
+          span {{_ "text_slide_right"}}
+          i.fa.fa-arrow-right
+
+      div.handle
+        if owed
+          div.owed
+            i.fa.fa-briefcase
+            span {{owned}}
+            span.delta ({{owned_delta}})
+        else
+          div.owned
+            i.fa.fa-briefcase
+            span {{owned}}
+            span.delta ({{owned_delta}})

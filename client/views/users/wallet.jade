@@ -1,0 +1,68 @@
+// Copyright 2015 Kjetil Thuen
+// Distributed under the GPLv3
+
+template(name='Wallet')
+  h4 {{_ 'text_wallet_heading'}}
+  table.user-stats
+    tr.ranking
+      td.icon
+        i.fa.fa-trophy
+      td.icon.help
+        a.explain(href="#" title="{{_ 'text_ranking'}}" data-container="body" data-toggle="popover" data-placement="right" data-content="{{_ 'text_explain_ranking'}}")
+          i.fa.fa-info-circle
+      td.description
+        a.explain(href="#" title="{{_ 'text_ranking'}}" data-container="body" data-toggle="popover" data-placement="right" data-content="{{_ 'text_explain_ranking'}}") {{_ 'text_ranking'}}
+      td.number {{ranking}}
+      td.delta
+        if ranking_delta
+          span.delta ({{ranking_delta}})
+    if owns_stock
+      tr.stock
+        td.icon
+          i.fa.fa-briefcase
+        td.icon.help
+          a.explain(href="#" title="{{_ 'text_portfolio_worth'}}"  data-container="body" data-toggle="popover" data-placement="right" data-content="{{_ 'text_explain_portfolio_worth'}}")
+            i.fa.fa-info-circle
+        td.description
+          a.explain(href="#" title="{{_ 'text_portfolio_worth'}}"  data-container="body" data-toggle="popover" data-placement="right" data-content="{{_ 'text_explain_portfolio_worth'}}") {{_ 'text_portfolio_worth'}}
+        td.number {{portfolio_worth}}
+        td.delta
+          if portfolio_worth_delta
+            span.delta ({{portfolio_worth_delta}})
+    if frozen_assets
+      tr.frozen
+        td.icon
+          i.fa.fa-lock
+        td.icon.help
+          a.explain(href="#" title="{{_ 'text_frozen_assets'}}"  data-container="body" data-toggle="popover" data-placement="right" data-content="{{_ 'text_explain_frozen_assets'}}")
+            i.fa.fa-info-circle
+        td.description
+          a.explain(href="#" title="{{_ 'text_frozen_assets'}}"  data-container="body" data-toggle="popover" data-placement="right" data-content="{{_ 'text_explain_frozen_assets'}}") {{_ 'text_frozen_assets'}}
+        td.number {{frozen_assets}}
+        td.delta
+          if frozen_delta
+            span.delta ({{frozen_delta}})
+    tr.cash
+      td.icon
+        i.fa.fa-money
+      td.icon.help
+        a.explain(href="#"  title="{{_ 'text_cash'}}" data-container="body" data-toggle="popover" data-placement="right" data-content="{{_ 'text_explain_cash'}}")
+          i.fa.fa-info-circle
+      td.description
+        a.explain(href="#"  title="{{_ 'text_cash'}}" data-container="body" data-toggle="popover" data-placement="right" data-content="{{_ 'text_explain_cash'}}") {{_ 'text_cash'}}
+      td.number {{cash}}
+      td.delta
+        if cash_delta
+          span.delta ({{cash_delta}})
+    tr.net-worth
+      td.icon
+        i.fa.fa-home
+      td.icon.help
+        a.explain(href="#"  title="{{_ 'text_net_worth'}}" data-container="body" data-toggle="popover" data-placement="right"  data-content="{{_ 'text_explain_net_worth'}}")
+          i.fa.fa-info-circle
+      td.description
+        a.explain(href="#"  title="{{_ 'text_net_worth'}}" data-container="body" data-toggle="popover" data-placement="right"  data-content="{{_ 'text_explain_net_worth'}}") {{_ 'text_net_worth'}}
+      td.number {{net_worth}}
+      td.delta
+        if net_worth_delta
+          span.delta ({{net_worth_delta}})

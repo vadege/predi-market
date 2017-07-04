@@ -1,0 +1,17 @@
+// Copyright 2015 Kjetil Thuen
+// Distributed under the GPLv3
+
+template(name='AdminSettle')
+  h2 {{_ 'settle_headline'}}
+  each Contracts
+    label #{title}
+    +InputText min=min_price max=max_price field="settle_price" value=price id=contract_id type="range"
+  div.form-group
+    if correct_amount
+      button.btn.btn-success.do_settle(type='button' value='#{_id}')
+        i.fa.fa-gears {{_ 'button_do_settle'}}
+    else
+      button.btn.btn-danger.do_settle(type='button' value='#{_id}')
+        i.fa.fa-gears {{_ 'button_do_settle'}}
+    button.btn.btn-danger.cancel_settle(type='button')
+      i.fa.fa-trash {{_ 'button_cancel'}}

@@ -1,0 +1,27 @@
+{
+  "name": "predi",
+  "version": "1.0.0",
+  "description": "Complete prediction market solution",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "dependencies": {
+    "babel-runtime": "^6.18.0",
+    "bcrypt": "^0.8.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@gitlab.lallis.org:2222/kjetil/predimarket.git"
+  },
+  "keywords": [
+    "prediction",
+    "market"
+  ],
+  "author": "Kjetil Thuen <Kjetil.Thuen@gmail.com>",
+  "license": "GPL-2.0"
+}

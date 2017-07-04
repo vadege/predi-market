@@ -1,0 +1,50 @@
+// Copyright 2015 Kjetil Thuen
+// Distributed under the GPLv3
+
+template(name='AdminUsers')
+  div.container-fluid
+    each User
+      +InputText field="username" value=username id=_id method="editUsername" type="text"
+      +InputText field="name" value=profile.name id=_id method="renameUser" type="text"
+      +InputText field="user_tags" value=profile.tags id=_id method="updateUserTags" type="tags"
+      // TODO: Need to have adding and removing of emails too. First is id rest is metadata?
+      // each emails
+      //   +InputText field="user_email" value=address id=_id method="setUserEmail" type="text"
+      div.form-group
+        input#set_admin(type="checkbox" checked="#{admin}")
+        label(for="set_admin") {{_ "button_administrator"}}
+
+      div.usermarkets
+        each Markets
+          h3= title
+          +InputText field="user_market_cash" value=cash id=_id method="setUserCash" type="number"
+          each contracts
+            div
+              span.portfolio_contract= title
+              span.portfolio_count= portfolio
+
+      div.btn-group.pull-right
+        button.btn.btn-danger#dismiss_user_controls {{_ 'button_usercontrols_dismiss'}}
+        //TODO: Disabled for tagesanzeiger. Need to check current users account
+        //type before presenting this button.btn.btn-default#reset_password {{_
+        //'button_reset_password'}}
+
+    table.table.table-striped.table-hover
+      thead
+        tr
+          th {{_ 'username'}}
+          th {{_ 'email'}}
+          th {{_ 'tags'}}
+      tbody
+        each Users
+          tr(id=_id)
+            if selected
+              td(colspan='3') Jauuuuu
+            else
+              td= username
+              td
+                each emails
+                  address= address
+              td
+                each tags
+                  span.label.label-default= tag

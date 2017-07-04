@@ -1,0 +1,6 @@
+--require should
+--require coffee-script
+--compilers coffee:coffee-script
+--reporter spec
+--growl
+--recursive

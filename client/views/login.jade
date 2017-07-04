@@ -1,0 +1,20 @@
+// Copyright 2015 Kjetil Thuen
+// Distributed under the GPLv3
+
+template(name='Login')
+  div.row
+    form.login.form.col-xs-10.col-xs-push-1.col-sm-6.col-sm-push-3.col-md-4.col-md-push-4.center-block(role="form")
+      div.panel.panel-default
+        div.panel-body
+          div.form-group
+            label(for="username")
+            input.form-control#username(type="text" placeholder="{{_ 'init_admin_username'}}" autofocus='autofocus')
+          div.form-group
+            input.form-control#password(type="password" placeholder="{{_ 'init_admin_password'}}")
+          div.form-group.pull-right
+            button.btn.btn-primary#log_in(type="submit") {{_ "button_log_in" }}
+      div.pull-left
+        a#new_user {{_ "button_new_user" }}
+      div.pull-right
+        a#forgot_pass {{_ "button_forgot_pass" }}
+    div#footer

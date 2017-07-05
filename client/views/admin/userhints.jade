@@ -12,6 +12,8 @@ template(name="ListHints")
           th {{hint}}
           th {{desc}}
           th
-            span.fa.fa-check.fa-2x
+            button.btn.btn-info.approve_hint(type='button' id=contract_id value=id)
+             i.fa.fa-check
           th
-            span.fa.fa-trash-o.fa-2x
+            button.btn.btn-danger.delete_hint(type='button' id=contract_id value=id)
+             i.fa.fa-trash-o

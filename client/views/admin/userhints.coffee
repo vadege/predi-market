@@ -12,3 +12,22 @@ Template.ListHints.helpers
         j++
       i++
     return hintUpdatedArr
+
+Template.ListHints.events
+  'click .approve_hint': (evt, tmpl) ->
+    evt.stopPropagation()
+    id = evt.currentTarget.id
+    value = evt.currentTarget.value
+    Meteor.call 'approveHint', value, (error, result) ->
+      if error
+        Error.throw error
+      true
+
+  'click .delete_hint': (evt,tmpl) ->
+    evt.stopPropagation()
+    id= evt.currentTarget.id
+    value = evt.currentTarget.value
+    Meteor.call 'disapproveHint', id, value, (error, result) ->
+      if error
+        Error.throw error
+      true

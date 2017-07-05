@@ -73,12 +73,20 @@ Meteor.methods
     else
       Contracts.update({"hints.id": objectid}, {$set: {'hints.$.desc': value}})
 
+  approveHint: (objectid) ->
+    checkAdmin @userId
+    Contracts.update({"hints.id": objectid}, {$set: {'hints.$.approved': true}})
+
   addUserHint: (value, parent_id) ->
     Contracts.update({set_id: parent_id}, {$push: {hints: value}})
 
   removeHint: (parent_id, objectid) ->
     checkAdmin @userId
-    Contracts.update({_id: parent_id}, {$pull: {"hints": { id:objectid } } })
+    val = Contracts.update({_id: parent_id}, {$pull: {"hints": { id:objectid } } })
+
+  disapproveHint: (parent_id, objectid) ->
+    checkAdmin @userId
+    val = Contracts.update({set_id: parent_id}, {$pull: {"hints": { id:objectid } } })
 
   addFilter: (parent_id) ->
     checkAdmin @userId

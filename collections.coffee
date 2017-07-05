@@ -6,6 +6,7 @@
 @Contracts = new TAPi18n.Collection "Contracts"
 @Pages = new TAPi18n.Collection "Pages"
 @Filters = new TAPi18n.Collection "Filters"
+@Comments = new TAPi18n.Collection "Comments"
 @Activities = new Meteor.Collection "Activities"
 @Settings = new Meteor.Collection "Settings"
 @Images = new FS.Collection "images",
@@ -17,5 +18,3 @@
   filter:
     allow:
       contentTypes: ['image/*']
-
-

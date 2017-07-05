@@ -23,6 +23,12 @@ Template.Contractset.helpers
     Contracts.find {$and: [{set_id: @_id}
                            {mirror: {$not: true}}]}
 
+  hint: ->
+    value = Contracts.findOne({set_id: @_id}, {fields: {hints: 1}})
+    hintArr = value.hints
+    hintArr.filter (d) ->
+      return d.approved == true
+
   Image: ->
     Images.findOne({_id: @image})
 
@@ -76,3 +82,9 @@ Template.Contractset.events
 
   'click .start-trade': (evt, tmpl) ->
     Session.set 'order-details', {'set_id': @_id, 'market_id': @market_id}
+
+  'click .submit_hint': (evt, tmpl) ->
+    id = evt.currentTarget.id
+    Session.set 'market_id', @market_id
+    Session.set 'buttonId', id
+    Router.go('/hint')

@@ -61,6 +61,7 @@ Meteor.methods
       hint: ''
       desc: ''
       id: new Meteor.Collection.ObjectID()._str
+      approved: true
       contract_id: parent_id
     }
     Contracts.update({_id: parent_id}, {$push: {hints: value}})
@@ -71,6 +72,9 @@ Meteor.methods
       Contracts.update({"hints.id": objectid}, {$set: {'hints.$.hint': value}})
     else
       Contracts.update({"hints.id": objectid}, {$set: {'hints.$.desc': value}})
+
+  addUserHint: (value, parent_id) ->
+    Contracts.update({set_id: parent_id}, {$push: {hints: value}})
 
   removeHint: (parent_id, objectid) ->
     checkAdmin @userId

@@ -74,6 +74,7 @@ jparker:crypto-core@0.1.0
 jparker:crypto-md5@0.1.1
 jparker:gravatar@0.5.1
 jquery@1.11.10
+juliancwirko:s-alert@3.2.0
 launch-screen@1.1.1
 less@2.7.9
 livedata@1.0.18

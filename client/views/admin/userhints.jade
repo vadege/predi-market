@@ -1,0 +1,17 @@
+template(name="ListHints")
+  table.table
+    thead
+      tr
+        th  Title
+        th  Description
+        th  Approve
+        th  Disapprove
+    tbody
+      each hints
+        tr
+          th {{hint}}
+          th {{desc}}
+          th
+            span.fa.fa-check.fa-2x
+          th
+            span.fa.fa-trash-o.fa-2x

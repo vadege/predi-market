@@ -5,7 +5,10 @@
 Template.AdminContract.helpers
   hint: ->
     value = Contracts.findOne({_id: @_id}, {fields: { hints: 1 }})
-    return value.hints
+    hintArr = value.hints
+    hintArr.filter (d) ->
+      return d.approved == true
+
 
   opened: ->
     Contractsets.find(

@@ -1,0 +1,7 @@
+template(name="AddHintUser")
+   | Hint
+   input.hint.form-control(type="text" placeholder="Your hint")
+   | Hint Description
+   input.hint_val.get.form-control(type="text" placeholder="Your hint's description")
+   button.btn.btn-success.add_hint(type='button')
+    i.fa.fa-paper-plane {{_ ' Submit Hint'}}

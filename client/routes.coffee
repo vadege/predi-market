@@ -89,6 +89,10 @@ Router.route '/markets/', ->
          TAPi18n.subscribe col
   }
 
+Router.route '/hint/', ->
+  @render 'Sidebar', {to: 'Sidebar'}
+  @render 'AddHintUser'
+
 Router.route '/admin', ->
   if not Meteor?.user()?.profile?.admin
     @redirect '/markets'

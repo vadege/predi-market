@@ -3,3 +3,28 @@
   margin-right: 582px;
   margin-top: 10px;
 }
+.show_hint {
+  text-transform: uppercase;
+  font-size: 15px;
+  border: 1px solid #888;
+  border-radius: 1ex;
+}
+.hint_div {
+  cursor: pointer
+}
+.submit_hint {
+  margin-left: 20px;
+  margin-bottom: 10px;
+}
+.highlight {
+  background-color: yellow !important;
+}
+.add_hint {
+  margin-top: 10px;
+}
+.list-hint {
+  font-size: 15px;
+}
+.hint_div {
+  margin-top: 10px;
+}

@@ -16,11 +16,15 @@ template(name='Contractset')
           +ActivitiesChart set_id=_id
         each Contracts
           +Contract
+        each hint
+          +ShowHint
+        button.btn.btn-success.submit_hint(type='button' id=_id)
+         i.fa.fa-paper-plane {{_ ' Submit New Hint'}}
       div.panel-footer.clearfix
         if iframebound
           div.pull-left
             +Wallet
-             
+
         div.form-group.pull-right
           button.cancel-trade.btn.btn-sm.btn-danger.submit(type='submit')
             i.fa.fa-close

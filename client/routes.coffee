@@ -79,6 +79,10 @@ Router.route '/leaderboard/:_id', ->
          TAPi18n.subscribe col
   }
 
+Router.route '/hints/:_id', ->
+  @render 'Sidebar', {to: 'Sidebar'}
+  @render 'CommentSection'
+
 Router.route '/markets/', ->
   @render 'Sidebar', {to: 'Sidebar'}
   @render 'MarketList'

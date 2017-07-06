@@ -82,11 +82,24 @@ Meteor.methods
 
   removeHint: (parent_id, objectid) ->
     checkAdmin @userId
-    val = Contracts.update({_id: parent_id}, {$pull: {"hints": { id:objectid } } })
+    Contracts.update({_id: parent_id}, {$pull: {"hints": { id:objectid } } })
 
   disapproveHint: (parent_id, objectid) ->
     checkAdmin @userId
-    val = Contracts.update({set_id: parent_id}, {$pull: {"hints": { id:objectid } } })
+    Contracts.update({set_id: parent_id}, {$pull: {"hints": { id:objectid } } })
+
+  addComment: (value, contractid, hint_id) ->
+    user = Meteor.user()
+    username = user.profile.name
+    Comments.insert({
+      hint_id: hint_id,
+      contract_id: contractid,
+      comment: value,
+      user: {
+        name: username,
+        commentedOn: new Date()
+      }
+    });
 
   addFilter: (parent_id) ->
     checkAdmin @userId

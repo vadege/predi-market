@@ -91,3 +91,9 @@ Meteor.publish 'Settings', ->
 Meteor.publish 'Images', ->
   if @userId isnt null
     Images.find()
+
+Meteor.publish 'ContractsHints', ->
+  Contracts.find()
+
+Meteor.publish 'Comments', ->
+  Comments.find()

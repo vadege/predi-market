@@ -28,3 +28,54 @@
 .hint_div {
   margin-top: 10px;
 }
+.save_comment {
+  margin-top: 10px;
+  margin-left: 15px;
+}
+.add_comment {
+  margin-left: 15px;
+}
+.title-class {
+  text-transform: capitalize;
+  margin-left: 17px;
+  font-size: 17px;
+  font-weight: 500;
+}
+.title_class {
+  border: 1px solid #888;
+  border-radius: 10px;
+  margin-bottom: 10px
+}
+.title_class span {
+  margin-left: 15px;
+  font-size: 20px;
+  font-weight: 400;
+  margin-bottom: -15px;
+}
+.desc-class {
+  margin-left: 17px;
+  font-size: 17px;
+  margin-top: 20px;
+  font-weight: 400;
+  text-transform: capitalize;
+}
+.comment-class h5 {
+  font-size: 20px;
+  font-weight: 400;
+}
+.label_comment {
+  margin-left: 10px;
+  font-size: 20px;
+  font-weight: 400;
+}
+.comments_class label {
+  font-size: 15px;
+  margin-top: 10px;
+}
+.comments_class span {
+  margin-left: 10px;
+  margin-bottom: 10px;
+  font-size: 15px;
+  font-weight: 500;
+  text-transform: capitalize;
+}

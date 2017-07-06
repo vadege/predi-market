@@ -1,0 +1,19 @@
+template(name="CommentSection")
+  div.row.title_class
+    span.col-md-12 Title
+    h3.col-md-12.title-class {{hints.hint}}
+  div.row.title_class
+    span.col-md-12 Explaination
+    h4.col-md-12.desc-class {{hints.desc}}
+  span.label_comment Comments
+  each comment in comments
+    div.row.comments_class
+      label.col-md-6
+        {{comment.user.name}}
+      label.col-md-6
+        {{formattedDate (comment.user.commentedOn)}}
+      span.col-md-12 {{comment.comment}}
+  div.row.comment-class
+    input.form-control.col-md-12.add_comment(type="text" placeholder="Comment on hint")
+    button.btn.btn-success.save_comment(type='button' id=hints.id)
+     i.fa.fa-paper-plane {{_ ' Submit Comment'}}

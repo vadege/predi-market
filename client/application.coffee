@@ -20,6 +20,8 @@ set_initial_language = ->
 #Deps.autorun ->
 Meteor.subscribe 'Settings', -> settings_loaded = true
 Meteor.subscribe 'allUserData'
+Meteor.subscribe 'ContractsHints'
+Meteor.subscribe 'Comments'
 
 Meteor.startup ->
   Session.set "loading", true

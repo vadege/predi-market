@@ -62,7 +62,10 @@ Meteor.methods
       desc: ''
       id: new Meteor.Collection.ObjectID()._str
       approved: true
+      isAdmin: true
       contract_id: parent_id
+      likes: []
+      dislikes: []
     }
     Contracts.update({_id: parent_id}, {$push: {hints: value}})
 
@@ -80,13 +83,26 @@ Meteor.methods
   addUserHint: (value, parent_id) ->
     Contracts.update({set_id: parent_id}, {$push: {hints: value}})
 
+  addLike:(parent_id) ->
+    userId = Meteor.userId()
+    likes = {
+      likedBy: userId
+    }
+    Contracts.update({"hints.id": parent_id}, {$addToSet: {'hints.$.likes': likes}})
+
+  removeLike:(parent_id) ->
+    value = Contracts.findOne({"hints.id": parent_id})
+    contractid = value._id
+    userId = Meteor.userId()
+    likes = {
+      dislikedBy: userId
+    }
+    Contracts.update({set_id: contractid}, {$pull: {"hints.$.likes": {"likedBy": userId}}})
+    Contracts.update({"hints.id": parent_id}, {$addToSet: {'hints.$.dislikes': likes}})
+
   removeHint: (parent_id, objectid) ->
     checkAdmin @userId
     Contracts.update({_id: parent_id}, {$pull: {"hints": { id:objectid } } })
-
-  disapproveHint: (parent_id, objectid) ->
-    checkAdmin @userId
-    Contracts.update({set_id: parent_id}, {$pull: {"hints": { id:objectid } } })
 
   addComment: (value, contractid, hint_id) ->
     user = Meteor.user()

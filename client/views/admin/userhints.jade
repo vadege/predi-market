@@ -1,19 +1,21 @@
 template(name="ListHints")
-  table.table
+  table.table.table-bordered
     thead
       tr
-        th  Title
-        th  Description
-        th  Approve
-        th  Disapprove
+        th Contract Name
+        th Date
+        th Hint Title
+        th Hint Description
+        th Action
     tbody
       each hints
         tr
+          th {{title}}
+          th {{formattedDate date}}
           th {{hint}}
           th {{desc}}
           th
-            button.btn.btn-info.approve_hint(type='button' id=contract_id value=id)
+            button.btn-success.approve_hint(type='button' id=contract_id value=id)
              i.fa.fa-check
-          th
-            button.btn.btn-danger.delete_hint(type='button' id=contract_id value=id)
+            button.btn-danger.delete_hint(type='button' id=contract_id value=id)
              i.fa.fa-trash-o

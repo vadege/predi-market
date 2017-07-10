@@ -18,7 +18,7 @@ Template.ListHints.helpers
       hintArr = value[i].hints
       j = 0
       while j < hintArr.length
-        if hintArr[j].isAdmin == false
+        if hintArr[j].isAdmin == false && hintArr[j].approved == false
           hintArr[j]['title'] = contract_title
           hintUpdatedArr.push(hintArr[j])
         j++

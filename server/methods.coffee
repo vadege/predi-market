@@ -104,6 +104,10 @@ Meteor.methods
     checkAdmin @userId
     Contracts.update({_id: parent_id}, {$pull: {"hints": { id:objectid } } })
 
+  removeUserHint: (parent_id, objectid) ->
+    checkAdmin @userId
+    Contracts.update({set_id:parent_id}, {$pull : {"hints": {id: objectid} } })
+
   addComment: (value, contractid, hint_id) ->
     user = Meteor.user()
     username = user.profile.name

@@ -4,6 +4,9 @@ formatDate = (date) ->
   value = moment(date).format('MMMM Do YYYY, h:mm a');
   value
 
+
+
+
 Template.ListHints.helpers
   hints: ->
     value = Contracts.find({mirror: {$not: true}}).fetch()
@@ -43,7 +46,7 @@ Template.ListHints.events
     evt.stopPropagation()
     id= evt.currentTarget.id
     value = evt.currentTarget.value
-    Meteor.call 'removeHint', id, value, (error, result) ->
+    Meteor.call 'removeUserHint', id, value, (error, result) ->
       if error
         Error.throw error
       true

@@ -12,6 +12,8 @@ Template.AddHintUser.events
     desc = $(".hint_val").val()
     contract_id = Session.get 'buttonId'
     Session.set 'buttonId', null
+    market_id = Session.get 'market_id'
+    Session.set 'market_id', null
     if (hint == "" || desc == "")
       $(".error").show()
       return
@@ -28,7 +30,7 @@ Template.AddHintUser.events
         console.log('Cannot save your hint. Please try again.')
       else
         console.log('Hint saved successfully')
-        Router.go '/market/' +market_id
+      Router.go '/market/' +market_id
 
   'click .back': (evt, tmpl) ->
     evt.stopPropagation()

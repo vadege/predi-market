@@ -100,7 +100,7 @@
 }
 .like {
   width: 6%;
-  margin-left: 100px;
+  margin-left: 20px;
   color: #3b5998;
   background-color: #fff;
 }
@@ -114,4 +114,11 @@
   float: left;
 font-size: 25px;
 font-weight: 400;
+}
+.submit_hint {
+  margin-top: 10px;
+}
+.time {
+  text-align: right;
+  font-weight: normal;
 }

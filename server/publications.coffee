@@ -97,3 +97,6 @@ Meteor.publish 'ContractsHints', ->
 
 Meteor.publish 'Comments', ->
   Comments.find()
+
+Meteor.publish 'HintsLikeDisLike', ->
+  HintsLikeDisLike.find()

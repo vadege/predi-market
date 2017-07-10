@@ -27,10 +27,16 @@ Template.AddHintUser.events
     }
     Meteor.call 'addUserHint', hint, contract_id, (error, result) ->
       if error
-        console.log('Cannot save your hint. Please try again.')
+        $(".error").show()
+        Meteor.setTimeout (->
+          $(".error").hide()
+        ), 3000
       else
-        console.log('Hint saved successfully')
-      Router.go '/market/' +market_id
+        $(".success").show()
+        Meteor.setTimeout (->
+          $(".success").hide()
+          Router.go '/market/' +market_id
+        ), 3000
 
   'click .back': (evt, tmpl) ->
     evt.stopPropagation()

@@ -85,20 +85,45 @@ Meteor.methods
 
   addLike:(parent_id) ->
     userId = Meteor.userId()
-    likes = {
+    like = {
       likedBy: userId
     }
-    Contracts.update({"hints.id": parent_id}, {$addToSet: {'hints.$.likes': likes}})
+    value = HintsLikeDisLike.findOne({hint_id: parent_id})
+    if value
+      value = HintsLikeDisLike.findOne({dislikes: {$elemMatch: { dislikedBy: userId } }}, {fields: {dislikes: 1}})
+      dislikesArr = value.dislikes
+      val = dislikesArr.filter (d) ->
+        return d.dislikedBy == userId
+      if val
+        val = HintsLikeDisLike.update({hint_id: parent_id}, {$pull: {"dislikes": { dislikedBy: userId }}})
+      HintsLikeDisLike.update({hint_id: parent_id}, {$addToSet: {likes: like}})
+    else
+      HintsLikeDisLike.insert({
+        hint_id: parent_id
+        likes: [ like ]
+        dislikes:[]
+      })
 
   removeLike:(parent_id) ->
-    value = Contracts.findOne({"hints.id": parent_id})
-    contractid = value._id
     userId = Meteor.userId()
-    likes = {
+    dislike = {
       dislikedBy: userId
     }
-    Contracts.update({set_id: contractid}, {$pull: {"hints.$.likes": {"likedBy": userId}}})
-    Contracts.update({"hints.id": parent_id}, {$addToSet: {'hints.$.dislikes': likes}})
+    value = HintsLikeDisLike.findOne({hint_id: parent_id})
+    if value
+      value = HintsLikeDisLike.findOne({likes: {$elemMatch: { likedBy: userId } }}, {fields: {likes: 1}})
+      likesArr = value.likes
+      val = likesArr.filter (d) ->
+        return d.likedBy == userId
+      if val
+        val = HintsLikeDisLike.update({hint_id: parent_id}, {$pull: {"likes": { likedBy: userId }}})
+      HintsLikeDisLike.update({hint_id: parent_id}, {$addToSet: {dislikes: dislike }})
+    else
+      HintsLikeDisLike.insert({
+        hint_id: parent_id
+        likes: []
+        dislikes:[ dislike ]
+      })
 
   removeHint: (parent_id, objectid) ->
     checkAdmin @userId
@@ -107,6 +132,34 @@ Meteor.methods
   removeUserHint: (parent_id, objectid) ->
     checkAdmin @userId
     Contracts.update({set_id:parent_id}, {$pull : {"hints": {id: objectid} } })
+
+  likeComment: (parent_id) ->
+    userId = Meteor.userId()
+    like = {
+      likedBy: userId
+    }
+    value = Comments.findOne({_id: parent_id}, {fields: {dislikes: 1}})
+    dislikesArr = value.dislikes
+    if dislikesArr
+      val = dislikesArr.filter (d) ->
+            return d.dislikedBy == userId
+      if val
+        Comments.update({_id: parent_id}, {$pull: {"dislikes": {dislikedBy: userId}}})
+    Comments.update({_id: parent_id}, {$addToSet: {'likes': like} })
+
+  dislikeComment: (parent_id) ->
+    userId = Meteor.userId()
+    dislike = {
+      dislikedBy: userId
+    }
+    value = Comments.findOne({_id: parent_id}, {fields: {likes: 1}})
+    likesArr = value.likes
+    if likesArr
+      val = likesArr.filter (d) ->
+            return d.likedBy == userId
+      if val
+        Comments.update({_id: parent_id}, {$pull: {"likes": {likedBy: userId}}})
+    Comments.update({_id: parent_id} , {$addToSet: {'dislikes': dislike} })
 
   addComment: (value, contractid, hint_id) ->
     user = Meteor.user()

@@ -9,6 +9,7 @@
 @Comments = new TAPi18n.Collection "Comments"
 @Activities = new Meteor.Collection "Activities"
 @Settings = new Meteor.Collection "Settings"
+@HintsLikeDisLike = new Meteor.Collection "HintsLikeDisLike"
 @Images = new FS.Collection "images",
   stores: [new FS.Store.FileSystem "images", {
     path: "~/images"

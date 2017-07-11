@@ -131,6 +131,10 @@
   margin-top: 10px;
   display: none;
 }
+.delete {
+  margin-top: 10px;
+  display: none;
+}
 .check {
   padding: 0 !important
 }
@@ -145,4 +149,16 @@
   margin-left: 20px;
   color: #3b5998;
   background-color: #fff;
+}
+.likes {
+  margin-top: 0 !important;
+}
+.font {
+  font-weight: normal;
+}
+.border {
+  border: 1px solid #888;
+  width: 97%;
+  margin-left: 12px;
+  border-radius: 10px;  
 }

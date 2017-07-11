@@ -172,6 +172,8 @@ Meteor.methods
         name: username,
         commentedOn: new Date()
       }
+      likes: []
+      dislikes: []
     });
 
   addFilter: (parent_id) ->

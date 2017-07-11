@@ -16,10 +16,6 @@ template(name='Contractset')
           +ActivitiesChart set_id=_id
         each Contracts
           +Contract
-        each hint
-          +ShowHint
-        button.btn.btn-success.submit_hint(type='button' id=_id)
-         i.fa.fa-paper-plane {{_ ' Submit New Hint'}}
       div.panel-footer.clearfix
         if iframebound
           div.pull-left
@@ -32,6 +28,10 @@ template(name='Contractset')
           button.do-trade.btn.btn-sm.btn-success.submit(type='submit' disabled='#{notSubmittable}')
             i.fa.fa-check
             span {{tradeDetails}}
+      each hint
+        +ShowHint
+      button.btn.btn-success.submit_hint(type='button' id=_id)
+       i.fa.fa-paper-plane {{_ ' Submit New Hint'}}
     else
       div.panel-heading
         h3.title

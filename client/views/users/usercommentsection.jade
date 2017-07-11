@@ -17,17 +17,22 @@ template(name="CommentSection")
         div.col-md-6
           label
             {{comment.user.name}}
-        div.col-md-6
-          label.time
+        div.col-md-6.time
+          label.font
             {{formattedDate (comment.user.commentedOn)}}
-        div.col-md-12
+        div.col-md-12.border
           span {{comment.comment}}
-        button.btn.col-md-2.like_comment(type='button' id=comment._id)
-         i.fa.fa-thumbs-up
-        label.like-count {{comment.likes.length}} likes
-        button.btn.col-md-2.dislike_comment(type='button' id=comment._id)
-         i.fa.fa-thumbs-down
-        label.like-count {{comment.dislikes.length}} dislikes
+        div.row
+          div
+            button.btn.col-md-2.like_comment(type='button' id=comment._id)
+             i.fa.fa-thumbs-up
+          div.like-count
+            label.likes {{comment.likes.length}} likes
+          div
+            button.btn.col-md-2.dislike_comment(type='button' id=comment._id)
+             i.fa.fa-thumbs-down
+            div.like-count
+              label.likes {{comment.dislikes.length}} dislikes
     div.row.comment-class
       textarea.form-control.col-md-12.add_comment(type="text" placeholder="Enter Comment")
       button.btn.btn-success.pull-left.back(type='button')

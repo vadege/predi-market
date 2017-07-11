@@ -39,7 +39,15 @@ Template.ListHints.events
     value = evt.currentTarget.value
     Meteor.call 'approveHint', value, (error, result) ->
       if error
-        Error.throw error
+        $(".error").show()
+        Meteor.setTimeout (->
+          $(".error").hide()
+        ), 3000
+      else
+        $(".success").show()
+        Meteor.setTimeout (->
+          $(".success").hide()
+        ), 3000
       true
 
   'click .delete_hint': (evt,tmpl) ->
@@ -48,5 +56,13 @@ Template.ListHints.events
     value = evt.currentTarget.value
     Meteor.call 'removeUserHint', id, value, (error, result) ->
       if error
-        Error.throw error
+        $(".error").show()
+        Meteor.setTimeout (->
+          $(".error").hide()
+        ), 3000
+      else
+        $(".delete").show()
+        Meteor.setTimeout (->
+          $(".delete").hide()
+        ), 3000
       true

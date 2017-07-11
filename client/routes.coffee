@@ -60,6 +60,7 @@ Router.route '/page/:_id', ->
 , {name: 'page', waitOn: -> TAPi18n.subscribe 'Pages'}
 
 Router.route '/market/:_id', ->
+  Session.set 'market_id', null
   @render 'Sidebar', {to: 'Sidebar'}
   @render 'Market'
 , {name: 'market', waitOn: ->

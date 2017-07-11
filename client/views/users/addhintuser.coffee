@@ -13,7 +13,6 @@ Template.AddHintUser.events
     contract_id = Session.get 'buttonId'
     Session.set 'buttonId', null
     market_id = Session.get 'market_id'
-    Session.set 'market_id', null
     if (hint == "" || desc == "")
       $(".error").show()
       return
@@ -41,5 +40,4 @@ Template.AddHintUser.events
   'click .back': (evt, tmpl) ->
     evt.stopPropagation()
     market_id = Session.get 'market_id'
-    Session.set 'market_id', null
     Router.go '/market/' +market_id

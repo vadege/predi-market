@@ -195,3 +195,21 @@
   width: 90%;
   margin-bottom: 10px;
 }
+.submit_reply {
+  width: 20%;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  display: none;
+  color: #3b5998 !important;
+}
+.submit_reply :hover {
+  color: #3b5998 !important;
+}
+.success_reply {
+  margin-top: 10px;
+  display: none;
+}
+.error_reply {
+  margin-top: 10px;
+  display: none;
+}

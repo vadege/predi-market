@@ -118,13 +118,28 @@ Template.CommentSection.events
   'click .reply_click': (evt, tmpl) ->
     id = evt.currentTarget.id
     $(".reply#"+id).show()
+    $(".submit_reply#"+id).show()
 
-  'blur .reply': (evt, tmpl) ->
-    reply = evt.currentTarget.value
+  'click .reply': (evt, tmpl) ->
     id = evt.currentTarget.id
-    console.log(reply,id)
+    $(".error_reply#"+id).hide()
+    
+  'click .submit_reply': (evt, tmpl) ->
+    id = evt.currentTarget.id
+    reply = $(".reply#"+id).val()
+    if reply == ""
+      $(".error_reply#"+id).show()
+      return
     Meteor.call 'addReplyToComment', id, reply, (error, result) ->
       if error
-        Error.throw error
+        $(".error_reply#"+id).show()
+        Meteor.setTimeout (->
+          $(".error_reply#"+id).hide()
+        ), 3000
       else
         $(".reply#"+id).hide()
+        $(".submit_reply#"+id).hide()
+        $(".success_reply#"+id).show()
+        Meteor.setTimeout (->
+          $(".success_reply#"+id).hide()
+        ), 3000

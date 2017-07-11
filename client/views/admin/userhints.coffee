@@ -5,8 +5,6 @@ formatDate = (date) ->
   value
 
 
-
-
 Template.ListHints.helpers
   hints: ->
     value = Contracts.find({mirror: {$not: true}}).fetch()
@@ -18,7 +16,7 @@ Template.ListHints.helpers
       hintArr = value[i].hints
       j = 0
       while j < hintArr.length
-        if hintArr[j].isAdmin == false && hintArr[j].approved == false
+        if hintArr[j].isAdmin == false
           hintArr[j]['title'] = contract_title
           hintUpdatedArr.push(hintArr[j])
         j++
@@ -26,6 +24,12 @@ Template.ListHints.helpers
     return hintUpdatedArr
 
   formattedDate: formatDate
+
+  # buttonCheck:(approved) ->
+  #   approve_button = `button.btn.btn-success.approve_hint(type='button' id=contract_id value=id)
+  #                     i.fa.fa-check.check`
+    # if approved == true
+    #   return approve_button
 
   date: ->
     id = Session.get 'date'

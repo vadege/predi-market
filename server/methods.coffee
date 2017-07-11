@@ -174,7 +174,18 @@ Meteor.methods
       }
       likes: []
       dislikes: []
+      replies: []
     });
+
+  addReplyToComment: (id, value) ->
+    user = Meteor.user()
+    name = user.profile.name
+    reply = {
+      replyBy: name
+      replyOn: new Date()
+      reply: value
+    }
+    Comments.update({_id: id}, {$push: {"replies": reply}})
 
   addFilter: (parent_id) ->
     checkAdmin @userId

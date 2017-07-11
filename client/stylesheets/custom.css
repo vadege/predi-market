@@ -139,16 +139,24 @@
   padding: 0 !important
 }
 .like_comment {
-  width: 6%;
+  width: 5%;
   margin-left: 20px;
-  color: #3b5998;
+  border: 0;
+  box-shadow: none;
+  color: #3b5998 !important;
   background-color: #fff;
 }
+.like_comment :hover {
+  color: #3b5998 !important;
+}
 .dislike_comment {
-  width: 6%;
+  width: 5%;
   margin-left: 20px;
-  color: #3b5998;
+  color: #a94442 !important;
   background-color: #fff;
+}
+.dislike_comment :hover {
+  color: #a94442 !important;
 }
 .likes {
   margin-top: 0 !important;
@@ -160,5 +168,30 @@
   border: 1px solid #888;
   width: 97%;
   margin-left: 12px;
-  border-radius: 10px;  
+  border-radius: 10px;
+}
+.reply_click {
+  width: 5%;
+  margin-left: -60px;
+  color: #3b5998 !important;
+  margin-top: 0px;
+  background-color: #fff;
+}
+.reply_click :hover {
+  color: #3b5998 !important;
+}
+.add_reply {
+  margin-left: 35px;
+  margin-right: 50px
+}
+.reply {
+  margin-bottom: 15px;
+  display: none;
+}
+.reply_section {
+  border: 1px solid #888;
+  border-radius: 10px;
+  margin-left: 50px !important;
+  width: 90%;
+  margin-bottom: 10px;
 }

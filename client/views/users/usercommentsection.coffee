@@ -4,6 +4,19 @@ formatDate = (date) ->
   value = moment(date).format('MMMM Do YYYY, h:mm a');
   value
 
+commentDate = (date) ->
+  moment.locale TAPi18n.getLanguage()
+  value = moment(date).format('MMMM Do YYYY');
+  value
+
+likedislike = (id) ->
+  value = Comments.findOne({_id: id})
+  likeArr = value.likes
+  dislikesArr = value.dislikes
+  likesLen = likeArr.length
+  dislikesLen = dislikesArr.length
+  return likesLen - dislikesLen
+
 Template.CommentSection.helpers
   hints: ->
     hint_id = Router.current().params._id
@@ -20,26 +33,10 @@ Template.CommentSection.helpers
     value =  HintsLikeDisLike.findOne({"hint_id": hint_id})
     if value
       likesArr = value.likes
-      length = likesArr.length
-      if length == 0
-        return 0;
-      else
-        return likesArr.length
-    else
-      return 0
-
-  totalDislikes: ->
-    hint_id = Router.current().params._id
-    value =  HintsLikeDisLike.findOne({"hint_id": hint_id})
-    if value
+      likeslength = likesArr.length
       dislikesArr = value.dislikes
-      length = dislikesArr.length
-      if length == 0
-        return 0
-      else
-        return dislikesArr.length
-    else
-      return 0
+      dislikeslength = dislikesArr.length
+      return likeslength - dislikeslength
 
   comments: ->
     hint_id = Router.current().params._id
@@ -48,6 +45,9 @@ Template.CommentSection.helpers
 
   formattedDate: formatDate
 
+  commenttedDate: commentDate
+
+  nooflikes: likedislike
 
 Template.CommentSection.events
   'click .add_comment': (evt, tmpl) ->
@@ -114,3 +114,17 @@ Template.CommentSection.events
       if error
         Error.throw error
       true
+
+  'click .reply_click': (evt, tmpl) ->
+    id = evt.currentTarget.id
+    $(".reply#"+id).show()
+
+  'blur .reply': (evt, tmpl) ->
+    reply = evt.currentTarget.value
+    id = evt.currentTarget.id
+    console.log(reply,id)
+    Meteor.call 'addReplyToComment', id, reply, (error, result) ->
+      if error
+        Error.throw error
+      else
+        $(".reply#"+id).hide()

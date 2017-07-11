@@ -2,6 +2,6 @@ template(name="AddHint")
    | Hint
    input.hint.form-control(type="text" name="hint" value=hint id=id)
    | Hint Description
-   input.hint_val.get.form-control(type="text" name="desc" value=desc id=id)
+   textarea.hint_val.get.form-control(type="text" name="desc" value=desc id=id)
    button.btn.btn-danger.remove_hint(type='button' id=contract_id value=id)
     i.fa.fa-trash {{_ 'Remove Hint'}}

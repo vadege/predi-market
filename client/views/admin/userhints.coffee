@@ -25,11 +25,9 @@ Template.ListHints.helpers
 
   formattedDate: formatDate
 
-  # buttonCheck:(approved) ->
-  #   approve_button = `button.btn.btn-success.approve_hint(type='button' id=contract_id value=id)
-  #                     i.fa.fa-check.check`
-    # if approved == true
-    #   return approve_button
+  buttonCheck:(approved) ->
+    if approved == false
+      return true
 
   date: ->
     id = Session.get 'date'

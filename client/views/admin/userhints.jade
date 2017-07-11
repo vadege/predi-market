@@ -22,7 +22,8 @@ template(name="ListHints")
           td {{hint}}
           td {{desc}}
           td
-            button.btn.btn-success.approve_hint(type='button' id=contract_id value=id)
-              i.fa.fa-check.check
+            if buttonCheck approved false
+              button.btn.btn-success.approve_hint(type='button' id=contract_id value=id)
+                i.fa.fa-check.check
             button.btn.btn-danger.delete_hint(type='button' id=contract_id value=id)
               i.fa.fa-trash-o.check

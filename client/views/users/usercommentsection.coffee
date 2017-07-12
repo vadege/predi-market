@@ -80,7 +80,6 @@ Template.CommentSection.events
   'click .back': (evt, tmpl) ->
     evt.stopPropagation()
     marketid = Session.get 'marketid'
-    Session.set 'marketid', null
     Router.go '/market/' + marketid
 
   'click .like': (evt, tmpl) ->
@@ -123,7 +122,7 @@ Template.CommentSection.events
   'click .reply': (evt, tmpl) ->
     id = evt.currentTarget.id
     $(".error_reply#"+id).hide()
-    
+
   'click .submit_reply': (evt, tmpl) ->
     id = evt.currentTarget.id
     reply = $(".reply#"+id).val()

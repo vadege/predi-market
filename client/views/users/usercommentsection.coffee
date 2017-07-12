@@ -37,6 +37,8 @@ Template.CommentSection.helpers
       dislikesArr = value.dislikes
       dislikeslength = dislikesArr.length
       return likeslength - dislikeslength
+    else
+      return 0
 
   comments: ->
     hint_id = Router.current().params._id

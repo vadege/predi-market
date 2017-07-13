@@ -39,7 +39,7 @@ template(name="CommentSection")
               span.col-md-12 {{reply}}
           div.add_reply
             input.form-control.col-md-12.reply(type="text" placeholder="Reply to comment" id=comment._id)
-            button.btn.col-md-12.btn-success.pull-right.submit_reply(type='button' id=comment._id)
+            button.btn.col-md-12.pull-right.submit_reply(type='button' id=comment._id)
               i.fa.fa-paper-plane {{_ 'Submit'}}
       div.success_reply.alert.alert-success(id=comment._id)
        label Your reply has been saved successfully

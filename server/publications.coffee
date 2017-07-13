@@ -7,7 +7,7 @@ TAPi18n.publish "Markets", ->
     if user.profile.admin
       Markets.i18nFind()
     else
-      Markets.i18nFind({'tags': {$in: user.profile.tags}})
+      Markets.i18nFind({})
 
 TAPi18n.publish "Contractsets", ->
   if @userId isnt null
@@ -15,7 +15,7 @@ TAPi18n.publish "Contractsets", ->
     if user.profile.admin
       Contractsets.i18nFind()
     else
-      market_ids = _.map Markets.i18nFind({'tags': {$in: user.profile.tags}}).fetch(), (market) -> market._id
+      market_ids = _.map Markets.i18nFind({}).fetch(), (market) -> market._id
 
       Contractsets.i18nFind
         active: true
@@ -31,7 +31,7 @@ TAPi18n.publish "Contracts", ->
     if user.profile.admin
       Contracts.i18nFind()
     else
-      market_ids = _.map Markets.i18nFind({'tags': {$in: user.profile.tags}}).fetch(), (market) -> market._id
+      market_ids = _.map Markets.i18nFind({}).fetch(), (market) -> market._id
       contractset_ids = _.map Contractsets.i18nFind(
         active: true
         settled: false

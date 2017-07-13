@@ -89,11 +89,12 @@ Meteor.methods
     value = HintsLikeDisLike.findOne({hint_id: parent_id})
     if value
       value = HintsLikeDisLike.findOne({dislikes: {$elemMatch: { dislikedBy: userId } }}, {fields: {dislikes: 1}})
-      dislikesArr = value.dislikes
-      val = dislikesArr.filter (d) ->
-        return d.dislikedBy == userId
-      if val
-        val = HintsLikeDisLike.update({hint_id: parent_id}, {$pull: {"dislikes": { dislikedBy: userId }}})
+      if value
+        dislikesArr = value.dislikes
+        val = dislikesArr.filter (d) ->
+          return d.dislikedBy == userId
+        if val
+          val = HintsLikeDisLike.update({hint_id: parent_id}, {$pull: {"dislikes": { dislikedBy: userId }}})
       HintsLikeDisLike.update({hint_id: parent_id}, {$addToSet: {likes: like}})
     else
       HintsLikeDisLike.insert({

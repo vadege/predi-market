@@ -216,3 +216,20 @@
   border: 0;
   outline: 0
 }
+.like:focus, .like:active {
+  border: 0;
+  outline: 0
+}
+.like :hover {
+  color: #3b5998 !important;
+}
+.dislike :hover {
+  color: #3b5998 !important;
+}
+.dislike:focus, .dislike:active {
+  border: 0;
+  outline: 0
+}
+.dislike :hover {
+  color: #3b5998 !important;
+}

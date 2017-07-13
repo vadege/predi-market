@@ -64,8 +64,6 @@ Meteor.methods
       approved: true
       isAdmin: true
       contract_id: parent_id
-      likes: []
-      dislikes: []
     }
     Contracts.update({_id: parent_id}, {$push: {hints: value}})
 

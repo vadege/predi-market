@@ -130,7 +130,7 @@ Meteor.methods
 
   removeUserHint: (parent_id, objectid) ->
     checkAdmin @userId
-    Contracts.update({set_id:parent_id}, {$pull : {"hints": {id: objectid} } })
+    Contracts.update({$and:[{set_id: parent_id}, "mirror": {$exists: false}]}, {$pull : {"hints": {id: objectid} } })
 
   likeComment: (parent_id) ->
     userId = Meteor.userId()

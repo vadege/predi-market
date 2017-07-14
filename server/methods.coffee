@@ -79,7 +79,7 @@ Meteor.methods
     Contracts.update({"hints.id": objectid}, {$set: {'hints.$.approved': true}})
 
   addUserHint: (value, parent_id) ->
-    Contracts.update({set_id: parent_id}, {$push: {hints: value}})
+    Contracts.update({$and:[{set_id: parent_id}, {mirror: {$not: true}}]}, {$push: {hints: value}})
 
   addLike:(parent_id) ->
     userId = Meteor.userId()

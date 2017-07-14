@@ -139,6 +139,7 @@ Template.CommentSection.events
         ), 3000
       else
         $(".reply#"+id).hide()
+        $(".reply").val()
         $(".submit_reply#"+id).hide()
         $(".success_reply#"+id).show()
         Meteor.setTimeout (->

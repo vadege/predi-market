@@ -7,7 +7,7 @@ TAPi18n.publish "Markets", ->
     if user.profile.admin
       Markets.i18nFind()
     else
-      Markets.i18nFind({})
+      Markets.i18nFind({'tags': {$in: user.profile.tags}})
 
 TAPi18n.publish "Contractsets", ->
   if @userId isnt null
@@ -15,7 +15,7 @@ TAPi18n.publish "Contractsets", ->
     if user.profile.admin
       Contractsets.i18nFind()
     else
-      market_ids = _.map Markets.i18nFind({}).fetch(), (market) -> market._id
+      market_ids = _.map Markets.i18nFind({'tags': {$in: user.profile.tags}}).fetch(), (market) -> market._id
 
       Contractsets.i18nFind
         active: true
@@ -31,7 +31,7 @@ TAPi18n.publish "Contracts", ->
     if user.profile.admin
       Contracts.i18nFind()
     else
-      market_ids = _.map Markets.i18nFind({}).fetch(), (market) -> market._id
+      market_ids = _.map Markets.i18nFind({'tags': {$in: user.profile.tags}}).fetch(), (market) -> market._id
       contractset_ids = _.map Contractsets.i18nFind(
         active: true
         settled: false
@@ -83,8 +83,7 @@ Meteor.publish 'allUserData', ->
   else
     user = Meteor.users.findOne {_id: @userId}
     # TODO: Inject gravatar hash
-    value = Meteor.users.find {}, {fields: {'profile.cash': true, 'profile.portfolio': true, 'profile.name': true, username: true, 'profile.admin': true}}
-    # console.log(value.fetch()
+    Meteor.users.find {'profile.tags': {$in: user.profile.tags}}, {fields: {'profile.cash': true, 'profile.portfolio': true, 'profile.name': true, 'profile.tags': true, username: true, 'profile.admin': true}}
 
 Meteor.publish 'Settings', ->
   Settings.find()

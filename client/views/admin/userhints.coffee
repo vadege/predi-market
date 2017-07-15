@@ -16,11 +16,13 @@ Template.ListHints.helpers
       contract_title = value[i].title
       hintArr = value[i].hints
       j = 0
-      while j < hintArr.length
-        if hintArr[j].isAdmin == false
-          hintArr[j]['title'] = contract_title
-          hintUpdatedArr.push(hintArr[j])
-        j++
+      length = hintArr.length
+      if length
+        while j < length
+          if hintArr[j].isAdmin == false
+            hintArr[j]['title'] = contract_title
+            hintUpdatedArr.push(hintArr[j])
+          j++
       i++
     return hintUpdatedArr
 

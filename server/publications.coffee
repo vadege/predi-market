@@ -83,7 +83,7 @@ Meteor.publish 'allUserData', ->
   else
     user = Meteor.users.findOne {_id: @userId}
     # TODO: Inject gravatar hash
-    Meteor.users.find {'profile.tags': {$in: user.profile.tags}}, {fields: {'profile.cash': true, 'profile.portfolio': true, 'profile.name': true, 'profile.tags': true, username: true, 'profile.admin': true}}
+    Meteor.users.find {}, {fields: {'profile.cash': true, 'profile.portfolio': true, 'profile.name': true, 'profile.tags': true, username: true, 'profile.admin': true}}
 
 Meteor.publish 'Settings', ->
   Settings.find()

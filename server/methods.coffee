@@ -79,7 +79,7 @@ Meteor.methods
     Contracts.update({"hints.id": objectid}, {$set: {'hints.$.approved': true}})
 
   addUserHint: (value, parent_id) ->
-    Contracts.update({$and:[{set_id: parent_id}, "mirror": {$exists: false}]}, {$push: {hints: value}})
+    Contracts.update({set_id: parent_id}, {$push: {hints: value}})
 
   addLike:(parent_id) ->
     userId = Meteor.userId()
@@ -130,7 +130,7 @@ Meteor.methods
 
   removeUserHint: (parent_id, objectid) ->
     checkAdmin @userId
-    Contracts.update({$and:[{set_id: parent_id}, "mirror": {$exists: false}]}, {$pull : {"hints": {id: objectid} } })
+    Contracts.update({set_id: parent_id}, {$pull : {"hints": {id: objectid} } })
 
   likeComment: (parent_id) ->
     userId = Meteor.userId()

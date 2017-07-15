@@ -9,11 +9,14 @@ Accounts.emailTemplates.enrollAccount.subject = (user) ->
 Accounts.emailTemplates.enrollAccount.text = (user, url) ->
   token = user.services.password.reset.token
   url2 = "https://mygreensight.com/#/enroll-account"+token
-  "Dear participant\n\n" +
 
-  "Set your password by clicking the link below:\n\n" + url2 + "\n\n" +
-  "Once you have set your password, you can start trading.\n" +
-  "Thank you for your participation."
+  "Dear Greenseer,\n\n" +
+  "Welcome to the world’s first Game of Thrones prediction market.\n\n"
+
+  "You can set your password by clicking the link below:\n\n" + url2 + "\n\n" +
+  "As soon as you receive your confirmation mail, you are ready to go!
+  For now this can take a moment since we only add one user at a time. \n" +
+  "Thank you for your patience and much success on the market!."
 
 # Remember to set $MAIL_URL to 'smtp://postmaster%40mg.start-market.com.mailgun.org:[MAILGUNKEY]@smtp.mailgun.org:587'
 

@@ -7,9 +7,11 @@ Accounts.emailTemplates.enrollAccount.subject = (user) ->
   "Welcome to the prediction market"
 
 Accounts.emailTemplates.enrollAccount.text = (user, url) ->
+  token = user.services.password.reset.token
+  url2 = "https://mygreensight.com/#/enroll-account"+token
   "Dear participant\n\n" +
 
-  "Set your password by clicking the link below:\n\n" + url + "\n\n" +
+  "Set your password by clicking the link below:\n\n" + url2 + "\n\n" +
   "Once you have set your password, you can start trading.\n" +
   "Thank you for your participation."
 

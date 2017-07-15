@@ -9,7 +9,6 @@ Template.ListHints.helpers
   hints: ->
     value = Contracts.find({mirror: {$exists: false}}).fetch()
     hintUpdatedArr = [];
-    console.log(value)
     i = 0
     while i < value.length
       Session.set 'date', value[i].set_id

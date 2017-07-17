@@ -416,7 +416,8 @@ Meteor.methods
     re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     unless re.test email
       throw new Meteor.Error "error_invalid_email"
-    profile = _.extend profile, {admin: false}
+    tags = ["allusers"]
+    profile = _.extend profile, {admin: false}, {tags: tags}
 
     if !verifyCaptchaResponse.success
       throw new Meteor.Error "fill_captcha_first"

@@ -108,3 +108,98 @@ Unexpected mongo exit code null. Restarting.
 Unexpected mongo exit code null. Restarting.
 Unexpected mongo exit code null. Restarting.
 Unexpected mongo exit code null. Restarting.
+[[[[[ /var/www/predi-market ]]]]]
+
+=> Started proxy.
+=> Meteor 1.5 is available. Update this project with 'meteor update'.
+[34mI20170715-09:39:31.372(0)? [39mKadira: completed instrumenting the app
+=> Started your app.
+
+=> App running at: http://178.62.2.117:3003
+[34mI20170715-09:53:11.776(0)? [39mException in queued task: Error: ENOENT: no such file or directory, unlink '/home/deepak/images/images-tPFj3ppYsJ46yzT2M-Bildschirmfoto 2017-07-15 um 11.15.23.png'
+[34mI20170715-09:53:11.778(0)? [39m    at Object.Future.wait (/home/deepak/.meteor/packages/meteor-tool/.1.4.3_2.cdi5qx++os.linux.x86_64+web.browser+web.cordova/mt-os.linux.x86_64/dev_bundle/server-lib/node_modules/fibers/future.js:449:15)
+[34mI20170715-09:53:11.780(0)? [39m    at packages/meteor.js:213:24
+[34mI20170715-09:53:11.781(0)? [39m    at Object.self.adapter.remove (packages/cfs_storage-adapter.js:282:49)
+[34mI20170715-09:53:11.783(0)? [39m    at packages/cfs_worker.js:91:25
+[34mI20170715-09:53:11.786(0)? [39m    at Array.forEach (native)
+[34mI20170715-09:53:11.792(0)? [39m    at Object._.each._.forEach [as each] (packages/underscore.js:139:11)
+[34mI20170715-09:53:11.794(0)? [39m    at Object.fsCollection.files.find.observe.removed (packages/cfs_worker.js:90:18)
+[34mI20170715-09:53:11.795(0)? [39m    at [object Object].observeChangesCallbacks.removed (packages/minimongo/observe.js:169:28)
+[34mI20170715-09:53:11.796(0)? [39m    at self.applyChange.removed (packages/minimongo/observe.js:71:44)
+[34mI20170715-09:53:11.799(0)? [39m    at packages/mongo/observe_multiplex.js:182:30
+[34mI20170715-09:53:11.802(0)? [39m    - - - - -
+[34mI20170715-09:53:11.804(0)? [39m    at Error (native)
+[34mI20170715-09:53:11.813(0)? [39mException in queued task: Error: ENOENT: no such file or directory, unlink '/home/deepak/images/images-zSGsiGvWiHeX8tmhF-Bildschirmfoto 2017-07-15 um 11.15.23.png'
+[34mI20170715-09:53:11.814(0)? [39m    at Object.Future.wait (/home/deepak/.meteor/packages/meteor-tool/.1.4.3_2.cdi5qx++os.linux.x86_64+web.browser+web.cordova/mt-os.linux.x86_64/dev_bundle/server-lib/node_modules/fibers/future.js:449:15)
+[34mI20170715-09:53:11.817(0)? [39m    at packages/meteor.js:213:24
+[34mI20170715-09:53:11.821(0)? [39m    at Object.self.adapter.remove (packages/cfs_storage-adapter.js:282:49)
+[34mI20170715-09:53:11.824(0)? [39m    at packages/cfs_worker.js:91:25
+[34mI20170715-09:53:11.825(0)? [39m    at Array.forEach (native)
+[34mI20170715-09:53:11.826(0)? [39m    at Object._.each._.forEach [as each] (packages/underscore.js:139:11)
+[34mI20170715-09:53:11.829(0)? [39m    at Object.fsCollection.files.find.observe.removed (packages/cfs_worker.js:90:18)
+[34mI20170715-09:53:11.830(0)? [39m    at [object Object].observeChangesCallbacks.removed (packages/minimongo/observe.js:169:28)
+[34mI20170715-09:53:11.832(0)? [39m    at self.applyChange.removed (packages/minimongo/observe.js:71:44)
+[34mI20170715-09:53:11.834(0)? [39m    at packages/mongo/observe_multiplex.js:182:30
+[34mI20170715-09:53:11.836(0)? [39m    - - - - -
+[34mI20170715-09:53:11.838(0)? [39m    at Error (native)
+=> Server modified -- restarting.../home/deepak/.meteor/packages/ecmascript/.0.6.3.1sg201s++os+web.browser+web.cordova/plugin.compile-ecmascript.os/npm/node_modules/meteor/promise/node_modules/meteor-promise/promise_server.js:190
+      throw error;
+      ^
+
+Error: ENOENT: no such file or directory, symlink '/home/deepak/.meteor/packages/fortawesome_fontawesome/.4.7.0.a9lx4l++os+web.browser+web.cordova/npm/node_modules' -> '/var/www/predi-market/.meteor/local/build/programs/server/npm/node_modules/meteor/fortawesome_fontawesome/node_modules'
+    at Error (native)
+    at Object.fs.symlinkSync (fs.js:897:18)
+    at Object.wrapper (/tools/fs/files.js:1535:35)
+    at symlinkWithOverwrite (/tools/isobuild/builder.js:740:5)
+    at walk (/tools/isobuild/builder.js:458:9)
+    at Builder.copyDirectory (/tools/isobuild/builder.js:594:5)
+    at /tools/isobuild/bundler.js:2050:17
+    at Function._.each._.forEach (/home/deepak/.meteor/packages/meteor-tool/.1.4.3_2.cdi5qx++os.linux.x86_64+web.browser+web.cordova/mt-os.linux.x86_64/dev_bundle/lib/node_modules/underscore/underscore.js:87:22)
+    at JsImage.write (/tools/isobuild/bundler.js:2009:7)
+    at ServerTarget.write (/tools/isobuild/bundler.js:2278:13)
+    at /tools/isobuild/bundler.js:2373:30
+    at /tools/isobuild/bundler.js:2506:9
+    at Array.forEach (native)
+    at /tools/isobuild/bundler.js:2496:26
+    at /tools/isobuild/bundler.js:2837:22
+    at /tools/utils/buildmessage.js:271:13
+    at [object Object]._.extend.withValue (/tools/utils/fiber-helpers.js:89:14)
+    at /tools/utils/buildmessage.js:264:29
+    at [object Object]._.extend.withValue (/tools/utils/fiber-helpers.js:89:14)
+    at /tools/utils/buildmessage.js:262:18
+    at [object Object]._.extend.withValue (/tools/utils/fiber-helpers.js:89:14)
+    at /tools/utils/buildmessage.js:253:23
+    at [object Object]._.extend.withValue (/tools/utils/fiber-helpers.js:89:14)
+    at Object.capture (/tools/utils/buildmessage.js:252:19)
+    at bundle (/tools/isobuild/bundler.js:2670:31)
+    at /tools/isobuild/bundler.js:2617:32
+    at Object.withCache (/tools/fs/files.js:1601:12)
+    at Object.exports.bundle (/tools/isobuild/bundler.js:2617:16)
+    at /tools/runners/run-app.js:588:36
+    at Function.run (/tools/tool-env/profile.js:490:12)
+    at bundleApp (/tools/runners/run-app.js:587:34)
+    at [object Object]._.extend._runOnce (/tools/runners/run-app.js:631:35)
+    at [object Object]._.extend._fiber (/tools/runners/run-app.js:890:28)
+    at /tools/runners/run-app.js:417:12
+[[[[[ /var/www/predi-market ]]]]]
+
+=> Started proxy.
+=> Meteor 1.5 is available. Update this project with 'meteor update'.
+[34mI20170715-10:37:39.360(0)? [39mKadira: completed instrumenting the app
+=> Started your app.
+
+=> App running at: http://178.62.2.117:3003
+=> Meteor 1.5.1 is available. Update this project with 'meteor update'.
+=> Server modified -- restarting...                                   [34mI20170715-14:23:29.125(0)? [39mKadira: completed instrumenting the app
+=> Meteor server restarted
+=> Server modified -- restarting...                                   [34mI20170715-14:31:27.190(0)? [39mKadira: completed instrumenting the app
+=> Meteor server restarted
+=> Server modified -- restarting...                                   [34mI20170715-14:39:25.025(0)? [39mKadira: completed instrumenting the app
+=> Meteor server restarted
+=> Server modified -- restarting...                                   [34mI20170715-14:42:21.060(0)? [39mKadira: completed instrumenting the app
+=> Meteor server restarted
+=> Server modified -- restarting...                                   [34mI20170715-14:44:06.513(0)? [39mKadira: completed instrumenting the app
+=> Meteor server restarted
+=> Meteor 1.5.1 is available. Update this project with 'meteor update'.
+=> Meteor 1.5.1 is available. Update this project with 'meteor update'.
+=> Meteor 1.5.1 is available. Update this project with 'meteor update'.

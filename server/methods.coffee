@@ -416,8 +416,7 @@ Meteor.methods
     re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     unless re.test email
       throw new Meteor.Error "error_invalid_email"
-    tags = ["GoT"]
-    profile = _.extend profile, {admin: false}, {tags: tags}
+    profile = _.extend profile, {admin: false},
 
     if !verifyCaptchaResponse.success
       throw new Meteor.Error "fill_captcha_first"
@@ -425,6 +424,7 @@ Meteor.methods
     try
       userId = Accounts.createUser({username: username, email: email, profile: profile})
       if userId
+        addTag userId, "GoT"
         Accounts.sendEnrollmentEmail userId
       else
         throw new Meteor.Error "error_unable_to_create_user"

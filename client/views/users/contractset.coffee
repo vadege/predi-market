@@ -24,10 +24,22 @@ Template.Contractset.helpers
                            {mirror: {$not: true}}]}
 
   hint: ->
-    value = Contracts.findOne({set_id: @_id}, {fields: {hints: 1}})
-    hintArr = value.hints
-    hintArr.filter (d) ->
-      return d.approved == true
+    value = Contracts.find({set_id: @_id}, {fields: {hints: 1}}).fetch()
+    i = 0
+    hintArrUpdated = []
+    while i <value.length
+      if value[i].hints
+        hintArr = value[i].hints
+        val = hintArr.filter (d) ->
+          return d.approved == true
+        j = 0
+        while j <  val.length
+          hintArrUpdated.push(val[j])
+          j++
+      i++
+    return hintArrUpdated
+
+
 
   Image: ->
     Images.findOne({_id: @image})

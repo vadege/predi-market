@@ -7,7 +7,7 @@ formatDate = (date) ->
 
 Template.ListHints.helpers
   hints: ->
-    value = Contracts.find({mirror: {$exists: false}}).fetch()
+    value = Contracts.find({hints: {$exists: true}}).fetch()
     hintUpdatedArr = [];
     i = 0
     while i < value.length

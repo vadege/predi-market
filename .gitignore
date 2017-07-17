@@ -6,3 +6,6 @@ ctags
 tags
 /packages
 .#*
+.nohup
+run.sh
+settings.json

@@ -100,3 +100,6 @@ Meteor.publish 'Comments', ->
 
 Meteor.publish 'HintsLikeDisLike', ->
   HintsLikeDisLike.find()
+
+Meteor.publish 'ReplyLikeDislike', ->
+  ReplyLikeDislike.find()

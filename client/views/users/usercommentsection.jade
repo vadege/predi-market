@@ -40,10 +40,12 @@ template(name="CommentSection")
               label.col-md-6 {{replyBy}}
               label.col-md-6.time {{commenttedDate replyOn}}
               span.col-md-12(style="margin-bottom: 0;") {{reply}}
-              button.btn.col-md-2.like_reply(type='button' id=reply)
+              button.btn.col-md-2.like_reply(type='button' id=id)
                i.fa.fa-thumbs-up
               button.btn.col-md-2.dislike_reply(type='button' id=id)
                i.fa.fa-thumbs-down
+              div.like-count.col-md-2
+                label.likes {{nooflikesReply id}}
               button.btn.col-md-2.delete_reply(type='button' id=comment._id value=id name=userId)
                 i.fa.fa-trash-o {{_ 'Delete'}}
           div.add_reply

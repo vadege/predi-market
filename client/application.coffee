@@ -23,6 +23,7 @@ Meteor.subscribe 'allUserData'
 Meteor.subscribe 'ContractsHints'
 Meteor.subscribe 'Comments'
 Meteor.subscribe 'HintsLikeDisLike'
+Meteor.subscribe 'ReplyLikeDislike'
 
 Meteor.startup ->
   Session.set "loading", true

@@ -204,7 +204,48 @@ Meteor.methods
     else
       throw new Meteor.Error "Not authorized"
 
+  likeReply: (parent_id) ->
+    userId = Meteor.userId()
+    like = {
+      likedBy: userId
+    }
+    value = ReplyLikeDislike.findOne({reply_id: parent_id})
+    if value
+      value = ReplyLikeDislike.findOne({dislikes: {$elemMatch: { dislikedBy: userId } }}, {fields: {dislikes: 1}})
+      if value
+        dislikesArr = value.dislikes
+        val = dislikesArr.filter (d) ->
+          return d.dislikedBy == userId
+        if val
+          val = ReplyLikeDislike.update({reply_id: parent_id}, {$pull: {"dislikes": { dislikedBy: userId }}})
+      ReplyLikeDislike.update({reply_id: parent_id}, {$addToSet: {likes: like}})
+    else
+      ReplyLikeDislike.insert({
+        reply_id: parent_id
+        likes: [ like ]
+        dislikes:[]
+      })
 
+  dislikeReply: (parent_id) ->
+    userId = Meteor.userId()
+    dislike = {
+      dislikedBy: userId
+    }
+    value = ReplyLikeDislike.findOne({reply_id: parent_id})
+    if value
+      value = ReplyLikeDislike.findOne({likes: {$elemMatch: { likedBy: userId } }}, {fields: {likes: 1}})
+      likesArr = value.likes
+      val = likesArr.filter (d) ->
+        return d.likedBy == userId
+      if val
+        val = ReplyLikeDislike.update({reply_id: parent_id}, {$pull: {"likes": { likedBy: userId }}})
+      ReplyLikeDislike.update({reply_id: parent_id}, {$addToSet: {dislikes: dislike }})
+    else
+      ReplyLikeDislike.insert({
+        reply_id: parent_id
+        likes: []
+        dislikes:[ dislike ]
+      })
 
   addFilter: (parent_id) ->
     checkAdmin @userId

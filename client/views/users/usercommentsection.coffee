@@ -17,6 +17,14 @@ likedislike = (id) ->
   dislikesLen = dislikesArr.length
   return likesLen - dislikesLen
 
+replyLikeCount = (id) ->
+  value = ReplyLikeDislike.findOne({reply_id: id})
+  likeArr = value.likes
+  dislikesArr = value.dislikes
+  likesLen = likeArr.length
+  dislikesLen = dislikesArr.length
+  return likesLen - dislikesLen
+
 Template.CommentSection.helpers
   hints: ->
     hint_id = Router.current().params._id
@@ -50,6 +58,8 @@ Template.CommentSection.helpers
   commenttedDate: commentDate
 
   nooflikes: likedislike
+
+  nooflikesReply: replyLikeCount
 
 Template.CommentSection.events
   'click .add_comment': (evt, tmpl) ->
@@ -166,4 +176,18 @@ Template.CommentSection.events
         Meteor.setTimeout (->
           $(".delete_error#"+id).hide()
         ), 1000
+      true
+
+  'click .like_reply': (evt, tmpl) ->
+    id = evt.currentTarget.id
+    Meteor.call 'likeReply', id, (error, result) ->
+      if error
+        console.log(error)
+      true
+
+  'click .dislike_reply': (evt, tmpl) ->
+    id = evt.currentTarget.id
+    Meteor.call 'dislikeReply', id, (error, result) ->
+      if error
+        console.log(error)
       true

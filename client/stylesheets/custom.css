@@ -232,3 +232,34 @@
 .dislike :hover {
   color: #3b5998 !important;
 }
+.delete_click {
+  width: 5%;
+  color: #a94442 !important;
+  margin-top: 0px;
+  background-color: #fff;
+}
+.delete_error {
+  margin-top: 1px;
+  display: none;
+}
+.delete_reply {
+  width: 5%;
+  color: #a94442 !important;
+  margin-top: 0px;
+  background-color: #fff;
+  margin-right: 35px;
+}
+.dislike_reply {
+  width: 5%;
+  margin-left: 20px;
+  color: #a94442 !important;
+  background-color: #fff;
+}
+.like_reply {
+  width: 5%;
+  margin-left: 20px;
+  border: 0;
+  box-shadow: none;
+  color: #3b5998 !important;
+  background-color: #fff;
+}

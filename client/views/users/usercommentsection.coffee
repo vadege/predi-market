@@ -145,3 +145,25 @@ Template.CommentSection.events
         Meteor.setTimeout (->
           $(".success_reply#"+id).hide()
         ), 3000
+
+  'click .delete_click': (evt, tmpl) ->
+    id = evt.currentTarget.id
+    Meteor.call 'deleteComment', id, (error, result) ->
+      if error
+        $(".delete_error#"+id).show()
+        Meteor.setTimeout (->
+          $(".delete_error#"+id).hide()
+        ), 1000
+      true
+
+  'click .delete_reply': (evt, tmpl) ->
+    id = evt.currentTarget.id
+    value = evt.currentTarget.value
+    name = evt.currentTarget.name
+    Meteor.call 'deleteReply', id, value, name, (error, result) ->
+      if error
+        $(".delete_error#"+id).show()
+        Meteor.setTimeout (->
+          $(".delete_error#"+id).hide()
+        ), 1000
+      true

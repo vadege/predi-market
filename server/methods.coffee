@@ -176,15 +176,35 @@ Meteor.methods
       replies: []
     });
 
+  deleteComment: (parent_id) ->
+    user = Meteor.user()
+    username = user.profile.name
+    value = Comments.findOne({_id: parent_id})
+    if value.user.name == username
+      Comments.remove({_id: parent_id})
+    else
+      throw new Meteor.Error "Not authorized"
+
   addReplyToComment: (id, value) ->
     user = Meteor.user()
     name = user.profile.name
     reply = {
       replyBy: name
+      userId: user._id
       replyOn: new Date()
       reply: value
+      id: new Meteor.Collection.ObjectID()._str
     }
     Comments.update({_id: id}, {$push: {"replies": reply}})
+
+  deleteReply: (parent_id, value,name) ->
+    userId = Meteor.userId()
+    if name == userId
+      Comments.update({_id: parent_id}, {$pull: {"replies": {id:value} }})
+    else
+      throw new Meteor.Error "Not authorized"
+
+
 
   addFilter: (parent_id) ->
     checkAdmin @userId

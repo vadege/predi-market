@@ -83,6 +83,12 @@ Router.route '/leaderboard/:_id', ->
 Router.route '/hints/:_id', ->
   @render 'Sidebar', {to: 'Sidebar'}
   @render 'CommentSection'
+, {waitOn: ->
+     if Meteor?.userId()
+       cols = ['Pages', 'Markets']
+       _.map cols, (col) ->
+         TAPi18n.subscribe col
+  }
 
 Router.route '/markets/', ->
   @render 'Sidebar', {to: 'Sidebar'}
@@ -97,6 +103,12 @@ Router.route '/markets/', ->
 Router.route '/hint/', ->
   @render 'Sidebar', {to: 'Sidebar'}
   @render 'AddHintUser'
+, {waitOn: ->
+     if Meteor?.userId()
+       cols = ['Pages', 'Markets']
+       _.map cols, (col) ->
+         TAPi18n.subscribe col
+  }
 
 Router.route '/admin', ->
   if not Meteor?.user()?.profile?.admin

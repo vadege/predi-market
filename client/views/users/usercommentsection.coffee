@@ -73,6 +73,12 @@ Template.CommentSection.helpers
   nooflikesReply: replyLikeCount
 
 Template.CommentSection.events
+  'paste .add_comment': (evt, tmpl) ->
+    evt.preventDefault();
+
+  'paste .reply': (evt, tmpl) ->
+    evt.preventDefault();
+    
   'click .add_comment': (evt, tmpl) ->
       evt.stopPropagation()
       $(".error").hide()

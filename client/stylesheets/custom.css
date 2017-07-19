@@ -248,6 +248,7 @@
   margin-top: 0px;
   background-color: #fff;
   margin-right: 35px;
+  margin-left: -70px;
 }
 .dislike_reply {
   width: 5%;
@@ -262,4 +263,22 @@
   box-shadow: none;
   color: #3b5998 !important;
   background-color: #fff;
+}
+.sort {color: black;margin: 5px; text-decoration: none;}
+
+.dropdown-menu li:hover .sub-menu {
+    visibility: visible;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0;
+}
+
+.dropdown-menu .sub-menu {
+    left: 100%;
+    position: absolute;
+    top: 0;
+    visibility: hidden;
+    margin-top: -1px;
 }

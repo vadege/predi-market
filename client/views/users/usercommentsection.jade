@@ -9,6 +9,18 @@ template(name="CommentSection")
       span.like-count {{totalLikes}}
     div.row.title_class
       h3.col-md-12.desc-class {{hints.desc}}
+    span.label_comment.col-md-10 Sort By
+    li.dropdown.btn.btn-default
+      span.glyphicon.glyphicon-th-list
+        |  Select
+        span.caret
+      ul.dropdown-menu.dropdown-toggle(data-toggle="dropdown")
+        li
+          a.sort.select Sort By
+        li
+          a.sort.popularity Popularity
+        li
+          a.sort.date Date
     span.label_comment Comments
     each comment in comments
       div.row.comments_class

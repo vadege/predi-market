@@ -185,6 +185,10 @@ Meteor.methods
     else
       throw new Meteor.Error "Not authorized"
 
+  deleteUserComment: (parent_id) ->
+    checkAdmin @userId
+    Comments.remove({_id: parent_id})
+
   showCommentsByPopularity: (hint_id) ->
     value = Comments.aggregate([{"$project": {"hint_id": 1, "comment": 1, "replies": 1, "user": 1, "likes": 1, "length": {"$size": "$likes"} }},
     {"$sort": {"length": -1}},{"$match": {"hint_id": hint_id }}, {"$project": {"hint_id": 1, "replies": 1, "comment": 1, "user": 1, "likes": 1}}

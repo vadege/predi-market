@@ -14,6 +14,8 @@ Template.AdminSidebar.events
     Session.set 'admin_section', "settings"
   'click #go_hints': ->
     Session.set 'admin_section', "hints"
+  'click #go_comments': ->
+    Session.set 'admin_section', "comments"
 
   'click [data-toggle=offcanvas]': (evt, tmpl) ->
     element = $ evt.currentTarget

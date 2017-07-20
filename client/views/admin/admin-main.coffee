@@ -33,6 +33,9 @@ Template.AdminMain.helpers
   hints: ->
     Session.get('admin_section') is "hints"
 
+  comments: ->
+    Session.get('admin_section') is "comments"
+
   logOptions: ->
     # handle: activitiesHandle
 

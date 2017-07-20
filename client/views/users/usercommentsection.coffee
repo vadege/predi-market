@@ -75,11 +75,10 @@ Template.CommentSection.helpers
       return "Select"
 
   url:(comment) ->
-    re = /(http|ftp|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:\/~+#-]*[\w@?^=%&amp;\/~+#-])?/
-    if re.test comment
-      return true
-    else
-      return false
+    re = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig
+    commentUrl = comment.replace(re, "<a href='$1'>$1</a>")
+    console.log(commentUrl)
+    return commentUrl
 
   formattedDate: formatDate
 

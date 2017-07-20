@@ -61,6 +61,8 @@ Router.route '/page/:_id', ->
 
 Router.route '/market/:_id', ->
   Session.set 'market_id', null
+  Session.set 'commentsByPopularity', null
+  Session.set 'commentsByDate', null
   @render 'Sidebar', {to: 'Sidebar'}
   @render 'Market'
 , {name: 'market', waitOn: ->
@@ -81,6 +83,8 @@ Router.route '/leaderboard/:_id', ->
   }
 
 Router.route '/hints/:_id', ->
+  Session.set 'commentsByPopularity', null
+  Session.set 'commentsByDate', null
   @render 'Sidebar', {to: 'Sidebar'}
   @render 'CommentSection'
 , {waitOn: ->

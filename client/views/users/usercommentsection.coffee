@@ -64,6 +64,23 @@ Template.CommentSection.helpers
     else
       return value
 
+  Select: ->
+    popularity = Session.get 'commentsByPopularity'
+    date = Session.get 'commentsByDate'
+    if popularity
+      return "Popularity"
+    else if date
+      return "Date"
+    else
+      return "Select"
+
+  url:(comment) ->
+    re = /(http|ftp|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:\/~+#-]*[\w@?^=%&amp;\/~+#-])?/
+    if re.test comment
+      return true
+    else
+      return false
+
   formattedDate: formatDate
 
   commenttedDate: commentDate
@@ -78,7 +95,7 @@ Template.CommentSection.events
 
   'paste .reply': (evt, tmpl) ->
     evt.preventDefault();
-    
+
   'click .add_comment': (evt, tmpl) ->
       evt.stopPropagation()
       $(".error").hide()
@@ -237,3 +254,13 @@ Template.CommentSection.events
       else
         Session.set 'commentsByPopularity', null
         Session.set 'commentsByDate', null
+
+  'click .urlClass': (evt, tmpl) ->
+    evt.preventDefault()
+    value = evt.currentTarget.href
+    window.open(value + location.search)
+
+  'click .replyUrl': (evt, tmpl) ->
+    evt.preventDefault()
+    value = evt.currentTarget.href
+    window.open(value + location.search)

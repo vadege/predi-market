@@ -9,18 +9,19 @@ template(name="CommentSection")
       span.like-count {{totalLikes}}
     div.row.title_class
       h3.col-md-12.desc-class {{hints.desc}}
-    span.label_comment.col-md-10 Sort By
-    li.dropdown.btn.btn-default
-      span.glyphicon.glyphicon-th-list
-        |  Select
-        span.caret
-      ul.dropdown-menu.dropdown-toggle(data-toggle="dropdown")
-        li
-          a.sort.select Sort By
-        li
-          a.sort.popularity Popularity
-        li
-          a.sort.date Date
+    if comments
+      span.label_comment.col-md-9 Sort By
+      li.dropdown.btn.btn-default
+        span.glyphicon.glyphicon-th-list
+          |  {{Select}}
+          span.caret
+        ul.dropdown-menu.dropdown-toggle(data-toggle="dropdown")
+          li
+            a.sort.select Select
+          li
+            a.sort.popularity Popularity
+          li
+            a.sort.date Date
     span.label_comment Comments
     each comment in comments
       div.row.comments_class
@@ -31,7 +32,10 @@ template(name="CommentSection")
           label.font
             {{formattedDate comment.user.commentedOn}}
         div.col-md-12.border
-          span {{comment.comment}}
+          if url comment.comment true
+              a.urlClass(href=comment.comment) {{comment.comment}}
+          else
+            span {{comment.comment}}
         div.row
           div
             button.btn.col-md-2.like_comment(type='button' id=comment._id)
@@ -51,7 +55,11 @@ template(name="CommentSection")
             div.row.col-md-12.reply_section
               label.col-md-6 {{replyBy}}
               label.col-md-6.time {{commenttedDate replyOn}}
-              span.col-md-12(style="margin-bottom: 0;") {{reply}}
+              if url reply true
+                a.replyUrl(href=reply)
+                  span.col-md-12(style="margin-bottom: 0;") {{reply}}
+              else
+                span.col-md-12(style="margin-bottom: 0;") {{reply}}
               button.btn.col-md-2.like_reply(type='button' id=id)
                i.fa.fa-thumbs-up
               button.btn.col-md-2.dislike_reply(type='button' id=id)

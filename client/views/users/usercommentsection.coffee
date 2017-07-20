@@ -76,7 +76,7 @@ Template.CommentSection.helpers
 
   url:(comment) ->
     re = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig
-    commentUrl = comment.replace(re, "<a href='$1'>$1</a>")
+    commentUrl = comment.replace(re, "<a id='urlClass' href='$1'>$1</a>")
     return commentUrl
 
   formattedDate: formatDate
@@ -253,12 +253,7 @@ Template.CommentSection.events
         Session.set 'commentsByPopularity', null
         Session.set 'commentsByDate', null
 
-  'click .urlClass': (evt, tmpl) ->
-    evt.preventDefault()
-    value = evt.currentTarget.href
-    window.open(value + location.search)
-
-  'click .replyUrl': (evt, tmpl) ->
+  'click #urlClass': (evt, tmpl) ->
     evt.preventDefault()
     value = evt.currentTarget.href
     window.open(value + location.search)

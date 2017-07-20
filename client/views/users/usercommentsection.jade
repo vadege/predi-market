@@ -1,14 +1,14 @@
 template(name="CommentSection")
   div.container-fluid
     div.row
-      h3.col-md-12.title-class {{hints.hint}}
+      h3.col-md-12.title-class {{{url hints.hint}}}
       button.btn.col-md-2.like(type='button' id=hints.id)
        i.fa.fa-thumbs-up
       button.btn.col-md-2.dislike(type='button' id=hints.id)
        i.fa.fa-thumbs-down
       span.like-count {{totalLikes}}
     div.row.title_class
-      h3.col-md-12.desc-class {{hints.desc}}
+      h3.col-md-12.desc-class {{{url hints.desc}}}
     if comments
       span.label_comment.col-md-9 Sort By
       li.dropdown.btn.btn-default

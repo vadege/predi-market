@@ -5,10 +5,12 @@ template(name="AddHintUser")
    div.error.alert.alert-warning
      label Error while saving your hint. Please try again.
    div.row
-   | Title
-   input.hint.form-control(type="text" placeholder="Enter hint")
-   | Description
-   textarea.hint_val.get.form-control(type="text" placeholder="Enter description")
+   div.form-group
+     | Title
+     input.hint.form-control(type="text" placeholder="Enter hint")
+   div.form-group
+     | Description
+     textarea.hint_val.get.form-control(type="text" placeholder="Enter description")
    button.btn.btn-success.back.pull-left(type='button')
     i.fa.fa-arrow-left {{_ ' Back'}}
    button.btn.btn-success.add_hint.pull-right(type='button')

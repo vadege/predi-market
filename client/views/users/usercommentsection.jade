@@ -10,8 +10,8 @@ template(name="CommentSection")
     div.row.title_class
       h3.col-md-12.desc-class {{{url hints.desc}}}
     if comments
-      span.label_comment.col-md-9 Sort By
-      li.dropdown.btn.btn-default
+      span.label_comment Sort By
+      li.dropdown.btn.btn-default.pull-right
         span.glyphicon.glyphicon-th-list
           |  {{Select}}
           span.caret
@@ -22,30 +22,26 @@ template(name="CommentSection")
             a.sort.popularity Popularity
           li
             a.sort.date Date
-    span.label_comment Comments
+    div.col-md-12.label_comment Comments
     each comment in comments
       div.row.comments_class
-        div.col-md-6
+        div.col-md-6.col-xs-5
           label
             {{comment.user.name}}
-        div.col-md-6.time
+        div.col-md-6.time.col-xs-7
           label.font
             {{formattedDate comment.user.commentedOn}}
         div.col-md-12.border
           {{{url comment.comment}}}
         div.row
-          div
+          div.button-section
             button.btn.col-md-2.like_comment(type='button' id=comment._id)
              i.fa.fa-thumbs-up
-          div
             button.btn.col-md-2.dislike_comment(type='button' id=comment._id)
              i.fa.fa-thumbs-down
-          div.like-count.col-md-2
-           label.likes {{nooflikes comment._id}}
-          div
+            label.likes {{nooflikes comment._id}}
             button.btn.col-md-2.reply_click(type='button' id=comment._id)
               i.fa.fa-reply {{_ 'Reply'}}
-          div
             button.btn.col-md-2.delete_click(type='button' id=comment._id)
               i.fa.fa-trash-o {{_ 'Delete'}}
           each comment.replies
@@ -54,14 +50,14 @@ template(name="CommentSection")
               label.col-md-6.time {{commenttedDate replyOn}}
               span.col-md-12(style="margin-bottom: 0;")
                 {{{url reply}}}
-              button.btn.col-md-2.like_reply(type='button' id=id)
-               i.fa.fa-thumbs-up
-              button.btn.col-md-2.dislike_reply(type='button' id=id)
-               i.fa.fa-thumbs-down
-              div.like-count.col-md-2
+              div.button-section
+                button.btn.col-md-2.like_reply(type='button' id=id)
+                 i.fa.fa-thumbs-up
+                button.btn.col-md-2.dislike_reply(type='button' id=id)
+                 i.fa.fa-thumbs-down
                 label.likes {{nooflikesReply id}}
-              button.btn.col-md-2.delete_reply(type='button' id=comment._id value=id name=userId)
-                i.fa.fa-trash-o {{_ 'Delete'}}
+                button.btn.col-md-2.delete_reply(type='button' id=comment._id value=id name=userId)
+                  i.fa.fa-trash-o {{_ 'Delete'}}
           div.add_reply
             input.form-control.col-md-12.reply(type="text" placeholder="Reply to comment" id=comment._id)
             button.btn.col-md-12.pull-right.submit_reply(type='button' id=comment._id)

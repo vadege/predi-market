@@ -1,6 +1,6 @@
 template(name='NewUser')
-  div.dialog-container
-    div.container-fluid
+  div.dialog-container.rowcustom
+    div.container-fluid.padding0
       div.row
         div.col-md-6.col-md-push-3
           +markdown
@@ -16,7 +16,8 @@ template(name='NewUser')
                   input.form-control#name(type="text" placeholder="{{_ 'init_admin_name'}}")
                 div.form-group
                   input.form-control#email(type="email" placeholder="{{_ 'init_admin_email'}}")
-                {{> reCAPTCHA}}
+                div.form-group
+                  {{> reCAPTCHA}}
                 div.form-group.pull-right
                   button.btn.btn-danger(style="margin-top: 10px")#create_user(type="submit")
                     i.fa.fa-check {{_ "button_create_user"}}

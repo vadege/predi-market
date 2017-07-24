@@ -242,15 +242,13 @@ Meteor.methods
     }
     value = ReplyLikeDislike.findOne({reply_id: parent_id})
     if value
-      value = ReplyLikeDislike.findOne({dislikes: {$elemMatch: { dislikedBy: userId } }}, {fields: {dislikes: 1}})
-      if value
-        dislikesArr = value.dislikes
-        if dislikesArr
-          val = dislikesArr.filter (d) ->
-            return d.dislikedBy == userId
-          if val
-            val = ReplyLikeDislike.update({reply_id: parent_id}, {$pull: {"dislikes": { dislikedBy: userId }}})
-        ReplyLikeDislike.update({reply_id: parent_id}, {$addToSet: {likes: like}})
+      dislikesArr = value.dislikes
+      if dislikesArr
+        val = dislikesArr.filter (d) ->
+          return d.dislikedBy == userId
+        if val
+          val = ReplyLikeDislike.update({reply_id: parent_id}, {$pull: {"dislikes": { dislikedBy: userId }}})
+      ReplyLikeDislike.update({reply_id: parent_id}, {$addToSet: {likes: like}})
     else
       ReplyLikeDislike.insert({
         reply_id: parent_id
@@ -265,15 +263,12 @@ Meteor.methods
     }
     value = ReplyLikeDislike.findOne({reply_id: parent_id})
     if value
-      value = ReplyLikeDislike.findOne({likes: {$elemMatch: { likedBy: userId } }})
-      console.log(value)
       likesArr = value.likes
-      if likesArr
-        val = likesArr.filter (d) ->
-          return d.likedBy == userId
-        if val
-          val = ReplyLikeDislike.update({reply_id: parent_id}, {$pull: {"likes": { likedBy: userId }}})
-        ReplyLikeDislike.update({reply_id: parent_id}, {$addToSet: {dislikes: dislike }})
+      val = likesArr.filter (d) ->
+        return d.likedBy == userId
+      if val
+        val = ReplyLikeDislike.update({reply_id: parent_id}, {$pull: {"likes": { likedBy: userId }}})
+      ReplyLikeDislike.update({reply_id: parent_id}, {$addToSet: {dislikes: dislike }})
     else
       ReplyLikeDislike.insert({
         reply_id: parent_id

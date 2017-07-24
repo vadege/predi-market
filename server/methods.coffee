@@ -265,7 +265,8 @@ Meteor.methods
     }
     value = ReplyLikeDislike.findOne({reply_id: parent_id})
     if value
-      value = ReplyLikeDislike.findOne({likes: {$elemMatch: { likedBy: userId } }}, {fields: {likes: 1}})
+      value = ReplyLikeDislike.findOne({likes: {$elemMatch: { likedBy: userId } }})
+      console.log(value)
       likesArr = value.likes
       if likesArr
         val = likesArr.filter (d) ->

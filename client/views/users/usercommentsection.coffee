@@ -11,19 +11,37 @@ commentDate = (date) ->
 
 likedislike = (id) ->
   value = Comments.findOne({_id: id})
-  likeArr = value.likes
-  dislikesArr = value.dislikes
-  likesLen = likeArr.length
-  dislikesLen = dislikesArr.length
-  return likesLen - dislikesLen
+  if value
+    likeArr = value.likes
+    dislikesArr = value.dislikes
+    likesLen = likeArr.length
+    dislikesLen = dislikesArr.length
+    count = likesLen - dislikesLen
+    if count > 0
+      return likesLen
+    else if count < 0
+      return dislikesLen
+    else
+      return 0
+  else
+    return 0
 
 replyLikeCount = (id) ->
   value = ReplyLikeDislike.findOne({reply_id: id})
-  likeArr = value.likes
-  dislikesArr = value.dislikes
-  likesLen = likeArr.length
-  dislikesLen = dislikesArr.length
-  return likesLen - dislikesLen
+  if value
+    likeArr = value.likes
+    dislikesArr = value.dislikes
+    likesLen = likeArr.length
+    dislikesLen = dislikesArr.length
+    count = likesLen - dislikesLen
+    if count > 0
+      return likesLen
+    else if count < 0
+      return dislikesLen
+    else
+      return 0
+  else
+    return 0
 
 Template.CommentSection.onrendered = ->
   Session.set 'commentsByPopularity', null

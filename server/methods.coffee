@@ -95,7 +95,9 @@ Meteor.methods
           return d.dislikedBy == userId
         if val
           val = HintsLikeDisLike.update({hint_id: parent_id}, {$pull: {"dislikes": { dislikedBy: userId }}})
-      # HintsLikeDisLike.update({hint_id: parent_id}, {$addToSet: {likes: like}})
+      val = HintsLikeDisLike.findOne({$and: [{"likes.likedBy": userId}, {hint_id: parent_id}]})
+      if val == undefined
+        HintsLikeDisLike.update({hint_id: parent_id}, {$addToSet: {likes: like}})
     else
       HintsLikeDisLike.insert({
         hint_id: parent_id
@@ -116,7 +118,9 @@ Meteor.methods
         return d.likedBy == userId
       if val
         val = HintsLikeDisLike.update({hint_id: parent_id}, {$pull: {"likes": { likedBy: userId }}})
-      # HintsLikeDisLike.update({hint_id: parent_id}, {$addToSet: {dislikes: dislike }})
+      val = HintsLikeDisLike.findOne({$and: [{"dislikes.likedBy": userId}, {hint_id: parent_id}]})
+      if val == "undefined"
+        HintsLikeDisLike.update({hint_id: parent_id}, {$addToSet: {dislikes: dislike }})
     else
       HintsLikeDisLike.insert({
         hint_id: parent_id
@@ -144,7 +148,7 @@ Meteor.methods
             return d.dislikedBy == userId
       if val
         Comments.update({_id: parent_id}, {$pull: {"dislikes": {dislikedBy: userId}}})
-    # Comments.update({_id: parent_id}, {$addToSet: {'likes': like} })
+    Comments.update({_id: parent_id}, {$addToSet: {'likes': like} })
 
   dislikeComment: (parent_id) ->
     userId = Meteor.userId()
@@ -158,7 +162,7 @@ Meteor.methods
             return d.likedBy == userId
       if val
         Comments.update({_id: parent_id}, {$pull: {"likes": {likedBy: userId}}})
-    # Comments.update({_id: parent_id} , {$addToSet: {'dislikes': dislike} })
+    Comments.update({_id: parent_id} , {$addToSet: {'dislikes': dislike} })
 
   addComment: (value, contractid, hint_id) ->
     user = Meteor.user()
@@ -245,7 +249,7 @@ Meteor.methods
           return d.dislikedBy == userId
         if val
           val = ReplyLikeDislike.update({reply_id: parent_id}, {$pull: {"dislikes": { dislikedBy: userId }}})
-      # ReplyLikeDislike.update({reply_id: parent_id}, {$addToSet: {likes: like}})
+      ReplyLikeDislike.update({reply_id: parent_id}, {$addToSet: {likes: like}})
     else
       ReplyLikeDislike.insert({
         reply_id: parent_id
@@ -266,7 +270,7 @@ Meteor.methods
         return d.likedBy == userId
       if val
         val = ReplyLikeDislike.update({reply_id: parent_id}, {$pull: {"likes": { likedBy: userId }}})
-      # ReplyLikeDislike.update({reply_id: parent_id}, {$addToSet: {dislikes: dislike }})
+      ReplyLikeDislike.update({reply_id: parent_id}, {$addToSet: {dislikes: dislike }})
     else
       ReplyLikeDislike.insert({
         reply_id: parent_id

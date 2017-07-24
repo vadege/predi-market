@@ -11,6 +11,7 @@ template(name="ListComment")
       tr
         th Commented By
         th Date
+        th Hint
         th Comment
         th Delete
     tbody
@@ -18,11 +19,9 @@ template(name="ListComment")
         tr
           td {{user.name}}
           td {{formattedDate user.commentedOn}}
+          td {{hint hint_id}}
           td
-            if url comment true
-              a.url(href=comment) {{comment}}
-            else
-              {{comment}}
+            {{{url comment}}}
           td
             button.btn.btn-danger.delete_comment(type='button' id=_id)
               i.fa.fa-trash-o.check

@@ -4,19 +4,26 @@ formatDate = (date) ->
   value = moment(date).format('MMMM Do YYYY, h:mm a');
   value
 
+findHint = (hint_id) ->
+  hint = Contracts.findOne({"hints.id": hint_id}, {fields: {hints: 1}})
+  hintVal = hint.hints
+  val = hintVal.filter (d) ->
+    return d.id == hint_id
+  return val[0].hint
+
 Template.ListComment.helpers
   comments: ->
     comments = Comments.find({}).fetch()
     return comments
 
   url:(comment) ->
-    re = /(http|ftp|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:\/~+#-]*[\w@?^=%&amp;\/~+#-])?/
-    if re.test comment
-      return true
-    else
-      return false
+    re = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig
+    commentUrl = comment.replace(re, "<a id='urlClass' href='$1'>$1</a>")
+    return commentUrl
 
   formattedDate: formatDate
+
+  hint: findHint
 
 Template.ListComment.events
   "click .url": (evt, tmpl) ->

@@ -16,13 +16,7 @@ likedislike = (id) ->
     dislikesArr = value.dislikes
     likesLen = likeArr.length
     dislikesLen = dislikesArr.length
-    count = likesLen - dislikesLen
-    if count > 0
-      return likesLen
-    else if count < 0
-      return "-" + dislikesLen
-    else
-      return 0
+    return likesLen - dislikesLen
   else
     return 0
 
@@ -33,13 +27,7 @@ replyLikeCount = (id) ->
     dislikesArr = value.dislikes
     likesLen = likeArr.length
     dislikesLen = dislikesArr.length
-    count = likesLen - dislikesLen
-    if count > 0
-      return likesLen
-    else if count < 0
-      return "-" + dislikesLen
-    else
-      return 0
+    return likesLen - dislikesLen
   else
     return 0
 
@@ -66,13 +54,7 @@ Template.CommentSection.helpers
       likeslength = likesArr.length
       dislikesArr = value.dislikes
       dislikeslength = dislikesArr.length
-      count = likeslength - dislikeslength
-      if count > 0
-        return likeslength
-      else if count < 0
-        return "-" + dislikeslength
-      else
-        return 0
+      return likeslength - dislikeslength
     else
       return 0
 

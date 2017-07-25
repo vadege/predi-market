@@ -95,9 +95,8 @@ Meteor.methods
           return d.dislikedBy == userId
         if val
           val = HintsLikeDisLike.update({hint_id: parent_id}, {$pull: {"dislikes": { dislikedBy: userId }}})
-      val = HintsLikeDisLike.findOne({$and: [{"likes.likedBy": userId}, {hint_id: parent_id}]})
-      if val == undefined
-        HintsLikeDisLike.update({hint_id: parent_id}, {$addToSet: {likes: like}})
+      else
+        HintsLikeDisLike.update({hint_id: parent_id}, {$addToSet: {likes: like }})
     else
       HintsLikeDisLike.insert({
         hint_id: parent_id
@@ -108,18 +107,19 @@ Meteor.methods
   removeLike:(parent_id) ->
     userId = Meteor.userId()
     dislike = {
-      dislikedBy: userId
+      likedBy: userId
     }
     value = HintsLikeDisLike.findOne({hint_id: parent_id})
     if value
       value = HintsLikeDisLike.findOne({likes: {$elemMatch: { likedBy: userId } }}, {fields: {likes: 1}})
-      likesArr = value.likes
-      val = likesArr.filter (d) ->
-        return d.likedBy == userId
-      if val
-        val = HintsLikeDisLike.update({hint_id: parent_id}, {$pull: {"likes": { likedBy: userId }}})
-      val = HintsLikeDisLike.findOne({$and: [{"dislikes.likedBy": userId}, {hint_id: parent_id}]})
-      if val == "undefined"
+      if value
+        likesArr = value.likes
+        if likesArr
+          val = likesArr.filter (d) ->
+            return d.likedBy == userId
+          if val
+            val = HintsLikeDisLike.update({hint_id: parent_id}, {$pull: {"likes": { likedBy: userId }}})
+      else
         HintsLikeDisLike.update({hint_id: parent_id}, {$addToSet: {dislikes: dislike }})
     else
       HintsLikeDisLike.insert({
@@ -146,9 +146,11 @@ Meteor.methods
     if dislikesArr
       val = dislikesArr.filter (d) ->
             return d.dislikedBy == userId
-      if val
+      if val.length > 0
+        console.log(val)
         Comments.update({_id: parent_id}, {$pull: {"dislikes": {dislikedBy: userId}}})
-    Comments.update({_id: parent_id}, {$addToSet: {'likes': like} })
+      else
+        Comments.update({_id: parent_id}, {$addToSet: {'likes': like} })
 
   dislikeComment: (parent_id) ->
     userId = Meteor.userId()
@@ -162,7 +164,8 @@ Meteor.methods
             return d.likedBy == userId
       if val
         Comments.update({_id: parent_id}, {$pull: {"likes": {likedBy: userId}}})
-    Comments.update({_id: parent_id} , {$addToSet: {'dislikes': dislike} })
+    else
+      Comments.update({_id: parent_id} , {$addToSet: {'dislikes': dislike} })
 
   addComment: (value, contractid, hint_id) ->
     user = Meteor.user()
@@ -243,12 +246,13 @@ Meteor.methods
     value = ReplyLikeDislike.findOne({reply_id: parent_id})
     if value
       dislikesArr = value.dislikes
-      if dislikesArr
+      if dislikesArr.length > 0
         val = dislikesArr.filter (d) ->
           return d.dislikedBy == userId
         if val
           val = ReplyLikeDislike.update({reply_id: parent_id}, {$pull: {"dislikes": { dislikedBy: userId }}})
-      ReplyLikeDislike.update({reply_id: parent_id}, {$addToSet: {likes: like}})
+      else
+        ReplyLikeDislike.update({reply_id: parent_id}, {$addToSet: {likes: like}})
     else
       ReplyLikeDislike.insert({
         reply_id: parent_id
@@ -264,11 +268,13 @@ Meteor.methods
     value = ReplyLikeDislike.findOne({reply_id: parent_id})
     if value
       likesArr = value.likes
-      val = likesArr.filter (d) ->
-        return d.likedBy == userId
-      if val
-        val = ReplyLikeDislike.update({reply_id: parent_id}, {$pull: {"likes": { likedBy: userId }}})
-      ReplyLikeDislike.update({reply_id: parent_id}, {$addToSet: {dislikes: dislike }})
+      if likesArr.length > 0
+        val = likesArr.filter (d) ->
+          return d.likedBy == userId
+        if val
+          val = ReplyLikeDislike.update({reply_id: parent_id}, {$pull: {"likes": { likedBy: userId }}})
+      else
+        ReplyLikeDislike.update({reply_id: parent_id}, {$addToSet: {dislikes: dislike }})
     else
       ReplyLikeDislike.insert({
         reply_id: parent_id

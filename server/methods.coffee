@@ -79,8 +79,8 @@ Meteor.methods
     Contracts.update({"hints.id": objectid}, {$set: {'hints.$.approved': true}})
 
   addUserHint: (value, parent_id) ->
-    value = Contracts.update({$and:[{set_id: parent_id}, "mirror": {$exists: false}]}, {$push: {hints: value}})
-    if value
+    val = Contracts.update({$and:[{set_id: parent_id}, "mirror": {$exists: false}]}, {$push: {hints: value}})
+    if val
       Meteor.call 'notifyUser', value, parent_id
 
   addLike:(parent_id) ->

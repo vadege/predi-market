@@ -35,7 +35,7 @@ Template.AddHintUser.events
         Meteor.setTimeout (->
           $(".success").hide()
           Router.go '/market/' +market_id
-        ), 3000
+        ), 1000
 
   'click .back': (evt, tmpl) ->
     evt.stopPropagation()

@@ -79,7 +79,9 @@ Meteor.methods
     Contracts.update({"hints.id": objectid}, {$set: {'hints.$.approved': true}})
 
   addUserHint: (value, parent_id) ->
-    Contracts.update({$and:[{set_id: parent_id}, "mirror": {$exists: false}]}, {$push: {hints: value}})
+    value = Contracts.update({$and:[{set_id: parent_id}, "mirror": {$exists: false}]}, {$push: {hints: value}})
+    if value
+      Meteor.call 'notifyUser', value, parent_id
 
   addLike:(parent_id) ->
     userId = Meteor.userId()
@@ -131,10 +133,12 @@ Meteor.methods
   removeHint: (parent_id, objectid) ->
     checkAdmin @userId
     Contracts.update({_id: parent_id}, {$pull: {"hints": { id:objectid } } })
+    Comments.remove({hint_id: objectid})
 
   removeUserHint: (parent_id, objectid) ->
     checkAdmin @userId
-    Contracts.update({set_id: parent_id}, {$pull : {"hints": {id: objectid} } })
+    Contracts.update({$and: [{set_id: parent_id}, {mirror: {$exists: false}}]}, {$pull : {"hints": {id: objectid} } })
+    Comments.remove({hint_id: objectid})
 
   likeComment: (parent_id) ->
     userId = Meteor.userId()
@@ -530,6 +534,32 @@ Meteor.methods
         when error.reason is "Email already exists." then throw new Meteor.Error "error_email_exists"
         else throw new Meteor.Error "error_unable_to_create_user"
 
+  notifyUser: (hint, contract_id) ->
+    admin = Meteor.users.findOne({"profile.admin": true}, {fields: {"emails": 1} })
+    user = Meteor.user()
+    value = Contractsets.findOne({_id: contract_id}, {fields: {title: 1}})
+    from = "noreply@gmail.com";
+    to = admin.emails[0].address
+    username = user.profile.name
+    time = formatDate(new Date)
+    contractName = value.title
+    subject = "New hint submitted by user"
+    text = "A new hint has been submitted by user.\n\n" +
+    "Hint Name :" + hint.hint + "\n\n" +
+    "Hint Desc :" + hint.desc + "\n\n" +
+    "Submitted By :" + username + "\n\n" +
+    "Submitted On :" + time + "\n\n" +
+    "ContractSet Name :" + contractName + "\n\n"
+    Fiber = Npm.require "fibers"
+    Fiber(->
+      Email.send
+        to: to
+        from: from
+        subject: subject
+        text: text
+    ).run()
+
+
   # To use, call Meteor.call('batchEnrollment') from the browser console when
   # logged in as an admin. Will send out enrollment emails to all email
   # adresses listed in private/enrollmentusers.json provided they map to an
@@ -542,3 +572,8 @@ Meteor.methods
       user = Meteor.users.findOne {"emails.address": email}
       if user
         Accounts.sendEnrollmentEmail user._id
+
+  formatDate = (date) ->
+    value = moment(date).locale('en').format('MMMM Do YYYY, h:mm a');
+    moment.locale(value)
+    value

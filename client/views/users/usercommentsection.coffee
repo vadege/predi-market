@@ -6,7 +6,7 @@ formatDate = (date) ->
 
 commentDate = (date) ->
   moment.locale TAPi18n.getLanguage()
-  value = moment(date).format('MMMM Do YYYY');
+  value = moment(date).format('MMMM Do YYYY, h:mm a');
   value
 
 likedislike = (id) ->
@@ -31,7 +31,8 @@ replyLikeCount = (id) ->
   else
     return 0
 
-Template.CommentSection.onrendered = ->
+Template.CommentSection.rendered = ->
+  $(".add_comment").focus()
   Session.set 'commentsByPopularity', null
   Session.set 'commentsByDate', null
 
@@ -74,11 +75,9 @@ Template.CommentSection.helpers
     popularity = Session.get 'commentsByPopularity'
     date = Session.get 'commentsByDate'
     if popularity
-      return "Popularity"
-    else if date
-      return "Date"
+      return "Popular"
     else
-      return "Select"
+      return "New"
 
   url:(comment) ->
     re = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig
@@ -94,11 +93,11 @@ Template.CommentSection.helpers
   nooflikesReply: replyLikeCount
 
 Template.CommentSection.events
-  'paste .add_comment': (evt, tmpl) ->
-    evt.preventDefault();
-
-  'paste .reply': (evt, tmpl) ->
-    evt.preventDefault();
+  # 'paste .add_comment': (evt, tmpl) ->
+  #   evt.preventDefault();
+  #
+  # 'paste .reply': (evt, tmpl) ->
+  #   evt.preventDefault();
 
   'click .add_comment': (evt, tmpl) ->
       evt.stopPropagation()
@@ -233,6 +232,7 @@ Template.CommentSection.events
       true
 
   'click .popularity': (evt, tmpl) ->
+    $(".hiding").hide()
     hint_id = Router.current().params._id
     Meteor.call 'showCommentsByPopularity', hint_id, (error, result) ->
       if error
@@ -242,6 +242,7 @@ Template.CommentSection.events
         Session.set 'commentsByPopularity', result
 
   'click .date': (evt, tmpl) ->
+    $(".hiding").hide()
     hint_id = Router.current().params._id
     Meteor.call 'showCommentsByDate', hint_id, (error, result) ->
       if error
@@ -249,15 +250,6 @@ Template.CommentSection.events
       else
         Session.set 'commentsByPopularity', null
         Session.set 'commentsByDate', result
-
-  'click .select': (evt, tmpl) ->
-    hint_id = Router.current().params._id
-    Meteor.call 'showCommentsInitial', hint_id, (error, result) ->
-      if error
-        console.log(error)
-      else
-        Session.set 'commentsByPopularity', null
-        Session.set 'commentsByDate', null
 
   'click #urlClass': (evt, tmpl) ->
     evt.preventDefault()

@@ -11,13 +11,11 @@ template(name="CommentSection")
       h3.col-md-12.desc-class {{{url hints.desc}}}
     if comments
       span.label_comment Sort By
-      li.dropdown.btn.btn-default.pull-right
+      li.dropdown.btn.btn-default.pull-right.hiding
         span.glyphicon.glyphicon-th-list
           |  {{Select}}
           span.caret
         ul.dropdown-menu.dropdown-toggle(data-toggle="dropdown")
-          li
-            a.sort.select Select
           li
             a.sort.popularity Popularity
           li
@@ -48,7 +46,7 @@ template(name="CommentSection")
             div.row.col-md-12.reply_section
               label.col-md-6 {{replyBy}}
               label.col-md-6.time {{commenttedDate replyOn}}
-              span.col-md-12(style="margin-bottom: 0;")
+              span.col-xs-12(style="margin-bottom: 0;")
                 {{{url reply}}}
               div.button-section
                 button.btn.col-md-2.like_reply(type='button' id=id)

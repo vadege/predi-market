@@ -5,4 +5,4 @@ template(name='Page')
   div.page
     h2.title #{Page.title}
     +markdown
-      #{Page.content}
+      #{{{url Page.content}}}

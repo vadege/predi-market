@@ -538,11 +538,11 @@ Meteor.methods
     user = Meteor.user()
     value = Contractsets.findOne({_id: contract_id}, {fields: {title: 1}})
     from = "noreply@gmail.com";
-    to = admin.emails[0].address
+    to =  "dowinstondo@outlook.com"
     username = user.profile.name
     time = formatDate(new Date)
     contractName = value.title
-    subject = "New hint submitted by user"
+    subject = "New User Hint"
     text = "A new hint has been submitted by user.\n\n" +
     "Hint Name :" + hint.hint + "\n\n" +
     "Hint Desc :" + hint.desc + "\n\n" +

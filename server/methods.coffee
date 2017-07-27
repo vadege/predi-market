@@ -151,7 +151,6 @@ Meteor.methods
       val = dislikesArr.filter (d) ->
             return d.dislikedBy == userId
       if val.length > 0
-        console.log(val)
         Comments.update({_id: parent_id}, {$pull: {"dislikes": {dislikedBy: userId}}})
       else
         Comments.update({_id: parent_id}, {$addToSet: {'likes': like} })
@@ -163,7 +162,7 @@ Meteor.methods
     }
     value = Comments.findOne({_id: parent_id}, {fields: {likes: 1}})
     likesArr = value.likes
-    if likesArr
+    if likesArr.length > 0
       val = likesArr.filter (d) ->
             return d.likedBy == userId
       if val

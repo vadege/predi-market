@@ -29,5 +29,8 @@ Template.EditHint.events
       if error
         console.log(error)
       else
-        Session.set 'hint_value', value
+        Session.set 'hint_value', null
         Session.set 'admin_section', 'hints'
+
+  'click .back': (evt, tmpl) ->
+    Session.set 'admin_section', 'hints'

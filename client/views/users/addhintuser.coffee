@@ -1,3 +1,6 @@
+Template.AddHintUser.rendered = ->
+  $(".hint").focus()
+
 Template.AddHintUser.events
   'click .hint': (evt, tmpl) ->
     evt.stopPropagation()

@@ -168,6 +168,7 @@ Template.CommentSection.events
   'click .reply_click': (evt, tmpl) ->
     id = evt.currentTarget.id
     $(".reply#"+id).show()
+    $(".reply#"+id).focus()
     $(".submit_reply#"+id).show()
 
   'click .reply': (evt, tmpl) ->

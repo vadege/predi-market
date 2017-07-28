@@ -85,7 +85,7 @@ Meteor.methods
     else
       val = Contracts.update({$and:[{set_id: parent_id}, "mirror": {$exists: false}]}, {$push: {hints: value}})
     if val
-      Meteor.call 'notifyUser', value, parent_id
+      Meteor.call 'notifyAdmin', value, parent_id
 
   addLike:(parent_id) ->
     userId = Meteor.userId()
@@ -177,12 +177,14 @@ Meteor.methods
   addComment: (value, contractid, hint_id) ->
     user = Meteor.user()
     username = user.profile.name
+    email = user.emails[0].address
     Comments.insert({
       hint_id: hint_id,
       contract_id: contractid,
       comment: value,
       user: {
         name: username,
+        email: email
         commentedOn: new Date()
       }
       likes: []
@@ -229,6 +231,7 @@ Meteor.methods
   addReplyToComment: (id, value) ->
     user = Meteor.user()
     name = user.profile.name
+    email = user.emails[0].address
     reply = {
       replyBy: name
       userId: user._id
@@ -236,7 +239,9 @@ Meteor.methods
       reply: value
       id: new Meteor.Collection.ObjectID()._str
     }
-    Comments.update({_id: id}, {$push: {"replies": reply}})
+    val = Comments.update({_id: id}, {$push: {"replies": reply}})
+    if val
+      Meteor.call 'notifyUser',email, id
 
   deleteReply: (parent_id, value,name) ->
     userId = Meteor.userId()
@@ -537,7 +542,7 @@ Meteor.methods
         when error.reason is "Email already exists." then throw new Meteor.Error "error_email_exists"
         else throw new Meteor.Error "error_unable_to_create_user"
 
-  notifyUser: (hint, contract_id) ->
+  notifyAdmin: (hint, contract_id) ->
     admin = Meteor.users.findOne({"profile.admin": true}, {fields: {"emails": 1} })
     user = Meteor.user()
     value = Contractsets.findOne({_id: contract_id}, {fields: {title: 1}})
@@ -561,6 +566,29 @@ Meteor.methods
         subject: subject
         text: text
     ).run()
+
+
+  notifyUser: (email, id) ->
+    comments = Comments.findOne({_id: id})
+    if comments
+      replies = comments.replies
+      if replies.length % 10 == 0
+        to = email
+        from = "noreply-predimarket@gmail.com"
+        subject = "New replies"
+        text = "New replies have been added on your comment.\n" +
+        "Please login into your account to see."
+        Fiber = Npm.require "fibers"
+        Fiber(->
+          Email.send
+            to: to
+            from: from
+            subject: subject
+            text: text
+        ).run()
+
+
+
 
 
   # To use, call Meteor.call('batchEnrollment') from the browser console when

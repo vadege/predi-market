@@ -70,3 +70,10 @@ Template.ListHints.events
           $(".delete").hide()
         ), 3000
       true
+
+  'click .edit_hint': (evt, tmpl) ->
+    evt.stopPropagation()
+    id = evt.currentTarget.id
+    value = evt.currentTarget.value
+    Session.set 'hint_value', value
+    Session.set 'admin_section', 'editHint'

@@ -63,8 +63,6 @@ Template.Contractset.helpers
         return
     return hintArrUpdated
 
-
-
   Image: ->
     Images.findOne({_id: @image})
 

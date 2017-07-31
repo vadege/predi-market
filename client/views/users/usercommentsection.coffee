@@ -233,7 +233,6 @@ Template.CommentSection.events
       true
 
   'click .popularity': (evt, tmpl) ->
-    $(".hiding").hide()
     hint_id = Router.current().params._id
     Meteor.call 'showCommentsByPopularity', hint_id, (error, result) ->
       if error
@@ -243,7 +242,6 @@ Template.CommentSection.events
         Session.set 'commentsByPopularity', result
 
   'click .date': (evt, tmpl) ->
-    $(".hiding").hide()
     hint_id = Router.current().params._id
     Meteor.call 'showCommentsByDate', hint_id, (error, result) ->
       if error

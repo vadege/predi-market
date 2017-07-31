@@ -21,7 +21,7 @@ Template.EditHint.events
       hint: hint
       desc: desc
       id: val
-      approved: true
+      approved: false
       isAdmin: false
       contract_id: id
     }

@@ -262,6 +262,10 @@
   color: #3b5998 !important;
   background-color: #fff;
 }
+.content-class {
+  font-size: 15px;
+  font-weight: 500;
+}
 .sort {color: black;margin: 5px; text-decoration: none;}
 
 .dropdown-menu li:hover .sub-menu {

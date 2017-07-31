@@ -176,7 +176,7 @@ Meteor.methods
 
   addComment: (value, contractid, hint_id) ->
     user = Meteor.user()
-    username = user.profile.name
+    username = user.username
     email = user.emails[0].address
     Comments.insert({
       hint_id: hint_id,
@@ -230,7 +230,7 @@ Meteor.methods
 
   addReplyToComment: (id, value) ->
     user = Meteor.user()
-    name = user.profile.name
+    name = user.username
     email = user.emails[0].address
     reply = {
       replyBy: name

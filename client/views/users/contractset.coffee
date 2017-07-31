@@ -24,19 +24,43 @@ Template.Contractset.helpers
                            {mirror: {$not: true}}]}
 
   hint: ->
-    value = Contracts.find({set_id: @_id}, {fields: {hints: 1}}).fetch()
+    likes = HintsLikeDisLike.find({},{sort: {likes: -1}}).fetch()
+    value = Contracts.find({$and: [{set_id: @_id}, {hints: {$exists: true}}]}, {fields: {hints: 1}}).fetch()
+    hintArrNew = []
+    k = 0
+    while k < likes.length
+      l = 0
+      while l < value.length
+        j = 0
+        hintArrContract = value[l].hints
+        while j < hintArrContract.length
+          hint = hintArrContract[j]
+          val = hintArrNew.indexOf hint
+          if hint.id == likes[k].hint_id
+            hint['likes'] = likes[k].likes
+            if val == -1
+              hintArrNew.push(hint)
+              break
+          else
+            if val == -1
+              hintArrNew.push(hint)
+              break
+          j++
+        l++
+      k++
     i = 0
     hintArrUpdated = []
-    while i <value.length
-      if value[i].hints
-        hintArr = value[i].hints
-        val = hintArr.filter (d) ->
-          return d.approved == true
-        j = 0
-        while j <  val.length
-          hintArrUpdated.push(val[j])
-          j++
+    while i < hintArrNew.length
+      if hintArrNew[i]
+        hintArr = hintArrNew[i]
+        if hintArr.approved == true
+            hintArrUpdated.push(hintArrNew[i])
       i++
+    hintArrUpdated = hintArrUpdated.sort (a,b) ->
+      if a.likes && b.likes
+        b.likes.length - a.likes.length
+      else
+        return
     return hintArrUpdated
 
 

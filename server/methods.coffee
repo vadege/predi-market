@@ -101,6 +101,8 @@ Meteor.methods
           return d.likedBy == userId
         if val.length > 0
           HintsLikeDisLike.update({hint_id: parent_id}, {$pull: {"dislikes": { likedBy: userId }}})
+        else
+          HintsLikeDisLike.update({hint_id: parent_id}, {$addToSet: {likes: like }})
       else
         HintsLikeDisLike.update({hint_id: parent_id}, {$addToSet: {likes: like }})
     else
@@ -125,6 +127,8 @@ Meteor.methods
             return d.likedBy == userId
           if val.length > 0
             val = HintsLikeDisLike.update({hint_id: parent_id}, {$pull: {"likes": { likedBy: userId }}})
+          else
+            HintsLikeDisLike.update({hint_id: parent_id}, {$addToSet: {dislikes: dislike }})
       else
         HintsLikeDisLike.update({hint_id: parent_id}, {$addToSet: {dislikes: dislike }})
     else
@@ -158,6 +162,8 @@ Meteor.methods
         Comments.update({_id: parent_id}, {$pull: {"dislikes": {dislikedBy: userId}}})
       else
         Comments.update({_id: parent_id}, {$addToSet: {'likes': like} })
+    else
+      Comments.update({_id: parent_id}, {$addToSet: {'likes': like} })
 
   dislikeComment: (parent_id) ->
     userId = Meteor.userId()
@@ -169,8 +175,10 @@ Meteor.methods
     if likesArr.length > 0
       val = likesArr.filter (d) ->
             return d.likedBy == userId
-      if val
+      if val.length > 0
         Comments.update({_id: parent_id}, {$pull: {"likes": {likedBy: userId}}})
+      else
+        Comments.update({_id: parent_id} , {$addToSet: {'dislikes': dislike} })
     else
       Comments.update({_id: parent_id} , {$addToSet: {'dislikes': dislike} })
 
@@ -256,11 +264,13 @@ Meteor.methods
       likedBy: userId
     }
     value = ReplyLikeDislike.findOne({reply_id: parent_id})
+    console.log "value" ,value
     if value
       dislikesArr = value.dislikes
       if dislikesArr.length > 0
         val = dislikesArr.filter (d) ->
           return d.dislikedBy == userId
+        console.log "val", val
         if val
           val = ReplyLikeDislike.update({reply_id: parent_id}, {$pull: {"dislikes": { dislikedBy: userId }}})
       else

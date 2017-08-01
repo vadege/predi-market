@@ -37,7 +37,7 @@ Template.Contractset.helpers
           hint = hintArrContract[j]
           val = hintArrNew.indexOf hint
           if hint.id == likes[k].hint_id
-            hint['likes'] = likes[k].likes
+            hint['count'] = likes[k].likes.length - likes[k].dislikes.length
             if val == -1
               hintArrNew.push(hint)
               break
@@ -57,8 +57,8 @@ Template.Contractset.helpers
             hintArrUpdated.push(hintArrNew[i])
       i++
     hintArrUpdated = hintArrUpdated.sort (a,b) ->
-      if a.likes && b.likes
-        b.likes.length - a.likes.length
+      if a.count && b.count
+        b.count - a.count
       else
         return
     return hintArrUpdated

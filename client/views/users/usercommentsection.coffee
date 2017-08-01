@@ -64,6 +64,7 @@ Template.CommentSection.helpers
     value = Comments.find({hint_id: hint_id}).fetch()
     popularity = Session.get 'commentsByPopularity'
     date = Session.get 'commentsByDate'
+    replyAdded = Session.get 'replyAdded'
     if popularity
       return popularity
     else if date
@@ -75,8 +76,13 @@ Template.CommentSection.helpers
     popularity = Session.get 'commentsByPopularity'
     date = Session.get 'commentsByDate'
     if popularity
+      Session.set 'Select', 'popular'
       return "Popular"
+    else if date
+      Session.set 'Select', 'date'
+      return "New"
     else
+      Session.set 'Select', null
       return "New"
 
   url:(comment) ->
@@ -176,6 +182,7 @@ Template.CommentSection.events
     $(".error_reply#"+id).hide()
 
   'click .submit_reply': (evt, tmpl) ->
+    hint_id = Router.current().params._id
     id = evt.currentTarget.id
     reply = $(".reply#"+id).val()
     if reply == ""
@@ -188,6 +195,24 @@ Template.CommentSection.events
           $(".error_reply#"+id).hide()
         ), 3000
       else
+        val = Session.get 'Select'
+        if val == "popular"
+          Meteor.call 'showCommentsByPopularity', hint_id, (error, result) ->
+            if error
+              console.log(error)
+            else
+              Session.set 'commentsByDate', null
+              Session.set 'commentsByPopularity', result
+        else if val == "date"
+          Meteor.call 'showCommentsByDate', hint_id, (error, result) ->
+            if error
+              console.log(error)
+            else
+              Session.set 'commentsByPopularity', null
+              Session.set 'commentsByDate', result
+        else
+          Session.set 'commentsByPopularity', null
+          Session.set 'commentsByDate', null
         $(".reply#"+id).hide()
         $(".reply").val("")
         $(".submit_reply#"+id).hide()
@@ -207,6 +232,7 @@ Template.CommentSection.events
       true
 
   'click .delete_reply': (evt, tmpl) ->
+    hint_id = Router.current().params._id
     id = evt.currentTarget.id
     value = evt.currentTarget.value
     name = evt.currentTarget.name
@@ -216,7 +242,25 @@ Template.CommentSection.events
         Meteor.setTimeout (->
           $(".delete_error#"+id).hide()
         ), 1000
-      true
+      else
+        val = Session.get 'Select'
+        if val == "popular"
+          Meteor.call 'showCommentsByPopularity', hint_id, (error, result) ->
+            if error
+              console.log(error)
+            else
+              Session.set 'commentsByDate', null
+              Session.set 'commentsByPopularity', result
+        else if val == "date"
+          Meteor.call 'showCommentsByDate', hint_id, (error, result) ->
+            if error
+              console.log(error)
+            else
+              Session.set 'commentsByPopularity', null
+              Session.set 'commentsByDate', result
+        else
+          Session.set 'commentsByPopularity', null
+          Session.set 'commentsByDate', null
 
   'click .like_reply': (evt, tmpl) ->
     id = evt.currentTarget.id

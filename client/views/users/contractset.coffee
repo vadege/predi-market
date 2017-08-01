@@ -56,12 +56,8 @@ Template.Contractset.helpers
         if hintArr.approved == true
             hintArrUpdated.push(hintArrNew[i])
       i++
-    hintArrUpdated = hintArrUpdated.sort (a,b) ->
-                    if a.count && b.count
-                        if a.count > b.count
-                          a.count - b.count
-                        else
-                          b.count - a.count
+    hintArrUpdated = _.sortBy hintArrUpdated, (count)  ->
+                          return count
     return hintArrUpdated
 
   Image: ->

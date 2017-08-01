@@ -202,7 +202,7 @@ Meteor.methods
 
   deleteComment: (parent_id) ->
     user = Meteor.user()
-    username = user.profile.name
+    username = user.username
     value = Comments.findOne({_id: parent_id})
     if value.user.name == username
       Comments.remove({_id: parent_id})

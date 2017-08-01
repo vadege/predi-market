@@ -239,7 +239,8 @@ Meteor.methods
   addReplyToComment: (id, value) ->
     user = Meteor.user()
     name = user.username
-    email = user.emails[0].address
+    comment = Comments.findOne({_id: id})
+    email = comment.user.email
     reply = {
       replyBy: name
       userId: user._id

@@ -584,7 +584,7 @@ Meteor.methods
     comments = Comments.findOne({_id: id})
     if comments
       replies = comments.replies
-      if replies.length % 10 == 0
+      if replies.length == 1 || replies.length % 5 == 0
         to = email
         from = "noreply-predimarket@gmail.com"
         subject = "New replies"

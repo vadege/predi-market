@@ -271,6 +271,8 @@ Meteor.methods
           return d.dislikedBy == userId
         if val.length > 0
           val = ReplyLikeDislike.update({reply_id: parent_id}, {$pull: {"dislikes": { dislikedBy: userId }}})
+        else
+          ReplyLikeDislike.update({reply_id: parent_id}, {$addToSet: {likes: like}})
       else
         ReplyLikeDislike.update({reply_id: parent_id}, {$addToSet: {likes: like}})
     else

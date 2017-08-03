@@ -101,6 +101,14 @@ Template.CommentSection.helpers
     else
       return
 
+  user: (user) ->
+    username = Meteor.user().username
+    name = Meteor.user().profile.name
+    if user == username || user == name
+      return true
+    else
+      return
+
   formattedDate: formatDate
 
   commenttedDate: commentDate

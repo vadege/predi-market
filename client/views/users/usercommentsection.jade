@@ -44,8 +44,9 @@ template(name="CommentSection")
             label.likes {{nooflikes comment._id}}
             button.btn.col-md-2.reply_click(type='button' id=comment._id)
               i.fa.fa-reply {{_ 'Reply'}}
-            button.btn.col-md-2.delete_click(type='button' id=comment._id)
-              i.fa.fa-trash-o {{_ 'Delete'}}
+            if user comment.user.name true
+              button.btn.col-md-2.delete_click(type='button' id=comment._id)
+                i.fa.fa-trash-o {{_ 'Delete'}}
           each comment.replies
             div.row.col-md-12.reply_section
               label.col-md-6 {{replyBy}}
@@ -58,8 +59,9 @@ template(name="CommentSection")
                 button.btn.col-md-2.dislike_reply(type='button' id=id)
                  i.fa.fa-thumbs-down
                 label.likes {{nooflikesReply id}}
-                button.btn.col-md-2.delete_reply(type='button' id=comment._id value=id name=userId)
-                  i.fa.fa-trash-o {{_ 'Delete'}}
+                if user replyBy true
+                  button.btn.col-md-2.delete_reply(type='button' id=comment._id value=id name=userId)
+                    i.fa.fa-trash-o {{_ 'Delete'}}
           div.add_reply
             input.form-control.col-md-12.reply(type="text" placeholder="Reply to comment" id=comment._id)
             button.btn.col-md-12.pull-right.submit_reply(type='button' id=comment._id)

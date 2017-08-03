@@ -222,21 +222,9 @@ Template.CommentSection.events
         ), 3000
 
   'click .delete_click': (evt, tmpl) ->
-    id = evt.currentTarget.id
-    Meteor.call 'deleteComment', id, (error, result) ->
-      if error
-        $(".delete_error#"+id).show()
-        Meteor.setTimeout (->
-          $(".delete_error#"+id).hide()
-        ), 1000
-      true
-
-  'click .delete_reply': (evt, tmpl) ->
     hint_id = Router.current().params._id
     id = evt.currentTarget.id
-    value = evt.currentTarget.value
-    name = evt.currentTarget.name
-    Meteor.call 'deleteReply', id, value, name, (error, result) ->
+    Meteor.call 'deleteComment', id, (error, result) ->
       if error
         $(".delete_error#"+id).show()
         Meteor.setTimeout (->
@@ -261,6 +249,18 @@ Template.CommentSection.events
         else
           Session.set 'commentsByPopularity', null
           Session.set 'commentsByDate', null
+
+
+  'click .delete_reply': (evt, tmpl) ->
+    id = evt.currentTarget.id
+    value = evt.currentTarget.value
+    name = evt.currentTarget.name
+    Meteor.call 'deleteReply', id, value, name, (error, result) ->
+      if error
+        $(".delete_error#"+id).show()
+        Meteor.setTimeout (->
+          $(".delete_error#"+id).hide()
+        ), 1000
 
   'click .like_reply': (evt, tmpl) ->
     id = evt.currentTarget.id

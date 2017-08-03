@@ -203,8 +203,10 @@ Meteor.methods
   deleteComment: (parent_id) ->
     user = Meteor.user()
     username = user.username
+    name = user.profile.name
     value = Comments.findOne({_id: parent_id})
-    if value.user.name == username
+    user = value.user
+    if user.name == username || user.name == name
       Comments.remove({_id: parent_id})
     else
       throw new Meteor.Error "Not authorized"

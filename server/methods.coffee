@@ -603,9 +603,6 @@ Meteor.methods
         ).run()
 
 
-
-
-
   # To use, call Meteor.call('batchEnrollment') from the browser console when
   # logged in as an admin. Will send out enrollment emails to all email
   # adresses listed in private/enrollmentusers.json provided they map to an

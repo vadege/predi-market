@@ -256,6 +256,7 @@ Template.CommentSection.events
           Session.set 'commentsByDate', null
 
   'click .delete_reply': (evt, tmpl) ->
+    hint_id = Router.current().params._id
     id = evt.currentTarget.id
     value = evt.currentTarget.value
     name = evt.currentTarget.name

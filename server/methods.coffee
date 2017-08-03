@@ -587,14 +587,20 @@ Meteor.methods
 
   notifyUser: (email, id) ->
     comments = Comments.findOne({_id: id})
+    replyArr = comments.replies
+    hint_id = comments.hint_id
+    repliesArr = _.sortBy replyArr, 'replyOn'
+    updatedReplyArr = repliesArr.reverse()
+    sendingReplies = updatedReplyArr.slice(0,5)
     if comments
       replies = comments.replies
-      if replies.length == 1 || replies.length % 5 == 0 || email
+      if ( replies.length == 1 || replies.length % 5 == 0 ) && email
         to = email
         from = "noreply-predimarket@gmail.com"
         subject = "New replies"
-        text = "New replies have been added on your comment.\n" +
-        "Please login into your account to see."
+        text = "Someone has commented on your comment named.\n" + comments.comment + "\n" +
+               "You can review the comment on link below.\n" +
+               "http://localhost:3003/hints/" + hint_id
         Fiber = Npm.require "fibers"
         Fiber(->
           Email.send

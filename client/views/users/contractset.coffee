@@ -57,7 +57,7 @@ Template.Contractset.helpers
             hintArrUpdated.push(hintArrNew[i])
       i++
     hintArrUpdated = _.sortBy hintArrUpdated, 'count'
-    return hintArrUpdated
+    return hintArrUpdated.reverse()
 
   Image: ->
     Images.findOne({_id: @image})

@@ -33,8 +33,13 @@ replyLikeCount = (id) ->
 
 Template.CommentSection.rendered = ->
   $(".add_comment").focus()
-  Session.set 'commentsByPopularity', null
-  Session.set 'commentsByDate', null
+  hint_id = Router.current().params._id
+  Meteor.call 'showCommentsByPopularity', hint_id, (error, result) ->
+    if error
+      console.log(error)
+    else
+      Session.set 'commentsByDate', null
+      Session.set 'commentsByPopularity', result
 
 Template.CommentSection.helpers
   hints: ->
@@ -250,7 +255,6 @@ Template.CommentSection.events
           Session.set 'commentsByPopularity', null
           Session.set 'commentsByDate', null
 
-
   'click .delete_reply': (evt, tmpl) ->
     id = evt.currentTarget.id
     value = evt.currentTarget.value
@@ -261,7 +265,25 @@ Template.CommentSection.events
         Meteor.setTimeout (->
           $(".delete_error#"+id).hide()
         ), 1000
-
+      else
+        val = Session.get 'Select'
+        if val == "popular"
+          Meteor.call 'showCommentsByPopularity', hint_id, (error, result) ->
+            if error
+              console.log(error)
+            else
+              Session.set 'commentsByDate', null
+              Session.set 'commentsByPopularity', result
+        else if val == "date"
+          Meteor.call 'showCommentsByDate', hint_id, (error, result) ->
+            if error
+              console.log(error)
+            else
+              Session.set 'commentsByPopularity', null
+              Session.set 'commentsByDate', result
+        else
+          Session.set 'commentsByPopularity', null
+          Session.set 'commentsByDate', null
   'click .like_reply': (evt, tmpl) ->
     id = evt.currentTarget.id
     Meteor.call 'likeReply', id, (error, result) ->

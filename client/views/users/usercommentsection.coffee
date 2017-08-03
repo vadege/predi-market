@@ -95,9 +95,20 @@ Template.CommentSection.helpers
     commentUrl = comment.replace(re, "<a id='urlClass' href='$1'>$1</a>")
     return commentUrl
 
+  username: (username) ->
+    if username
+      return true
+    else
+      return
+
   formattedDate: formatDate
 
   commenttedDate: commentDate
+
+  format: (date) ->
+    moment.locale TAPi18n.getLanguage()
+    value = moment(date).format('MMMM Do YYYY, h:mm a');
+    value
 
   nooflikes: likedislike
 
@@ -285,6 +296,7 @@ Template.CommentSection.events
         else
           Session.set 'commentsByPopularity', null
           Session.set 'commentsByDate', null
+
   'click .like_reply': (evt, tmpl) ->
     id = evt.currentTarget.id
     Meteor.call 'likeReply', id, (error, result) ->

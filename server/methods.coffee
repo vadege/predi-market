@@ -64,6 +64,8 @@ Meteor.methods
       approved: true
       isAdmin: true
       contract_id: parent_id
+      username: "admin"
+      createdAt: new Date()
     }
     Contracts.update({_id: parent_id}, {$push: {hints: value}})
 

@@ -11,6 +11,7 @@ Template.AddHintUser.events
 
   'click .add_hint': (evt, tmpl) ->
     evt.stopPropagation()
+    username = Meteor.user().username
     hint = $(".hint").val()
     desc = $(".hint_val").val()
     contract_id = Session.get 'buttonId'
@@ -26,6 +27,8 @@ Template.AddHintUser.events
       approved: false
       isAdmin: false
       contract_id: contract_id
+      username: username
+      createdAt: new Date()
     }
     Meteor.call 'addUserHint', hint, contract_id, (error, result) ->
       if error

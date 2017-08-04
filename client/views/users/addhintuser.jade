@@ -1,15 +1,15 @@
 template(name="AddHintUser")
-   h3 Add Hint
+   h3 Add Hint or User Answer
    div.success.alert.alert-success
      label Your hint has been saved successfully
    div.error.alert.alert-warning
      label Error while saving your hint. Please try again.
    div.row
    div.form-group
-     | Title
-     input.hint.form-control(type="text" placeholder="Enter hint")
+     | Enter Hint or User Answer
+     input.hint.form-control(type="text" placeholder="Enter hint or User Answer")
    div.form-group
-     | Description
+     | Enter Description
      textarea.hint_val.get.form-control(type="text" placeholder="Enter description")
    button.btn.btn-success.back.pull-left(type='button')
     i.fa.fa-arrow-left {{_ ' Back'}}

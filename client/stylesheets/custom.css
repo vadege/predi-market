@@ -273,6 +273,9 @@
   font-size: 15px;
   font-weight: 500;
 }
+.margin-img {
+  margin-left: 150px !important;
+}
 .sort {color: black;margin: 5px; text-decoration: none;}
 
 .dropdown-menu li:hover .sub-menu {

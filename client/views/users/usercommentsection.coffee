@@ -146,7 +146,7 @@ Template.CommentSection.events
 
   'click .add_comment': (evt, tmpl) ->
       evt.stopPropagation()
-      $(".error").hide()
+      $(".error_class").hide()
 
   'click .save_comment': (evt, tmpl) ->
     evt.stopPropagation()

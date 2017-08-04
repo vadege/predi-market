@@ -73,8 +73,10 @@ template(name="CommentSection")
                 button.btn.col-md-2.delete_reply(type='button' id=comment._id value=id name=userId)
                   i.fa.fa-trash-o {{_ 'Delete'}}
         if length comment.replies 3
-          button.btn.btn-info.col-md-2.show_more(type='button' id=comment._id)
+          button.btn.btn-success.col-md-2.show_more(type='button' id=comment._id)
            i.fa.fa-ellipsis-h {{_ 'Show All'}}
+        button.btn.btn-success.col-md-2.show_less(type='button' id=comment._id)
+         i.fa.fa-ellipsis-h {{_ 'Show Less'}}
       div.delete_error.alert.alert-warning(id=comment._id)
         label You are not authorized to delete this.
       div.success_reply.alert.alert-success(id=comment._id)

@@ -297,6 +297,9 @@
   font-size: 17px;
   font-weight: 400;
 }
+.show_less {
+  display: none;
+}
 .button-section{width: 100%; padding:5px 15px;}
 .button-section > *{display: inline-block; vertical-align: middle; margin-right: 10px !important; margin-left: 0px !important; width: auto; height: 34px; padding: 0px; float: none; }
 .button-section > label{line-height: 34px; margin: 0 !important; margin-right: 10px !important;}

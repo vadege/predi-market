@@ -23,7 +23,7 @@ template(name="CommentSection")
           li
             a.sort.popularity Popularity
           li
-            a.sort.date Date
+            a.sort.date New
     div.col-md-12.label_comment Comments
     each comment in comments
       div.row.comments_class
@@ -47,6 +47,10 @@ template(name="CommentSection")
             if user comment.user.name true
               button.btn.col-md-2.delete_click(type='button' id=comment._id)
                 i.fa.fa-trash-o {{_ 'Delete'}}
+          div.add_reply
+            input.form-control.col-md-12.reply(type="text" placeholder="Reply to comment" id=comment._id)
+            button.btn.col-md-12.pull-right.submit_reply(type='button' id=comment._id)
+              i.fa.fa-paper-plane {{_ 'Submit'}}
           each comment.replies
             div.row.col-md-12.reply_section
               label.col-md-6 {{replyBy}}
@@ -62,10 +66,6 @@ template(name="CommentSection")
                 if user replyBy true
                   button.btn.col-md-2.delete_reply(type='button' id=comment._id value=id name=userId)
                     i.fa.fa-trash-o {{_ 'Delete'}}
-          div.add_reply
-            input.form-control.col-md-12.reply(type="text" placeholder="Reply to comment" id=comment._id)
-            button.btn.col-md-12.pull-right.submit_reply(type='button' id=comment._id)
-              i.fa.fa-paper-plane {{_ 'Submit'}}
       div.delete_error.alert.alert-warning(id=comment._id)
         label You are not authorized to delete this.
       div.success_reply.alert.alert-success(id=comment._id)

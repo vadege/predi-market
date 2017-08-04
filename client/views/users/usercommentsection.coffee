@@ -197,6 +197,9 @@ Template.CommentSection.events
 
   'click .reply_click': (evt, tmpl) ->
     id = evt.currentTarget.id
+    Session.set 'id' , id
+    if Session.get 'id'
+      $(".reply").hide()
     $(".reply#"+id).show()
     $(".reply#"+id).focus()
     $(".submit_reply#"+id).show()

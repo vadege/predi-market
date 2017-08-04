@@ -33,7 +33,7 @@ replyLikeCount = (id) ->
 
 Template.CommentSection.rendered = ->
   $(".add_comment").focus()
-  Session.set 'show', false
+  Session.set 'show', null
   hint_id = Router.current().params._id
   Meteor.call 'showCommentsByPopularity', hint_id, (error, result) ->
     if error

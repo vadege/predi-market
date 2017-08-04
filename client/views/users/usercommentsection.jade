@@ -19,6 +19,12 @@ template(name="CommentSection")
        i.fa.fa-arrow-left {{_ ' Back'}}
       button.btn.btn-success.pull-right.save_comment(type='button' id=hints.id)
        i.fa.fa-paper-plane {{_ ' Submit'}}
+    div.error_class(style="display:none")
+     label Please enter comments first.
+    div.success.alert.alert-success
+     label Your comment has been saved successfully
+    div.error.alert.alert-warning
+     label Error while saving your comment. Please try again.
     if comments
       span.label_comment Sort By
       li.dropdown.btn.btn-default.pull-right
@@ -83,9 +89,3 @@ template(name="CommentSection")
        label Your reply has been saved successfully
       div.error_reply.alert.alert-warning(id=comment._id)
        label Error while saving your reply. Please try again.
-    div.error(style="display:none")
-     label Please enter comments first.
-    div.success.alert.alert-success
-     label Your comment has been saved successfully
-    div.error.alert.alert-warning
-     label Error while saving your comment. Please try again.

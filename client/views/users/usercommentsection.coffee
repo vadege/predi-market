@@ -152,7 +152,7 @@ Template.CommentSection.events
     evt.stopPropagation()
     comment = $(".add_comment").val()
     if (comment == "")
-      $(".error").show()
+      $(".error_class").show()
       return;
     $(".add_comment").val("")
     contractid = Session.get 'contractid'

@@ -33,6 +33,7 @@ replyLikeCount = (id) ->
 
 Template.CommentSection.rendered = ->
   $(".add_comment").focus()
+  Session.set 'show', false
   hint_id = Router.current().params._id
   Meteor.call 'showCommentsByPopularity', hint_id, (error, result) ->
     if error
@@ -76,6 +77,20 @@ Template.CommentSection.helpers
       return date
     else
       return value
+
+  replies: (comment_id)->
+    value = Comments.findOne({_id: comment_id})
+    replies = value.replies
+    show = Session.get 'show'
+
+    if replies.length <= 2 || show == comment_id
+      return replies
+    else
+      return replies.splice(0,2)
+
+  length: (replies) ->
+    if replies.length > 2
+      return 3
 
   Select: ->
     popularity = Session.get 'commentsByPopularity'
@@ -200,6 +215,7 @@ Template.CommentSection.events
     Session.set 'id' , id
     if Session.get 'id'
       $(".reply").hide()
+      $(".submit_reply").hide()
     $(".reply#"+id).show()
     $(".reply#"+id).focus()
     $(".submit_reply#"+id).show()
@@ -344,3 +360,9 @@ Template.CommentSection.events
     evt.preventDefault()
     value = evt.currentTarget.href
     window.open(value + location.search)
+
+  'click .show_more': (evt, tmpl) ->
+    evt.preventDefault()
+    id = evt.currentTarget.id
+    Session.set 'show' , id
+    $(".show_more#"+id).hide()

@@ -13,6 +13,12 @@ template(name="CommentSection")
         span.like-count {{totalLikes}}
     div.row.title_class
       h3.col-md-12.desc-class {{{url hints.desc}}}
+    div.row.comment-class
+      textarea.form-control.col-md-12.add_comment(type="text" placeholder="Enter Comment")
+      button.btn.btn-success.pull-left.back(type='button')
+       i.fa.fa-arrow-left {{_ ' Back'}}
+      button.btn.btn-success.pull-right.save_comment(type='button' id=hints.id)
+       i.fa.fa-paper-plane {{_ ' Submit'}}
     if comments
       span.label_comment Sort By
       li.dropdown.btn.btn-default.pull-right
@@ -47,37 +53,34 @@ template(name="CommentSection")
             if user comment.user.name true
               button.btn.col-md-2.delete_click(type='button' id=comment._id)
                 i.fa.fa-trash-o {{_ 'Delete'}}
-          div.add_reply
-            input.form-control.col-md-12.reply(type="text" placeholder="Reply to comment" id=comment._id)
-            button.btn.col-md-12.pull-right.submit_reply(type='button' id=comment._id)
-              i.fa.fa-paper-plane {{_ 'Submit'}}
-          each comment.replies
-            div.row.col-md-12.reply_section
-              label.col-md-6 {{replyBy}}
-              label.col-md-6.time {{commenttedDate replyOn}}
-              span.col-xs-12(style="margin-bottom: 0;")
-                {{{url reply}}}
-              div.button-section
-                button.btn.col-md-2.like_reply(type='button' id=id)
-                 i.fa.fa-thumbs-up
-                button.btn.col-md-2.dislike_reply(type='button' id=id)
-                 i.fa.fa-thumbs-down
-                label.likes {{nooflikesReply id}}
-                if user replyBy true
-                  button.btn.col-md-2.delete_reply(type='button' id=comment._id value=id name=userId)
-                    i.fa.fa-trash-o {{_ 'Delete'}}
+        div.add_reply
+          input.form-control.col-md-12.reply(type="text" placeholder="Reply to comment" id=comment._id)
+          button.btn.col-md-12.pull-right.submit_reply(type='button' id=comment._id)
+            i.fa.fa-paper-plane {{_ 'Submit'}}
+        each replies comment._id
+          div.row.col-md-12.reply_section
+            label.col-md-6 {{replyBy}}
+            label.col-md-6.time {{commenttedDate replyOn}}
+            span.col-xs-12(style="margin-bottom: 0;")
+              {{{url reply}}}
+            div.button-section
+              button.btn.col-md-2.like_reply(type='button' id=id)
+               i.fa.fa-thumbs-up
+              button.btn.col-md-2.dislike_reply(type='button' id=id)
+               i.fa.fa-thumbs-down
+              label.likes {{nooflikesReply id}}
+              if user replyBy true
+                button.btn.col-md-2.delete_reply(type='button' id=comment._id value=id name=userId)
+                  i.fa.fa-trash-o {{_ 'Delete'}}
+        if length comment.replies 3
+          button.btn.btn-info.col-md-2.show_more(type='button' id=comment._id)
+           i.fa.fa-ellipsis-h {{_ 'Show More'}}
       div.delete_error.alert.alert-warning(id=comment._id)
         label You are not authorized to delete this.
       div.success_reply.alert.alert-success(id=comment._id)
        label Your reply has been saved successfully
       div.error_reply.alert.alert-warning(id=comment._id)
        label Error while saving your reply. Please try again.
-    div.row.comment-class
-      textarea.form-control.col-md-12.add_comment(type="text" placeholder="Enter Comment")
-      button.btn.btn-success.pull-left.back(type='button')
-       i.fa.fa-arrow-left {{_ ' Back'}}
-      button.btn.btn-success.pull-right.save_comment(type='button' id=hints.id)
-       i.fa.fa-paper-plane {{_ ' Submit'}}
     div.error(style="display:none")
      label Please enter comments first.
     div.success.alert.alert-success

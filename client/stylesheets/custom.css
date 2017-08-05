@@ -274,6 +274,7 @@
   font-weight: 500;
 }
 .margin-img {
+  height: 60px;
   margin-left: 150px !important;
 }
 .sort {color: black;margin: 5px; text-decoration: none;}

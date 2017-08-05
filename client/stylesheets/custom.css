@@ -1,3 +1,6 @@
+#urlClass {
+  word-wrap: break-word;
+}
 .remove_hint {
   margin-bottom: 10px;
   margin-right: 582px;
@@ -333,4 +336,7 @@ transform-origin:0 0 !important;
       margin-bottom: 10px;
       margin-right: 0;
     }
+}
+@media screen and (max-width: 1000px) {
+  .margin-img {display: none;}
 }

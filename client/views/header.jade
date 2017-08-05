@@ -12,8 +12,9 @@ template(name='Header')
           span.icon-bar
         a.navbar-brand(href='#')
          img(alt="Predi logo" src="/predi.png")
-      div
-        img.margin-img.navbar-brand(alt="Game of Prediction" src="/header.png")
+      if desktop
+        div
+          img.margin-img.navbar-brand(alt="Game of Prediction" src="/header.png")
       div#predi-navbar-collapse.collapse.navbar-collapse
         ul.nav.navbar-nav.navbar-right
           if i18n_enabled

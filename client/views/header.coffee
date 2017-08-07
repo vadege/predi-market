@@ -17,8 +17,15 @@ Template.Header.events
         Router.go '/'
         Session.set 'loading', undefined
 
+Template.Header.desktop = ->
 
 Template.Header.helpers
+  desktop: ->
+    if $(window).width() > 1000
+      return true
+    else
+      return false
+
   supportedLanguages: () ->
     user = Meteor.user()
     langs = TAPi18n.getLanguages()

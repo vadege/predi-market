@@ -564,7 +564,7 @@ Meteor.methods
     user = Meteor.user()
     value = Contractsets.findOne({_id: contract_id}, {fields: {title: 1}})
     from = "noreply@gmail.com";
-    to =  "dowinstondo@outlook.com"
+    to =  "gameofpredictions@gmail.com"
     username = user.profile.name
     time = formatDate(new Date)
     contractName = value.title
@@ -600,7 +600,7 @@ Meteor.methods
         subject = "New replies"
         text = "Someone has commented on your comment named.\n" + comments.comment + "\n" +
                "You can review the comment on link below.\n" +
-               "http://localhost:3003/hints/" + hint_id
+               "https://gameofpredictions.org/hints/" + hint_id
         Fiber = Npm.require "fibers"
         Fiber(->
           Email.send

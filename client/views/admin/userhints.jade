@@ -10,7 +10,7 @@ template(name="ListHints")
     thead
       tr
         th Contract Name
-        th Date
+        th Hint Creation Date
         th Hint Title
         th Hint Description
         th Action
@@ -18,7 +18,7 @@ template(name="ListHints")
       each hints
         tr
           td {{title}}
-          td {{formattedDate date}}
+          td {{formattedDate createdAt}}
           td {{hint}}
           td {{desc}}
           td

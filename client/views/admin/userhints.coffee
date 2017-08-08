@@ -12,14 +12,16 @@ Template.ListHints.helpers
     i = 0
     while i < value.length
       Session.set 'date', value[i].set_id
-      contract_title = value[i].title
+      set_id = value[i].set_id
+      contract_title = Contractsets.findOne({_id: set_id})
+      name = contract_title.title
       hintArr = value[i].hints
       j = 0
       length = hintArr.length
       if length
         while j < length
           if hintArr[j].isAdmin == false
-            hintArr[j]['title'] = contract_title
+            hintArr[j]['title'] = name
             hintUpdatedArr.push(hintArr[j])
           j++
       i++
@@ -30,11 +32,6 @@ Template.ListHints.helpers
   buttonCheck:(approved) ->
     if approved == false
       return true
-
-  date: ->
-    id = Session.get 'date'
-    value = Contractsets.findOne({_id: id}, {fields: {launchtime: 1}})
-    return value.launchtime
 
 Template.ListHints.events
   'click .approve_hint': (evt, tmpl) ->

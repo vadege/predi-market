@@ -25,7 +25,8 @@ Template.ListHints.helpers
             hintUpdatedArr.push(hintArr[j])
           j++
       i++
-    return hintUpdatedArr
+    hintUpdatedArr = _.sortBy hintUpdatedArr, 'createdAt'
+    return hintUpdatedArr.reverse()
 
   formattedDate: formatDate
 

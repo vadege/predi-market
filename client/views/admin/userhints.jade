@@ -13,6 +13,7 @@ template(name="ListHints")
         th Hint Creation Date
         th Hint Title
         th Hint Description
+        th Username
         th Action
     tbody
       each hints
@@ -21,6 +22,7 @@ template(name="ListHints")
           td {{formattedDate createdAt}}
           td {{hint}}
           td {{desc}}
+          td {{username}}
           td
             if buttonCheck approved false
               button.btn.btn-success.approve_hint(type='button' id=contract_id value=id)

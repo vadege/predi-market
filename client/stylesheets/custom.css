@@ -286,6 +286,7 @@
   height: auto;
   margin-top: -10px;
   margin-bottom: -15px;
+  margin-left: 15px;
 }
 .sort {color: black;margin: 5px; text-decoration: none;}
 /*.header-class {margin-top: 5px; }*/
@@ -344,6 +345,6 @@ transform-origin:0 0 !important;
       margin-right: 0;
     }
 }
-@media screen and (min-width: 1000px) {
-  .margin-img {display: none;}
+@media screen and (max-width: 1000px) {
+  .div-header {display: none;}
 }

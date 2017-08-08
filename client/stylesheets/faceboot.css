@@ -145,7 +145,7 @@ hr {
 /* bootstrap overrides */
 
 h1,h2,h3 {
-   font-weight:800;
+  font-weight:800;
 }
 
 .navbar-toggle, .close {
@@ -165,14 +165,14 @@ h1,h2,h3 {
     text-shadow:0 0 1px rgba(0,0,0,.3);
 }
 .form-control {
-	
+
 }
 
 .panel textarea, .well textarea, textarea.form-control
 {
    resize: none;
 }
-  
+
 .badge{
    color:#3B5999;
    background-color:#fff;
@@ -181,7 +181,7 @@ h1,h2,h3 {
    background-color:#3B5999;
    color:#fff;
 }
-    
+
 .jumbotron {
   background-color:transparent;
 }

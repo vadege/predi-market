@@ -80,10 +80,10 @@ Meteor.methods
     checkAdmin @userId
     Contracts.update({"hints.id": objectid}, {$set: {'hints.$.approved': true}})
 
-  addUserHint: (value, parent_id, update, hint_id) ->
+  addUserHint: (value, hint, desc, parent_id, update, hint_id) ->
     if update
       checkAdmin @userId
-      val = Contracts.update({$and:[{set_id: parent_id}, {"hints.id": hint_id}]}, {$set: {"hints.$": value}})
+      val = Contracts.update({$and:[{set_id: parent_id}, {"hints.id": hint_id}]}, {$set: {"hints.$.hint": hint, "hints.$.desc": desc}})
     else
       val = Contracts.update({$and:[{set_id: parent_id}, "mirror": {$exists: false}]}, {$push: {hints: value}})
     if val

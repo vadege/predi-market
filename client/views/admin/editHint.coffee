@@ -10,22 +10,13 @@ Template.EditHint.helpers
           return val[0]
 
 Template.EditHint.events
-
   'click .submit_hint': (evt, tmpl) ->
     id = evt.currentTarget.id
     val = evt.currentTarget.value
     hint = $(".hint").val()
     desc = $(".hint_val").val()
     update = true
-    value = {
-      hint: hint
-      desc: desc
-      id: val
-      approved: false
-      isAdmin: false
-      contract_id: id
-    }
-    Meteor.call 'addUserHint',value, id, update, val, (error, result) ->
+    Meteor.call 'addUserHint',{},hint, desc, id, update, val, (error, result) ->
       if error
         console.log(error)
       else

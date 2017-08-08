@@ -30,7 +30,7 @@ Template.AddHintUser.events
       username: username
       createdAt: new Date()
     }
-    Meteor.call 'addUserHint', hint, contract_id, (error, result) ->
+    Meteor.call 'addUserHint', hint, "", "", contract_id, false, "", (error, result) ->
       if error
         $(".error").show()
         Meteor.setTimeout (->

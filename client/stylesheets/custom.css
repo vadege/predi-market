@@ -277,11 +277,18 @@
   font-weight: 500;
 }
 .margin-img {
-  height: 50px;
-  margin-left: 150px !important;
+  max-width: 100%;
+  height: auto!important;
+}
+.div-header {
+  min-width: 450px;
+  max-width: 420px;
+  height: auto;
+  margin-top: -10px;
+  margin-bottom: -15px;
 }
 .sort {color: black;margin: 5px; text-decoration: none;}
-
+/*.header-class {margin-top: 5px; }*/
 .dropdown-menu li:hover .sub-menu {
     visibility: visible;
 }
@@ -337,6 +344,6 @@ transform-origin:0 0 !important;
       margin-right: 0;
     }
 }
-@media screen and (max-width: 1000px) {
+@media screen and (min-width: 1000px) {
   .margin-img {display: none;}
 }

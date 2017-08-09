@@ -201,8 +201,19 @@ Meteor.methods
       dislikes: []
       replies: []
     });
-    if id
-      Meteor.call 'notifyUserHint', hint_id, id
+    contract_name = Contracts.findOne({"hints.id":hint_id})
+    hints = contract_name.hints
+    i = 0
+    while i < hints.length
+      val = hints.filter (d) ->
+        return d.id == hint_id
+      i++
+    username = val[0].username
+    hint = val[0].hint
+    user = Meteor.users.findOne({username: username})
+    email = user.emails[0].address
+    if email
+      Meteor.call 'notifyUserHint', hint_id, id, email
 
   deleteComment: (parent_id) ->
     user = Meteor.user()
@@ -612,20 +623,9 @@ Meteor.methods
             text: text
         ).run()
 
-  notifyUserHint: (hint_id, id) ->
+  notifyUserHint: (hint_id, id, email) ->
     comments = Comments.find({hint_id: hint_id}).fetch()
     length = comments.length
-    contract_name = Contracts.findOne({"hints.id":hint_id})
-    hints = contract_name.hints
-    i = 0
-    while i < hints.length
-      val = hints.filter (d) ->
-        return d.id == hint_id
-      i++
-    username = val[0].username
-    hint = val[0].hint
-    user = Meteor.users.findOne({username: username})
-    email = user.emails[0].address
     if (length == 1 || length % 5 == 0) || email
       to = email
       from = "noreply-predimarket@gmail.com"

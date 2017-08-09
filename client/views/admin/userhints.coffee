@@ -14,7 +14,8 @@ Template.ListHints.helpers
       Session.set 'date', value[i].set_id
       set_id = value[i].set_id
       contract_title = Contractsets.findOne({_id: set_id})
-      name = contract_title.title
+      if contract_title
+        name = contract_title.title
       hintArr = value[i].hints
       j = 0
       length = hintArr.length

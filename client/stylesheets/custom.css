@@ -7,9 +7,10 @@
   margin-top: 10px;
 }
 .show_hint {
-  font-size: 15px;
+  font-size: 20px;
   border: 1px solid #888;
   border-radius: 1ex;
+  font-weight: 400;;
 }
 .hint_div {
   cursor: pointer
@@ -29,9 +30,6 @@
 }
 .list-hint {
   font-size: 15px;
-}
-.hint_div {
-  margin-top: 10px;
 }
 .save_comment {
   margin-top: 10px;
@@ -299,7 +297,8 @@
     margin-top: 0;
 }
 .count {
-  font-size: 15px;
+  font-size: 20px;
+  font-weight: 400;
 }
 .dropdown-menu .sub-menu {
     left: 100%;
@@ -332,6 +331,11 @@ transform-origin:0 0 !important;
 @media screen and (max-width: 767px) {
     .reply_click {
         margin-left: 0px;
+    }
+    .show_hint {
+      font-size: 15px;
+      border: 1px solid #888;
+      border-radius: 1ex;
     }
     .reply_section{margin-left: 30px !important;}
     .delete_reply{margin-left: 0; }

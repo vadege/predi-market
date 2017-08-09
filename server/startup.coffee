@@ -4,7 +4,7 @@
 Accounts.emailTemplates.from = "noreply@thepredictionmarket.com"
 
 Accounts.emailTemplates.enrollAccount.subject = (user) ->
-  "Welcome to the prediction market"
+  "Welcome to Game of Predictions"
 
 Accounts.emailTemplates.enrollAccount.text = (user, url) ->
   token = user.services.password.reset.token

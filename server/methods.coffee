@@ -188,7 +188,7 @@ Meteor.methods
     user = Meteor.user()
     username = user.username
     email = user.emails[0].address
-    Comments.insert({
+    id = Comments.insert({
       hint_id: hint_id,
       contract_id: contractid,
       comment: value,
@@ -201,6 +201,8 @@ Meteor.methods
       dislikes: []
       replies: []
     });
+    if id
+      Meteor.call 'notifyUserHint', hint_id, id
 
   deleteComment: (parent_id) ->
     user = Meteor.user()
@@ -610,6 +612,37 @@ Meteor.methods
             text: text
         ).run()
 
+  notifyUserHint: (hint_id, id) ->
+    comments = Comments.find({hint_id: hint_id}).fetch()
+    length = comments.length
+    if length == 1 || length % 5 == 0
+      contract_name = Contracts.findOne({"hints.id":hint_id})
+      hints = contract_name.hints
+      i = 0
+      while i < hints.length
+        val = hints.filter (d) ->
+          return d.id == hint_id
+        i++
+      username = val[0].username
+      user = Meteor.users.findOne({username: username})
+      email = user.emails[0].address
+      to = email
+      from = "noreply-predimarket@gmail.com"
+      subject = "New comment"
+      val = comments.filter (d) ->
+        return d._id == id
+      comment = val[0].comment
+      text = "New comment has been added on your hint. \n\n" +
+             "You can review the comments on link below \n\n" +
+             "http://localhost:3003/hints/" + hint_id
+      Fiber = Npm.require "fibers"
+      Fiber(->
+        Email.send
+          to: to
+          from: from
+          subject: subject
+          text: text
+      ).run()
 
   # To use, call Meteor.call('batchEnrollment') from the browser console when
   # logged in as an admin. Will send out enrollment emails to all email

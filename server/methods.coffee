@@ -634,7 +634,9 @@ Meteor.methods
       comment = val[0].comment
       text = "New comment has been added on your hint. \n\n" +
              "You can review the comments on link below \n\n" +
+             "The hint to which comment added is: " + val[0].hint +
              "http://localhost:3003/hints/" + hint_id
+
       Fiber = Npm.require "fibers"
       Fiber(->
         Email.send

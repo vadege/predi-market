@@ -11,7 +11,7 @@ Accounts.emailTemplates.enrollAccount.text = (user, url) ->
   url2 = "https://gameofpredictions.org/#/enroll-account/"+token
 
   "Dear Greenseer,\n\n" +
-  "Welcome to the world’s first GoT prediction market. You can set your password by clicking the link below:\n\n" + url2 + "\n\n" +
+  "Welcome to the world’s first Game of Thrones prediction market. You can set your password by clicking the link below:\n\n" + url2 + "\n\n" +
   "Thank you for your interest and much success on the market! \n\n" +
   "Sincerely, \n\n GoP"
 

@@ -16,6 +16,7 @@ Template.AddHintUser.events
     desc = $(".hint_val").val()
     contract_id = Session.get 'buttonId'
     Session.set 'buttonId', null
+    id = Contracts.findOne({$and:[{set_id: contract_id}, {hints: {$exists: true}}]})
     market_id = Session.get 'market_id'
     if (hint == "" || desc == "")
       $(".error").show()
@@ -26,7 +27,7 @@ Template.AddHintUser.events
       id: new Meteor.Collection.ObjectID()._str
       approved: false
       isAdmin: false
-      contract_id: contract_id
+      contract_id: id._id
       username: username
       createdAt: new Date()
     }

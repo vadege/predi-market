@@ -83,7 +83,7 @@ Meteor.methods
   addUserHint: (value, hint, desc, parent_id, update, hint_id) ->
     if update
       checkAdmin @userId
-      val = Contracts.update({$and:[{set_id: parent_id}, {"hints.id": hint_id}]}, {$set: {"hints.$.hint": hint, "hints.$.desc": desc}})
+      val = Contracts.update({$and:[{_id: parent_id}, {"hints.id": hint_id}]}, {$set: {"hints.$.hint": hint, "hints.$.desc": desc}})
     else
       val = Contracts.update({$and:[{set_id: parent_id}, "mirror": {$exists: false}]}, {$push: {hints: value}})
     if val
@@ -147,7 +147,7 @@ Meteor.methods
 
   removeUserHint: (parent_id, objectid) ->
     checkAdmin @userId
-    Contracts.update({$and: [{set_id: parent_id}, {hints: {$exists: true}}]}, {$pull : {"hints": {id: objectid} } })
+    Contracts.update({_id: parent_id}, {$pull : {"hints": {id: objectid} } })
     Comments.remove({hint_id: objectid})
 
   likeComment: (parent_id) ->
@@ -208,11 +208,13 @@ Meteor.methods
       val = hints.filter (d) ->
         return d.id == hint_id
       i++
-    username = val[0].username
-    hint = val[0].hint
-    user = Meteor.users.findOne({username: username})
-    email = user.emails[0].address
-    if email
+    if val[0].username
+      username = val[0].username
+      hint = val[0].hint
+      user = Meteor.users.findOne({username: username})
+      if user
+        email = user.emails[0].address
+    if id && email
       Meteor.call 'notifyUserHint', hint_id, id, email
 
   deleteComment: (parent_id) ->
@@ -575,7 +577,10 @@ Meteor.methods
   notifyAdmin: (hint, contract_id) ->
     admin = Meteor.users.findOne({"profile.admin": true}, {fields: {"emails": 1} })
     user = Meteor.user()
-    value = Contractsets.findOne({_id: contract_id}, {fields: {title: 1}})
+    contract = Contracts.findOne({$and:[{set_id: contract_id},{mirror: {$exists: false}}]})
+    contractId = contract.set_id
+    console.log contractId
+    value = Contractsets.findOne({_id: contractId}, {fields: {title: 1}})
     from = "noreply@gmail.com";
     to =  "gameofpredictions@gmail.com"
     username = user.profile.name
@@ -636,7 +641,7 @@ Meteor.methods
       text = "Dear Greenseer, \n\n" +
              "New comment has been added on your hint. \n\n" + hint + "\n\n" +
              "You can review the comments on link below \n\n" +
-             "http://localhost:3003/hints/" + hint_id
+             "https://gameofpredictions.org/hints/" + hint_id
 
       Fiber = Npm.require "fibers"
       Fiber(->

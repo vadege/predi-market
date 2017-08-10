@@ -86,8 +86,8 @@ Meteor.methods
       val = Contracts.update({$and:[{_id: parent_id}, {"hints.id": hint_id}]}, {$set: {"hints.$.hint": hint, "hints.$.desc": desc}})
     else
       val = Contracts.update({$and:[{set_id: parent_id}, "mirror": {$exists: false}]}, {$push: {hints: value}})
-    if val
-      Meteor.call 'notifyAdmin', value, parent_id
+      if val
+        Meteor.call 'notifyAdmin', value, parent_id
 
   addLike:(parent_id) ->
     userId = Meteor.userId()
@@ -215,7 +215,7 @@ Meteor.methods
       if user
         email = user.emails[0].address
     if id && email
-      Meteor.call 'notifyUserHint', hint_id, id, email
+      Meteor.call 'notifyUserHint', hint_id, id, email, hint
 
   deleteComment: (parent_id) ->
     user = Meteor.user()
@@ -579,7 +579,6 @@ Meteor.methods
     user = Meteor.user()
     contract = Contracts.findOne({$and:[{set_id: contract_id},{mirror: {$exists: false}}]})
     contractId = contract.set_id
-    console.log contractId
     value = Contractsets.findOne({_id: contractId}, {fields: {title: 1}})
     from = "noreply@gmail.com";
     to =  "gameofpredictions@gmail.com"
@@ -628,10 +627,10 @@ Meteor.methods
             text: text
         ).run()
 
-  notifyUserHint: (hint_id, id, email) ->
+  notifyUserHint: (hint_id, id, email, hint) ->
     comments = Comments.find({hint_id: hint_id}).fetch()
     length = comments.length
-    if (length == 1 || length % 5 == 0) || email
+    if (length == 1 || length % 5 == 0) && email
       to = email
       from = "noreply-predimarket@gmail.com"
       subject = "New comment"

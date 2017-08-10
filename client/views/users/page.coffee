@@ -1,9 +1,5 @@
 # Copyright 2015 Kjetil Thuen
 # Distributed under the GPLv3
-
-Template.Page.rendered = ->
-  $("h1").addClass("content-class")
-
 Template.Page.helpers
   Page: ->
     Pages.findOne {_id: Router.current().params._id}

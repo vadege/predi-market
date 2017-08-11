@@ -575,7 +575,7 @@ Meteor.methods
         else throw new Meteor.Error "error_unable_to_create_user"
 
   updateProfile: () ->
-    Meteor.users.update(Meteor.userId(), {$set: {"emails.0.verified": true}})
+    Meteor.users.update(Meteor.userId(), {$set: {"emails.0.verified": false}})
 
   notifyAdmin: (hint, contract_id) ->
     admin = Meteor.users.findOne({"profile.admin": true}, {fields: {"emails": 1} })

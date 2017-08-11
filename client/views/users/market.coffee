@@ -26,7 +26,7 @@ set_contract_filter_text = (id, evt) ->
 Template.Market.helpers
   login: ->
     user = Meteor.user()
-    if user.profile.login == false
+    if user.emails[0].verified == false
       return true
     else
       return false

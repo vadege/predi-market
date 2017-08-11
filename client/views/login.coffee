@@ -32,7 +32,7 @@ Template.Login.events
     if username and password
       unless Meteor.status().connected
         Meteor.reconnect()
-      Meteor.loginWithPassword username, password, (error) ->
+      Meteor.loginWithPassword username, password, (error, result) ->
         if error
           Errors.throw TAPi18n.__ "error_login_failed"
         else

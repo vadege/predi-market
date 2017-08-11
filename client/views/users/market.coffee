@@ -24,6 +24,13 @@ set_contract_filter_text = (id, evt) ->
   Session.set 'contract-filter', filter
 
 Template.Market.helpers
+  login: ->
+    user = Meteor.user()
+    if user.profile.login == false
+      return true
+    else
+      return false
+
   Market: ->
     market_id = Router.current().params._id
     Markets.findOne {_id: market_id}
@@ -196,10 +203,23 @@ Template.Market.events
     market_id = Router.current().params._id
     set_contract_filter_text market_id, evt
 
+  'click .go_page': (evt, tmpl) ->
+    evt.stopPropagation()
+    Meteor.call 'updateProfile', (error, result) ->
+      if error
+        Errors.throw TAPi18n.__ "error_login_failed"
+      true
+
+  'click .close-btn': (evt, tmpl) ->
+    evt.stopPropagation()
+    Meteor.call 'updateProfile', (error, result) ->
+      if error
+        Errors.throw TAPi18n.__ "error_login_failed"
+      true
+
 Template.Market.rendered = ->
   @autorun ->
     order = Session.get 'order-details'
     market_id = Router.current().params._id
     unless order? and order.market_id is market_id
       Session.set 'order-details', undefined
-

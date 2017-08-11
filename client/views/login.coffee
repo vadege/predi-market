@@ -20,7 +20,7 @@ Template.Login.events
         Accounts.forgotPassword { "email": user.emails[0].address}
         Router.go '/email_sent'
       else
-        Errors.throw TAPi18n.__ "error_user_not_found", username 
+        Errors.throw TAPi18n.__ "error_user_not_found", username
     else
        Errors .throw TAPi18n.__ "error_username_missing"
     false

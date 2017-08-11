@@ -556,7 +556,7 @@ Meteor.methods
     re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     unless re.test email
       throw new Meteor.Error "error_invalid_email"
-    profile = _.extend profile, {admin: false},
+    profile = _.extend profile, {admin: false, login: false},
 
     if !verifyCaptchaResponse.success
       throw new Meteor.Error "fill_captcha_first"
@@ -573,6 +573,9 @@ Meteor.methods
         when error.reason is "Username already exists." then throw new Meteor.Error "error_username_exists"
         when error.reason is "Email already exists." then throw new Meteor.Error "error_email_exists"
         else throw new Meteor.Error "error_unable_to_create_user"
+
+  updateProfile: () ->
+    Meteor.users.update(Meteor.userId(), {$set: {"profile.login": true}})
 
   notifyAdmin: (hint, contract_id) ->
     admin = Meteor.users.findOne({"profile.admin": true}, {fields: {"emails": 1} })

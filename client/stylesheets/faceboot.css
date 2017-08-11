@@ -10,12 +10,9 @@ html, body {
    font-size:13px;
 }
 
-a {
-  color:#222222;
-}
-
 a:hover {
   text-decoration:none;
+  cursor: pointer;
 }
 
 hr {

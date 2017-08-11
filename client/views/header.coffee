@@ -17,6 +17,14 @@ Template.Header.events
         Router.go '/'
         Session.set 'loading', undefined
 
+
+  'click .go_page': (evt, tmpl) ->
+    evt.stopPropagation()
+    Meteor.call 'updateProfile', (error, result) ->
+      if error
+        Errors.throw TAPi18n.__ "error_login_failed"
+      true
+
 Template.Header.desktop = ->
 
 Template.Header.helpers

@@ -197,20 +197,7 @@ Template.Market.events
     market_id = Router.current().params._id
     set_contract_filter_text market_id, evt
 
-  'click .go_page': (evt, tmpl) ->
-    evt.stopPropagation()
-    Meteor.call 'updateProfile', (error, result) ->
-      if error
-        Errors.throw TAPi18n.__ "error_login_failed"
-      true
-
-  'click .close-btn': (evt, tmpl) ->
-    evt.stopPropagation()
-    Meteor.call 'updateProfile', (error, result) ->
-      if error
-        Errors.throw TAPi18n.__ "error_login_failed"
-      true
-
+  
 Template.Market.rendered = ->
   @autorun ->
     order = Session.get 'order-details'

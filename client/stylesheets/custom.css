@@ -16,12 +16,15 @@
   cursor: pointer
 }
 .info-box {
-  position: absolute;
-  width: 570px;
-  left: 150px;
-  top: 25%;
-  background-color: #ffffcc;
-  border-color: #fff !important;
+    position: absolute;
+    width: 570px;
+    top: 50%;
+    background-color: #ffffcc;
+    border-color: #fff !important;
+    z-index: 99;
+    left: 50%;
+    margin-left: -285px;
+    margin-top: -47px;
 }
 .link {
   color: #337ab7 !important;
@@ -372,22 +375,12 @@ transform-origin:0 0 !important;
     .info-box {
       position: absolute;
       border-color: #fff !important;
-      width: 200px;
-      left: 15%;
+      width: 90%;
+      left: 5%;
       top: 15%;
-      background-color: #ffffcc;
+      background-color: #ffffcc; margin: 0px;
     }
 }
 @media screen and (max-width: 1000px) {
   .div-header {display: none;}
-}
-@media only screen and (width: 768px) {
-  .info-box {
-    position: absolute;
-    border-color: #fff !important;
-    width: 452px;
-    left: 15%;
-    top: 40%;
-    background-color: #ffffcc;
-  }
 }

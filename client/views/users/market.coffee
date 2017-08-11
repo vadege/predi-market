@@ -24,12 +24,6 @@ set_contract_filter_text = (id, evt) ->
   Session.set 'contract-filter', filter
 
 Template.Market.helpers
-  login: ->
-    user = Meteor.user()
-    if user.emails[0].verified == true
-      return true
-    else
-      return false
 
   Market: ->
     market_id = Router.current().params._id

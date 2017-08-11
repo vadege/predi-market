@@ -20,6 +20,12 @@ Template.Header.events
 Template.Header.desktop = ->
 
 Template.Header.helpers
+  login: ->
+    user = Meteor.user()
+    if user.emails[0].verified == true
+      return true
+    else
+      return false
   desktop: ->
     if $(window).width() > 1000
       return true

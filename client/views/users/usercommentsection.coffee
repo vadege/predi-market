@@ -211,23 +211,22 @@ Template.CommentSection.events
       true
 
   'click .reply_click': (evt, tmpl) ->
-    id = $(evt.currentTarget).attr("data-id")
-    button = $(evt.currentTarget).data("button")
+    id = $(evt.currentTarget).data("id")
     Session.set 'id' , id
     if Session.get 'id'
       $(".reply").hide()
       $(".submit_reply").hide()
-    $(".reply#"+id).show()
-    $(".reply#"+id).focus()
-    $(".submit_reply#"+button).show()
+    $("#input_"+id).show()
+    $("#input_"+id).focus()
+    $("#button_"+id).show()
 
   'click .reply': (evt, tmpl) ->
-    id = evt.currentTarget.id
+    id = $(evt.currentTarget).data("id")
     $(".error_reply#"+id).hide()
 
   'click .submit_reply': (evt, tmpl) ->
     hint_id = Router.current().params._id
-    id = evt.currentTarget.id
+    id = $(evt.currentTarget).data("button")
     reply = $(".reply#"+id).val()
     if reply == ""
       $(".error_reply#"+id).show()
@@ -267,7 +266,7 @@ Template.CommentSection.events
 
   'click .delete_click': (evt, tmpl) ->
     hint_id = Router.current().params._id
-    id = $(evt.currentTarget).attr("data-id")
+    id = $(evt.currentTarget).data("id")
     Meteor.call 'deleteComment', id, (error, result) ->
       if error
         $(".delete_error#"+id).show()
@@ -296,7 +295,7 @@ Template.CommentSection.events
 
   'click .delete_reply': (evt, tmpl) ->
     hint_id = Router.current().params._id
-    id = $(evt.currentTarget).attr("data-id")
+    id = $(evt.currentTarget).data("id")
     value = evt.currentTarget.value
     name = evt.currentTarget.name
     Meteor.call 'deleteReply', id, value, name, (error, result) ->
@@ -364,7 +363,7 @@ Template.CommentSection.events
 
   'click .show_more': (evt, tmpl) ->
     evt.preventDefault()
-    id = $(evt.currentTarget).attr("data-id")
+    id = $(evt.currentTarget).data("id")
     Session.set 'show' , id
     Session.set 'show_less', true
     $(".show_more#"+id).hide()
@@ -372,7 +371,7 @@ Template.CommentSection.events
 
   'click .show_less': (evt, tmpl) ->
     evt.preventDefault()
-    id = $(evt.currentTarget).attr("data-id")
+    id = $(evt.currentTarget).data("id")
     Session.set 'show' , null
     Session.set 'show_less', false
     $(".show_less#"+id).hide()

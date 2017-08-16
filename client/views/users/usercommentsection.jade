@@ -60,8 +60,8 @@ template(name="CommentSection")
               button.btn.col-md-2.delete_click(type='button' data-id=comment._id)
                 i.fa.fa-trash-o {{_ 'Delete'}}
         div.add_reply
-          input.form-control.col-md-12.reply(type="text" placeholder="Reply to comment" id=comment._id data-id=comment._id)
-          button.btn.col-md-12.pull-right.submit_reply(type='button' id=comment._id data-id=comment._id)
+          input.form-control.col-md-12.reply(type="text" placeholder="Reply to comment" id="input_#{comment._id}" data-id=comment._id)
+          button.btn.col-md-12.pull-right.submit_reply(type='button' id="button_#{comment._id}" data-id=comment._id)
             i.fa.fa-paper-plane {{_ 'Submit'}}
         each replies comment._id
           div.row.col-md-12.reply_section
@@ -79,9 +79,9 @@ template(name="CommentSection")
                 button.btn.col-md-2.delete_reply(type='button' data-id=comment._id value=id name=userId)
                   i.fa.fa-trash-o {{_ 'Delete'}}
         if length comment.replies 3
-          button.btn.btn-success.col-md-2.show_more.show_button(type='button' data-id=comment._id)
+          button.btn.btn-success.col-md-2.show_more.show_button(type='button' id=comment._id data-id=comment._id)
            i.fa.fa-ellipsis-h {{_ 'Show All'}}
-        button.btn.btn-success.col-md-2.show_less.show_button(type='button' data-id=comment._id)
+        button.btn.btn-success.col-md-2.show_less.show_button(type='button' id=comment._id data-id=comment._id)
          i.fa.fa-ellipsis-h {{_ 'Show Less'}}
       div.delete_error.alert.alert-warning(data-id=comment._id)
         label You are not authorized to delete this.

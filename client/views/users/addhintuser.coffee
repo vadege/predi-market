@@ -16,7 +16,7 @@ Template.AddHintUser.events
     desc = $(".hint_val").val()
     contract_id = Session.get 'buttonId'
     Session.set 'buttonId', null
-    id = Contracts.findOne({$and:[{set_id: contract_id}, {hints: {$exists: true}}]})
+    id = Contracts.findOne({$and:[{set_id: contract_id}, {mirror: {$not: true}}]})
     market_id = Session.get 'market_id'
     if (hint == "" || desc == "")
       $(".error").show()

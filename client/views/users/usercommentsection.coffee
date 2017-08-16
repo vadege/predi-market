@@ -196,7 +196,7 @@ Template.CommentSection.events
 
   'click .like_comment': (evt, tmpl) ->
     evt.stopPropagation()
-    id = evt.currentTarget.id
+    id = $(evt.currentTarget).attr("data-id")
     Meteor.call 'likeComment', id, (error, result) ->
       if error
         Error.throw error
@@ -204,14 +204,14 @@ Template.CommentSection.events
 
   'click .dislike_comment': (evt, tmpl) ->
     evt.stopPropagation()
-    id = evt.currentTarget.id
+    id = $(evt.currentTarget).attr("data-id")
     Meteor.call 'dislikeComment', id, (error, result) ->
       if error
         Error.throw error
       true
 
   'click .reply_click': (evt, tmpl) ->
-    id = evt.currentTarget.id
+    id = $(evt.currentTarget).attr("data-id")
     Session.set 'id' , id
     if Session.get 'id'
       $(".reply").hide()
@@ -266,7 +266,7 @@ Template.CommentSection.events
 
   'click .delete_click': (evt, tmpl) ->
     hint_id = Router.current().params._id
-    id = evt.currentTarget.id
+    id = $(evt.currentTarget).attr("data-id")
     Meteor.call 'deleteComment', id, (error, result) ->
       if error
         $(".delete_error#"+id).show()
@@ -295,7 +295,7 @@ Template.CommentSection.events
 
   'click .delete_reply': (evt, tmpl) ->
     hint_id = Router.current().params._id
-    id = evt.currentTarget.id
+    id = $(evt.currentTarget).attr("data-id")
     value = evt.currentTarget.value
     name = evt.currentTarget.name
     Meteor.call 'deleteReply', id, value, name, (error, result) ->
@@ -363,7 +363,7 @@ Template.CommentSection.events
 
   'click .show_more': (evt, tmpl) ->
     evt.preventDefault()
-    id = evt.currentTarget.id
+    id = $(evt.currentTarget).attr("data-id")
     Session.set 'show' , id
     Session.set 'show_less', true
     $(".show_more#"+id).hide()
@@ -371,7 +371,7 @@ Template.CommentSection.events
 
   'click .show_less': (evt, tmpl) ->
     evt.preventDefault()
-    id = evt.currentTarget.id
+    id = $(evt.currentTarget).attr("data-id")
     Session.set 'show' , null
     Session.set 'show_less', false
     $(".show_less#"+id).hide()

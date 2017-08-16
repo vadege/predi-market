@@ -49,19 +49,19 @@ template(name="CommentSection")
           {{{url comment.comment}}}
         div.row
           div.button-section
-            button.btn.col-md-2.like_comment(type='button' id=comment._id)
+            button.btn.col-md-2.like_comment(type='button' data-id=comment._id)
              i.fa.fa-thumbs-up
-            button.btn.col-md-2.dislike_comment(type='button' id=comment._id)
+            button.btn.col-md-2.dislike_comment(type='button' data-id=comment._id)
              i.fa.fa-thumbs-down
             label.likes {{nooflikes comment._id}}
-            button.btn.col-md-2.reply_click(type='button' id=comment._id)
+            button.btn.col-md-2.reply_click(type='button' data-id=comment._id)
               i.fa.fa-reply {{_ 'Reply'}}
             if user comment.user.name true
-              button.btn.col-md-2.delete_click(type='button' id=comment._id)
+              button.btn.col-md-2.delete_click(type='button' data-id=comment._id)
                 i.fa.fa-trash-o {{_ 'Delete'}}
         div.add_reply
-          input.form-control.col-md-12.reply(type="text" placeholder="Reply to comment" id=comment._id)
-          button.btn.col-md-12.pull-right.submit_reply(type='button' id=comment._id)
+          input.form-control.col-md-12.reply(type="text" placeholder="Reply to comment" id=comment._id data-id=comment._id)
+          button.btn.col-md-12.pull-right.submit_reply(type='button' id=comment._id data-id=comment._id)
             i.fa.fa-paper-plane {{_ 'Submit'}}
         each replies comment._id
           div.row.col-md-12.reply_section
@@ -76,16 +76,16 @@ template(name="CommentSection")
                i.fa.fa-thumbs-down
               label.likes {{nooflikesReply id}}
               if user replyBy true
-                button.btn.col-md-2.delete_reply(type='button' id=comment._id value=id name=userId)
+                button.btn.col-md-2.delete_reply(type='button' data-id=comment._id value=id name=userId)
                   i.fa.fa-trash-o {{_ 'Delete'}}
         if length comment.replies 3
-          button.btn.btn-success.col-md-2.show_more.show_button(type='button' id=comment._id)
+          button.btn.btn-success.col-md-2.show_more.show_button(type='button' data-id=comment._id)
            i.fa.fa-ellipsis-h {{_ 'Show All'}}
-        button.btn.btn-success.col-md-2.show_less.show_button(type='button' id=comment._id)
+        button.btn.btn-success.col-md-2.show_less.show_button(type='button' data-id=comment._id)
          i.fa.fa-ellipsis-h {{_ 'Show Less'}}
-      div.delete_error.alert.alert-warning(id=comment._id)
+      div.delete_error.alert.alert-warning(data-id=comment._id)
         label You are not authorized to delete this.
-      div.success_reply.alert.alert-success(id=comment._id)
+      div.success_reply.alert.alert-success(data-id=comment._id)
        label Your reply has been saved successfully
-      div.error_reply.alert.alert-warning(id=comment._id)
+      div.error_reply.alert.alert-warning(data-id=comment._id)
        label Error while saving your reply. Please try again.

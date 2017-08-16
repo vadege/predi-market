@@ -54,7 +54,7 @@ template(name="CommentSection")
             button.btn.col-md-2.dislike_comment(type='button' data-id=comment._id)
              i.fa.fa-thumbs-down
             label.likes {{nooflikes comment._id}}
-            button.btn.col-md-2.reply_click(type='button' data-id=comment._id)
+            button.btn.col-md-2.reply_click(type='button' data-id=comment._id data-button=comment._id)
               i.fa.fa-reply {{_ 'Reply'}}
             if user comment.user.name true
               button.btn.col-md-2.delete_click(type='button' data-id=comment._id)

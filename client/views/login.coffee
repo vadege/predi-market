@@ -36,8 +36,6 @@ Template.Login.events
         if error
           Errors.throw TAPi18n.__ "error_login_failed"
         else
-          user = Meteor.users.findOne({username: username})
-          console.log user
           Router.go '/'
     else
       Errors.throw TAPi18n.__ "error_login_failed"

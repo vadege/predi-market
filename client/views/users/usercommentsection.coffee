@@ -226,8 +226,8 @@ Template.CommentSection.events
 
   'click .submit_reply': (evt, tmpl) ->
     hint_id = Router.current().params._id
-    id = $(evt.currentTarget).data("button")
-    reply = $(".reply#"+id).val()
+    id = $(evt.currentTarget).data("id")
+    reply = $("#input_"+id).val()
     if reply == ""
       $(".error_reply#"+id).show()
       return

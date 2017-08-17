@@ -566,6 +566,7 @@ Meteor.methods
       if userId
         addTag userId, "GoT"
         Accounts.sendEnrollmentEmail userId
+        Meteor.call 'notifyAdminOnRegister'
       else
         throw new Meteor.Error "error_unable_to_create_user"
     catch error
@@ -653,6 +654,22 @@ Meteor.methods
           subject: subject
           text: text
       ).run()
+
+  notifyAdminOnRegister: () ->
+    user = Meteor.users.findOne({"profile.admin": true}, {fields: {emails: 1}})
+    to = user.emails[0].address
+    from = "noreply-predimarket@gmail.com"
+    subject = "New user registered"
+    text = "Hello, \n" + user.username +
+           "A new user has been registered."
+    Fiber = Npm.require "fibers"
+    Fiber(->
+      Email.send
+        to: to
+        from: from
+        subject: subject
+        text: text
+    ).run()
 
   # To use, call Meteor.call('batchEnrollment') from the browser console when
   # logged in as an admin. Will send out enrollment emails to all email

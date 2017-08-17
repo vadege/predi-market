@@ -566,7 +566,6 @@ Meteor.methods
       if userId
         addTag userId, "GoT"
         Accounts.sendEnrollmentEmail userId
-        Meteor.call 'notifyAdminOnRegister'
       else
         throw new Meteor.Error "error_unable_to_create_user"
     catch error
@@ -658,6 +657,7 @@ Meteor.methods
   notifyAdminOnRegister: () ->
     user = Meteor.users.findOne({"profile.admin": true}, {fields: {emails: 1}})
     to = user.emails[0].address
+    console.log to
     from = "noreply-predimarket@gmail.com"
     subject = "New user registered"
     text = "Hello, \n" + user.username +

@@ -238,6 +238,8 @@ Template.CommentSection.events
           $(".error_reply#"+id).hide()
         ), 3000
       else
+        $(".reply").hide()
+        $(".submit_reply").hide()
         val = Session.get 'Select'
         if val == "popular"
           Meteor.call 'showCommentsByPopularity', hint_id, (error, result) ->

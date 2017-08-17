@@ -15,7 +15,7 @@ Template.NewUser.events
           return false
         else
           $(".loader").hide()
-          Meteor.call 'notifyAdminOnRegister'
+          Meteor.call 'notifyAdminOnRegister', username
           Router.go '/email_sent'
     else
       Errors.throw TAPi18n.__ "error_all_fields_obligatory"

@@ -94,6 +94,16 @@ Router.route '/hints/:_id', ->
          TAPi18n.subscribe col
   }
 
+Router.route '/contract/:_id', ->
+  @render 'Sidebar', {to: 'Sidebar'}
+  @render 'Contractset'
+, {waitOn: ->
+     if Meteor?.userId()
+       cols = ['Pages', 'Markets']
+       _.map cols, (col) ->
+         TAPi18n.subscribe col
+  }
+
 Router.route '/markets/', ->
   @render 'Sidebar', {to: 'Sidebar'}
   @render 'MarketList'

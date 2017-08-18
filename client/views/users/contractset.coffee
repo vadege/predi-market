@@ -106,12 +106,16 @@ Template.Contractset.helpers
 Template.Contractset.events
   'click .cancel-trade': (evt, tmpl) ->
     Session.set 'order-details', undefined
+    $('html,body').animate({
+      scrollTop: $(".contractset#contractset-"+@_id).offset().top - 50},
+     'slow');
 
   'click .do-trade': (evt, tmpl) ->
     do_trade()
 
   'click .start-trade': (evt, tmpl) ->
     Session.set 'order-details', {'set_id': @_id, 'market_id': @market_id}
+    Session.set 'height', $(document).height()
 
   'click .submit_hint': (evt, tmpl) ->
     id = evt.currentTarget.id

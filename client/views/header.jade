@@ -14,35 +14,34 @@ template(name='Header')
             span.icon-bar
           a.navbar-brand.header-class(href='#')
            img(alt="Predi logo" src="/predi.png")
-       if desktop
-        div.navbar-brand.col-sm-7.div-header
-          img.margin-img(alt="Game of Prediction" src="/header.png")
-        div.col-sm-3.pull-right.header-class
-          div#predi-navbar-collapse.collapse.navbar-collapse
-            ul.nav.navbar-nav.navbar-right
-              if i18n_enabled
-                li.dropdown
-                  a.dropdown-toggle.language(href='#' data-toggle='dropdown' role='button')
-                    img.gravatar(src='#{current_user_avatar}' height="30px" width="30px")
-                    span &nbsp;{{current_user_name}}
-                    span {{{current_language_tag}}}
-                    span.caret
-                  ul.dropdown-menu(role='menu')
-                    each supportedLanguages
-                      if isEqual i18n_currentLanguage.tag this.tag
-                        li.disabled
-                          a(href='#' id='#{this.tag}' class='#{this.last}')
-                            i.fa.fa-check-square-o
-                            =this.name
-                      else
-                        li
-                          a.setLanguage(href='#' id='#{this.tag}' class='#{this.last}')
-                            i.fa.fa-square-o
-                            =this.name
-                    li
-                      a#log_out
-                        i.fa.fa-sign-out
-                        span {{i18n 'loginButtonsLoggedInDropdownActions.signOut'}}
+       div.navbar-brand.col-sm-7.div-header
+        img.margin-img(alt="Game of Prediction" src="/header.png")
+       div.col-sm-3.pull-right.header-class
+        div#predi-navbar-collapse.collapse.navbar-collapse
+          ul.nav.navbar-nav.navbar-right
+            if i18n_enabled
+              li.dropdown
+                a.dropdown-toggle.language(href='#' data-toggle='dropdown' role='button')
+                  img.gravatar(src='#{current_user_avatar}' height="30px" width="30px")
+                  span &nbsp;{{current_user_name}}
+                  span {{{current_language_tag}}}
+                  span.caret
+                ul.dropdown-menu(role='menu')
+                  each supportedLanguages
+                    if isEqual i18n_currentLanguage.tag this.tag
+                      li.disabled
+                        a(href='#' id='#{this.tag}' class='#{this.last}')
+                          i.fa.fa-check-square-o
+                          =this.name
+                    else
+                      li
+                        a.setLanguage(href='#' id='#{this.tag}' class='#{this.last}')
+                          i.fa.fa-square-o
+                          =this.name
+                  li
+                    a#log_out
+                      i.fa.fa-sign-out
+                      span {{i18n 'loginButtonsLoggedInDropdownActions.signOut'}}
 
   if login
     div.alert.alert-info.info-box

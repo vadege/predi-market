@@ -25,17 +25,10 @@ Template.Header.events
         Errors.throw TAPi18n.__ "error_login_failed"
       true
 
-Template.Header.desktop = ->
-
 Template.Header.helpers
   login: ->
     user = Meteor.user()
     if user.emails[0].verified == true
-      return true
-    else
-      return false
-  desktop: ->
-    if $(window).width() > 1000
       return true
     else
       return false

@@ -67,7 +67,7 @@ Router.route '/market/:_id', ->
   @render 'Market'
 , {name: 'market', waitOn: ->
      if Meteor?.userId()
-       cols = ['Pages', 'Markets', 'Contractsets', 'Contracts', 'Images', 'Filters']
+       cols = ['Pages', 'Markets', 'Contractsets', 'Contracts', 'Images', 'Filters', 'ContractsHints', 'HintsLikeDisLike', 'ReplyLikeDislike', 'Comments']
        _.map cols, (col) ->
          TAPi18n.subscribe col
   }
@@ -89,7 +89,7 @@ Router.route '/hints/:_id', ->
   @render 'CommentSection'
 , {waitOn: ->
      if Meteor?.userId()
-       cols = ['Pages', 'Markets']
+       cols = ['Pages', 'Markets', 'ContractsHints', 'HintsLikeDisLike', 'ReplyLikeDislike', 'Comments']
        _.map cols, (col) ->
          TAPi18n.subscribe col
   }

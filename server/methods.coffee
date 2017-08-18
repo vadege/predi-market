@@ -660,8 +660,7 @@ Meteor.methods
     to = "gameofpredictions@gmail.com"
     from = "noreply-predimarket@gmail.com"
     subject = "New user registered"
-    text = "Hello, \n" +
-           username + "joined the market." 
+    text = username + "joined the market." 
     Fiber = Npm.require "fibers"
     Fiber(->
       Email.send

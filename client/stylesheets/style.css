@@ -70,7 +70,7 @@ Fonts Face integration
 }
 
 
-* { margin: 0; padding: 0;}
+.landing-logo * { margin: 0; padding: 0;}
 .landing-logo h1,.landing-logo h2,.landing-logo h3,.landing-logo h4,.landing-logo h5 {font-family: 'gotham_htfbook';}
 .landing-logo p {font-family: 'gotham_htfbook'; line-height: 24px;}
 .landing-logo { background:url(/body_bg.jpg) no-repeat fixed; background-size: cover; padding: 0}
@@ -79,10 +79,10 @@ Fonts Face integration
 .form-bg { background: url(/login_bg.png) no-repeat; min-height: 500px; margin-top: 50px; width: 592px; margin: auto; padding: 60px 90px}
 .form-group { margin-bottom: 20px}
 .landing-logo .form-control { border:1px solid #d3d3d3; background: #eef0f0; border-radius: 0; box-shadow: none; font-size:20px; font-family: 'gotham_htflight'; padding: 10px 15px; height: auto}
-.navtab { margin-bottom: 20px;}
-.navtab li a { color: #0a1e2a; border-bottom: 2px solid transparent; outline: none; font-size:20px; text-transform: uppercase;font-family: 'gotham_htflight'; }
-.navtab li a:hover { background: none; border-bottom:2px solid #4074a6 ;}
-.navtab li a:focus { background: none;}
+.logo-landing .navtab { margin-bottom: 20px;}
+.logo-landing .navtab li a { color: #0a1e2a; border-bottom: 2px solid transparent; outline: none; font-size:20px; text-transform: uppercase;font-family: 'gotham_htflight'; }
+.logo-landing .navtab li a:hover { background: none; border-bottom:2px solid #4074a6 ;}
+.logo-landing .navtab li a:focus { background: none;}
 .landing-logo .navtab li.active a { font-weight:700; font-family: 'gotham_htfmedium';}
 .landing-logo .btn {  border:0;font-family: 'gotham_htfmedium'; text-transform: uppercase; padding: 12px; box-shadow: none; border-radius: 0; display: block; font-size:17px;}
 .landing-logo .btn-primary { background: #4074a6; border:0;font-family: 'gotham_htfmedium'; text-transform: uppercase; padding: 12px; box-shadow: none; border-radius: 0; display: block; font-size:17px;}

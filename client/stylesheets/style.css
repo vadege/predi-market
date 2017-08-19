@@ -101,7 +101,7 @@ Fonts Face integration
 .fbtn .btn-info:hover { background: #4778a7 }
 .gbtn .btn-danger {  background:#ff3e3e;}
 .gbtn .btn-danger:hover { background:#e23333}
-.white-container { position: relative;  padding: 60px 0 40px;
+.white-container { position: relative;  padding: 60px 0 40px 70px;
 /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#1e5799+0,c7d2d8+8&0+0,1+53 */
 background: -moz-linear-gradient(top, rgba(30,87,153,0) 0%, rgba(199,210,216,0.15) 8%, rgba(199,210,216,1) 53%); /* FF3.6-15 */
 background: -webkit-linear-gradient(top, rgba(30,87,153,0) 0%,rgba(199,210,216,0.15) 8%,rgba(199,210,216,1) 53%); /* Chrome10-25,Safari5.1-6 */
@@ -213,6 +213,7 @@ a.socialIcon:hover, .socialHoverClass {
 
 @media all and (max-width:620px)
 {
+  .white-container {padding: 60px 0 40px;}
 	.nopadm { padding: 0}
 	.form-bg { background-position: center 0; padding: 60px 90px; width: 100%;}
 	.btnlogin .btn-primary, .fbtn .btn-info, .gbtn .btn-danger { min-width: 100%}
@@ -221,11 +222,13 @@ a.socialIcon:hover, .socialHoverClass {
 
 @media all and (max-width:540px)
 {
+  .white-container {padding: 60px 0 40px;}
 	.form-bg { background-position: center 0; padding: 60px; width: 100%;}
 	.fbtn .btn-info span, .gbtn .btn-danger span { display: none;}
 }
 
 @media all and (max-width:480px)
 {
+   .white-container {padding: 60px 0 40px;}
 	.form-bg { background-position: center 0; padding: 60px 25px; width: 100%;}
 }

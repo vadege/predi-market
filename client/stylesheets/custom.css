@@ -6,6 +6,9 @@
   margin-right: 582px;
   margin-top: 10px;
 }
+.arrow-down {
+  cursor: pointer;
+}
 .load-class {
   margin-left: 550px;
   margin-top: -130px;

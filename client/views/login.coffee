@@ -2,10 +2,22 @@
 # Distributed under the GPLv3
 
 Template.Login.events
+
+  'click #urlClass': (evt, tmpl) ->
+    evt.preventDefault()
+    value = evt.currentTarget.href
+    window.open(value + location.search)
+
   'click #new_user': (evt, tmpl) ->
     evt.stopPropagation()
     Router.go '/new_user'
     false
+
+  'click .arrow-down': (evt, tmpl) ->
+    evt.stopPropagation()
+    $('html,body').animate({
+      scrollTop: $(".white-container").offset().top + 1400},
+     'slow');
 
   'click #forgot_pass': (evt, tmpl) ->
     evt.stopPropagation()

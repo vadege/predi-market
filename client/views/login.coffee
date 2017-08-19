@@ -27,8 +27,8 @@ Template.Login.events
 
   'click #log_in': (evt, tmpl) ->
     evt.stopPropagation()
-    username = $("#username").val()
-    password = $("#password").val()
+    username = $(".login-username").val()
+    password = $(".login-password").val()
     if username and password
       unless Meteor.status().connected
         Meteor.reconnect()
@@ -41,5 +41,25 @@ Template.Login.events
       Errors.throw TAPi18n.__ "error_login_failed"
     false
 
+  'click #create_user': (evt, tmpl) ->
+    evt.stopPropagation()
+    username = $(".register-username").val()
+    email = $(".register-email").val()
+    captchaData = grecaptcha.getResponse();
+
+    if username and email
+      Meteor.call "newUser", username, email, {}, captchaData, (error) ->
+        grecaptcha.reset()
+        if error
+          Errors.throw TAPi18n.__ error.error
+          return false
+        else
+          Meteor.call 'notifyAdminOnRegister', username
+          Router.go '/email_sent'
+    else
+      Errors.throw TAPi18n.__ "error_all_fields_obligatory"
+      return false
+    false
+
 Template.Login.rendered = ->
-  $("#username").focus()
+  $('.remove-class').addClass("landing-logo")

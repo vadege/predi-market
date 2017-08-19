@@ -1,0 +1,231 @@
+/* CSS Document */
+
+
+/* --------------------------------
+Fonts Face integration
+-------------------------------- */
+
+@font-face {
+    font-family: 'gotham_htflight';
+    src: url('../fonts/gothamhtf-light-webfont.eot');
+    src: url('../fonts/gothamhtf-light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/gothamhtf-light-webfont.woff') format('woff'),
+         url('../fonts/gothamhtf-light-webfont.ttf') format('truetype'),
+         url('../fonts/gothamhtf-light-webfont.svg#gotham_htflight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'gotham_htfmedium';
+    src: url('../fonts/gothamhtf-medium-webfont.eot');
+    src: url('../fonts/gothamhtf-medium-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/gothamhtf-medium-webfont.woff') format('woff'),
+         url('../fonts/gothamhtf-medium-webfont.ttf') format('truetype'),
+         url('../fonts/gothamhtf-medium-webfont.svg#gotham_htfmedium') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+@font-face {
+    font-family: 'gotham_htfbook';
+    src: url('../fonts/gothamhtf-book-webfont.eot');
+    src: url('../fonts/gothamhtf-book-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/gothamhtf-book-webfont.woff') format('woff'),
+         url('../fonts/gothamhtf-book-webfont.ttf') format('truetype'),
+         url('../fonts/gothamhtf-book-webfont.svg#gotham_htfbook') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+@font-face {
+    font-family: 'gotham_htfbold';
+    src: url('../fonts/gothamhtf-bold-webfont.eot');
+    src: url('../fonts/gothamhtf-bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/gothamhtf-bold-webfont.woff') format('woff'),
+         url('../fonts/gothamhtf-bold-webfont.ttf') format('truetype'),
+         url('../fonts/gothamhtf-bold-webfont.svg#gotham_htfbold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: #bcbcbc !important;
+}
+::-moz-placeholder { /* Firefox 19+ */
+  color: #bcbcbc !important;
+}
+:-ms-input-placeholder { /* IE 10+ */
+  color: #bcbcbc !important;
+}
+:-moz-placeholder { /* Firefox 18- */
+  color: #bcbcbc !important;
+}
+
+
+* { margin: 0; padding: 0;}
+.landing-logo h1,.landing-logo h2,.landing-logo h3,.landing-logo h4,.landing-logo h5 {font-family: 'gotham_htfbook';}
+.landing-logo p {font-family: 'gotham_htfbook'; line-height: 24px;}
+.landing-logo { background:url(/body_bg.jpg) no-repeat fixed; background-size: cover; padding: 0}
+.logo-landing img { margin: auto;}
+.form-panel { text-align: center; margin-top: 50px;}
+.form-bg { background: url(/login_bg.png) no-repeat; min-height: 500px; margin-top: 50px; width: 592px; margin: auto; padding: 60px 90px}
+.form-group { margin-bottom: 20px}
+.landing-logo .form-control { border:1px solid #d3d3d3; background: #eef0f0; border-radius: 0; box-shadow: none; font-size:20px; font-family: 'gotham_htflight'; padding: 10px 15px; height: auto}
+.navtab { margin-bottom: 20px;}
+.navtab li a { color: #0a1e2a; border-bottom: 2px solid transparent; outline: none; font-size:20px; text-transform: uppercase;font-family: 'gotham_htflight'; }
+.navtab li a:hover { background: none; border-bottom:2px solid #4074a6 ;}
+.navtab li a:focus { background: none;}
+.landing-logo .navtab li.active a { font-weight:700; font-family: 'gotham_htfmedium';}
+.landing-logo .btn {  border:0;font-family: 'gotham_htfmedium'; text-transform: uppercase; padding: 12px; box-shadow: none; border-radius: 0; display: block; font-size:17px;}
+.landing-logo .btn-primary { background: #4074a6; border:0;font-family: 'gotham_htfmedium'; text-transform: uppercase; padding: 12px; box-shadow: none; border-radius: 0; display: block; font-size:17px;}
+.btnlogin .btn-primary { min-width: 190px }
+.landing-logo .forgotpass { text-align: left; padding-top: 15px; font-size: 13px; font-family: 'gotham_htfmedium'; text-transform: uppercase}
+.forgotpass a { color: #3999d0;}
+.btnlogin { text-align: right}
+
+.or { position: relative}
+.or:before { border-top:1px solid #e0e0e0; display: block; content: " "; margin-top: 10px; position: absolute; left: 0; right:0}
+.or span { background:#f4f5f5; display: inline-block; padding: 10px; margin-top: -60px; position: relative; color: #9b9b9b; text-transform: uppercase; font-family: 'gotham_htflight';}
+
+.fbtn .btn-info, .gbtn .btn-danger {min-width: 190px;  font-size:14px;font-family: 'gotham_htfbook'; text-transform: capitalize}
+.fbtn .btn-info i, .gbtn .btn-danger i { margin-right:5px;}
+.fbtn .btn-info { background: #548bbf; }
+.fbtn .btn-info:hover { background: #4778a7 }
+.gbtn .btn-danger {  background:#ff3e3e;}
+.gbtn .btn-danger:hover { background:#e23333}
+.white-container { position: relative;  padding: 60px 0 40px;
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#1e5799+0,c7d2d8+8&0+0,1+53 */
+background: -moz-linear-gradient(top, rgba(30,87,153,0) 0%, rgba(199,210,216,0.15) 8%, rgba(199,210,216,1) 53%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top, rgba(30,87,153,0) 0%,rgba(199,210,216,0.15) 8%,rgba(199,210,216,1) 53%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom, rgba(30,87,153,0) 0%,rgba(199,210,216,0.15) 8%,rgba(199,210,216,1) 53%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#001e5799', endColorstr='#c7d2d8',GradientType=0 ); /* IE6-9 */
+}
+.section-title {  font-family: 'gotham_htfbook';}
+.sub-title { margin-bottom: 30px; margin-top: 130px;}
+/*.section-title:after { width:50px; height:5px; background:#333; content: " "; display: block; margin: 10px auto 20px; }*/
+
+.arrow {margin:-15px auto auto; top: 0; bottom: 0; left: 0; right: 0; width: 70px; height: 70px; font-size: 70px; line-height: 70px; text-align: center;  -webkit-animation: bounce 2s infinite ease-in-out; color: #fff}
+
+@-webkit-keyframes bounce {
+	0%, 20%, 60%, 100%  { -webkit-transform: translateY(0); }
+    40%  { -webkit-transform: translateY(-20px); }
+	80% { -webkit-transform: translateY(-10px); }
+}
+
+
+/*=========================
+  Icons
+ ================= */
+
+/* footer social icons */
+ul.social-network {
+	list-style: none;
+	display: inline-block;
+	margin-left:0 !important;
+	padding: 0;
+	margin-top: 20px; margin-bottom: 20px;
+}
+ul.social-network li {
+	display: inline;
+	margin: 0 5px;
+}
+
+
+/* footer social icons */
+.social-network a.icoRss:hover {
+	background-color: #F56505;
+}
+.social-network a.icoFacebook:hover {
+	background-color:#3B5998;
+}
+.social-network a.icoTwitter:hover {
+	background-color:#33ccff;
+}
+.social-network a.icoGoogle:hover {
+	background-color:#BD3518;
+}
+.social-network a.icoVimeo:hover {
+	background-color:#0590B8;
+}
+.social-network a.icoLinkedin:hover {
+	background-color:#007bb7;
+}
+.social-network a.icoRss:hover i, .social-network a.icoFacebook:hover i, .social-network a.icoTwitter:hover i,
+.social-network a.icoGoogle:hover i, .social-network a.icoVimeo:hover i, .social-network a.icoLinkedin:hover i {
+	color:#fff;
+}
+a.socialIcon:hover, .socialHoverClass {
+	color:#44BCDD;
+}
+
+.social-circle li a {
+	display:inline-block;
+	position:relative;
+	margin:0 auto 0 auto;
+	-moz-border-radius:50%;
+	-webkit-border-radius:50%;
+	border-radius:50%;
+	text-align:center;
+	width: 40px;
+	height: 40px;
+	font-size:16px;
+}
+.social-circle li i {
+	margin:0;
+	line-height:40px;
+	text-align: center;
+}
+
+.social-circle li a:hover i, .triggeredHover {
+	-moz-transform: rotate(360deg);
+	-webkit-transform: rotate(360deg);
+	-ms--transform: rotate(360deg);
+	transform: rotate(360deg);
+	-webkit-transition: all 0.2s;
+	-moz-transition: all 0.2s;
+	-o-transition: all 0.2s;
+	-ms-transition: all 0.2s;
+	transition: all 0.2s;
+}
+.social-circle i {
+	color: #fff;
+	-webkit-transition: all 0.8s;
+	-moz-transition: all 0.8s;
+	-o-transition: all 0.8s;
+	-ms-transition: all 0.8s;
+	transition: all 0.8s;
+}
+
+.social-circle a {
+ background-color:#888;
+}
+
+.contactemail a { border:1px solid #afb5b8; border-radius: 100px; padding: 10px 20px; margin-top: 10px; display: inline-block}
+.contactemail a:hover { border-color:#4074a6; background-color:#4074a6; color: #fff; text-decoration: none}
+
+@media all and (max-width:620px)
+{
+	.nopadm { padding: 0}
+	.form-bg { background-position: center 0; padding: 60px 90px; width: 100%;}
+	.btnlogin .btn-primary, .fbtn .btn-info, .gbtn .btn-danger { min-width: 100%}
+	.logo img  { width: 80%;}
+}
+
+@media all and (max-width:540px)
+{
+	.form-bg { background-position: center 0; padding: 60px; width: 100%;}
+	.fbtn .btn-info span, .gbtn .btn-danger span { display: none;}
+}
+
+@media all and (max-width:480px)
+{
+	.form-bg { background-position: center 0; padding: 60px 25px; width: 100%;}
+}

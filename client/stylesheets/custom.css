@@ -374,7 +374,13 @@ transform-origin:0 0 !important;
 .padding0{padding: 0 !important;}
 .rowcustom{margin-left: -15px; margin-right: -15px;}
 .g-recaptcha{width: 100%;}
+.g-recaptcha > div {
+    margin: 0 auto;
+}
 .g-recaptcha > * iframe{width:100%;}
+@media screen and (max-width: 1000px) {
+  .div-header {display: none;}
+}
 @media screen and (max-width: 767px) {
     .reply_click {
         margin-left: 0px;
@@ -403,7 +409,4 @@ transform-origin:0 0 !important;
       top: 15%;
       background-color: #ffffcc; margin: 0px;
     }
-}
-@media screen and (max-width: 1000px) {
-  .div-header {display: none;}
 }

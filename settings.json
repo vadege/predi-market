@@ -1,5 +1,8 @@
 {
-   "public":{
-     "linkURl":"https://mygreensight.com"
-   }
+    "public": {
+        "ga": {
+            "id": "UA-104972897-1",
+            "trackUserId": true
+        }
+    }
 }

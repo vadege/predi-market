@@ -4,6 +4,7 @@
 Router.configure {
   layoutTemplate: 'ApplicationLayout'
   loadingTemplate: 'Loading'
+  trackPageView: true
 }
 
 Router.onBeforeAction ->

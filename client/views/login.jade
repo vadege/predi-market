@@ -24,7 +24,7 @@ template(name='Login')
                 input.form-control.login-password(type="password" placeholder="Password")
             div.form-group
               div.col-xs-6.forgotpass
-                a(href="#") Forgot password?
+                a#forgot_pass Forgot password?
               div.col-xs-6.btnlogin
                 button.btn.btn-primary#log_in Login
             div.form-group
@@ -83,7 +83,7 @@ template(name='Login')
            a.icoFacebook#urlClass(href="https://m.facebook.com/GOPredictions/" title="Facebook")
              i.fa.fa-facebook
          li
-           a.icoTwitter(href="#" title="Twitter")
+           a.icoTwitter#urlClass(href="https://twitter.com/got_predictions" title="Twitter")
              i.fa.fa-twitter
       div.col-sm-12.contactemail
         a(href="mailto:contact@gameofpredictions.org") contact@gameofpredictions.org

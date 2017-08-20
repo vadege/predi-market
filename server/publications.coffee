@@ -18,7 +18,7 @@ TAPi18n.publish "Contractsets", ->
       market_ids = _.map Markets.i18nFind({'tags': {$in: user.profile.tags}}).fetch(), (market) -> market._id
 
       Contractsets.i18nFind
-        active: true
+        # active: true
         settled: false
         market_id: {$in: market_ids}
         launchtime: {$lte: Date.now()}
@@ -33,7 +33,7 @@ TAPi18n.publish "Contracts", ->
     else
       market_ids = _.map Markets.i18nFind({'tags': {$in: user.profile.tags}}).fetch(), (market) -> market._id
       contractset_ids = _.map Contractsets.i18nFind(
-        active: true
+        # active: true
         settled: false
         market_id: {$in: market_ids}
         launchtime: {$lte: Date.now()}

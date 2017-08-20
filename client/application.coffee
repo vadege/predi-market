@@ -25,6 +25,8 @@ Meteor.startup ->
   Session.set "loading", true
   set_initial_language()
 
+  Router.plugin('reywood:iron-router-ga');
+
   reCAPTCHA.config({
     publickey: '6Ld8miYUAAAAAGHCvLN30fXBdt8dOtwMLjw4G4Yr'
     })

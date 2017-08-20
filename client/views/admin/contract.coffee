@@ -30,6 +30,12 @@ Template.AdminContract.helpers
       .toFixed 2
       .replace /\.?0+$/, ""
 
+  deleteable: ->
+    set = Contractsets.findOne({_id: @set_id})
+
+    set.voteshare and
+    (set.launchtime > Date.now())
+
 
 Template.AdminContract.events
   'change .set-color': (evt, tmpl) ->

@@ -80,18 +80,21 @@ computePrices = (contractset) ->
 @removeContract = (contract_id) ->
   contract = Contracts.findOne({_id: contract_id})
   contractset = Contractsets.findOne {_id: contract.set_id}
-  if contractset.voteshare
-    Contracts.remove {_id: contract_id}
-    remove_log =
-      timestamp: Date.now()
-      user_id: "system"
-      type: "deletecontract"
-      value: {
-        id: contract_id
-      }
-    Activities.insert remove_log
+  if contractset.launchtime > Date.now()
+    if contractset.voteshare
+      Contracts.remove {_id: contract_id}
+      remove_log =
+        timestamp: Date.now()
+        user_id: "system"
+        type: "deletecontract"
+        value: {
+          id: contract_id
+        }
+      Activities.insert remove_log
+    else
+      throw new Meteor.Error 403, "Cannot remove probabillity contract"
   else
-    throw new Meteor.Error 403, "Cannot remove probabillity contract"
+    throw new Meteor.Error 403, "Cannot remove contract from launched contract sets"
 
 @setContractOutstandingFromPrice = (contract_id, price) ->
   check price, Number

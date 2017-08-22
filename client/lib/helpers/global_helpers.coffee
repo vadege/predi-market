@@ -83,8 +83,14 @@
        .value()
 
   contracts_with_prices: (market_id, live_trade) ->
-    market_contracts = Contracts.find({market_id: market_id}).fetch()
     market_contractsets = Contractsets.find({market_id: market_id}).fetch()
+
+    # Filter contracts for extra security against contracts with deleted
+    # contractset Should not be possible, but it has happened
+    market_contracts = _.filter Contracts.find({market_id: market_id}).fetch(), (contract) ->
+      contract.set_id in _.pluck market_contractsets, "_id"
+
+    console.log market_contracts.length
     unless market_contractsets? and market_contractsets.length > 0
       return []
     if live_trade?
@@ -107,7 +113,6 @@
   compute_wallet: (market_id) ->
     wallet = {}
     portfolio = Meteor.user()?.profile?.portfolio
-    contracts = Contracts.find({market_id: market_id}).fetch()
     market = Markets.findOne {_id: market_id}
     contractsets = _.indexBy Contractsets.find({market_id: market_id}).fetch(), (set) ->
       set._id

@@ -3,6 +3,12 @@
 
 Accounts.emailTemplates.from = "noreply@thepredictionmarket.com"
 
+Accounts.emailTemplates.resetPassword.text = (user, url) ->
+  token = user.services.password.reset.token
+  return "Hello,\n\n https://gameofpredictions.org/#/reset-password/" + token +
+          "\n\n is the link to reset your password"
+
+
 Accounts.emailTemplates.enrollAccount.subject = (user) ->
   "Welcome to Game of Predictions"
 

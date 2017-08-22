@@ -28,10 +28,11 @@ Template.Header.events
 Template.Header.helpers
   login: ->
     user = Meteor.user()
-    if user.emails[0].verified == true
-      return true
-    else
-      return false
+    if user
+      if user.emails[0].verified == true
+        return true
+      else
+        return false
 
   supportedLanguages: () ->
     user = Meteor.user()

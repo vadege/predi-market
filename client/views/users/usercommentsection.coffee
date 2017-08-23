@@ -32,6 +32,7 @@ replyLikeCount = (id) ->
     return 0
 
 Template.CommentSection.rendered = ->
+  ga('send', 'event', 'CommentSection', 'read')
   $(".add_comment").focus()
   Session.set 'show_less', false
   Session.set 'show', null

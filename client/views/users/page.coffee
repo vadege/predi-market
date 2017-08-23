@@ -15,3 +15,6 @@ Template.Page.events
     evt.preventDefault()
     value = evt.currentTarget.href
     window.open(value + location.search)
+
+Template.Page.rendered = ->
+  ga('send', 'event', 'Pages', 'read')

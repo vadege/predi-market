@@ -1,4 +1,5 @@
 Template.AddHintUser.rendered = ->
+  ga('send', 'event', 'hintSubmit', 'submit')
   $(".hint").focus()
 
 Template.AddHintUser.events

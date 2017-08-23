@@ -40,3 +40,6 @@ Template.Leaderboard.helpers
 
     contracts_with_prices = GlobalHelpers.contracts_with_prices market._id
     GlobalHelpers.users_with_worth market, contracts_with_prices
+
+Template.Leaderboard.rendered = ->
+  ga('send', 'event', 'Leaderboard', 'read')

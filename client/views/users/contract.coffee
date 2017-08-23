@@ -303,6 +303,7 @@ Template.Contract.events
       Session.set 'slider', slider
 
 Template.Contract.rendered = ->
+  ga('send', 'event', 'Trade', 'submit')
   contract_id = @data._id
   set_id = @data.set_id
   slider_details = compute_slider_details set_id, contract_id
@@ -311,7 +312,7 @@ Template.Contract.rendered = ->
 
   computefun = _.debounce (amount) ->
     Session.set 'order-details', compute_trade_object contract_id, amount
-    slider = Session.get 'slider' 
+    slider = Session.get 'slider'
     if slider?.amount is amount and slider?.reset
       slider.reset = false
       Session.set 'slider', slider

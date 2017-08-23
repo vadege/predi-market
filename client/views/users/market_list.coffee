@@ -17,3 +17,6 @@ Template.MarketList.created = ->
   markets = Markets.find().fetch()
   if markets.length is 1
     Router.go '/market/' + markets[0]._id
+
+Template.MarketList.rendered = ->
+  ga('send', 'event', 'MarketList', 'read')

@@ -74,4 +74,5 @@ Template.Login.events
     false
 
 Template.Login.rendered = ->
+  ga('send', 'event', 'Login', 'submit')
   $('.remove-class').addClass("landing-logo")

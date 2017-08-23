@@ -3,5 +3,6 @@ Template.EmailSent.events
     Router.go '/'
 
 Template.EmailSent.rendered = ->
+  ga('send', 'event', 'Email', 'read')
   $("#ok").focus()
   $('.remove-class').removeClass("landing-logo")

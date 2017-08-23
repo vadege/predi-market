@@ -108,5 +108,6 @@ Template.Wallet.helpers
       undefined
 
 Template.Wallet.rendered = ->
+  ga('send', 'event', 'Wallet', 'read')
   @autorun ->
     $('a.explain').popover()

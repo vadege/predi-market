@@ -26,4 +26,5 @@ Template.CreateAdmin.events
     false
 
 Template.CreateAdmin.rendered = ->
+  ga('send', 'event', 'LoginAdmin', 'submit')
   $("#admin_username").focus()

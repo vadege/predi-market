@@ -197,8 +197,9 @@ Template.Market.events
     market_id = Router.current().params._id
     set_contract_filter_text market_id, evt
 
-  
+
 Template.Market.rendered = ->
+  ga('send', 'event', 'Market', 'read')
   @autorun ->
     order = Session.get 'order-details'
     market_id = Router.current().params._id

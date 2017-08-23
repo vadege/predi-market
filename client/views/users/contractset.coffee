@@ -122,3 +122,6 @@ Template.Contractset.events
     Session.set 'market_id', @market_id
     Session.set 'buttonId', id
     Router.go('/hint')
+
+Template.Contractset.rendered = ->
+  ga('send', 'event', 'Contract', 'read')

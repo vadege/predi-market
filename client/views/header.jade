@@ -16,7 +16,7 @@ template(name='Header')
           ul.nav.navbar-nav.navbar-right
             if i18n_enabled
               li.dropdown
-                a.dropdown-toggle.language(href='#' data-toggle='dropdown' role='button')
+                a.anchor-class.dropdown-toggle.language(href='#' data-toggle='dropdown' role='button')
                   img.gravatar(src='#{current_user_avatar}' height="30px" width="30px")
                   span &nbsp;{{current_user_name}}
                   span {{{current_language_tag}}}

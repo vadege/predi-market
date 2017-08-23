@@ -391,6 +391,9 @@ transform-origin:0 0 !important;
     .reply_click {
         margin-left: 0px;
     }
+    .anchor-class {
+      width: 100px;
+    }
     .show_hint {
       font-size: 15px;
       border: 1px solid #888;

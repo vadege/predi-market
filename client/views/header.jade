@@ -5,19 +5,14 @@ template(name='Header')
   nav.navbar.navbar-default.navbar-fixed-top(role='navigation')
     div.container-fluid
       div.row
-       div.col-sm-2
+       div.col-xs-3
         div.navbar-header
-          button.visible-xs.navbar-toggle.collapsed(type='button' data-toggle='collapse' data-target='#predi-navbar-collapse')
-            span.sr-only Toggle navigation
-            span.icon-bar
-            span.icon-bar
-            span.icon-bar
           a.navbar-brand.header-class(href='#')
            img(alt="Predi logo" src="/predi.png")
        div.navbar-brand.col-sm-7.div-header
         img.margin-img(alt="Game of Prediction" src="/header.png")
-       div.col-sm-3.pull-right.header-class
-        div#predi-navbar-collapse.collapse.navbar-collapse
+       div.col-xs-4.pull-right.header-class
+        div
           ul.nav.navbar-nav.navbar-right
             if i18n_enabled
               li.dropdown

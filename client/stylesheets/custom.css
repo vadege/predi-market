@@ -1,6 +1,9 @@
 #urlClass {
   word-wrap: break-word;
 }
+.navbar-collapse.in {
+    overflow-y: visible;
+}
 .remove_hint {
   margin-bottom: 10px;
   margin-right: 582px;

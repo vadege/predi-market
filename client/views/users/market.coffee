@@ -39,7 +39,6 @@ Template.Market.helpers
     contracts = Contracts.find({market_id: market_id}).fetch()
     contractsets = Contractsets.find(
         $and: [{market_id: market_id},
-               {active: true},
                {launchtime: {$lte: now}},
                {settletime: {$gte: now}}]
       ,
@@ -117,7 +116,8 @@ Template.Market.helpers
           _.contains word_matches, id
 
     _.filter contractsets, (set) ->
-      return set._id in contractsets_with_portfolio and
+      return set.active is true and
+             set._id in contractsets_with_portfolio and
              set._id in contractsets_closing_soon and
              set._id in contractsets_matching_text_filters
 

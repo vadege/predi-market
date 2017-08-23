@@ -68,3 +68,6 @@ Template.AdminMain.events
       if error
         Errors.throw error
     Deps.flush()
+
+Template.AdminMain.rendered = ->
+  ga('send', 'event', 'MarketAdmin', 'read')

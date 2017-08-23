@@ -330,6 +330,7 @@
 .dropdown:hover .dropdown-menu {
     display: block;
     margin-top: 0;
+    margin-left: -50px;
 }
 .count {
   font-size: 20px;
@@ -392,7 +393,8 @@ transform-origin:0 0 !important;
         margin-left: 0px;
     }
     .anchor-class {
-      width: 100px;
+      width: 180px;
+      margin-left: -50px;
     }
     .show_hint {
       font-size: 15px;

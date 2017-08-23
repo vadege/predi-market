@@ -1,3 +1,6 @@
+Template.EditHint.rendered = ->
+  ga('send', 'event', 'EditHint', 'submit')
+
 Template.EditHint.helpers
     hint: ->
       value = Session.get 'hint_value'

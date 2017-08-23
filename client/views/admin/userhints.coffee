@@ -4,6 +4,8 @@ formatDate = (date) ->
   value = moment(date).format('MMMM Do YYYY, h:mm a');
   value
 
+Template.ListHints.rendered = ->
+  ga('send', 'event', 'ListHints', 'read')
 
 Template.ListHints.helpers
   hints: ->

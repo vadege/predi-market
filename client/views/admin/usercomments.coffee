@@ -13,7 +13,7 @@ findHint = (hint_id) ->
 
 Template.ListComment.helpers
   comments: ->
-    comments = Comments.find({}).fetch()
+    comments = Comments.find({})
     return comments
 
   url:(comment) ->
@@ -24,6 +24,9 @@ Template.ListComment.helpers
   formattedDate: formatDate
 
   hint: findHint
+
+Template.ListComment.rendered = ->
+  ga('send', 'event', 'ListComment', 'read')
 
 Template.ListComment.events
   "click .url": (evt, tmpl) ->

@@ -1,6 +1,9 @@
 # Copyright 2015 Kjetil Thuen
 # Distributed under the GPLv3
 
+Template.AdminUsers.rendered = ->
+  ga('send', 'event', 'AdminUsers', 'read')
+
 Template.AdminUsers.helpers
   Users: ->
     Meteor.users.find()
@@ -42,7 +45,6 @@ Template.AdminUsers.helpers
   selected: ->
     Session.get 'selected_user' is @_id
 
-
 Template.AdminUsers.events
   'click tbody>tr': (evt, tmpl) ->
     Session.set 'selected_user', @_id
@@ -62,4 +64,3 @@ Template.AdminUsers.events
         Errors.throw error.message
     Deps.flush()
     true
-

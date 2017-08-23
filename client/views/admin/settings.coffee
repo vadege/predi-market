@@ -1,6 +1,9 @@
 # Copyright 2015 Kjetil Thuen
 # Distributed under the GPLv3
 
+Template.AdminSettings.rendered = ->
+  ga('send', 'event', 'AdminSettings', 'read')
+
 Template.AdminSettings.helpers
   Languages: ->
     settings =  Settings.findOne()

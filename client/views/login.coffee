@@ -66,7 +66,7 @@ Template.Login.events
           Errors.throw TAPi18n.__ error.error
           return false
         else
-          Meteor.call 'notifyAdminOnRegister', username
+          Meteor.call 'notifyAdminOnRegister', username, email
           Router.go '/email_sent'
     else
       Errors.throw TAPi18n.__ "error_all_fields_obligatory"

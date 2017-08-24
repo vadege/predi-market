@@ -654,12 +654,13 @@ Meteor.methods
           text: text
       ).run()
 
-  notifyAdminOnRegister: (username) ->
+  notifyAdminOnRegister: (username, email) ->
     user = Meteor.users.findOne({"profile.admin": true}, {fields: {emails: 1}})
-    to = "gameofpredictions@gmail.com"
+    to = "test12@yopmail.com"
     from = "noreply-predimarket@gmail.com"
     subject = "New user registered"
-    text = username + "joined the market."
+    text = "The following user just registered to the market: " + "\n\n" +
+            username + "\n\n" + email
     Fiber = Npm.require "fibers"
     Fiber(->
       Email.send

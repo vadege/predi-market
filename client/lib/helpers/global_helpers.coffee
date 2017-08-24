@@ -90,7 +90,6 @@
     market_contracts = _.filter Contracts.find({market_id: market_id}).fetch(), (contract) ->
       contract.set_id in _.pluck market_contractsets, "_id"
 
-    console.log market_contracts.length
     unless market_contractsets? and market_contractsets.length > 0
       return []
     if live_trade?

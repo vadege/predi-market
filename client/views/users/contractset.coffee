@@ -112,6 +112,9 @@ Template.Contractset.events
 
   'click .do-trade': (evt, tmpl) ->
     do_trade()
+    $('html,body').animate({
+      scrollTop: $(".contractset#contractset-"+@_id).offset().top - 50},
+     'slow');
 
   'click .start-trade': (evt, tmpl) ->
     Session.set 'order-details', {'set_id': @_id, 'market_id': @market_id}

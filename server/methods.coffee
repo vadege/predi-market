@@ -656,7 +656,7 @@ Meteor.methods
 
   notifyAdminOnRegister: (username, email) ->
     user = Meteor.users.findOne({"profile.admin": true}, {fields: {emails: 1}})
-    to = "test12@yopmail.com"
+    to = "gameofpredictions@gmail.com"
     from = "noreply-predimarket@gmail.com"
     subject = "New user registered"
     text = "The following user just registered to the market: " + "\n\n" +

@@ -120,7 +120,7 @@ Router.route '/hint/', ->
   @render 'AddHintUser'
 , {waitOn: ->
      if Meteor?.userId()
-       cols = ['Pages', 'Markets']
+       cols = ['Pages', 'Markets', "Contracts", "Contractsets"]
        _.map cols, (col) ->
          TAPi18n.subscribe col
   }

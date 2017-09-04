@@ -39,6 +39,9 @@ Template.AdminMain.helpers
   editHint: ->
     Session.get('admin_section') is "editHint"
 
+  theories: ->
+    Session.get('admin_section') is "theories"
+
   logOptions: ->
     # handle: activitiesHandle
 

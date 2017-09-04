@@ -163,7 +163,7 @@ Router.route '/admin', ->
     @render 'AdminMain'
 , {name: 'admin', waitOn: ->
      if Meteor?.user()?.profile?.admin
-       subs = _.map ['userData', 'Pages', 'Markets', 'Contractsets', 'Contracts', 'Images', 'Filters', 'Comments'], (col) ->
+       subs = _.map ['userData', 'Pages', 'Markets', 'Contractsets', 'Contracts', 'Images', 'Filters', 'Comments', 'Theories'], (col) ->
          TAPi18n.subscribe col
        subs.push Meteor.subscribe 'Activities', 100
        subs

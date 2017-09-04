@@ -17,6 +17,9 @@ Template.AdminSidebar.events
   'click #go_comments': ->
     Session.set 'admin_section', "comments"
 
+  'click #go_theories': (evt, tmpl) ->
+    Session.set 'admin_section', "theories"
+
   'click [data-toggle=offcanvas]': (evt, tmpl) ->
     element = $ evt.currentTarget
     element.toggleClass 'visible-xs text-center'

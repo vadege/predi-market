@@ -1,3 +1,7 @@
+Template.theoryCommentSection.rendered = ->
+  ga('send', 'event', 'Leaderboard', 'read')
+  $('.comment').focus()
+
 Template.theoryCommentSection.helpers
   theory: ->
     id = Router.current().params._id
@@ -95,3 +99,24 @@ Template.theoryCommentSection.events
         Meteor.setTimeout (->
           $(".success_reply#"+id).hide()
         ), 3000
+
+  'click .like': (evt, tmpl) ->
+    evt.preventDefault()
+    id = $(evt.currentTarget).attr("data-id")
+    Meteor.call 'likeTheory', id, (error, result) ->
+      if error
+        Error.throw error
+      true
+
+  'click .dislike': (evt, tmpl) ->
+    evt.preventDefault()
+    id = $(evt.currentTarget).attr("data-id")
+    Meteor.call 'dislikeTheory', id, (error, result) ->
+      if error
+        Error.throw error
+      true
+
+  'click #urlClass': (evt, tmpl) ->
+    evt.preventDefault()
+    value = evt.currentTarget.href
+    window.open(value + location.search)

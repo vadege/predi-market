@@ -354,6 +354,34 @@ Meteor.methods
     }
     TheoriesComment.update({_id: id}, {$push: {"replies": reply}})
 
+  likeTheory: (id) ->
+    userId = Meteor.userId()
+    val = Theories.findOne({_id: id}, {fields: {dislikes: 1}})
+    dislikesArr = val.dislikes
+    if dislikesArr.length > 0
+      dislike = dislikesArr.filter (d) ->
+        return d.dislikedBy == userId
+      if dislike.length > 0
+        Theories.update({_id: id}, {$pull: {"dislikes": {dislikedBy: userId}}})
+      else
+        Theories.update({_id: id}, {$addToSet: {likes: {likedBy: userId}}})
+    else
+      Theories.update({_id: id}, {$addToSet: {likes: {likedBy: userId}}})
+
+  dislikeTheory: (id) ->
+    userId = Meteor.userId()
+    val = Theories.findOne({_id: id}, {fields: {likes: 1}})
+    likesArr = val.likes
+    if likesArr.length > 0
+      like = likesArr.filter (d) ->
+        return d.likedBy == userId
+      if like.length > 0
+        Theories.update({_id: id}, {$pull: {"likes": {likedBy: userId}}})
+      else
+        Theories.update({_id: id}, {$addToSet: {dislikes: {dislikedBy: userId}}})
+    else
+      Theories.update({_id: id}, {$addToSet: {dislikes: {dislikedBy: userId}}})
+
   addFilter: (parent_id) ->
     checkAdmin @userId
     filter =

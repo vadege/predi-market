@@ -7,6 +7,14 @@ Template.theoryCommentSection.helpers
     id = Router.current().params._id
     Theories.findOne({_id: id})
 
+  likes: ->
+    id = Router.current().params._id
+    theory = Theories.findOne({_id: id }, {fields: {likes: 1, dislikes: 1}})
+    likesArr = theory.likes
+    dislikesArr  = theory.dislikes
+    return likesArr.length - dislikesArr.length
+
+
   format: (date) ->
     moment.locale TAPi18n.getLanguage()
     value = moment(date).format('MMMM Do YYYY, h:mm a');

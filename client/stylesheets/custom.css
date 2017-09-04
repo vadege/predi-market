@@ -21,7 +21,8 @@
   font-size: 20px;
   border: 1px solid #888;
   border-radius: 1ex;
-  font-weight: 400;;
+  font-weight: 400;
+  margin-left: -20px;
 }
 .hint_div, .theory_div {
   cursor: pointer
@@ -353,7 +354,6 @@
   color: #a94442;
   font-size: 15px;
 }
-
 .button-section{width: 100%; padding:5px 15px;}
 .button-section > *{display: inline-block; vertical-align: middle; margin-right: 10px !important; margin-left: 0px !important; width: auto; height: 34px; padding: 0px; float: none; }
 .button-section > label{line-height: 34px; margin: 0 !important; margin-right: 10px !important;}

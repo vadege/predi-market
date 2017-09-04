@@ -1,3 +1,6 @@
+Template.ListTheory.rendered = ->
+  ga('send', 'event', 'ListTheory', 'read')
+
 Template.ListTheory.helpers
   theory: ->
     theories = Theories.find({}).fetch()

@@ -14,7 +14,6 @@ Template.theoryCommentSection.helpers
     dislikesArr  = theory.dislikes
     return likesArr.length - dislikesArr.length
 
-
   format: (date) ->
     moment.locale TAPi18n.getLanguage()
     value = moment(date).format('MMMM Do YYYY, h:mm a');
@@ -38,11 +37,16 @@ Template.theoryCommentSection.helpers
 
   user: (user) ->
     username = Meteor.user().username
-    name = Meteor.user().profile.name
     if user == username
       return true
     else
       return
+
+  nooflikesReply: (id) ->
+    theory = TheoriesComment.findOne({_id: id }, {fields: {likes: 1, dislikes: 1}})
+    likesArr = theory.likes
+    dislikesArr  = theory.dislikes
+    return likesArr.length - dislikesArr.length
 
 Template.theoryCommentSection.events
   'click .back': (evt, tmpl) ->
@@ -128,3 +132,27 @@ Template.theoryCommentSection.events
     evt.preventDefault()
     value = evt.currentTarget.href
     window.open(value + location.search)
+
+  'click .delete_click': (evt, tmpl) ->
+    evt.preventDefault()
+    id = $(evt.currentTarget).attr("data-id")
+    Meteor.call 'deleteTheoryComment', id, (error, result) ->
+      if error
+        Error.throw error
+      true
+
+  'click .like_comment': (evt, tmpl) ->
+    evt.preventDefault()
+    id = $(evt.currentTarget).attr("data-id")
+    Meteor.call 'likeTheoryComment', id, (error, result) ->
+      if error
+        Error.throw error
+      true
+
+   'click .dislike_comment': (evt, tmpl) ->
+     evt.preventDefault()
+     id = $(evt.currentTarget).attr("data-id")
+     Meteor.call 'dislikeTheoryComment', id, (error, result) ->
+       if error
+         Error.throw error
+       true

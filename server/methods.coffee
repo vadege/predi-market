@@ -326,6 +326,34 @@ Meteor.methods
         dislikes:[ dislike ]
       })
 
+  addUserTheory: (title, desc) ->
+    username = Meteor.user().username
+    id = Theories.insert({
+      title
+      desc
+      username
+      approved: false
+    })
+    if id
+      Meteor.call 'newTheoryEmail'
+
+  addCommentOnTheory: (id, comment) ->
+    username = Meteor.user().username
+    TheoriesComment.insert({
+      comment
+      username
+      theoryId: id
+    })
+
+  addReplyToCommentTheory: (id, reply) ->
+    username = Meteor.user().username
+    reply = {
+      reply
+      username
+      id: new Meteor.Collection.ObjectID()._str
+    }
+    TheoriesComment.update({_id: id}, {$push: {"replies": reply}})
+
   addFilter: (parent_id) ->
     checkAdmin @userId
     filter =
@@ -585,7 +613,7 @@ Meteor.methods
     value = Contractsets.findOne({_id: contractId}, {fields: {title: 1}})
     from = "noreply@gmail.com";
     to =  "gameofpredictions@gmail.com"
-    username = user.profile.name
+    username = user.username
     time = formatDate(new Date)
     contractName = value.title
     subject = "New User Hint"
@@ -669,6 +697,21 @@ Meteor.methods
         subject: subject
         text: text
     ).run()
+
+  newTheoryEmail: () ->
+    to = "gameofpredictions@yopmail.com"
+    from = "noreply-predimarket@gmail.com"
+    subject = "New theory submitted"
+    text = "A new theory has been submitted by user"
+    Fiber = Npm.require "fibers"
+    Fiber(->
+      Email.send
+        to: to
+        from: from
+        subject: subject
+        text: text
+    ).run()
+
 
   # To use, call Meteor.call('batchEnrollment') from the browser console when
   # logged in as an admin. Will send out enrollment emails to all email

@@ -95,6 +95,36 @@ Router.route '/hints/:_id', ->
          TAPi18n.subscribe col
   }
 
+Router.route '/submit-theory', ->
+  @render 'Sidebar', {to: 'Sidebar'}
+  @render 'showTheory'
+, {waitOn: ->
+  if Meteor?.userId()
+    cols = ['Pages', 'Markets', 'Theories']
+    _.map cols, (col) ->
+      TAPi18n.subscribe col
+}
+
+Router.route '/add-theory', ->
+  @render 'Sidebar', {to: 'Sidebar'}
+  @render 'SubmitTheory'
+, {waitOn: ->
+    if Meteor?.userId()
+      cols = ['Pages', 'Markets']
+      _.map cols, (col) ->
+        TAPi18n.subscribe col
+}
+
+Router.route '/theory/:_id', ->
+  @render 'Sidebar', {to: 'Sidebar'}
+  @render 'theoryCommentSection'
+, {waitOn: ->
+    if Meteor?.userId()
+      cols = ['Pages', 'Markets', 'Theories', 'TheoriesComment']
+      _.map cols, (col) ->
+        TAPi18n.subscribe col
+}
+
 Router.route '/contract/:_id', ->
   @render 'Sidebar', {to: 'Sidebar'}
   @render 'Contractset'

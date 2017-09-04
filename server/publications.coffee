@@ -101,3 +101,9 @@ Meteor.publish 'HintsLikeDisLike', ->
 
 Meteor.publish 'ReplyLikeDislike', ->
   ReplyLikeDislike.find()
+
+Meteor.publish 'Theories', ->
+  Theories.find()
+
+Meteor.publish 'TheoriesComment', ->
+  TheoriesComment.find()

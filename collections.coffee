@@ -11,6 +11,8 @@
 @Settings = new Meteor.Collection "Settings"
 @HintsLikeDisLike = new Meteor.Collection "HintsLikeDisLike"
 @ReplyLikeDislike = new Meteor.Collection "ReplyLikeDislike"
+@Theories = new Meteor.Collection "Theories"
+@TheoriesComment = new Meteor.Collection "TheoriesComment"
 @Images = new FS.Collection "images",
   stores: [new FS.Store.FileSystem "images", {
     path: "~/images"

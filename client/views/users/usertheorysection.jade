@@ -1,0 +1,79 @@
+template(name="theoryCommentSection")
+  div.container-fluid
+    div.row
+      h3.col-md-12.title-class {{{url theory.title}}}
+      span.col-md-6.user-details {{theory.username}}
+      span.col-md-6.pull-right.time.user-details {{format theory.createdAt}}
+    div.row
+      button.btn.col-md-2.like(type='button' data-id=theory._id)
+       i.fa.fa-thumbs-up
+      button.btn.col-md-2.dislike(type='button' data-id=theory._id)
+       i.fa.fa-thumbs-down
+      span.like-count 0
+    div.row
+      div.form-group
+        textarea.col-md-12.form-control.comment
+      div.error_class(style="display:none")
+       label Please enter comments first.
+      button.btn.btn-success.back.pull-left(type='button')
+       i.fa.fa-arrow-left {{_ ' Back'}}
+      button.btn.btn-success.theory_comment.pull-right(type='button' data-id = theory._id)
+       i.fa.fa-paper-plane {{_ ' Submit'}}
+    div.success.alert.alert-success
+     label Your comment has been saved successfully
+    div.error.alert.alert-warning
+     label Error while saving your comment. Please try again.
+    if length
+      div.col-md-12.label_comment Comments
+    each comments
+      div.row.comments_class
+        div.col-md-6.col-xs-5
+          label
+            {{username}}
+        div.col-md-6.time.col-xs-7
+          label.font
+            {{format createdAt}}
+        div.col-md-12.border
+          {{{url comment}}}
+      div.row
+        div.button-section
+          button.btn.col-md-2.like_comment(type='button' data-id=_id)
+           i.fa.fa-thumbs-up
+          button.btn.col-md-2.dislike_comment(type='button' data-id=_id)
+           i.fa.fa-thumbs-down
+          label.likes 2
+          button.btn.col-md-2.reply_click(type='button' data-id=_id)
+            i.fa.fa-reply {{_ 'Reply'}}
+          if user username true
+            button.btn.col-md-2.delete_click(type='button' data-id=_id)
+              i.fa.fa-trash-o {{_ 'Delete'}}
+      div.add_reply.row
+        input.form-control.col-md-12.reply(type="text" placeholder="Reply to comment" id="input_#{_id}")
+        button.btn.col-md-12.pull-right.submit_reply(type='button' id="button_#{_id}" data-id=_id)
+          i.fa.fa-paper-plane {{_ 'Submit'}}
+      div.error_new.alert_warning
+        label Please enter reply first.
+      div.success_reply.alert.alert-success(id=_id)
+       label Your reply has been saved successfully
+      div.error_reply.alert.alert-warning(id=_id)
+       label Error while saving your reply. Please try again.
+    //  each replies comment._id
+        div.row.col-md-12.reply_section
+          label.col-md-6 {{replyBy}}
+          label.col-md-6.time {{commenttedDate replyOn}}
+          span.col-xs-12(style="margin-bottom: 0;")
+            {{{url reply}}}
+          div.button-section
+            button.btn.col-md-2.like_reply(type='button' id=id)
+             i.fa.fa-thumbs-up
+            button.btn.col-md-2.dislike_reply(type='button' id=id)
+             i.fa.fa-thumbs-down
+            label.likes {{nooflikesReply id}}
+            if user replyBy true
+              button.btn.col-md-2.delete_reply(type='button' data-id=comment._id value=id name=userId)
+                i.fa.fa-trash-o {{_ 'Delete'}}
+    //  if length comment.replies 3
+        button.btn.btn-success.col-md-2.show_more.show_button(type='button' id=comment._id data-id=comment._id)
+         i.fa.fa-ellipsis-h {{_ 'Show All'}}
+    //  button.btn.btn-success.col-md-2.show_less.show_button(type='button' id=comment._id data-id=comment._id)
+       i.fa.fa-ellipsis-h {{_ 'Show Less'}}

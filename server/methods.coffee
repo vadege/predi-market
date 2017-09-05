@@ -465,6 +465,14 @@ Meteor.methods
       if reply
         val = TheoriesComment.update({"replies.id": id}, {$pull : {"replies": {id:id} }})
 
+  approveTheory: (id) ->
+    checkAdmin @userId
+    Theories.update({_id: id}, {$set: {approved: true}})
+
+  deleteTheory: (id)->
+    checkAdmin @userId
+    Theories.remove({_id: id})
+
   showPopularComments:(id) ->
     value = TheoriesComment.aggregate([{"$project": {"theoryId": 1, "comment": 1, "replies": 1, "username": 1, "likes": 1, "addedOn": 1, "length":{"$subtract": [{"$size": "$likes"}, {"$size": "$dislikes"}]} }},
     {"$sort": {"length": -1}},{"$match": {"theoryId": id }}, {"$project": {"theoryId": 1, "replies": 1, "comment": 1, "username": 1, "likes": 1, "addedOn": 1}}

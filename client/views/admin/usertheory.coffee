@@ -14,3 +14,20 @@ Template.ListTheory.helpers
   buttonCheck:(approved) ->
     if approved == false
       return true
+
+Template.ListTheory.events
+  'click .approve_theory': (evt, tmpl) ->
+    evt.preventDefault()
+    id = evt.currentTarget.id
+    Meteor.call 'approveTheory', id, (error, result) ->
+      if error
+        Error.throw error
+      true
+
+  'click .delete_theory': (evt, tmpl) ->
+    evt.preventDefault()
+    id = evt.currentTarget.id
+    Meteor.call 'deleteTheory', id, (error, result) ->
+      if error
+        Error.throw error
+      true

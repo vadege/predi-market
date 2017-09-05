@@ -6,6 +6,7 @@ Template.theoryCommentSection.rendered = ->
     if error
       Error.throw error
     else
+      Session.set 'newestTheoryComments', null
       Session.set 'popularTheoryComments', result
 
 Template.theoryCommentSection.helpers
@@ -234,6 +235,14 @@ Template.theoryCommentSection.events
       evt.preventDefault()
       id = $(evt.currentTarget).attr("data-id")
       Meteor.call 'addDislikeToReply', id, (error, result) ->
+        if error
+          Error.throw error
+        true
+
+    'click .delete_reply': (evt, tmpl) ->
+      evt.preventDefault()
+      id = $(evt.currentTarget).attr("data-id")
+      Meteor.call 'removeReplyTheory', id, (error, result) ->
         if error
           Error.throw error
         true

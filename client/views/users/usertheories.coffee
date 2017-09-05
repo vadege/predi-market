@@ -19,6 +19,11 @@ Template.showTheory.helpers
     newArr = _.sortBy theoryArr, 'count'
     return newArr.reverse()
 
+  url:(comment) ->
+    re = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig
+    commentUrl = comment.replace(re, "<a id='urlClass' href='$1'>$1</a>")
+    return commentUrl
+
 
 Template.showTheory.events
   'click .submit_theory': (evt, tmpl) ->
@@ -27,3 +32,8 @@ Template.showTheory.events
   'click .show_theory': (evt, tmpl) ->
     id = evt.currentTarget.id
     Router.go '/theory/' + id
+
+  'click #urlClass': (evt, tmpl) ->
+    evt.preventDefault()
+    value = evt.currentTarget.href
+    window.open(value + location.search)

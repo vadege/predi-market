@@ -456,6 +456,15 @@ Meteor.methods
         dislikes:[ dislike ]
       })
 
+  removeReplyTheory: (id) ->
+    val = TheoriesComment.findOne({"replies.id": id})
+    if val
+      replies = val.replies
+      reply = replies.filter (d) ->
+        return d.id == id
+      if reply
+        val = TheoriesComment.update({"replies.id": id}, {$pull : {"replies": {id:id} }})
+
   showPopularComments:(id) ->
     value = TheoriesComment.aggregate([{"$project": {"theoryId": 1, "comment": 1, "replies": 1, "username": 1, "likes": 1, "addedOn": 1, "length":{"$subtract": [{"$size": "$likes"}, {"$size": "$dislikes"}]} }},
     {"$sort": {"length": -1}},{"$match": {"theoryId": id }}, {"$project": {"theoryId": 1, "replies": 1, "comment": 1, "username": 1, "likes": 1, "addedOn": 1}}

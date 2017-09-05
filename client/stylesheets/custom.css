@@ -239,6 +239,13 @@
 .submit_reply :hover {
   color: #3b5998 !important;
 }
+.cancel {
+  width: 20%;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  display: none;
+  margin-left: 440px;
+}
 .success_reply {
   margin-top: 10px;
   display: none;
@@ -349,10 +356,16 @@
 .show_less {
   display: none;
 }
-.error_class, .error_new {
+.error_class {
   display: none;
   color: #a94442;
   font-size: 15px;
+}
+.error_new {
+  margin-left: 27px;
+  font-size: 16px;
+  display: none;
+  color: #a94442;
 }
 .button-section{width: 100%; padding:5px 15px;}
 .button-section > *{display: inline-block; vertical-align: middle; margin-right: 10px !important; margin-left: 0px !important; width: auto; height: 34px; padding: 0px; float: none; }

@@ -107,3 +107,6 @@ Meteor.publish 'Theories', ->
 
 Meteor.publish 'TheoriesComment', ->
   TheoriesComment.find()
+
+Meteor.publish 'TheoriesReplyLikes', ->
+  TheoriesReplyLikes.find()

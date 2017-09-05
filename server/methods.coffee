@@ -335,6 +335,7 @@ Meteor.methods
       approved: false
       likes: []
       dislikes: []
+      addedOn: new Date()
     })
     if id
       Meteor.call 'newTheoryEmail'
@@ -347,6 +348,7 @@ Meteor.methods
       theoryId: id
       likes: []
       dislikes: []
+      addedOn: new Date()
     })
 
   addReplyToCommentTheory: (id, reply) ->
@@ -355,6 +357,7 @@ Meteor.methods
       reply
       username
       id: new Meteor.Collection.ObjectID()._str
+      addedOn: new Date()
     }
     TheoriesComment.update({_id: id}, {$push: {"replies": reply}})
 
@@ -405,6 +408,65 @@ Meteor.methods
     else
       TheoriesComment.update({_id: id}, {$addToSet: {dislikes: {dislikedBy: userId}}})
 
+  addLikeToReply: (id) ->
+    userId = Meteor.userId()
+    value = TheoriesReplyLikes.findOne({reply_id: id})
+    like = {
+      "likedBy": userId
+    }
+    if value
+      dislikesArr = value.dislikes
+      if dislikesArr.length > 0
+        val = dislikesArr.filter (d) ->
+          return d.dislikedBy == userId
+        if val.length > 0
+          val = TheoriesReplyLikes.update({reply_id: id}, {$pull: {"dislikes": { dislikedBy: userId }}})
+        else
+          TheoriesReplyLikes.update({reply_id: id}, {$addToSet: {likes: like}})
+      else
+        TheoriesReplyLikes.update({reply_id: id}, {$addToSet: {likes: like}})
+    else
+      TheoriesReplyLikes.insert({
+        reply_id: id
+        likes: [ like ]
+        dislikes:[]
+      })
+
+  addDislikeToReply: (id) ->
+    userId = Meteor.userId()
+    dislike = {
+      dislikedBy: userId
+    }
+    value = TheoriesReplyLikes.findOne({reply_id: id})
+    if value
+      likesArr = value.likes
+      if likesArr.length > 0
+        val = likesArr.filter (d) ->
+          return d.likedBy == userId
+        if val.length > 0
+          val = TheoriesReplyLikes.update({reply_id: id}, {$pull: {"likes": { likedBy: userId }}})
+        else
+          TheoriesReplyLikes.update({reply_id: id}, {$addToSet: {dislikes: dislike }})
+      else
+        TheoriesReplyLikes.update({reply_id: id}, {$addToSet: {dislikes: dislike }})
+    else
+      TheoriesReplyLikes.insert({
+        reply_id: id
+        likes: []
+        dislikes:[ dislike ]
+      })
+
+  showPopularComments:(id) ->
+    value = TheoriesComment.aggregate([{"$project": {"theoryId": 1, "comment": 1, "replies": 1, "username": 1, "likes": 1, "addedOn": 1, "length":{"$subtract": [{"$size": "$likes"}, {"$size": "$dislikes"}]} }},
+    {"$sort": {"length": -1}},{"$match": {"theoryId": id }}, {"$project": {"theoryId": 1, "replies": 1, "comment": 1, "username": 1, "likes": 1, "addedOn": 1}}
+    ])
+    if value
+      return value
+
+  showNewestComments: (id) ->
+    value = TheoriesComment.aggregate([{"$match": {"theoryId": id} }, {"$sort": {"addedOn": -1} }])
+    if value
+      return value
 
   addFilter: (parent_id) ->
     checkAdmin @userId

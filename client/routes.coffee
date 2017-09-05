@@ -120,7 +120,7 @@ Router.route '/theory/:_id', ->
   @render 'theoryCommentSection'
 , {waitOn: ->
     if Meteor?.userId()
-      cols = ['Pages', 'Markets', 'Theories', 'TheoriesComment']
+      cols = ['Pages', 'Markets', 'Theories', 'TheoriesComment', 'TheoriesReplyLikes']
       _.map cols, (col) ->
         TAPi18n.subscribe col
 }

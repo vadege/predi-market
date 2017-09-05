@@ -1,6 +1,12 @@
 Template.theoryCommentSection.rendered = ->
   ga('send', 'event', 'Leaderboard', 'read')
   $('.comment').focus()
+  id = Router.current().params._id
+  Meteor.call 'showPopularComments', id, (error, result) ->
+    if error
+      Error.throw error
+    else
+      Session.set 'popularTheoryComments', result
 
 Template.theoryCommentSection.helpers
   theory: ->
@@ -22,7 +28,14 @@ Template.theoryCommentSection.helpers
   comments: ->
     id = Router.current().params._id
     comments = TheoriesComment.find({theoryId: id}).fetch()
-    return comments
+    popular = Session.get 'popularTheoryComments'
+    newest = Session.get 'newestTheoryComments'
+    if popular
+      return popular
+    else if newest
+      return newest
+    else
+      comments
 
   length: ->
     id = Router.current().params._id
@@ -42,11 +55,34 @@ Template.theoryCommentSection.helpers
     else
       return
 
-  nooflikesReply: (id) ->
+  nooflikesComments: (id) ->
     theory = TheoriesComment.findOne({_id: id }, {fields: {likes: 1, dislikes: 1}})
     likesArr = theory.likes
     dislikesArr  = theory.dislikes
     return likesArr.length - dislikesArr.length
+
+  nooflikesReply: (id) ->
+    reply = TheoriesReplyLikes.findOne({reply_id: id})
+    if reply
+      likesArr = reply.likes
+      dislikesArr  = reply.dislikes
+      return likesArr.length - dislikesArr.length
+    else
+      return 0
+
+
+  Select: ->
+    popularity = Session.get 'popularTheoryComments'
+    date = Session.get 'newestTheoryComments'
+    if popularity
+      Session.set 'Select', 'popular'
+      return "Popular"
+    else if date
+      Session.set 'Select', 'date'
+      return "New"
+    else
+      Session.set 'Select', null
+      return "Popular"
 
 Template.theoryCommentSection.events
   'click .back': (evt, tmpl) ->
@@ -83,9 +119,17 @@ Template.theoryCommentSection.events
     if Session.get 'id'
       $(".reply").hide()
       $(".submit_reply").hide()
+      $('.cancel').hide()
     $("#input_"+id).show()
     $("#input_"+id).focus()
     $("#button_"+id).show()
+    $("#cancel_"+id).show()
+
+  'click .cancel': (evt, tmpl) ->
+    id = $(evt.currentTarget).attr("data-id")
+    $(".reply").hide()
+    $(".submit_reply").hide()
+    $('.cancel').hide()
 
   'click .reply': (evt, tmpl) ->
     evt.preventDefault()
@@ -95,7 +139,7 @@ Template.theoryCommentSection.events
     id = $(evt.currentTarget).attr("data-id")
     reply = $('#input_'+id).val()
     if reply == ""
-      $('.error_new').show()
+      $('.error_new#'+id).show()
       return
     Meteor.call 'addReplyToCommentTheory', id, reply, (error, result) ->
       if error
@@ -104,10 +148,11 @@ Template.theoryCommentSection.events
           $(".error_reply#"+id).hide()
         ), 3000
       else
-        $(".reply#"+id).hide()
-        $(".reply").val("")
+        $(".reply").hide()
+        $(".submit_reply").hide()
         $(".submit_reply#"+id).hide()
         $(".success_reply#"+id).show()
+        $('.cancel').hide()
         Meteor.setTimeout (->
           $(".success_reply#"+id).hide()
         ), 3000
@@ -156,3 +201,39 @@ Template.theoryCommentSection.events
        if error
          Error.throw error
        true
+
+    'click .popularity': (evt, tmpl) ->
+      evt.preventDefault()
+      id = Router.current().params._id
+      Meteor.call 'showPopularComments', id, (error, result) ->
+        if error
+          Error.throw error
+        else
+          Session.set 'popularTheoryComments', result
+          Session.set 'newestTheoryComments', null
+
+    'click .date': (evt, tmpl) ->
+      evt.preventDefault()
+      id = Router.current().params._id
+      Meteor.call 'showNewestComments', id, (error, result) ->
+        if error
+          Error.throw error
+        else
+          Session.set 'newestTheoryComments', result
+          Session.set 'popularTheoryComments', null
+
+    'click .like_reply': (evt, tmpl) ->
+      evt.preventDefault()
+      id = $(evt.currentTarget).attr("data-id")
+      Meteor.call 'addLikeToReply', id, (error, result) ->
+        if error
+          Error.throw error
+        true
+
+    'click .dislike_reply': (evt, tmpl) ->
+      evt.preventDefault()
+      id = $(evt.currentTarget).attr("data-id")
+      Meteor.call 'addDislikeToReply', id, (error, result) ->
+        if error
+          Error.throw error
+        true

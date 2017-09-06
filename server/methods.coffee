@@ -848,7 +848,6 @@ Meteor.methods
   notifyUserTheory: (id) ->
     theoryComment = TheoriesComment.find({theoryId: id}).fetch()
     length = theoryComment.length
-    console.log length
     theory = Theories.findOne({_id: id})
     title = theory.title
     username = theory.username

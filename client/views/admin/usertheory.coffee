@@ -15,6 +15,11 @@ Template.ListTheory.helpers
     if approved == false
       return true
 
+  url:(comment) ->
+    re = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig
+    commentUrl = comment.replace(re, "<a id='urlClass' href='$1'>$1</a>")
+    return commentUrl
+
 Template.ListTheory.events
   'click .approve_theory': (evt, tmpl) ->
     evt.preventDefault()
@@ -45,3 +50,8 @@ Template.ListTheory.events
         Meteor.setTimeout (->
           $(".delete").hide()
         ), 1000
+        
+  'click #urlClass': (evt, tmpl) ->
+    evt.preventDefault()
+    value = evt.currentTarget.href
+    window.open(value + location.search)

@@ -17,8 +17,8 @@ template(name="ListTheory")
     tbody
       each theory
         tr
-          td {{title}}
-          td {{desc}}
+          td {{{url title}}}
+          td.wide {{{url desc}}}
           td {{format createdAt}}
           td {{username}}
           td

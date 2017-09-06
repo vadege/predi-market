@@ -320,6 +320,9 @@
   max-width: 100%;
   height: auto!important;
 }
+.wide {
+  width: 40%
+}
 .div-header {
   min-width: 450px;
   max-width: 420px;

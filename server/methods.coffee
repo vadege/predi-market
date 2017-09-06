@@ -338,7 +338,7 @@ Meteor.methods
       addedOn: new Date()
     })
     if id
-      Meteor.call 'newTheoryEmail'
+      Meteor.call 'newTheoryEmail', title, desc
 
   addCommentOnTheory: (id, comment) ->
     username = Meteor.user().username
@@ -829,11 +829,14 @@ Meteor.methods
         text: text
     ).run()
 
-  newTheoryEmail: () ->
-    to = "gameofpredictions@yopmail.com"
+  newTheoryEmail: (title, desc) ->
+    user = Meteor.user()
+    to = "gameofpredictions@gmail.com"
     from = "noreply-predimarket@gmail.com"
     subject = "New theory submitted"
-    text = "A new theory has been submitted by user"
+    text = "A new theory has been submitted by " + "'" + user.username + "'" + "\n\n" +
+          "The title of the theory is : " + "'" + title + "'" + "\n\n" +
+          "And the description is : " + "'" + desc + "'"
     Fiber = Npm.require "fibers"
     Fiber(->
       Email.send

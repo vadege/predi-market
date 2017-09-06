@@ -343,13 +343,15 @@ Meteor.methods
   addCommentOnTheory: (id, comment) ->
     username = Meteor.user().username
     TheoriesComment.insert({
-      comment
-      username
-      theoryId: id
-      likes: []
-      dislikes: []
-      addedOn: new Date()
+        comment
+        username
+        theoryId: id
+        likes: []
+        dislikes: []
+        addedOn: new Date()
     })
+    if id
+      Meteor.call 'notifyUserTheory', id
 
   addReplyToCommentTheory: (id, reply) ->
     username = Meteor.user().username
@@ -768,9 +770,6 @@ Meteor.methods
     comments = Comments.findOne({_id: id})
     replyArr = comments.replies
     hint_id = comments.hint_id
-    repliesArr = _.sortBy replyArr, 'replyOn'
-    updatedReplyArr = repliesArr.reverse()
-    sendingReplies = updatedReplyArr.slice(0,5)
     if comments
       replies = comments.replies
       if ( replies.length == 1 || replies.length % 5 == 0 ) && email
@@ -795,10 +794,10 @@ Meteor.methods
     if (length == 1 || length % 5 == 0) && email
       to = email
       from = "noreply-predimarket@gmail.com"
-      subject = "New comment"
       val = comments.filter (d) ->
         return d._id == id
       comment = val[0].comment
+      subject = "New comment"
       text = "Dear Greenseer, \n\n" +
              "New comment has been added on your hint. \n\n" + hint + "\n\n" +
              "You can review the comments on link below \n\n" +
@@ -846,6 +845,32 @@ Meteor.methods
         text: text
     ).run()
 
+  notifyUserTheory: (id) ->
+    theoryComment = TheoriesComment.find({theoryId: id}).fetch()
+    length = theoryComment.length
+    console.log length
+    theory = Theories.findOne({_id: id})
+    title = theory.title
+    username = theory.username
+    user = Meteor.users.findOne({username: username})
+    email = user.emails[0].address
+    if (length == 1 || length % 5 == 0)
+      to = email
+      from = "noreply-predimarket@gmail.com"
+      subject = "New comment"
+      text = "Dear Greenseer, \n\n" +
+             "New comment has been added on your theory. \n\n" + title + "\n\n" +
+             "You can review the comments on link below \n\n" +
+             "https://gameofpredictions.org/theory/" + theory._id
+
+      Fiber = Npm.require "fibers"
+      Fiber(->
+        Email.send
+          to: to
+          from: from
+          subject: subject
+          text: text
+      ).run()
 
   # To use, call Meteor.call('batchEnrollment') from the browser console when
   # logged in as an admin. Will send out enrollment emails to all email

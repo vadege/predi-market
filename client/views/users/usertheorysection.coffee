@@ -153,8 +153,10 @@ Template.theoryCommentSection.events
           $(".error_reply#"+id).hide()
         ), 3000
       else
+        $(".submit_reply").val("")
         $(".reply").hide()
         $(".submit_reply").hide()
+        $(".reply").val("")
         $(".submit_reply#"+id).hide()
         $(".success_reply#"+id).show()
         $('.cancel').hide()
@@ -248,6 +250,8 @@ Template.theoryCommentSection.events
     'click .delete_reply': (evt, tmpl) ->
       evt.preventDefault()
       id = $(evt.currentTarget).attr("data-id")
+      Session.set 'newestTheoryComments', null
+      Session.set 'popularTheoryComments', null
       Meteor.call 'removeReplyTheory', id, (error, result) ->
         if error
           Error.throw error

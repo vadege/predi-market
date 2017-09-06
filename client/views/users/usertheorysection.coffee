@@ -36,7 +36,7 @@ Template.theoryCommentSection.helpers
     else if newest
       return newest
     else
-      comments
+      return comments
 
   length: ->
     id = Router.current().params._id
@@ -96,6 +96,8 @@ Template.theoryCommentSection.events
 
   'click .theory_comment': (evt, tmpl) ->
     evt.preventDefault()
+    Session.set 'popularTheoryComments', null
+    Session.set 'newestTheoryComments', null
     id = $(evt.currentTarget).attr("data-id")
     comment = $('.comment').val()
     if comment == ""
@@ -138,6 +140,8 @@ Template.theoryCommentSection.events
 
   'click .submit_reply': (evt, tmpl) ->
     id = $(evt.currentTarget).attr("data-id")
+    Session.set 'popularTheoryComments', null
+    Session.set 'newestTheoryComments', null
     reply = $('#input_'+id).val()
     if reply == ""
       $('.error_new#'+id).show()
@@ -181,6 +185,8 @@ Template.theoryCommentSection.events
 
   'click .delete_click': (evt, tmpl) ->
     evt.preventDefault()
+    Session.set 'popularTheoryComments', null
+    Session.set 'newestTheoryComments', null
     id = $(evt.currentTarget).attr("data-id")
     Meteor.call 'deleteTheoryComment', id, (error, result) ->
       if error

@@ -38,12 +38,12 @@ template(name="theoryCommentSection")
     each comments
       div.row.comments_class
         div.col-md-6.col-xs-5
-          label
+          label.username
             {{username}}
         div.col-md-6.time.col-xs-7
-          label.font
+          label
             {{format addedOn}}
-        div.col-md-12.border
+        div.col-md-12.border.comment
           {{{url comment}}}
       div.row
         div.button-section
@@ -71,9 +71,9 @@ template(name="theoryCommentSection")
        label Error while saving your reply. Please try again.
       each replies
         div.row.col-md-12.reply_section
-          label.col-md-6 {{username}}
+          label.col-md-6.username {{username}}
           label.col-md-6.time {{format addedOn}}
-          span.col-xs-12(style="margin-bottom: 0;")
+          span.col-xs-12.comment
             {{{url reply}}}
           div.button-section
             button.btn.col-md-2.like_reply(type='button' data-id=id)

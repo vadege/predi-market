@@ -21,13 +21,27 @@ Template.ListTheory.events
     id = evt.currentTarget.id
     Meteor.call 'approveTheory', id, (error, result) ->
       if error
-        Error.throw error
-      true
+        $('.error_new').show()
+        Meteor.setTimeout (->
+          $(".error_new").hide()
+        ), 3000
+      else
+        $('.success').show()
+        Meteor.setTimeout (->
+          $(".success").hide()
+        ), 3000
 
   'click .delete_theory': (evt, tmpl) ->
     evt.preventDefault()
     id = evt.currentTarget.id
     Meteor.call 'deleteTheory', id, (error, result) ->
       if error
-        Error.throw error
-      true
+        $('.error_new').show()
+        Meteor.setTimeout (->
+          $(".error_new").hide()
+        ), 1000
+      else
+        $('.delete').show()
+        Meteor.setTimeout (->
+          $(".delete").hide()
+        ), 1000

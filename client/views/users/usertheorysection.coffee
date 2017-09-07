@@ -102,6 +102,9 @@ Template.theoryCommentSection.events
     comment = $('.comment').val()
     if comment == ""
       $('.error_class').show()
+      Meteor.setTimeout (->
+        $(".error_class").hide()
+      ), 3000
       return
     Meteor.call 'addCommentOnTheory', id, comment, (error, result) ->
       if error
@@ -145,6 +148,9 @@ Template.theoryCommentSection.events
     reply = $('#input_'+id).val()
     if reply == ""
       $('.error_new#'+id).show()
+      Meteor.setTimeout (->
+        $('.error_new#'+id).hide()
+      ), 3000
       return
     Meteor.call 'addReplyToCommentTheory', id, reply, (error, result) ->
       if error

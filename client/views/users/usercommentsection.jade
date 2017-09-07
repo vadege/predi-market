@@ -61,8 +61,10 @@ template(name="CommentSection")
                 i.fa.fa-trash-o {{_ 'Delete'}}
         div.add_reply
           input.form-control.col-md-12.reply(type="text" placeholder="Reply to comment" id="input_#{comment._id}" data-id=comment._id)
-          button.btn.col-md-12.pull-right.submit_reply(type='button' id="button_#{comment._id}" data-id=comment._id)
+          button.btn.col-md-6.pull-right.submit_reply(type='button' id="button_#{comment._id}" data-id=comment._id)
             i.fa.fa-paper-plane {{_ 'Submit'}}
+          button.btn.col-md-6.cancel_hint(type='button' id="cancel_#{comment._id}" data-id=comment._id)
+            i.fa.fa-times {{_ ' Cancel'}}
         each replies comment._id
           div.row.col-md-12.reply_section
             label.col-md-6 {{replyBy}}

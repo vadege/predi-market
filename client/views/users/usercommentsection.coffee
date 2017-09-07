@@ -149,11 +149,21 @@ Template.CommentSection.events
       evt.stopPropagation()
       $(".error_class").hide()
 
+  'click .cancel_hint': (evt, tmpl) ->
+    evt.preventDefault()
+    id = $(evt.currentTarget).data("id")
+    $(".reply").hide()
+    $(".submit_reply").hide()
+    $('.cancel_hint').hide()
+
   'click .save_comment': (evt, tmpl) ->
     evt.stopPropagation()
     comment = $(".add_comment").val()
     if (comment == "")
       $(".error_class").show()
+      Meteor.setTimeout (->
+        $(".error_class").hide()
+      ), 3000
       return;
     $(".add_comment").val("")
     contractid = Session.get 'contractid'
@@ -217,9 +227,11 @@ Template.CommentSection.events
     if Session.get 'id'
       $(".reply").hide()
       $(".submit_reply").hide()
+      $('.cancel_hint').hide()
     $("#input_"+id).show()
     $("#input_"+id).focus()
     $("#button_"+id).show()
+    $('#cancel_'+id).show()
 
   'click .reply': (evt, tmpl) ->
     id = $(evt.currentTarget).data("id")
@@ -231,6 +243,9 @@ Template.CommentSection.events
     reply = $("#input_"+id).val()
     if reply == ""
       $(".error_reply#"+id).show()
+      Meteor.setTimeout (->
+        $(".error_reply#"+id).hide()
+      ), 3000
       return
     Meteor.call 'addReplyToComment', id, reply, (error, result) ->
       if error

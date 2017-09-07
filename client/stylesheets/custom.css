@@ -257,6 +257,13 @@
   display: none;
   margin-left: 430px;
 }
+.cancel_hint {
+  width: 20%;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  display: none;
+  margin-left: 380px;
+}
 .success_reply {
   margin-top: 10px;
   display: none;

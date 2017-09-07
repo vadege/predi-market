@@ -52,6 +52,12 @@ Template.ListTheory.events
           $(".delete").hide()
         ), 1000
 
+  'click .edit_theory': (evt, tmpl) ->
+    evt.preventDefault()
+    id = evt.currentTarget.id
+    Session.set 'theory_value', id
+    Session.set 'admin_section', 'editTheory'
+
   'click #urlClass': (evt, tmpl) ->
     evt.preventDefault()
     value = evt.currentTarget.href

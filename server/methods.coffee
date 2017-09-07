@@ -326,18 +326,21 @@ Meteor.methods
         dislikes:[ dislike ]
       })
 
-  addUserTheory: (title, desc) ->
+  addUserTheory: (title, desc, id, update) ->
     username = Meteor.user().username
-    id = Theories.insert({
-      title
-      desc
-      username
-      approved: false
-      likes: []
-      dislikes: []
-      addedOn: new Date()
-    })
-    if id
+    if update
+      Theories.update({_id:id}, {$set: {title, desc}})
+    else
+      id = Theories.insert({
+        title
+        desc
+        username
+        approved: false
+        likes: []
+        dislikes: []
+        addedOn: new Date()
+      })
+    if id && !update
       Meteor.call 'newTheoryEmail', title, desc
 
   addCommentOnTheory: (id, comment) ->

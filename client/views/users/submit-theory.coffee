@@ -14,10 +14,11 @@ Template.SubmitTheory.events
     evt.preventDefault()
     title = $('.title').val()
     desc = $('.desc').val()
+    update = false
     if title == "" || desc == ""
       $('.error_class').show()
       return
-    Meteor.call 'addUserTheory', title, desc, (error, result) ->
+    Meteor.call 'addUserTheory', title, desc, "",  update, (error, result) ->
       if error
         $(".error").show()
         Meteor.setTimeout (->

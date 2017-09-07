@@ -364,7 +364,9 @@ Meteor.methods
       id: new Meteor.Collection.ObjectID()._str
       addedOn: new Date()
     }
-    TheoriesComment.update({_id: id}, {$push: {"replies": reply}})
+    val = TheoriesComment.update({_id: id}, {$push: {"replies": reply}})
+    if val
+      Meteor.call 'commentsEmail', id
 
   likeTheory: (id) ->
     userId = Meteor.userId()
@@ -768,7 +770,6 @@ Meteor.methods
         text: text
     ).run()
 
-
   notifyUser: (email, id) ->
     comments = Comments.findOne({_id: id})
     replyArr = comments.replies
@@ -779,7 +780,7 @@ Meteor.methods
         to = email
         from = "noreply-predimarket@gmail.com"
         subject = "New replies"
-        text = "Someone has commented on your comment named.\n" + comments.comment + "\n" +
+        text = "Someone has replied on your comment named.\n" + comments.comment + "\n" +
                "You can review the comment on link below.\n" +
                "https://gameofpredictions.org/hints/" + hint_id
         Fiber = Npm.require "fibers"
@@ -794,7 +795,7 @@ Meteor.methods
   notifyUserHint: (hint_id, id, email, hint) ->
     comments = Comments.find({hint_id: hint_id}).fetch()
     length = comments.length
-    if (length == 1 || length % 5 == 0) && email
+    if (length == 1 || length % 5 == 0)
       to = email
       from = "noreply-predimarket@gmail.com"
       val = comments.filter (d) ->
@@ -865,6 +866,30 @@ Meteor.methods
              "You can review the comments on link below \n\n" +
              "https://gameofpredictions.org/theory/" + theory._id
 
+      Fiber = Npm.require "fibers"
+      Fiber(->
+        Email.send
+          to: to
+          from: from
+          subject: subject
+          text: text
+      ).run()
+
+  commentsEmail: (id) ->
+    comment = TheoriesComment.findOne({_id: id})
+    replies = comment.replies
+    theoryId = comment.theoryId
+    length = replies.length
+    username= comment.username
+    user = Meteor.users.findOne({username: username})
+    email = user.emails[0].address
+    if (length == 1 || length % 5 == 0)
+      to: email
+      from = "noreply-predimarket@gmail.com"
+      subject = "New replies"
+      text = "Someone has replied on your comment named.\n" + comment.comment + "\n" +
+             "You can review the comment on link below.\n" +
+             "https://gameofpredictions.org/hints/" + theoryId
       Fiber = Npm.require "fibers"
       Fiber(->
         Email.send

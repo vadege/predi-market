@@ -4,7 +4,8 @@ Template.ListTheory.rendered = ->
 Template.ListTheory.helpers
   theory: ->
     theories = Theories.find({}).fetch()
-    return theories
+    theoriesUpdated = _.sortBy theories, 'addedOn'
+    return theoriesUpdated.reverse()
 
   format: (date) ->
     moment.locale TAPi18n.getLanguage()
@@ -50,7 +51,7 @@ Template.ListTheory.events
         Meteor.setTimeout (->
           $(".delete").hide()
         ), 1000
-        
+
   'click #urlClass': (evt, tmpl) ->
     evt.preventDefault()
     value = evt.currentTarget.href

@@ -42,6 +42,13 @@ Template.Sidebar.helpers
         return 'selected'
     return ''
 
+  leaderboard_select: ->
+    linkName = Router.current()?.options?.route?.getName()
+    if linkName is "leaderboard"
+      return 'selected'
+    else
+      return ''
+
   maybe_selected: ->
     current_route = Router.current()
     if current_route and @_id is current_route.params._id

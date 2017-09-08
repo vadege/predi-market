@@ -71,7 +71,6 @@ Template.theoryCommentSection.helpers
     else
       return 0
 
-
   Select: ->
     popularity = Session.get 'popularTheoryComments'
     date = Session.get 'newestTheoryComments'

@@ -22,7 +22,7 @@ template(name='Sidebar')
           i.fa.fa-bank
           span.hidden-collapsed {{_ "text_marketplace"}}
     li
-      a(href='#{leaderboard_link}')
+      a(href='#{leaderboard_link}' class='#{leaderboard_select}')
         i.fa.fa-trophy
         span.hidden-collapsed {{_ "text_leaderboard"}}
     li

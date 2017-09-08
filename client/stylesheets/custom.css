@@ -22,6 +22,12 @@
   border: 1px solid #888;
   border-radius: 1ex;
   font-weight: 400;
+}
+.show_theory {
+  font-size: 20px;
+  border: 1px solid #888;
+  border-radius: 1ex;
+  font-weight: 400;
   margin-left: -20px;
 }
 .hint_div, .theory_div {

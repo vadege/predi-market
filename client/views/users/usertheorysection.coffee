@@ -14,6 +14,7 @@ Template.theoryCommentSection.helpers
     id = Router.current().params._id
     Theories.findOne({_id: id})
 
+
   likes: ->
     id = Router.current().params._id
     theory = Theories.findOne({_id: id }, {fields: {likes: 1, dislikes: 1}})
@@ -47,7 +48,9 @@ Template.theoryCommentSection.helpers
   url:(comment) ->
     re = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig
     commentUrl = comment.replace(re, "<a id='urlClass' href='$1'>$1</a>")
-    return commentUrl
+    comment = commentUrl.replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1'+ "<br />" +'$2');
+    console.log comment
+    return comment
 
   user: (user) ->
     username = Meteor.user().username

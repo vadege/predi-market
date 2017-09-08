@@ -2,7 +2,7 @@ Template.theoryCommentSection.rendered = ->
   ga('send', 'event', 'Leaderboard', 'read')
   $('.comment').focus()
   id = Router.current().params._id
-  Meteor.call 'showPopularComments', id, (error, result) ->
+  Meteor.call 'showNewestComments', id, (error, result) ->
     if error
       Error.throw error
     else
@@ -96,7 +96,7 @@ Template.theoryCommentSection.helpers
       return "New"
     else
       Session.set 'Select', null
-      return "Popular"
+      return "New"
 
 Template.theoryCommentSection.events
   'click .back': (evt, tmpl) ->

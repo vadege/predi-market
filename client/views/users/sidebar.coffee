@@ -24,6 +24,12 @@ Template.Sidebar.helpers
   market_selected: ->
     Router.current()?.options?.route?.getName() is "market"
 
+  select: ->
+    if Router.current()?.options?.route?.getName() is "submit-theory"
+      return 'selected'
+    else
+      return ''
+
   marketplace_selected: ->
     current_route = Router.current()
     if current_route.options.route.getName() is "markets"

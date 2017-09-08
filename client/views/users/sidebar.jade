@@ -22,11 +22,11 @@ template(name='Sidebar')
           i.fa.fa-bank
           span.hidden-collapsed {{_ "text_marketplace"}}
     li
-      a(href='#{leaderboard_link}' class='#{maybe_selected}')
+      a(href='#{leaderboard_link}')
         i.fa.fa-trophy
         span.hidden-collapsed {{_ "text_leaderboard"}}
     li
-      a(href='/submit-theory')
+      a(href='/submit-theory' class='#{select}')
         i.fa.fa-lightbulb-o
         span.hidden-collapsed {{_ "Submit Theory"}}
     each Pages

@@ -157,8 +157,6 @@ Template.theoryCommentSection.events
 
   'click .submit_reply': (evt, tmpl) ->
     id = $(evt.currentTarget).attr("data-id")
-    Session.set 'popularTheoryComments', null
-    Session.set 'newestTheoryComments', null
     reply = $('#input_'+id).val()
     if reply == ""
       $('.error_new#'+id).show()
@@ -173,7 +171,6 @@ Template.theoryCommentSection.events
           $(".error_reply#"+id).hide()
         ), 3000
       else
-        $(".submit_reply").val("")
         $(".reply").hide()
         $(".submit_reply").hide()
         $(".reply").val("")
@@ -183,6 +180,24 @@ Template.theoryCommentSection.events
         Meteor.setTimeout (->
           $(".success_reply#"+id).hide()
         ), 3000
+        val = Session.get 'Select'
+        if val == 'date'
+          Meteor.call 'showNewestComments', id, (error, result) ->
+            if error
+              Error.throw error
+            else
+              Session.set 'newestTheoryComments', result
+              Session.set 'popularTheoryComments', null
+        else if val == "popular"
+          Meteor.call 'showPopularComments', id, (error, result) ->
+            if error
+              Error.throw error
+            else
+              Session.set 'newestTheoryComments', result
+              Session.set 'popularTheoryComments', null
+        else
+          Session.set 'newestTheoryComments', null
+          Session.set 'popularTheoryComments', null
 
   'click .like': (evt, tmpl) ->
     evt.preventDefault()

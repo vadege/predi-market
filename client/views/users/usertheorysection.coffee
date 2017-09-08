@@ -126,11 +126,7 @@ Template.theoryCommentSection.events
           $(".error").hide()
         ), 3000
       else
-        $(".success").show()
         $('.comment').val("")
-        Meteor.setTimeout (->
-          $(".success").hide()
-        ), 3000
 
   'click .reply_click': (evt, tmpl) ->
     id = $(evt.currentTarget).attr("data-id")
@@ -156,8 +152,8 @@ Template.theoryCommentSection.events
 
   'click .submit_reply': (evt, tmpl) ->
     id = $(evt.currentTarget).attr("data-id")
-    theoryId = evt.currentTarget.value
     reply = $('#input_'+id).val()
+    theoryId = evt.currentTarget.value
     if reply == ""
       $('.error_new#'+id).show()
       Meteor.setTimeout (->
@@ -175,11 +171,7 @@ Template.theoryCommentSection.events
         $(".submit_reply").hide()
         $(".reply").val("")
         $(".submit_reply#"+id).hide()
-        $(".success_reply#"+id).show()
         $('.cancel').hide()
-        Meteor.setTimeout (->
-          $(".success_reply#"+id).hide()
-        ), 3000
         val = Session.get 'Select'
         if val == 'date'
           Meteor.call 'showNewestComments', theoryId, (error, result) ->
@@ -303,7 +295,7 @@ Template.theoryCommentSection.events
     'click .delete_reply': (evt, tmpl) ->
       evt.preventDefault()
       id = $(evt.currentTarget).attr("data-id")
-      theoryId = evt.currentTarget.value
+      theoryId = Router.current().params._id
       Meteor.call 'removeReplyTheory', id, (error, result) ->
         if error
           Error.throw error

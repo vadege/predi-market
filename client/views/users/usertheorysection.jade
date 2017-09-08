@@ -83,7 +83,7 @@ template(name="theoryCommentSection")
              i.fa.fa-thumbs-down
             label.likes {{nooflikesReply id}}
             if user username true
-              button.btn.col-md-2.delete_reply(type='button' data-id=id value=theoryId)
+              button.btn.col-md-2.delete_reply(type='button' data-id=id)
                 i.fa.fa-trash-o {{_ 'Delete'}}
       if replylength replies 3
         div.row

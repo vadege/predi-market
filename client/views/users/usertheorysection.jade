@@ -87,8 +87,8 @@ template(name="theoryCommentSection")
                 i.fa.fa-trash-o {{_ 'Delete'}}
       if replylength replies 3
         div.row
-          button.btn.btn-success.col-md-2.show_more.show_button(type='button' data-id=_id id=_id)
+          button.btn.btn-success.col-md-2.show_more.show_button(type='button' data-id=_id id="more_#{_id}")
             i.fa.fa-ellipsis-h {{_ 'Show All'}}
       div.row
-        button.btn.btn-success.col-md-2.show_less.show_button(type='button' data-id=_id id=_id)
+        button.btn.btn-success.col-md-2.show_less.show_button(type='button' data-id=_id id="less_#{_id}")
           i.fa.fa-ellipsis-h {{_ 'Show Less'}}

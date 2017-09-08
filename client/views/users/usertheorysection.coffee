@@ -13,7 +13,7 @@ Template.theoryCommentSection.helpers
   theory: ->
     id = Router.current().params._id
     Theories.findOne({_id: id})
-    
+
   likes: ->
     id = Router.current().params._id
     theory = Theories.findOne({_id: id }, {fields: {likes: 1, dislikes: 1}})
@@ -329,16 +329,16 @@ Template.theoryCommentSection.events
 
     'click .show_more': (evt, tmpl) ->
       evt.preventDefault()
-      id = $(evt.currentTarget).data("id")
+      id = $(evt.currentTarget).attr("data-id")
       Session.set 'show' , id
       Session.set 'show_less', true
-      $(".show_more#"+id).hide()
-      $(".show_less#"+id).show()
+      $("#more_"+id).hide()
+      $("#less_"+id).show()
 
     'click .show_less': (evt, tmpl) ->
       evt.preventDefault()
-      id = $(evt.currentTarget).data("id")
+      id = $(evt.currentTarget).attr("data-id")
       Session.set 'show' , null
       Session.set 'show_less', false
-      $(".show_less#"+id).hide()
-      $(".show_more#"+id).show()
+      $("#less_"+id).hide()
+      $("#more_"+id).show()

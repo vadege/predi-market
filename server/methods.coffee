@@ -351,6 +351,7 @@ Meteor.methods
         theoryId: id
         likes: []
         dislikes: []
+        replies: []
         addedOn: new Date()
     })
     if id

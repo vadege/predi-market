@@ -39,6 +39,19 @@ Template.theoryCommentSection.helpers
     else
       return comments
 
+  replyArr: (comment_id)->
+    value = TheoriesComment.findOne({_id: comment_id})
+    replies = value.replies
+    show = Session.get 'show'
+    if replies.length <= 2 || show == comment_id
+      return replies
+    else
+      return replies.splice(0,2)
+
+  replylength: (replies) ->
+    if replies.length > 2
+      return 3
+
   length: ->
     id = Router.current().params._id
     comments = TheoriesComment.find({theoryId: id}).fetch()
@@ -49,7 +62,6 @@ Template.theoryCommentSection.helpers
     re = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig
     commentUrl = comment.replace(re, "<a id='urlClass' href='$1'>$1</a>")
     comment = commentUrl.replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1'+ "<br />" +'$2');
-    console.log comment
     return comment
 
   user: (user) ->
@@ -264,3 +276,19 @@ Template.theoryCommentSection.events
         if error
           Error.throw error
         true
+
+    'click .show_more': (evt, tmpl) ->
+      evt.preventDefault()
+      id = $(evt.currentTarget).data("id")
+      Session.set 'show' , id
+      Session.set 'show_less', true
+      $(".show_more#"+id).hide()
+      $(".show_less#"+id).show()
+
+    'click .show_less': (evt, tmpl) ->
+      evt.preventDefault()
+      id = $(evt.currentTarget).data("id")
+      Session.set 'show' , null
+      Session.set 'show_less', false
+      $(".show_less#"+id).hide()
+      $(".show_more#"+id).show()

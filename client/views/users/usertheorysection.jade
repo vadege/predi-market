@@ -68,7 +68,7 @@ template(name="theoryCommentSection")
        label Your reply has been saved successfully
       div.error_reply.alert.alert-warning(id=_id)
        label Error while saving your reply. Please try again.
-      each replies
+      each replyArr _id
         div.row.col-md-12.reply_section
           label.col-md-6.username {{username}}
           label.col-md-6.time {{format addedOn}}
@@ -83,8 +83,10 @@ template(name="theoryCommentSection")
             if user username true
               button.btn.col-md-2.delete_reply(type='button' data-id=id)
                 i.fa.fa-trash-o {{_ 'Delete'}}
-    //  if length comment.replies 3
-          button.btn.btn-success.col-md-2.show_more.show_button(type='button' id=comment._id data-id=comment._id)
+      if replylength replies 3
+        div.row
+          button.btn.btn-success.col-md-2.show_more.show_button(type='button' data-id=_id id=_id)
             i.fa.fa-ellipsis-h {{_ 'Show All'}}
-    //    button.btn.btn-success.col-md-2.show_less.show_button(type='button' id=comment._id data-id=comment._id)
-            i.fa.fa-ellipsis-h {{_ 'Show Less'}}
+      div.row
+        button.btn.btn-success.col-md-2.show_less.show_button(type='button' data-id=_id id=_id)
+          i.fa.fa-ellipsis-h {{_ 'Show Less'}}

@@ -13,8 +13,7 @@ Template.theoryCommentSection.helpers
   theory: ->
     id = Router.current().params._id
     Theories.findOne({_id: id})
-
-
+    
   likes: ->
     id = Router.current().params._id
     theory = Theories.findOne({_id: id }, {fields: {likes: 1, dislikes: 1}})

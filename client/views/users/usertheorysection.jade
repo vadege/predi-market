@@ -56,11 +56,11 @@ template(name="theoryCommentSection")
           button.btn.col-md-2.reply_click(type='button' data-id=_id)
             i.fa.fa-reply {{_ 'Reply'}}
           if user username true
-            button.btn.col-md-2.delete_click(type='button' data-id=_id)
+            button.btn.col-md-2.delete_click(type='button' data-id=_id value=theoryId)
               i.fa.fa-trash-o {{_ 'Delete'}}
       div.add_reply.row
         input.form-control.col-md-12.reply(type="text" placeholder="Reply to comment" id="input_#{_id}")
-        button.btn.col-md-6.pull-right.submit_reply(type='button' id="button_#{_id}" data-id=_id)
+        button.btn.col-md-6.pull-right.submit_reply(type='button' id="button_#{_id}" data-id=_id value=theoryId)
           i.fa.fa-paper-plane {{_ 'Submit'}}
         button.btn.col-md-6.cancel(type='button' id="cancel_#{_id}" data-id=_id)
           i.fa.fa-times {{_ ' Cancel'}}
@@ -83,7 +83,7 @@ template(name="theoryCommentSection")
              i.fa.fa-thumbs-down
             label.likes {{nooflikesReply id}}
             if user username true
-              button.btn.col-md-2.delete_reply(type='button' data-id=id)
+              button.btn.col-md-2.delete_reply(type='button' data-id=id value=theoryId)
                 i.fa.fa-trash-o {{_ 'Delete'}}
       if replylength replies 3
         div.row

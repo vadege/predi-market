@@ -157,6 +157,7 @@ Template.theoryCommentSection.events
 
   'click .submit_reply': (evt, tmpl) ->
     id = $(evt.currentTarget).attr("data-id")
+    theoryId = evt.currentTarget.value
     reply = $('#input_'+id).val()
     if reply == ""
       $('.error_new#'+id).show()
@@ -182,14 +183,14 @@ Template.theoryCommentSection.events
         ), 3000
         val = Session.get 'Select'
         if val == 'date'
-          Meteor.call 'showNewestComments', id, (error, result) ->
+          Meteor.call 'showNewestComments', theoryId, (error, result) ->
             if error
               Error.throw error
             else
               Session.set 'newestTheoryComments', result
               Session.set 'popularTheoryComments', null
         else if val == "popular"
-          Meteor.call 'showPopularComments', id, (error, result) ->
+          Meteor.call 'showPopularComments', theoryId, (error, result) ->
             if error
               Error.throw error
             else
@@ -222,13 +223,31 @@ Template.theoryCommentSection.events
 
   'click .delete_click': (evt, tmpl) ->
     evt.preventDefault()
-    Session.set 'popularTheoryComments', null
-    Session.set 'newestTheoryComments', null
     id = $(evt.currentTarget).attr("data-id")
+    theoryId = evt.currentTarget.value
     Meteor.call 'deleteTheoryComment', id, (error, result) ->
       if error
         Error.throw error
-      true
+      else
+        val = Session.get 'Select'
+        if val == 'date'
+          Meteor.call 'showNewestComments', theoryId, (error, result) ->
+            if error
+              Error.throw error
+            else
+              Session.set 'newestTheoryComments', result
+              Session.set 'popularTheoryComments', null
+        else if val == "popular"
+          Meteor.call 'showPopularComments', theoryId, (error, result) ->
+            if error
+              Error.throw error
+            else
+              Session.set 'newestTheoryComments', null
+              Session.set 'popularTheoryComments', result
+        else
+          Session.set 'newestTheoryComments', null
+          Session.set 'popularTheoryComments', null
+
 
   'click .like_comment': (evt, tmpl) ->
     evt.preventDefault()
@@ -285,12 +304,29 @@ Template.theoryCommentSection.events
     'click .delete_reply': (evt, tmpl) ->
       evt.preventDefault()
       id = $(evt.currentTarget).attr("data-id")
-      Session.set 'newestTheoryComments', null
-      Session.set 'popularTheoryComments', null
+      theoryId = evt.currentTarget.value
       Meteor.call 'removeReplyTheory', id, (error, result) ->
         if error
           Error.throw error
-        true
+        else
+          val = Session.get 'Select'
+          if val == 'date'
+            Meteor.call 'showNewestComments', theoryId, (error, result) ->
+              if error
+                Error.throw error
+              else
+                Session.set 'newestTheoryComments', result
+                Session.set 'popularTheoryComments', null
+          else if val == "popular"
+            Meteor.call 'showPopularComments', theoryId, (error, result) ->
+              if error
+                Error.throw error
+              else
+                Session.set 'newestTheoryComments', null
+                Session.set 'popularTheoryComments', result
+          else
+            Session.set 'newestTheoryComments', null
+            Session.set 'popularTheoryComments', null
 
     'click .show_more': (evt, tmpl) ->
       evt.preventDefault()

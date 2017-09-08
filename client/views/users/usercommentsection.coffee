@@ -109,7 +109,8 @@ Template.CommentSection.helpers
   url:(comment) ->
     re = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig
     commentUrl = comment.replace(re, "<a id='urlClass' href='$1'>$1</a>")
-    return commentUrl
+    comment = commentUrl.replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1'+ "<br />" +'$2');
+    return comment
 
   username: (username) ->
     if username

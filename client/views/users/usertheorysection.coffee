@@ -193,8 +193,8 @@ Template.theoryCommentSection.events
             if error
               Error.throw error
             else
-              Session.set 'newestTheoryComments', result
-              Session.set 'popularTheoryComments', null
+              Session.set 'newestTheoryComments', null
+              Session.set 'popularTheoryComments', result
         else
           Session.set 'newestTheoryComments', null
           Session.set 'popularTheoryComments', null

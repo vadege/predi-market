@@ -10,6 +10,8 @@ template(name="theoryCommentSection")
       button.btn.col-md-2.dislike(type='button' data-id=theory._id)
        i.fa.fa-thumbs-down
       span.like-count {{likes}}
+    div.row.title_class
+      h3.col-md-12.desc-class {{{url theory.desc}}}
     div.row
       div.form-group
         textarea.col-md-12.form-control.comment

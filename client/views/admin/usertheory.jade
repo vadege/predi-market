@@ -9,18 +9,18 @@ template(name="ListTheory")
   table.table.table-bordered
     thead
       tr
+        th Username
         th Theory Title
         th Theory Description
         th Theory Creation Date
-        th Username
         th Action
     tbody
       each theory
         tr
+          td {{username}}
           td {{{url title}}}
           td.wide {{{url desc}}}
           td {{format addedOn}}
-          td {{username}}
           td
             if buttonCheck approved false
               button.btn.btn-success.approve_theory(type='button' id=_id)

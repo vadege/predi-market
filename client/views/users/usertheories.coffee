@@ -37,3 +37,13 @@ Template.showTheory.events
     evt.preventDefault()
     value = evt.currentTarget.href
     window.open(value + location.search)
+
+  'click .display_text': (evt, tmpl) ->
+    evt.preventDefault()
+    $('.show_text').show()
+    $('.display_text').hide()
+
+  'click .show_text': (evt, tmpl) ->
+    evt.preventDefault()
+    $('.show_text').hide()
+    $('.display_text').show()

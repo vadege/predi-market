@@ -17,6 +17,9 @@
   margin-top: -130px;
   display: none;
 }
+.show_text {
+  display: none;
+}
 .show_hint, .show_theory {
   font-size: 20px;
   border: 1px solid #888;

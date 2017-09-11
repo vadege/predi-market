@@ -20,8 +20,7 @@ template(name="ListComment")
           td {{user.name}}
           td {{formattedDate user.commentedOn}}
           td {{hint hint_id}}
-          td
-            {{{url comment}}}
+          td.wide {{{url comment}}}
           td
             button.btn.btn-danger.delete_comment(type='button' id=_id)
               i.fa.fa-trash-o.check

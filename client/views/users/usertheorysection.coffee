@@ -6,8 +6,8 @@ Template.theoryCommentSection.rendered = ->
     if error
       Error.throw error
     else
-      Session.set 'newestTheoryComments', null
-      Session.set 'popularTheoryComments', result
+      Session.set 'newestTheoryComments', result
+      Session.set 'popularTheoryComments', null
 
 Template.theoryCommentSection.helpers
   theory: ->

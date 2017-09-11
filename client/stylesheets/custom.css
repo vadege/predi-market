@@ -20,6 +20,10 @@
 .show_text {
   display: none;
 }
+.text_button {
+  margin-right: 40px;
+  margin-top: 15px;
+}
 .show_hint, .show_theory {
   font-size: 20px;
   border: 1px solid #888;

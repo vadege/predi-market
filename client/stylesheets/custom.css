@@ -21,6 +21,9 @@
   display: none;
   margin-left: -15px;
 }
+.add_space {
+  margin-top: -10px;
+}
 .text_button {
   margin-right: 40px;
   margin-top: -30px;

@@ -109,10 +109,9 @@ Template.theoryCommentSection.events
 
   'click .theory_comment': (evt, tmpl) ->
     evt.preventDefault()
-    Session.set 'popularTheoryComments', null
-    Session.set 'newestTheoryComments', null
     id = $(evt.currentTarget).attr("data-id")
     comment = $('.comment').val()
+    theoryId = Router.current().params._id
     if comment == ""
       $('.error_class').show()
       Meteor.setTimeout (->
@@ -127,6 +126,24 @@ Template.theoryCommentSection.events
         ), 3000
       else
         $('.comment').val("")
+        val = Session.get 'Select'
+        if val == 'date'
+          Meteor.call 'showNewestComments', theoryId, (error, result) ->
+            if error
+              Error.throw error
+            else
+              Session.set 'newestTheoryComments', result
+              Session.set 'popularTheoryComments', null
+        else if val == "popular"
+          Meteor.call 'showPopularComments', theoryId, (error, result) ->
+            if error
+              Error.throw error
+            else
+              Session.set 'newestTheoryComments', null
+              Session.set 'popularTheoryComments', result
+        else
+          Session.set 'newestTheoryComments', null
+          Session.set 'popularTheoryComments', null
 
   'click .reply_click': (evt, tmpl) ->
     id = $(evt.currentTarget).attr("data-id")

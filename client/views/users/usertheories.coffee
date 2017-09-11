@@ -43,7 +43,7 @@ Template.showTheory.events
     $('.show_text').show()
     $('.display_text').hide()
 
-  'click .show_text': (evt, tmpl) ->
+  'click .text_button_less': (evt, tmpl) ->
     evt.preventDefault()
     $('.show_text').hide()
     $('.display_text').show()

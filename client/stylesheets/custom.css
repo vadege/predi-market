@@ -19,10 +19,19 @@
 }
 .show_text {
   display: none;
+  margin-left: -15px;
 }
 .text_button {
   margin-right: 40px;
-  margin-top: 15px;
+  margin-top: -30px;
+  font-size: 14px;
+  margin-right: 155px;
+}
+.text_button_less {
+  margin-right: 40px;
+  margin-top: -30px;
+  font-size: 14px;
+  margin-right: 15px;
 }
 .show_hint, .show_theory {
   font-size: 20px;

@@ -2,7 +2,7 @@ template(name='EditHint')
   | Hint
   input.hint.form-control(type="text" name="hint" value=hint.hint)
   | Hint Description
-  input.hint_val.get.form-control(type="text" name="desc" value=hint.desc)
+  textarea.hint_val.get.form-control(type="text" name="desc") {{hint.desc}}
   button.btn.btn-success.back.pull-left(type='button')
    i.fa.fa-arrow-left {{_ ' Back'}}
   button.btn.btn-success.submit_hint.pull-right(type='button' id=hint.contract_id value=hint.id)

@@ -839,8 +839,8 @@ Meteor.methods
     from = "noreply-predimarket@gmail.com"
     subject = "New theory submitted"
     text = "A new theory has been submitted by " + "'" + user.username + "'" + "\n\n" +
-          "The title of the theory is : " + "'" + title + "'" + "\n\n" +
-          "And the description is : " + "'" + desc + "'"
+          "Theory Title : \n\n" + "'" + title + "'" + "\n\n" +
+          "Theory description : \n\n" + "'" + desc + "'"
     Fiber = Npm.require "fibers"
     Fiber(->
       Email.send

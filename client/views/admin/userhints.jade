@@ -20,8 +20,8 @@ template(name="ListHints")
         tr
           td {{title}}
           td {{formattedDate createdAt}}
-          td {{hint}}
-          td {{desc}}
+          td {{{url hint}}}
+          td {{{url desc}}}
           td {{username}}
           td
             if buttonCheck approved false

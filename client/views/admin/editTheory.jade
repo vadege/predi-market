@@ -2,7 +2,7 @@ template(name='EditTheory')
   | Theory
   input.theory.form-control(type="text" name="hint" value=theory.title)
   | Theory Description
-  input.theory_val.get.form-control(type="text" name="desc" value=theory.desc)
+  textarea.theory_val.get.form-control(type="text" name="desc") {{theory.desc}}
   button.btn.btn-success.back.pull-left(type='button')
    i.fa.fa-arrow-left {{_ ' Back'}}
   button.btn.btn-success.submit_theory.pull-right(type='button' id=theory._id)

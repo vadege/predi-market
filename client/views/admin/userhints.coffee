@@ -37,6 +37,12 @@ Template.ListHints.helpers
     if approved == false
       return true
 
+  url:(comment) ->
+    re = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig
+    commentUrl = comment.replace(re, "<a id='urlClass' href='$1'>$1</a>")
+    comment = commentUrl.replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1'+ "<br />" +'$2');
+    return comment
+
 Template.ListHints.events
   'click .approve_hint': (evt, tmpl) ->
     evt.stopPropagation()

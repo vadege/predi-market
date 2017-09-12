@@ -52,6 +52,9 @@
 .hint_div, .theory_div {
   cursor: pointer
 }
+.category {
+  margin-bottom: 10px;
+}
 .info-box {
     position: absolute;
     width: 570px;

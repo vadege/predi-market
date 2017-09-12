@@ -611,6 +611,10 @@ Meteor.methods
     checkAdmin @userId
     removeContract contract_id
 
+  addCategory: (id, value) ->
+    checkAdmin @userId
+    Contracts.update({_id: id}, {$set: {category: value}})
+
   renameContract: (lang, value, contract_id) ->
     checkAdmin @userId
     setter = {}

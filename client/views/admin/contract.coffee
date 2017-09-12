@@ -9,6 +9,10 @@ Template.AdminContract.helpers
     hintArr.filter (d) ->
       return d.isAdmin == true
 
+  category: ->
+    value = Contracts.findOne({_id: @_id}, {fields: { category: 1 }})
+    if value
+      return true
 
   opened: ->
     Contractsets.find(

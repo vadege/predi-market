@@ -161,6 +161,7 @@ Template.theoryCommentSection.events
     id = $(evt.currentTarget).attr("data-id")
     $(".reply").hide()
     $(".submit_reply").hide()
+    $('.error_new#'+id).hide()
     $('.cancel').hide()
 
   'click .reply': (evt, tmpl) ->
@@ -175,7 +176,7 @@ Template.theoryCommentSection.events
       $('.error_new#'+id).show()
       Meteor.setTimeout (->
         $('.error_new#'+id).hide()
-      ), 3000
+      ), 2000
       return
     Meteor.call 'addReplyToCommentTheory', id, reply, (error, result) ->
       if error
@@ -255,7 +256,6 @@ Template.theoryCommentSection.events
         else
           Session.set 'newestTheoryComments', null
           Session.set 'popularTheoryComments', null
-
 
   'click .like_comment': (evt, tmpl) ->
     evt.preventDefault()

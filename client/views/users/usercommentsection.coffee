@@ -257,6 +257,7 @@ Template.CommentSection.events
       else
         $(".reply").hide()
         $(".submit_reply").hide()
+        $('.cancel_hint').hide()
         val = Session.get 'Select'
         if val == "popular"
           Meteor.call 'showCommentsByPopularity', hint_id, (error, result) ->
@@ -286,62 +287,70 @@ Template.CommentSection.events
   'click .delete_click': (evt, tmpl) ->
     hint_id = Router.current().params._id
     id = $(evt.currentTarget).data("id")
-    Meteor.call 'deleteComment', id, (error, result) ->
-      if error
-        $(".delete_error#"+id).show()
-        Meteor.setTimeout (->
-          $(".delete_error#"+id).hide()
-        ), 1000
-      else
-        val = Session.get 'Select'
-        if val == "popular"
-          Meteor.call 'showCommentsByPopularity', hint_id, (error, result) ->
-            if error
-              console.log(error)
-            else
-              Session.set 'commentsByDate', null
-              Session.set 'commentsByPopularity', result
-        else if val == "date"
-          Meteor.call 'showCommentsByDate', hint_id, (error, result) ->
-            if error
-              console.log(error)
-            else
-              Session.set 'commentsByPopularity', null
-              Session.set 'commentsByDate', result
+    result = confirm('Are you sure you want to delete comment?')
+    if result
+      Meteor.call 'deleteComment', id, (error, result) ->
+        if error
+          $(".delete_error#"+id).show()
+          Meteor.setTimeout (->
+            $(".delete_error#"+id).hide()
+          ), 1000
         else
-          Session.set 'commentsByPopularity', null
-          Session.set 'commentsByDate', null
+          val = Session.get 'Select'
+          if val == "popular"
+            Meteor.call 'showCommentsByPopularity', hint_id, (error, result) ->
+              if error
+                console.log(error)
+              else
+                Session.set 'commentsByDate', null
+                Session.set 'commentsByPopularity', result
+          else if val == "date"
+            Meteor.call 'showCommentsByDate', hint_id, (error, result) ->
+              if error
+                console.log(error)
+              else
+                Session.set 'commentsByPopularity', null
+                Session.set 'commentsByDate', result
+          else
+            Session.set 'commentsByPopularity', null
+            Session.set 'commentsByDate', null
+    else
+      return
 
   'click .delete_reply': (evt, tmpl) ->
     hint_id = Router.current().params._id
     id = $(evt.currentTarget).data("id")
     value = evt.currentTarget.value
     name = evt.currentTarget.name
-    Meteor.call 'deleteReply', id, value, name, (error, result) ->
-      if error
-        $(".delete_error#"+id).show()
-        Meteor.setTimeout (->
-          $(".delete_error#"+id).hide()
-        ), 1000
-      else
-        val = Session.get 'Select'
-        if val == "popular"
-          Meteor.call 'showCommentsByPopularity', hint_id, (error, result) ->
-            if error
-              console.log(error)
-            else
-              Session.set 'commentsByDate', null
-              Session.set 'commentsByPopularity', result
-        else if val == "date"
-          Meteor.call 'showCommentsByDate', hint_id, (error, result) ->
-            if error
-              console.log(error)
-            else
-              Session.set 'commentsByPopularity', null
-              Session.set 'commentsByDate', result
+    result = confirm('Are you sure you want to delete reply?')
+    if result
+      Meteor.call 'deleteReply', id, value, name, (error, result) ->
+        if error
+          $(".delete_error#"+id).show()
+          Meteor.setTimeout (->
+            $(".delete_error#"+id).hide()
+          ), 1000
         else
-          Session.set 'commentsByPopularity', null
-          Session.set 'commentsByDate', null
+          val = Session.get 'Select'
+          if val == "popular"
+            Meteor.call 'showCommentsByPopularity', hint_id, (error, result) ->
+              if error
+                console.log(error)
+              else
+                Session.set 'commentsByDate', null
+                Session.set 'commentsByPopularity', result
+          else if val == "date"
+            Meteor.call 'showCommentsByDate', hint_id, (error, result) ->
+              if error
+                console.log(error)
+              else
+                Session.set 'commentsByPopularity', null
+                Session.set 'commentsByDate', result
+          else
+            Session.set 'commentsByPopularity', null
+            Session.set 'commentsByDate', null
+    else
+      return
 
   'click .like_reply': (evt, tmpl) ->
     id = evt.currentTarget.id

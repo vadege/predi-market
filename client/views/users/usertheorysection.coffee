@@ -234,28 +234,32 @@ Template.theoryCommentSection.events
     evt.preventDefault()
     id = $(evt.currentTarget).attr("data-id")
     theoryId = evt.currentTarget.value
-    Meteor.call 'deleteTheoryComment', id, (error, result) ->
-      if error
-        Error.throw error
-      else
-        val = Session.get 'Select'
-        if val == 'date'
-          Meteor.call 'showNewestComments', theoryId, (error, result) ->
-            if error
-              Error.throw error
-            else
-              Session.set 'newestTheoryComments', result
-              Session.set 'popularTheoryComments', null
-        else if val == "popular"
-          Meteor.call 'showPopularComments', theoryId, (error, result) ->
-            if error
-              Error.throw error
-            else
-              Session.set 'newestTheoryComments', null
-              Session.set 'popularTheoryComments', result
+    result = confirm('Are you sure you want to delete comment?')
+    if result
+      Meteor.call 'deleteTheoryComment', id, (error, result) ->
+        if error
+          Error.throw error
         else
-          Session.set 'newestTheoryComments', null
-          Session.set 'popularTheoryComments', null
+          val = Session.get 'Select'
+          if val == 'date'
+            Meteor.call 'showNewestComments', theoryId, (error, result) ->
+              if error
+                Error.throw error
+              else
+                Session.set 'newestTheoryComments', result
+                Session.set 'popularTheoryComments', null
+          else if val == "popular"
+            Meteor.call 'showPopularComments', theoryId, (error, result) ->
+              if error
+                Error.throw error
+              else
+                Session.set 'newestTheoryComments', null
+                Session.set 'popularTheoryComments', result
+          else
+            Session.set 'newestTheoryComments', null
+            Session.set 'popularTheoryComments', null
+    else
+      return
 
   'click .like_comment': (evt, tmpl) ->
     evt.preventDefault()
@@ -313,28 +317,32 @@ Template.theoryCommentSection.events
       evt.preventDefault()
       id = $(evt.currentTarget).attr("data-id")
       theoryId = Router.current().params._id
-      Meteor.call 'removeReplyTheory', id, (error, result) ->
-        if error
-          Error.throw error
-        else
-          val = Session.get 'Select'
-          if val == 'date'
-            Meteor.call 'showNewestComments', theoryId, (error, result) ->
-              if error
-                Error.throw error
-              else
-                Session.set 'newestTheoryComments', result
-                Session.set 'popularTheoryComments', null
-          else if val == "popular"
-            Meteor.call 'showPopularComments', theoryId, (error, result) ->
-              if error
-                Error.throw error
-              else
-                Session.set 'newestTheoryComments', null
-                Session.set 'popularTheoryComments', result
+      result = confirm('Are you sure you want to delete reply?')
+      if result
+        Meteor.call 'removeReplyTheory', id, (error, result) ->
+          if error
+            Error.throw error
           else
-            Session.set 'newestTheoryComments', null
-            Session.set 'popularTheoryComments', null
+            val = Session.get 'Select'
+            if val == 'date'
+              Meteor.call 'showNewestComments', theoryId, (error, result) ->
+                if error
+                  Error.throw error
+                else
+                  Session.set 'newestTheoryComments', result
+                  Session.set 'popularTheoryComments', null
+            else if val == "popular"
+              Meteor.call 'showPopularComments', theoryId, (error, result) ->
+                if error
+                  Error.throw error
+                else
+                  Session.set 'newestTheoryComments', null
+                  Session.set 'popularTheoryComments', result
+            else
+              Session.set 'newestTheoryComments', null
+              Session.set 'popularTheoryComments', null
+      else
+        return
 
     'click .show_more': (evt, tmpl) ->
       evt.preventDefault()

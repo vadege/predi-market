@@ -37,7 +37,19 @@ Template.ListComment.events
 
   'click .delete_comment': (evt, tmpl) ->
     id = evt.currentTarget.id
-    Meteor.call 'deleteUserComment', id, (error, result) ->
-      if error
-        console.log(error)
-      true
+    result = confirm('Are you sure you want to delete comment?')
+    if result
+      Meteor.call 'deleteUserComment', id, (error, result) ->
+        if error
+          $(".error").show()
+          Meteor.setTimeout (->
+            $(".error").hide()
+          ), 3000
+        else
+          $(".delete").show()
+          Meteor.setTimeout (->
+            $(".delete").hide()
+          ), 3000
+        true
+    else
+      return

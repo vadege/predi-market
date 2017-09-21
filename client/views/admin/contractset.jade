@@ -9,6 +9,8 @@ template(name='AdminContractset')
           i.fa.fa-line-chart
           span {{_ 'text_chart_url'}}
   +InputText field="title" value=title id=_id method="renameContractset" type="text"
+  if category
+    +AddCategory
   +InputText field="image" value=image id=_id method="setContractsetImage" type="file"
   +InputText field="description" value=description id=_id method="editContractsetDescription" type="textarea"
   +InputText field="liquidity" value=liquidity id=_id method="setContractsetLiquidity" type="number" ro=started

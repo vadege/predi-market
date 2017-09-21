@@ -5,8 +5,6 @@ template(name='AdminContract')
   // TODO: Add more info to each contract. Graphs and stuff
   +InputText field="title" value=title id=_id method="renameContract" type="text"
   +InputText field="image" value=image id=_id method="setContractImage" type="file"
-  if category
-    +AddCategory
   input.set-color.form-control-sm(type='color' value='#{color}')
   if opened
     label {{_ 'form_price'}}

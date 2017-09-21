@@ -21,6 +21,9 @@
   display: none;
   margin-left: -15px;
 }
+#selectpicker {
+  margin-bottom: 10px;
+}
 .add_space {
   margin-top: -10px;
 }
@@ -432,17 +435,17 @@ a, a:hover, a:active{transition: all 0.2s ease-in;}
   display: block;
   text-align: center;
   font-size: 16px;
-  border: 1px rgba(0,0,0,0.2) solid;
+  border: 2px rgba(0,0,0,0.2) solid;
   font-weight: 700;
   color: #555;
   margin-bottom: 30px;
 }
 .dashlinks:hover{
   transform: scale(1.1);
-  border: 1px rgba(0,0,0,0.5) solid;
+  border-color: rgba(0,0,0,0.5);
 }
 .dashlinks span{display:block; margin-top: 10px;}
-.dashlinks img{height:65px; opacity: 0.5}
+.dashlinks img{height:65px;}
 .button-section{width: 100%; padding:5px 15px;}
 .button-section > *{display: inline-block; vertical-align: middle; margin-right: 10px !important; margin-left: 0px !important; width: auto; height: 34px; padding: 0px; float: none; }
 .button-section > label{line-height: 34px; margin: 0 !important; margin-right: 10px !important;}

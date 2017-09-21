@@ -13,6 +13,11 @@ Template.AdminContractset.helpers
 
   formattedDate: formatDate
 
+  category: ->
+    value = Contractsets.findOne({_id: @_id})
+    if value
+      return true
+
   settleable: ->
     (Date.now() > @launchtime and not @active) or
     Date.now() > @settletime

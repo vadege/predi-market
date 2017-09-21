@@ -1,94 +1,97 @@
 template(name="theoryCommentSection")
   div.container-fluid
+    div.row.hint-section
+      h1.title-class {{{url theory.title}}}
+      label.col-md-6.user-details {{theory.username}}
+      label.col-md-6.pull-right.time.user-details {{format theory.addedOn}}
+      div.clearfix
+        button.btn.col-md-2.like(type='button' data-id=theory._id)
+         i.fa.fa-thumbs-up
+        button.btn.col-md-2.dislike(type='button' data-id=theory._id)
+         i.fa.fa-thumbs-down
+        span.like-count {{likes}}
+      p.desc-class {{{url theory.desc}}}
+      div.clearfix
+        div.form-group
+          textarea.col-md-12.form-control.comment
+        button.btn.btn-success.back.pull-left(type='button')
+         i.fa.fa-arrow-left {{_ ' Back'}}
+        button.btn.btn-success.theory_comment.pull-right(type='button' data-id = theory._id)
+         i.fa.fa-paper-plane {{_ ' Submit'}}
+        div.error_class(style="display:none")
+         label Please enter comments first.
+      div.success.alert.alert-success
+       label Your comment has been saved successfully
+      div.error.alert.alert-warning
+       label Error while saving your comment. Please try again.
     div.row
-      h3.col-md-12.title-class {{{url theory.title}}}
-      span.col-md-6.user-details {{theory.username}}
-      span.col-md-6.pull-right.time.user-details {{format theory.addedOn}}
-    div.row
-      button.btn.col-md-2.like(type='button' data-id=theory._id)
-       i.fa.fa-thumbs-up
-      button.btn.col-md-2.dislike(type='button' data-id=theory._id)
-       i.fa.fa-thumbs-down
-      span.like-count {{likes}}
-    div.row.title_class
-      h3.col-md-12.desc-class {{{url theory.desc}}}
-    div.row
-      div.form-group
-        textarea.col-md-12.form-control.comment
-      div.error_class(style="display:none")
-       label Please enter comments first.
-      button.btn.btn-success.back.pull-left(type='button')
-       i.fa.fa-arrow-left {{_ ' Back'}}
-      button.btn.btn-success.theory_comment.pull-right(type='button' data-id = theory._id)
-       i.fa.fa-paper-plane {{_ ' Submit'}}
-    div.success.alert.alert-success
-     label Your comment has been saved successfully
-    div.error.alert.alert-warning
-     label Error while saving your comment. Please try again.
-    if length
-      span.label_comment Sort By
-      li.dropdown.btn.btn-default.pull-right
-        span.glyphicon.glyphicon-th-list
-          |  {{Select}}
-          span.caret
-        ul.dropdown-menu.dropdown-toggle(data-toggle="dropdown")
-          li
-            a.sort.popularity Popularity
-          li
-            a.sort.date New
-    each comments
-      div.row.comments_class
-        div.col-md-6.col-xs-5
-          label.username
-            {{username}}
-        div.col-md-6.time.col-xs-7
-          label
-            {{format addedOn}}
-        div.col-md-12.border.comment
-          {{{url comment}}}
-      div.row
-        div.button-section
-          button.btn.col-md-2.like_comment(type='button' data-id=_id)
-           i.fa.fa-thumbs-up
-          button.btn.col-md-2.dislike_comment(type='button' data-id=_id)
-           i.fa.fa-thumbs-down
-          label.likes {{nooflikesComments _id}}
-          button.btn.col-md-2.reply_click(type='button' data-id=_id)
-            i.fa.fa-reply {{_ 'Reply'}}
-          if user username true
-            button.btn.col-md-2.delete_click(type='button' data-id=_id value=theoryId)
-              i.fa.fa-trash-o {{_ 'Delete'}}
-      div.add_reply.row
-        input.form-control.col-md-12.reply(type="text" placeholder="Reply to comment" id="input_#{_id}")
-        button.btn.col-md-6.pull-right.submit_reply(type='button' id="button_#{_id}" data-id=_id value=theoryId)
-          i.fa.fa-paper-plane {{_ 'Submit'}}
-        button.btn.col-md-6.cancel(type='button' id="cancel_#{_id}" data-id=_id)
-          i.fa.fa-times {{_ ' Cancel'}}
-      div.error_new.alert_warning(id=_id)
-        label Please enter reply first.
-      div.success_reply.alert.alert-success(id=_id)
-       label Your reply has been saved successfully
-      div.error_reply.alert.alert-warning(id=_id)
-       label Error while saving your reply. Please try again.
-      each replyArr _id
-        div.row.col-md-12.reply_section
-          label.col-md-6.username {{username}}
-          label.col-md-6.time {{format addedOn}}
-          span.col-xs-12.comment
-            {{{url reply}}}
-          div.button-section
-            button.btn.col-md-2.like_reply(type='button' data-id=id)
-             i.fa.fa-thumbs-up
-            button.btn.col-md-2.dislike_reply(type='button' data-id=id)
-             i.fa.fa-thumbs-down
-            label.likes {{nooflikesReply id}}
-            if user username true
-              button.btn.col-md-2.delete_reply(type='button' data-id=id)
-                i.fa.fa-trash-o {{_ 'Delete'}}
-      if replylength replies 3
-        div.row
-          button.btn.btn-success.col-md-2.show_more.show_button(type='button' data-id=_id id="more_#{_id}")
-            i.fa.fa-ellipsis-h {{_ 'Show All'}}
-      div.row
-        button.btn.btn-success.col-md-2.show_less.show_button(type='button' data-id=_id id="less_#{_id}")
-          i.fa.fa-ellipsis-h {{_ 'Show Less'}}
+      if length
+        div.col-sm-6
+          h2.label_comment Sort By
+        div.col-sm-6
+          ul.pull-right.drop-menu
+            li.dropdown.btn.btn-default
+              span.glyphicon.glyphicon-th-list
+                |  {{Select}}
+                span.caret
+              ul.dropdown-menu.dropdown-toggle(data-toggle="dropdown")
+                li
+                  a.sort.popularity Popularity
+                li
+                  a.sort.date New
+      each comments
+        div.row.comments_class.col-sm-12
+          div.col-md-6.col-xs-5
+            label
+              {{username}}
+          div.col-md-6.time.col-xs-7
+            label
+              {{format addedOn}}
+          div.col-md-12.comment
+            {{{url comment}}}
+          div.row
+            div.button-section
+              button.btn.col-md-2.like_comment(type='button' data-id=_id)
+               i.fa.fa-thumbs-up
+              button.btn.col-md-2.dislike_comment(type='button' data-id=_id)
+               i.fa.fa-thumbs-down
+              label.likes {{nooflikesComments _id}}
+              button.btn.col-md-2.reply_click(type='button' data-id=_id)
+                i.fa.fa-reply {{_ 'Reply'}}
+              if user username true
+                button.btn.col-md-2.delete_click(type='button' data-id=_id value=theoryId)
+                  i.fa.fa-trash-o {{_ 'Delete'}}
+          div.add_reply.row
+            input.form-control.col-md-12.reply(type="text" placeholder="Reply to comment" id="input_#{_id}")
+            button.btn.col-md-6.pull-right.submit_reply(type='button' id="button_#{_id}" data-id=_id value=theoryId)
+              i.fa.fa-paper-plane {{_ 'Submit'}}
+            button.btn.col-md-6.cancel(type='button' id="cancel_#{_id}" data-id=_id)
+              i.fa.fa-times {{_ ' Cancel'}}
+          div.error_new.alert_warning(id=_id)
+            label Please enter reply first.
+          div.success_reply.alert.alert-success(id=_id)
+           label Your reply has been saved successfully
+          div.error_reply.alert.alert-warning(id=_id)
+           label Error while saving your reply. Please try again.
+          each replyArr _id
+            div.row.col-md-12.reply_section
+              label.col-md-6.username {{username}}
+              label.col-md-6.time {{format addedOn}}
+              span.col-xs-12.comment
+                {{{url reply}}}
+              div.button-section
+                button.btn.col-md-2.like_reply(type='button' data-id=id)
+                 i.fa.fa-thumbs-up
+                button.btn.col-md-2.dislike_reply(type='button' data-id=id)
+                 i.fa.fa-thumbs-down
+                label.likes {{nooflikesReply id}}
+                if user username true
+                  button.btn.col-md-2.delete_reply(type='button' data-id=id)
+                    i.fa.fa-trash-o {{_ 'Delete'}}
+          if replylength replies 3
+            div.row
+              button.btn.btn-success.col-md-2.show_more.show_button(type='button' data-id=_id id="more_#{_id}")
+                i.fa.fa-ellipsis-h {{_ 'Show All'}}
+          div.row
+            button.btn.btn-success.col-md-2.show_less.show_button(type='button' data-id=_id id="less_#{_id}")
+              i.fa.fa-ellipsis-h {{_ 'Show Less'}}

@@ -30,6 +30,12 @@ Template.Sidebar.helpers
     else
       return ''
 
+  select_dashboard: ->
+     if Router.current()?.options?.route?.getName() is "dashboard"
+       return 'selected'
+     else
+       return ''
+       
   marketplace_selected: ->
     current_route = Router.current()
     if current_route.options.route.getName() is "markets"

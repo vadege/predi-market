@@ -53,7 +53,17 @@ Router.route '/', ->
   if Meteor?.user()?.profile?.admin
     @redirect '/admin'
   else
-    @redirect '/markets'
+    @redirect '/dashboard'
+
+Router.route '/dashboard', ->
+  @render 'Sidebar', {to: 'Sidebar'}
+  @render 'Dashboard'
+, {waitOn: ->
+     if Meteor?.userId()
+       cols = ['Pages', 'Markets']
+       _.map cols, (col) ->
+         TAPi18n.subscribe col
+  }
 
 Router.route '/page/:_id', ->
   @render 'Sidebar', {to: 'Sidebar'}

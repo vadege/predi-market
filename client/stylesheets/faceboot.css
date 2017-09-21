@@ -4,7 +4,6 @@ html, body {
    font-family: 'Source Sans Pro', sans-serif;
    color:#555555;
 }
-
 .nav {
    font-family: 'Source Sans Pro', sans-serif;
    font-size:13px;
@@ -142,7 +141,7 @@ hr {
 /* bootstrap overrides */
 
 h1,h2,h3 {
-  font-weight:800;
+  font-weight:600;
 }
 
 .navbar-toggle, .close {
@@ -159,10 +158,11 @@ h1,h2,h3 {
 }
 .btn-default {
     color:#666666;
+    font-family: 'Source Sans Pro', sans-serif;
     text-shadow:0 0 1px rgba(0,0,0,.3);
 }
 .form-control {
-
+  font-family: 'Source Sans Pro', sans-serif;
 }
 
 .panel textarea, .well textarea, textarea.form-control

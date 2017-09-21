@@ -1,39 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="62" height="61" viewBox="0 0 62 61">
-  <metadata><?xpacket begin="﻿" id="W5M0MpCehiHzreSzNTczkc9d"?>
-<x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="Adobe XMP Core 5.6-c138 79.159824, 2016/09/14-01:09:01        ">
-   <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-      <rdf:Description rdf:about=""/>
-   </rdf:RDF>
-</x:xmpmeta>
-                                                                                                    
-                                                                                                    
-                                                                                                    
-                                                                                                    
-                                                                                                    
-                                                                                                    
-                                                                                                    
-                                                                                                    
-                                                                                                    
-                                                                                                    
-                                                                                                    
-                                                                                                    
-                                                                                                    
-                                                                                                    
-                                                                                                    
-                                                                                                    
-                                                                                                    
-                                                                                                    
-                                                                                                    
-                                                                                                    
-                           
-<?xpacket end="w"?></metadata>
-<defs>
-    <style>
-      .cls-1 {
-        fill: #fff;
-        fill-rule: evenodd;
-      }
-    </style>
-  </defs>
-  <path id="Forma_1" data-name="Forma 1" class="cls-1" d="M46,0V2.035h3.588L29,22.968,19,12.793,6.3,25.71,7.7,27.15,19,15.672,29,25.834,51,3.474V7.11h2V0H46ZM60,58.965h0V14.233H50V58.965H48V20.337h-10v38.64H36V34.57H26v24.4h-2v-30.5H14v30.5H12V44.732H2V58.965H0V61H62V58.965H60Zm-49.991,0H4v-12.2h6v12.2Zm12,0H16V30.5h6V58.965Zm12,0.012H28V36.6h6V58.977Zm12,0h-6v-36.6h6v36.6Zm12.009-.012H52v-42.7h6v42.7Z"/>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 62 61" style="enable-background:new 0 0 62 61;" xml:space="preserve">
+<path id="Forma_1" d="M46,0v2h3.6L29,23L19,12.8L6.3,25.7l1.4,1.4L19,15.7l10,10.2L51,3.5v3.6h2V0H46z M60,59L60,59V14.2H50V59h-2
+	V20.3H38V59h-2V34.6H26V59h-2V28.5H14V59h-2V44.7H2V59H0v2h62v-2H60z M10,59H4V46.8h6L10,59L10,59z M22,59h-6V30.5h6L22,59L22,59z
+	 M34,59h-6V36.6h6L34,59L34,59z M46,59h-6V22.4h6V59z M58,59h-6V16.3h6L58,59L58,59z"/>
 </svg>

@@ -25,16 +25,14 @@
   margin-top: -10px;
 }
 .text_button {
-  margin-right: 40px;
   margin-top: -30px;
   font-size: 14px;
-  margin-right: 155px;
+  margin-right: 195px;
 }
 .text_button_less {
-  margin-right: 40px;
   margin-top: -30px;
   font-size: 14px;
-  margin-right: 15px;
+  margin-right: 55px;
 }
 .show_hint, .show_theory {
   font-size: 20px;
@@ -90,6 +88,7 @@
   font-size: 20px;
   font-weight: 600;
   margin-top: 0;
+  margin-left: 7px;
 }
 .title_class {
   border: 1px solid #888;
@@ -105,6 +104,7 @@
 .desc-class {
   font-size: 17px;
   margin-top: 20px;
+  margin-left: 10px;
   font-weight: 400;
   text-align: left;
 }
@@ -475,6 +475,17 @@ transform-origin:0 0 !important;
     .reply_click {
         margin-left: 0px;
     }
+    .drop-menu { margin-top: -40px; }
+    .text_button {
+      margin-top: -30px;
+      font-size: 14px;
+      margin-right: 0;
+    }
+    .text_button_less {
+      margin-top: -10px;
+      font-size: 14px;
+      margin-right: 15px;
+    }
     .dashlinks{text-align:left; margin-bottom: 3px; font-size: 18px; padding:12px 20px;}
   	.dashlinks img {height: 35px; vertical-align: middle;}
   	.dashlinks span {margin-top: 0; display: inline-block; vertical-align: middle;}
@@ -483,7 +494,7 @@ transform-origin:0 0 !important;
       width: 180px;
       margin-left: -50px;
     }
-    .show_hint {
+    .show_hint, .show_theory {
       font-size: 15px;
       border: 1px solid #888;
       border-radius: 1ex;

@@ -1,7 +1,7 @@
 Template.AddCategory.events
   'change .selectpicker': (evt, tmpl) ->
     evt.preventDefault()
-    val = $('.selectpicker').val()
+    val = evt.currentTarget.value
     id = evt.currentTarget.id
     Meteor.call 'addCategory', id, val, (error, result) ->
       if error

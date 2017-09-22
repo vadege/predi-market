@@ -122,7 +122,9 @@ Template.Contractset.events
 
   'click .submit_hint': (evt, tmpl) ->
     id = evt.currentTarget.id
+    category = Router.current().params.query.category
     Session.set 'market_id', @market_id
+    Session.set 'category', category
     Session.set 'buttonId', id
     Router.go('/hint')
 

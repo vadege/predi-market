@@ -48,4 +48,5 @@ Template.AddHintUser.events
   'click .back': (evt, tmpl) ->
     evt.stopPropagation()
     market_id = Session.get 'market_id'
-    Router.go '/market/' +market_id
+    category = Session.get 'category'
+    Router.go '/market/' +market_id + '?' + 'category=' + category

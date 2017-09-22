@@ -188,7 +188,8 @@ Template.CommentSection.events
   'click .back': (evt, tmpl) ->
     evt.stopPropagation()
     marketid = Session.get 'marketid'
-    Router.go '/market/' + marketid
+    category = Session.get 'category'
+    Router.go '/market/' + marketid + '?' + 'category=' + category
 
   'click .like': (evt, tmpl) ->
     evt.stopPropagation()

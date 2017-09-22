@@ -1,10 +1,10 @@
 template(name="AddCategory")
   | Category
   select.selectpicker.form-control(id=_id)
-    option Trending
-    option New Arrivals
-    option Power
-    option Prophecies
-    option End Game
-    option Magic
-    option Houses
+    option(value="Trending" selected="{{select 'Trending' category }}") Trending
+    option(value="New Arrivals" selected="{{select 'New Arrivals' category }}") New Arrivals
+    option(value="Power" selected="{{select 'Power' category }}") Power
+    option(value="Prophecies" selected="{{select 'Prophecies' category }}") Prophecies
+    option(value="End Game" selected="{{select 'End Game' category }}") End Game
+    option(value="Magic" selected="{{select 'Magic' category }}") Magic
+    option(value="Houses" selected="{{select 'Houses' category }}") Houses

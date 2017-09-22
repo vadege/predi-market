@@ -7,20 +7,6 @@ template(name='Sidebar')
       a.visible-xs.text-center(href="#" data-toggle="offcanvas")
         i.fa.fa-chevron-right
   ul.menu.nav
-    if has_multiple_markets
-      each Markets
-        li
-          a.go_market(href='/market/#{_id}' class='#{maybe_selected}')
-            i.fa.fa-bank
-            span.hidden-collapsed {{title}}
-            span.hidden-collapsed.badge
-              i.fa.fa-suitcase
-              span {{owned}}
-    else
-      li
-        a(href='/markets/' class='#{marketplace_selected}')
-          i.fa.fa-bank
-          span.hidden-collapsed {{_ "text_marketplace"}}
     li
       a(href='/dashboard' class='#{select_dashboard}')
         i.fa.fa-tachometer

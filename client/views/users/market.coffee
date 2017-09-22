@@ -36,9 +36,11 @@ Template.Market.helpers
   Contractsets: ->
     now = Date.now()
     market_id = Router.current().params._id
+    category = Router.current().params.query.category
     contracts = Contracts.find({market_id: market_id}).fetch()
     contractsets = Contractsets.find(
         $and: [{market_id: market_id},
+               {category: category},
                {launchtime: {$lte: now}},
                {settletime: {$gte: now}}]
       ,

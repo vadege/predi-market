@@ -20,10 +20,8 @@ do_trade = ->
 
 Template.Contractset.helpers
   Contracts: ->
-    category = Session.get 'category'
-    val = Contracts.find {$and: [{set_id: @_id}
+    Contracts.find {$and: [{set_id: @_id}
                            {mirror: {$not: true}}]}
-    return val
 
   hint: ->
     likes = HintsLikeDisLike.find({},{sort: {likes: -1}}).fetch()

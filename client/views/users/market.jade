@@ -29,6 +29,11 @@ template(name='Market')
     div.contractsetlist.row
       each Contractsets
         +Contractset
+      if length
+        button.btn.btn-success.col-md-2.show_more.show_button
+          i.fa.fa-ellipsis-h {{_ 'Show All'}}
+      button.btn.btn-success.col-md-2.show_less.show_button
+       i.fa.fa-ellipsis-h {{_ 'Show Less'}}
 
       unless Contractsets
         if filterActive

@@ -48,6 +48,13 @@ Template.Market.helpers
           sort_index: 1,
           settletime: -1
     ).fetch()
+
+    contract_display = Session.get 'contractsets_display'
+    if contractsets.length < 6 || contract_display
+      return contractsets
+    else
+      return contractsets.splice(0,5)
+
     filter = Session.get('contract-filter')?[market_id]
 
     filter_texts = _.union (filter?.text or "").split(' '), filter?.custom
@@ -157,6 +164,23 @@ Template.Market.helpers
     filter_obj = Session.get 'contract-filter'
     _.contains (filter_obj?[market_id]?.custom or []), filter
 
+  length: ->
+    now = Date.now()
+    market_id = Router.current().params._id
+    category = Router.current().params.query.category
+    contracts = Contractsets.find(
+        $and: [{market_id: market_id},
+               {category: category},
+               {launchtime: {$lte: now}},
+               {settletime: {$gte: now}}]
+      ,
+        sort:
+          sort_index: 1,
+          settletime: -1
+    ).fetch()
+    if contracts.length > 5
+      return true
+
   removeUntranslatedText: GlobalHelpers.removeUntranslated
 
 Template.Market.events
@@ -199,6 +223,18 @@ Template.Market.events
     market_id = Router.current().params._id
     set_contract_filter_text market_id, evt
 
+
+  'click .show_more': (evt, tmpl) ->
+    evt.preventDefault()
+    Session.set 'contractsets_display', true
+    $(".show_more").hide()
+    $(".show_less").show()
+
+  'click .show_less': (evt, tmpl) ->
+    evt.preventDefault()
+    Session.set 'contractsets_display', false
+    $(".show_more").show()
+    $(".show_less").hide()
 
 Template.Market.rendered = ->
   ga('send', 'event', 'Market', 'read')

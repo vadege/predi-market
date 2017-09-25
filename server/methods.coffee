@@ -613,7 +613,15 @@ Meteor.methods
 
   addCategory: (id, value) ->
     checkAdmin @userId
-    Contractsets.update({_id: id}, {$set: {category: value}})
+    val = Contractsets.findOne({_id: id}, {fields: {category: 1}})
+    category = val.category
+    num = category.indexOf(value)
+    if num == -1
+      Contractsets.update({_id: id}, {$push: {category: value}})
+
+  removeCategory: (id, value) ->
+    checkAdmin @userId
+    Contractsets.update({_id: id}, {$pull: {category: value}})
 
   renameContract: (lang, value, contract_id) ->
     checkAdmin @userId

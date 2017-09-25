@@ -1,10 +1,34 @@
 template(name="AddCategory")
   | Category
-  select.selectpicker.form-control.form-group(id=_id)
-    option(value="Trending" selected="{{select 'Trending' category }}") Trending
-    option(value="New Arrivals" selected="{{select 'New Arrivals' category }}") New Arrivals
-    option(value="Power" selected="{{select 'Power' category }}") Power
-    option(value="Prophecies" selected="{{select 'Prophecies' category }}") Prophecies
-    option(value="End Game" selected="{{select 'End Game' category }}") End Game
-    option(value="Magic" selected="{{select 'Magic' category }}") Magic
-    option(value="Houses" selected="{{select 'Houses' category }}") Houses
+  div.dropdown.form-group.category
+    button.btn.btn-secondary.dropdown-toggle(type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false") {{category_name}}
+    div.dropdown-menu(aria-labelledby="dropdownMenuButton" id=_id)
+      div.row
+        button.col-sm-10.dropdown-item(href="javascript:void(0)" value="Trending" data-id=_id) Trending
+        if select 'Trending' category
+          i.fa.fa-check-square.col-sm-2(data-name="Trending" data-id="#{_id}")
+        else
+      div.row
+        button.col-sm-10.dropdown-item(href="javascript:void(0)" value="Prophecies" data-id=_id) Prophecies
+        if select 'Prophecies' category
+          i.fa.fa-check-square.col-sm-2(data-name="Prophecies" data-id="#{_id}")
+      div.row
+        button.col-sm-10.dropdown-item(href="javascript:void(0)" value="Power" data-id=_id) Power
+        if select 'Power' category
+          i.fa.fa-check-square.col-sm-2(data-name="Power" data-id="#{_id}")
+      div.row
+        button.dropdown-item.col-sm-10(href="javascript:void(0)" value="End Game" data-id=_id) End Game
+        if select 'End Game' category
+          i.fa.fa-check-square.col-sm-2(data-name="End Game" data-id="#{_id}")
+      div.row
+        button.dropdown-item.col-sm-10(href="javascript:void(0)" value="New Arrivals" data-id=_id) New Arrivals
+        if select 'New Arrivals' category
+          i.fa.fa-check-square.col-sm-2(data-name="New Arrivals" data-id="#{_id}")
+      div.row
+        button.col-sm-10.dropdown-item(href="javascript:void(0)" value="Houses" data-id=_id) Houses
+        if select 'Houses' category
+          i.fa.fa-check-square.col-sm-2(data-name="Houses" data-id="#{_id}")
+      div.row
+        button.dropdown-item.col-sm-10(href="javascript:void(0)" value="Magic" data-id=_id) Magic
+        if select 'Magic' category
+          i.fa.fa-check-square.col-sm-2(data-name="Magic" data-id="#{_id}")

@@ -1,6 +1,6 @@
 template(name="AddCategory")
   | Category
-  select.selectpicker.form-control(id=_id)
+  select.selectpicker.form-control.form-group(id=_id)
     option(value="Trending" selected="{{select 'Trending' category }}") Trending
     option(value="New Arrivals" selected="{{select 'New Arrivals' category }}") New Arrivals
     option(value="Power" selected="{{select 'Power' category }}") Power

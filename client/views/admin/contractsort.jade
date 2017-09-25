@@ -1,0 +1,18 @@
+template(name="ContractSort")
+  div.dropdown.form-group.contract_sort
+    button.btn.btn-secondary.dropdown-toggle(type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false") {{select}}
+    div.dropdown-menu(aria-labelledby="dropdownMenuButton" id=_id)
+      div.row
+        button.col-sm-10.dropdown-item(href="javascript:void(0)" value="Trending" data-id=_id) Trending
+      div.row
+        button.col-sm-10.dropdown-item(href="javascript:void(0)" value="Prophecies" data-id=_id) Prophecies
+      div.row
+        button.col-sm-10.dropdown-item(href="javascript:void(0)" value="Power" data-id=_id) Power
+      div.row
+        button.dropdown-item.col-sm-10(href="javascript:void(0)" value="End Game" data-id=_id) End Game
+      div.row
+        button.dropdown-item.col-sm-10(href="javascript:void(0)" value="New Arrivals" data-id=_id) New Arrivals
+      div.row
+        button.col-sm-10.dropdown-item(href="javascript:void(0)" value="Houses" data-id=_id) Houses
+      div.row
+        button.dropdown-item.col-sm-10(href="javascript:void(0)" value="Magic" data-id=_id) Magic

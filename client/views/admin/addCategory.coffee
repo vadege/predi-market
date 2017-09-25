@@ -11,7 +11,8 @@ Template.AddCategory.events
 
   'click .dropdown': (evt, tmpl) ->
     evt.preventDefault()
-    $('.category').toggleClass("show")
+    id = evt.currentTarget.id
+    $('#'+id).toggleClass("show")
 
   'click .fa-check-square': (evt, tmpl) ->
     evt.preventDefault()

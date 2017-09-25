@@ -14,7 +14,7 @@
   text-align: left;
   color: #292b2c;
   background-color: #fff;
-  border: 1px solid #ccc;
+  border: 1px solid #ccc !important;
 }
 .fa-check-square {
   text-align: right;
@@ -25,7 +25,7 @@
     color: #292b2c;
     background-color: #e6e6e6;
     background-image: none;
-    border: 1px solid #ccc;
+    border: 1px solid #ccc !important;
 }
 .show > .dropdown-menu {
     display: block;

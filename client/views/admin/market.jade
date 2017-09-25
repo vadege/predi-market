@@ -8,6 +8,8 @@ template(name='AdminMarket')
   +InputText field="initial_money" value=initial_money id=_id method="updateMarketInitialMoney" type="number"
   +InputText field="market_tags" value=tags id=_id method="updateMarketTags" type="tags"
 
+  +ContractSort
+
   h4 {{_ "text_filters"}}
   each Filters
     +AdminFilter

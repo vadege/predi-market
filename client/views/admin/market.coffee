@@ -4,8 +4,10 @@
 Template.AdminMarket.helpers
   Contractsets: ->
     now = Date.now()
+    category = Session.get 'category_search'
     Contractsets.find
       $and: [{market_id: @_id},
+             {category: category},
              {settled: false}]
 
   Filters: ->

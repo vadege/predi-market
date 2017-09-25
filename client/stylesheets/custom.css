@@ -19,6 +19,7 @@
 .fa-check-square {
   text-align: right;
   cursor: pointer;
+  font-size: 18px;
 }
 .show > .btn-secondary.dropdown-toggle {
     color: #292b2c;

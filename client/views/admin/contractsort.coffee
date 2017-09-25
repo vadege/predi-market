@@ -11,4 +11,7 @@ Template.ContractSort.events
 Template.ContractSort.helpers
 
   select: ->
-    return Session.get 'category_search'
+    if Session.get 'category_search'
+      return Session.get 'category_search'
+    else
+      return "Category"

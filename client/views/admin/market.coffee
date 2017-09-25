@@ -5,10 +5,15 @@ Template.AdminMarket.helpers
   Contractsets: ->
     now = Date.now()
     category = Session.get 'category_search'
-    Contractsets.find
-      $and: [{market_id: @_id},
-             {category: category},
-             {settled: false}]
+    if category
+      Contractsets.find
+        $and: [{market_id: @_id},
+               {category: category},
+               {settled: false}]
+    else
+      Contractsets.find
+        $and: [{market_id: @_id},
+               {settled: false}]
 
   Filters: ->
     Filters.find {parent_id: @_id}

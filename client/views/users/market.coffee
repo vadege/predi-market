@@ -239,6 +239,9 @@ Template.Market.events
 Template.Market.rendered = ->
   ga('send', 'event', 'Market', 'read')
   @autorun ->
+    $(window).on 'popstate', ->
+      Router.go '/dashboard'
+      
     order = Session.get 'order-details'
     market_id = Router.current().params._id
     unless order? and order.market_id is market_id

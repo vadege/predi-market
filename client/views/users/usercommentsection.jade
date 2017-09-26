@@ -69,7 +69,7 @@ template(name="CommentSection")
             button.btn.col-md-6.cancel_hint(type='button' id="cancel_#{comment._id}" data-id=comment._id)
               i.fa.fa-times {{_ ' Cancel'}}
           each replies comment._id
-            div.row.col-md-12.reply_section
+            div.row.col-md-12.reply_section.border
               label.col-md-6 {{replyBy}}
               label.col-md-6.time {{commenttedDate replyOn}}
               span.col-xs-12(style="margin-bottom: 0;")

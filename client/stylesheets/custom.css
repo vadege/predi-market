@@ -21,6 +21,9 @@
   cursor: pointer;
   font-size: 18px;
 }
+.label_category {
+  margin-left: -15px;
+}
 .show > .btn-secondary.dropdown-toggle {
     color: #292b2c;
     background-color: #e6e6e6;
@@ -202,7 +205,6 @@
   font-weight: 400;
 }
 .hint-section {
-  border-bottom: 1px solid #999;
   padding-bottom: 10px;
 }
 .comment {
@@ -489,11 +491,11 @@ a, a:hover, a:active{transition: all 0.2s ease-in;}
     border: 0;
 }
 .dropdown-menu {
-    width: 100%;
+    width: 97%;
     position: absolute;
     top: 100%;
     margin-top: 10px;
-    left: 0;
+    left: 15px;
     z-index: 1000;
     display: none;
     float: left;

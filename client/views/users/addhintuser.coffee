@@ -16,9 +16,11 @@ Template.AddHintUser.events
     hint = $(".hint").val()
     desc = $(".hint_val").val()
     contract_id = Session.get 'buttonId'
+    category = Session.get 'category'
     Session.set 'buttonId', null
     id = Contracts.findOne({$and:[{set_id: contract_id}, {mirror: {$not: true}}]})
     market_id = Session.get 'market_id'
+
     if (hint == "" || desc == "")
       $(".error").show()
       return
@@ -42,7 +44,8 @@ Template.AddHintUser.events
         $(".success").show()
         Meteor.setTimeout (->
           $(".success").hide()
-          Router.go '/market/' +market_id
+          Router.go '/market/' +market_id + '?' + 'category=' + category
+          Session.set 'category', null
         ), 1000
 
   'click .back': (evt, tmpl) ->

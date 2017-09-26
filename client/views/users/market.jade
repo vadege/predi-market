@@ -9,14 +9,14 @@ template(name='Market')
       {{removeUntranslatedText Market.description}}
 
     div.form-group.filter-controls.clearfix
-      input.form-control.filtertext(placeholder='{{_ "form_filter_placeholdertext"}}' value='#{filter_value}' autofocus='autofocus')
+      input.form-control.filtertext(placeholder='{{_ "Type to filter Theory list"}}' value='#{filter_value}' autofocus='autofocus')
 
       div.form-group
         label(for="filter_portfolio_only")
           input#filter_portfolio_only(type="checkbox" checked='#{portfolio_only_filter_on}')
           span {{_ "text_filter_portfolio_only"}}
 
-        label(for="filter_closing_soon")
+      //  label(for="filter_closing_soon")
           input#filter_closing_soon(type="checkbox" checked='#{closing_soon_filter_on}')
           span {{_ "text_filter_closing_soon"}}
 

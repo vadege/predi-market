@@ -28,6 +28,11 @@ Meteor.startup ->
       privatekey: '6Ld8miYUAAAAAJEhkx5mM4jX7hhslNhLBdhnff2q'
   });
 
+  Meteor.setInterval (->
+    Meteor.call 'trendingContracts',
+    Meteor.call 'newArrivals'
+  ), 60 * 1000
+
   if Settings.find().count() is 0
     id = Settings.insert {"launched_at": Date.now()}
     languages = _.keys(TAPi18n.getLanguages()) or ["en"]

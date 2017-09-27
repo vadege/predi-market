@@ -916,7 +916,7 @@ Meteor.methods
       ).run()
 
   trendingContracts: () ->
-    activities = Activities.find({timestamp:{$lte: Date.now(), $gt: Date.now() - 86400000}}).fetch()
+    activities = Activities.find({$and:[{timestamp:{$lte: Date.now(), $gt: Date.now() - 86400000}}, {type:"trade"}]}).fetch()
     filtercategory = activities.filter (d) ->
         return d.type == "trade"
     i = 0
@@ -925,6 +925,8 @@ Meteor.methods
       val = filtercategory[i].value
       if contractsetid.indexOf (val.set_id) == -1
         contractsetid.push(val.set_id)
+      else
+        i++
       i++
     j = 0
     while j < contractsetid.length
@@ -945,7 +947,18 @@ Meteor.methods
           Contractsets.update({_id: id}, {$pull: {category: 'New Arrivals'}})
       i++
 
-
+  removeTrending: () ->
+    contracts = Contractsets.find({launchtime: {$lte: Date.now() - 86400000}}).fetch()
+    filtercategory = contracts.filter (d) ->
+          return d.settled == false
+    i = 0
+    while i < filtercategory.length
+      categorylist = filtercategory[i].category
+      if typeof categorylist != "undefined"
+        id = filtercategory[i]._id
+        if categorylist.indexOf ('Trending') != -1
+          Contractsets.update({_id: id}, {$pull: {category: 'Trending'}})
+      i++
 
   # To use, call Meteor.call('batchEnrollment') from the browser console when
   # logged in as an admin. Will send out enrollment emails to all email

@@ -27,8 +27,6 @@ Template.Leaderboard.helpers
     else
       undefined
 
-
-
   leaders: ->
     market = undefined
     current_route = Router.current()

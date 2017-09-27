@@ -33,6 +33,10 @@ Meteor.startup ->
     Meteor.call 'newArrivals'
   ), 60 * 1000
 
+  Meteor.setInterval ( ->
+    Meteor.call 'removeTrending'
+  ), 24 * 60 * 1000
+
   if Settings.find().count() is 0
     id = Settings.insert {"launched_at": Date.now()}
     languages = _.keys(TAPi18n.getLanguages()) or ["en"]

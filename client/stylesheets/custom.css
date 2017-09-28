@@ -24,6 +24,21 @@
 .label_category {
   margin-left: -15px;
 }
+.show_contract {
+  font-size: 20px;
+  border: 1px solid #888;
+  border-radius: 1ex;
+  font-weight: 400;
+  margin: 10px 0;
+}
+.findContract {
+  display: none;
+  margin-left: 20px !important;
+  font-size: 18px;
+}
+.showContracts {
+  display: none;
+}
 .show > .btn-secondary.dropdown-toggle {
     color: #292b2c;
     background-color: #e6e6e6;
@@ -463,7 +478,7 @@ a, a:hover, a:active{transition: all 0.2s ease-in;}
 }
 .dashlinks:hover{
   /*transform: scale(1.1);*/
-  border-color: rgba(0,0,0,0.5);
+  /*border-color: rgba(0,0,0,0.5);*/
 }
 .dashlinks span{display:block; margin-top: 10px;}
 .dashlinks img{height:65px;}

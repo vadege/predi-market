@@ -1,41 +1,47 @@
 template(name="Dashboard")
   div
     div.container-fluid
-    //  div.col-sm-12.col-md-12.form-group
-        input.form-control(type="text" placeholder="Search...")
-      div.row
-        div.col-sm-3
+      div.col-sm-12.col-md-12.form-group
+        input.form-control.search(type="text" placeholder="Search...")
+      div.row.categoryDisplay
+        div.col-sm-4.col-md-3
           a.dashlinks#Trending(href="javascript:void(0)")
             span.linkicon
               img( alt="" src="/trending.svg")
             span Trending
-        div.col-sm-3
+        div.col-sm-4.col-md-3
           a.dashlinks(href="javascript:void(0)" id="New Arrivals")
             span.linkicon
               img( alt="" src="/new-arrival.svg")
             span New Arrivals
-        div.col-sm-3
+        div.col-sm-4.col-md-3
           a.dashlinks#Power(href="javascript:void(0)")
             span.linkicon
               img( alt="" src="/power.svg")
             span Power
-        div.col-sm-3
+        div.col-sm-4.col-md-3
           a.dashlinks#Prophecies(href="javascript:void(0)")
             span.linkicon
               img( alt="" src="/prophecies.svg")
             span Prophecies
-        div.col-sm-3
+        div.col-sm-4.col-md-3
           a.dashlinks(href="javascript:void(0)" id="End Game")
             span.linkicon
               img( alt="" src="/end-game.svg")
             span End Game
-        div.col-sm-3
+        div.col-sm-4.col-md-3
           a.dashlinks#Magic(href="javascript:void(0)")
             span.linkicon
               img( alt="" src="/magic.svg")
             span Magic
-        div.col-sm-3
+        div.col-sm-4.col-md-3
           a.dashlinks#Houses(href="javascript:void(0)")
             span.linkicon
               img( alt="" src="/houses.svg")
             span Houses
+      div.row.findContract
+        label There are no contracts from your search
+      div.row.showContracts
+        each contract
+          div.col-sm-12.hint_div.go(data-id=market_id data-value=category)
+            span.col-sm-12.show_contract {{title}}

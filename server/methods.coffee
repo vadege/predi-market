@@ -546,6 +546,11 @@ Meteor.methods
     setter[lang] = {description: value}
     updateTranslation Contractsets, contractset_id, setter
 
+  findContract: (val) ->
+    value = Contractsets.find({title: new RegExp(val, 'i')}, {fields: {category: 1, market_id: 1, title: 1}}).fetch()
+    return value
+
+
   setContractsetLiquidity: (lang, value, contractset_id) ->
     checkAdmin @userId
     Contractsets.update {_id: contractset_id}, {$set: {liquidity: value}}

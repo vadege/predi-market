@@ -130,6 +130,9 @@ Template.Market.helpers
              set._id in contractsets_closing_soon and
              set._id in contractsets_matching_text_filters
 
+  category: ->
+    return category = Router.current().params.query.category
+
   hasOpenContracts: ->
     now = Date.now()
     market_id = Router.current().params._id
@@ -241,7 +244,7 @@ Template.Market.rendered = ->
   @autorun ->
     $(window).on 'popstate', ->
       Router.go '/dashboard'
-      
+
     order = Session.get 'order-details'
     market_id = Router.current().params._id
     unless order? and order.market_id is market_id

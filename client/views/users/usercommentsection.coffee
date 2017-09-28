@@ -178,6 +178,8 @@ Template.CommentSection.events
           $(".error").hide()
         ), 3000
       else
+        height = document.body.scrollHeight
+        window.scrollTo(0,height);
         Session.set 'commentsByPopularity', null
         Session.set 'commentsByDate', null
         $(".success").show()

@@ -126,6 +126,8 @@ Template.theoryCommentSection.events
         ), 3000
       else
         $('.comment').val("")
+        height = document.body.scrollHeight
+        window.scrollTo(0,height);
         val = Session.get 'Select'
         if val == 'date'
           Meteor.call 'showNewestComments', theoryId, (error, result) ->

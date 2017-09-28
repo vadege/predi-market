@@ -25,6 +25,7 @@ template(name='Market')
             input.custom-filter(id="filter-{{filter}}" type="checkbox" value=filter checked='{{filter_on filter}}')
             span #{label}
 
+    h2 {{category}}
 
     div.contractsetlist.row
       each Contractsets

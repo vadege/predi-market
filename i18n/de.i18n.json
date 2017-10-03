@@ -109,7 +109,7 @@
   "text_log_in_with": "Log in mit %s Konto",
   "text_marketplace": "Marktplatz",
   "text_net_worth": "Gesamt",
-  "text_no_contracts": "Dieser Markt hat zur Zeit keine Verträge zum handeln",
+  "text_no_contracts": "Dieser Kategorie hat zur Zeit keine Verträge zum handeln",
   "text_not_translated": "Hoppla! Wir haben vergessen diesen Text zu übersetzen? Bitte melden Sie uns dies.",
   "text_portfolio_worth": "Aktienwert",
   "text_ranking": "Rang",
@@ -122,5 +122,3 @@
   "welcome_admin_text": "Es sind keine Spieler und Daten definiert. Sie müssen einen Administrator kreieren. Bitte füllen Sie die Felder unten aus und kreieren den ersten Administrator.",
   "welcome_text": ""
 }
-
-

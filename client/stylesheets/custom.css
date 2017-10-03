@@ -507,11 +507,9 @@ a, a:hover, a:active{transition: all 0.2s ease-in;}
     border: 0;
 }
 .dropdown-menu {
-    width: 97%;
+    width: 100%;
     position: absolute;
-    top: 100%;
-    margin-top: 10px;
-    left: 15px;
+    top: 100px;
     z-index: 1000;
     display: none;
     float: left;

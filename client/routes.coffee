@@ -60,7 +60,7 @@ Router.route '/dashboard', ->
   @render 'Dashboard'
 , {waitOn: ->
      if Meteor?.userId()
-       cols = ['Pages', 'Markets']
+       cols = ['Pages', 'Markets', 'Contractsets', 'Contracts', 'Images', 'Filters', 'ContractsHints', 'HintsLikeDisLike', 'ReplyLikeDislike', 'Comments']
        _.map cols, (col) ->
          TAPi18n.subscribe col
   }

@@ -547,7 +547,7 @@ Meteor.methods
     updateTranslation Contractsets, contractset_id, setter
 
   findContract: (val) ->
-    value = Contractsets.find({title: new RegExp(val, 'i')}, {fields: {category: 1, market_id: 1, title: 1}}).fetch()
+    value = Contractsets.find({title: new RegExp(val, 'i')}).fetch()
     return value
 
 

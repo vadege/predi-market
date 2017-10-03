@@ -22,10 +22,10 @@ template(name='Market')
           input#filter_closing_soon(type="checkbox" checked='#{closing_soon_filter_on}')
           span {{_ "text_filter_closing_soon"}}
 
-        each Filters
-          label(for="filter-{{filter}}")
-            input.custom-filter(id="filter-{{filter}}" type="checkbox" value=filter checked='{{filter_on filter}}')
-            span #{label}
+      each Filters
+        label(for="filter-{{filter}}")
+          input.custom-filter(id="filter-{{filter}}" type="checkbox" value=filter checked='{{filter_on filter}}')
+          span #{label}
 
 
     div.contractsetlist.row

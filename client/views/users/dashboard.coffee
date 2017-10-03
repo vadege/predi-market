@@ -9,25 +9,17 @@ Template.Dashboard.events
     Session.set 'category', id
     Router.go '/markets'
 
-  'keypress .search': (evt, tmpl) ->
-    if evt.which == 13
-      val = $('.search').val()
-      if val == ""
-        $('.findContract').hide()
-        $('.categoryDisplay').show()
-        $('.showContracts').hide()
-      else
-        Meteor.call 'findContract', val, (error, result) ->
-            if error
-              console.log error
-            else
-              if result.length > 0
-                $('.categoryDisplay').hide()
-                $('.showContracts').show()
-                Session.set 'contracts', result
-              else
-                $('.categoryDisplay').hide()
-                $('.findContract').show()
+  'keyup .search': (evt, tmpl) ->
+    val = $('.search').val()
+    if val == ""
+      Session.set 'contracts', []
+    else
+      Meteor.call 'findContract', val, (error, result) ->
+          if error
+            console.log error
+          else
+            if result.length > 0
+              Session.set 'contracts', result
 
   'click .go': (evt, tmpl) ->
     evt.preventDefault()
@@ -40,4 +32,8 @@ Template.Dashboard.events
 Template.Dashboard.helpers
 
   contract: ->
-    return Session.get 'contracts'
+    value = Session.get 'contracts'
+    if value.length > 0
+      return value
+    else
+      return

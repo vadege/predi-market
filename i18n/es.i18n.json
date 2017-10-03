@@ -1,4 +1,4 @@
-{  
+{
   "button_add_filter": "Añadir filtro de búsqueda",
   "button_add_market": "Añadir mercado",
   "button_add_page": "Añadir página",
@@ -109,7 +109,7 @@
   "text_log_in_with": "Iniciar sesión con la cuenta %s",
   "text_marketplace": "Mercado",
   "text_net_worth": "Valor neto",
-  "text_no_contracts": "Este mercado no dispone de contratos apra intercambiar por el momento",
+  "text_no_contracts": "Este categoría no dispone de contratos apra intercambiar por el momento",
   "text_not_translated": "Oops! Parece que olvidamos traducir este texto. Por favor, haznoslo saber",
   "text_portfolio_worth": "Valor de la acción",
   "text_ranking": "Posición",

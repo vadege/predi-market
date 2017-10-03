@@ -40,7 +40,7 @@ Template.Market.helpers
     contracts = Contracts.find({market_id: market_id}).fetch()
     contractsets = Contractsets.find(
         $and: [{market_id: market_id},
-               {category: category},
+               {category: category}
                {launchtime: {$lte: now}},
                {settletime: {$gte: now}}]
       ,
@@ -135,10 +135,13 @@ Template.Market.helpers
 
   hasOpenContracts: ->
     now = Date.now()
+    category = Router.current().params.query.category
     market_id = Router.current().params._id
     Contractsets.find(
       $and: [{market_id: market_id},
+              {category: category},
              {active: true},
+             {category: category}
              {launchtime: {$lte: now}},
              {settletime: {$gte: now}}]
     ).count() > 0

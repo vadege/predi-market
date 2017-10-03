@@ -329,7 +329,7 @@
   margin-top: 10px;
   margin-bottom: 15px;
   display: none;
-  margin-left: 430px;
+  margin-left: 390px;
 }
 .cancel_hint {
   width: 20%;
@@ -509,7 +509,7 @@ a, a:hover, a:active{transition: all 0.2s ease-in;}
 .dropdown-menu {
     width: 100%;
     position: absolute;
-    top: 100px;
+    top: 100%;
     z-index: 1000;
     display: none;
     float: left;

@@ -241,6 +241,53 @@ Template.CommentSection.events
     id = $(evt.currentTarget).data("id")
     $(".error_reply#"+id).hide()
 
+  'keypress .reply': (evt, tmpl) ->
+    if evt.keyCode ==13
+      reply = evt.currentTarget.value
+      id = $(evt.currentTarget).data("id")
+      hint_id = Router.current().params._id
+      if reply == ""
+        $(".error_reply#"+id).show()
+        Meteor.setTimeout (->
+          $(".error_reply#"+id).hide()
+        ), 3000
+        return
+      Meteor.call 'addReplyToComment', id, reply, (error, result) ->
+        if error
+          $(".error_reply#"+id).show()
+          Meteor.setTimeout (->
+            $(".error_reply#"+id).hide()
+          ), 3000
+        else
+          $(".reply").hide()
+          $(".submit_reply").hide()
+          $('.cancel_hint').hide()
+          val = Session.get 'Select'
+          if val == "popular"
+            Meteor.call 'showCommentsByPopularity', hint_id, (error, result) ->
+              if error
+                console.log(error)
+              else
+                Session.set 'commentsByDate', null
+                Session.set 'commentsByPopularity', result
+          else if val == "date"
+            Meteor.call 'showCommentsByDate', hint_id, (error, result) ->
+              if error
+                console.log(error)
+              else
+                Session.set 'commentsByPopularity', null
+                Session.set 'commentsByDate', result
+          else
+            Session.set 'commentsByPopularity', null
+            Session.set 'commentsByDate', null
+          $(".reply#"+id).hide()
+          $(".reply").val("")
+          $(".submit_reply#"+id).hide()
+          $(".success_reply#"+id).show()
+          Meteor.setTimeout (->
+            $(".success_reply#"+id).hide()
+          ), 3000
+
   'click .submit_reply': (evt, tmpl) ->
     hint_id = Router.current().params._id
     id = $(evt.currentTarget).data("id")

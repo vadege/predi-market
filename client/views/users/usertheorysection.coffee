@@ -170,6 +170,48 @@ Template.theoryCommentSection.events
     evt.preventDefault()
     $('.error_new').hide()
 
+  'keypress .reply': (evt, tmpl) ->
+    if evt.keyCode ==13
+      reply = evt.currentTarget.value
+      id = $(evt.currentTarget).attr("data-id")
+      theoryId = Router.current().params._id
+      if reply == ""
+        $('.error_new#'+id).show()
+        Meteor.setTimeout (->
+          $('.error_new#'+id).hide()
+        ), 2000
+        return
+      Meteor.call 'addReplyToCommentTheory', id, reply, (error, result) ->
+        if error
+          $(".error_reply#"+id).show()
+          Meteor.setTimeout (->
+            $(".error_reply#"+id).hide()
+          ), 3000
+        else
+          $(".reply").hide()
+          $(".submit_reply").hide()
+          $(".reply").val("")
+          $(".submit_reply#"+id).hide()
+          $('.cancel').hide()
+          val = Session.get 'Select'
+          if val == 'date'
+            Meteor.call 'showNewestComments', theoryId, (error, result) ->
+              if error
+                Error.throw error
+              else
+                Session.set 'newestTheoryComments', result
+                Session.set 'popularTheoryComments', null
+          else if val == "popular"
+            Meteor.call 'showPopularComments', theoryId, (error, result) ->
+              if error
+                Error.throw error
+              else
+                Session.set 'newestTheoryComments', null
+                Session.set 'popularTheoryComments', result
+          else
+            Session.set 'newestTheoryComments', null
+            Session.set 'popularTheoryComments', null
+
   'click .submit_reply': (evt, tmpl) ->
     id = $(evt.currentTarget).attr("data-id")
     reply = $('#input_'+id).val()

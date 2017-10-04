@@ -21,6 +21,36 @@
   cursor: pointer;
   font-size: 18px;
 }
+.share_button {
+  display: none;
+}
+.fa-facebook, .fa-twitter, .fa-envelope {
+  color: #fff;
+}
+.copy_clip {
+  width: 97%;
+  margin: 10px;
+}
+.fb {
+  background-color: #3b5998;
+  margin-bottom: 10px;
+  width: 5%;
+  margin-right: 160px;
+}
+.tw, .mail {
+  margin-bottom: 10px;
+  width: 5%;
+  margin-right: 5px;
+}
+.tw {
+  background-color: #0084b4;
+}
+.mail {
+  background-color: #c71610;
+}
+.share {
+  margin-left: 470px;
+}
 .fa-check-square:hover {
   color: #ff3333;
 }
@@ -548,6 +578,34 @@ transform-origin:0 0 !important;
 @media screen and (max-width: 1000px) {
   .div-header {display: none;}
 }
+@media only screen and (min-device-width : 768px) and (max-device-width : 1020px) {
+  .share {
+    margin-left: 300px;
+  }
+  .fb {
+    margin-bottom: 10px;
+    width: 7%;
+    margin-right: 150px;
+  }
+  .tw, .mail {
+    margin-bottom: 10px;
+    width: 7%;
+    margin-right: 5px;
+  }
+}
+@media screen and (max-width: 320px) {
+  .share {
+    margin-left: 100px !important;
+    margin-bottom: 5px;
+  }
+  .fb {
+    width: 15% !important;
+    margin-right: 10px !important;
+    }
+  .tw, .mail {
+    width: 15% !important;
+  }
+}
 @media screen and (max-width: 767px) {
     .reply_click {
         margin-left: 0px;
@@ -593,6 +651,16 @@ transform-origin:0 0 !important;
       width: 30%;
       margin-bottom: 10px;
       margin-right: 10px;
+    }
+    .share {
+      margin-left: -5px;
+    }
+    .fb {
+      width: 12%;
+      margin-right: 180px;
+      }
+    .tw, .mail {
+      width: 12%;
     }
     .info-box {
       position: absolute;

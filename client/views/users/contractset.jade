@@ -52,6 +52,11 @@ template(name='Contractset')
             tr
               +ContractSnippet
       div.panel-footer.clearfix
+        button.btn.btn-primary.pull-left.share(data-id ="#{_id}" data-value="http://localhost:3003/contract/#{_id}")
+          i.fa.fa-share
+          span {{_ 'Share Contract'}}
         button.btn.btn-primary.start-trade.pull-right
           i.fa.fa-exchange
           span {{_ 'button_change_prices'}}
+      div.success.alert.alert-success.copy_clip(id="display_#{_id}")
+       label Link copied to Clipboard

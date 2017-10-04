@@ -20,8 +20,13 @@ do_trade = ->
 
 Template.Contractset.helpers
   Contracts: ->
-    Contracts.find {$and: [{set_id: @_id}
-                           {mirror: {$not: true}}]}
+    if @_id
+      Contracts.find {$and: [{set_id: @_id}
+                             {mirror: {$not: true}}]}
+    else
+      id = Router.current().params._id
+      Contracts.find {$and: [{set_id: id}
+                             {mirror: {$not: true}}]}
 
   hint: ->
     likes = HintsLikeDisLike.find({},{sort: {likes: -1}}).fetch()
@@ -127,6 +132,17 @@ Template.Contractset.events
     Session.set 'category', category
     Session.set 'buttonId', id
     Router.go('/hint')
+
+  'click .share': (evt, tmpl) ->
+    evt.preventDefault()
+    id = $(evt.currentTarget).attr("data-id")
+    new Clipboard('.share', text: (trigger) ->
+      return trigger.getAttribute('data-value')
+    )
+    $("#display_"+id).show()
+    Meteor.setTimeout (->
+      $("#display_"+id).hide()
+    ), 2000
 
 Template.Contractset.rendered = ->
   ga('send', 'event', 'Contract', 'read')

@@ -40,6 +40,7 @@ Template.Market.helpers
     contracts = Contracts.find({market_id: market_id}).fetch()
     contractsets = Contractsets.find(
         $and: [{market_id: market_id},
+               {category: category},
                {launchtime: {$lte: now}},
                {settletime: {$gte: now}}]
       ,

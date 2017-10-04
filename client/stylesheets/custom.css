@@ -21,6 +21,9 @@
   cursor: pointer;
   font-size: 18px;
 }
+.fa-check-square:hover {
+  color: #ff3333;
+}
 .label_category {
   margin-left: -15px;
 }
@@ -178,6 +181,7 @@
 }
 .back {
   margin-top: 10px;
+  margin-left: 10px;
 }
 .save_comment {
   margin: 10px;

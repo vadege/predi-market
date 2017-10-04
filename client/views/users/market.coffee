@@ -1,25 +1,25 @@
 # Copyright 2015 Kjetil Thuen
 # Distributed under the GPLv3
 
-set_contract_filter_text = (id, evt) ->
+set_contract_filter_text = (category, evt) ->
   value_element = evt.currentTarget
   value = value_element?.value
   filter = Session.get('contract-filter') or {}
 
-  unless filter[id]
-    filter[id] = {}
+  unless filter[category]
+    filter[category] = {}
 
-  unless filter[id].custom?
-    filter[id].custom = []
+  unless filter[category].custom?
+    filter[category].custom = []
 
   if evt?.target?.className is "custom-filter"
     if evt?.target?.checked
-      filter[id].custom = _.union filter[id].custom, value
+      filter[category].custom = _.union filter[category].custom, value
     else
-      filter[id].custom = _.without filter[id].custom, value
+      filter[category].custom = _.without filter[category].custom, value
   else
     if (value_element)
-      filter[id].text = value
+      filter[category].text = value
 
   Session.set 'contract-filter', filter
 
@@ -40,7 +40,6 @@ Template.Market.helpers
     contracts = Contracts.find({market_id: market_id}).fetch()
     contractsets = Contractsets.find(
         $and: [{market_id: market_id},
-               {category: category}
                {launchtime: {$lte: now}},
                {settletime: {$gte: now}}]
       ,
@@ -49,13 +48,7 @@ Template.Market.helpers
           settletime: -1
     ).fetch()
 
-    contract_display = Session.get 'contractsets_display'
-    if contractsets.length < 6 || contract_display
-      return contractsets
-    else
-      return contractsets.splice(0,5)
-
-    filter = Session.get('contract-filter')?[market_id]
+    filter = Session.get('contract-filter')?[category]
 
     filter_texts = _.union (filter?.text or "").split(' '), filter?.custom
     lower_case_filter_texts = _.chain filter_texts
@@ -64,8 +57,8 @@ Template.Market.helpers
       .map (text) ->
         text.toLowerCase()
       .value()
-    filter_portfolio_only = Session.get('contract-filter')?[market_id]?.portfolio_only
-    filter_closing_soon = Session.get('contract-filter')?[market_id]?.closing_soon
+    filter_portfolio_only = Session.get('contract-filter')?[category]?.portfolio_only
+    # filter_closing_soon = Session.get('contract-filter')?[category]?.closing_soon
 
     all_contractset_ids = _.map contractsets, (set) ->
       return set._id
@@ -82,14 +75,13 @@ Template.Market.helpers
           return contract.set_id
         .uniq()
         .value()
-
-    if filter_closing_soon
-      contractsets_closing_soon = _.chain contractsets
-        .filter (set) ->
-          return moment(set.settletime).subtract(4, 'days').valueOf() < Date.now()
-        .map (set) ->
-          return set._id
-        .value()
+    # if filter_closing_soon
+    #   contractsets_closing_soon = _.chain contractsets
+    #     .filter (set) ->
+    #       return moment(set.settletime).subtract(4, 'days').valueOf() < Date.now()
+    #     .map (set) ->
+    #       return set._id
+    #     .value()
 
     if lower_case_filter_texts.length > 0
       matching_contracts = _.reduce lower_case_filter_texts, (memo, word) ->
@@ -192,13 +184,13 @@ Template.Market.helpers
 Template.Market.events
   'keyup .filtertext': (evt, tmpl) ->
     evt.stopPropagation()
-    market_id = Router.current().params._id
-    set_contract_filter_text market_id, evt
+    category = Router.current().params.query.category
+    set_contract_filter_text category, evt
 
   'change .filtertext': (evt, tmpl) ->
     evt.stopPropagation()
-    market_id = Router.current().params._id
-    set_contract_filter_text market_id, evt
+    category = Router.current().params.query.category
+    set_contract_filter_text category, evt
 
   'change #filter_closing_soon': (evt, tmpl) ->
     evt.stopPropagation()
@@ -213,13 +205,14 @@ Template.Market.events
 
   'change #filter_portfolio_only': (evt, tmpl) ->
     evt.stopPropagation()
-    market_id = Router.current().params._id
+    # market_id = Router.current().params._id
+    category = Router.current().params.query.category
     value_element = evt.currentTarget
     value = value_element?.checked
     filter = Session.get('contract-filter') or {}
-    unless filter[market_id]
-      filter[market_id] = {}
-    filter[market_id].portfolio_only = value
+    unless filter[category]
+      filter[category] = {}
+    filter[category].portfolio_only = value
     Session.set 'contract-filter', filter
 
   'change .custom-filter': (evt, tmpl) ->
@@ -244,6 +237,7 @@ Template.Market.events
 
 Template.Market.rendered = ->
   ga('send', 'event', 'Market', 'read')
+  Session.set 'contract-filter', {}
   @autorun ->
     $(window).on 'popstate', ->
       Router.go '/dashboard'

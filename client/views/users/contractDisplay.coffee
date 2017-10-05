@@ -20,44 +20,14 @@ Template.ContractDisplay.helpers
     Contracts.find {$and: [{set_id: contract_id}
                          {mirror: {$not: true}}]}
 
-  hint: ->
-      contract_id = Router.current().params._id
-      likes = HintsLikeDisLike.find({},{sort: {likes: -1}}).fetch()
-      value = Contracts.find({$and: [{set_id: contract_id}, {hints: {$exists: true}}]}, {fields: {hints: 1}}).fetch()
-      hintArrNew = []
-      k = 0
-      while k < likes.length
-        l = 0
-        while l < value.length
-          j = 0
-          hintArrContract = value[l].hints
-          while j < hintArrContract.length
-            hint = hintArrContract[j]
-            val = hintArrNew.indexOf hint
-            if hint.id == likes[k].hint_id
-              hint['count'] = likes[k].likes.length - likes[k].dislikes.length
-              if val == -1
-                hintArrNew.push(hint)
-                break
-            else
-              if val == -1
-                hintArrNew.push(hint)
-                break
-            j++
-          l++
-        k++
-      i = 0
-      hintArrUpdated = []
-      while i < hintArrNew.length
-        if hintArrNew[i]
-          hintArr = hintArrNew[i]
-          if hintArr.approved == true
-              hintArrUpdated.push(hintArrNew[i])
-        i++
-      hintArrUpdated = _.sortBy hintArrUpdated, 'count'
-      return hintArrUpdated.reverse()
-
-    # Image: ->
-    #   Images.findOne({_id: @image})
-
   filterUntranslatedText: GlobalHelpers.filterUntranslated
+
+Template.ContractDisplay.events
+
+  'click .redirect': (evt, tmpl) ->
+    evt.preventDefault()
+    market_id = evt.currentTarget.id
+    category = evt.currentTarget.value
+    contract_id = Router.current().params._id
+    Session.set 'order-details', {'set_id': contract_id, 'market_id': market_id}
+    Router.go '/market/' + market_id + '?' + 'category=' + category

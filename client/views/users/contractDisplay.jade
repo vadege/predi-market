@@ -11,6 +11,6 @@ template(name="ContractDisplay")
           each Contracts
             tr
               +ContractSnippet
-        button.btn.btn-primary.start-trade.pull-right
+        button.btn.btn-primary.redirect.pull-right(id=market_id value=category)
           i.fa.fa-exchange
           span {{_ 'button_change_prices'}}

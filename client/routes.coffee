@@ -53,7 +53,11 @@ Router.route '/', ->
   if Meteor?.user()?.profile?.admin
     @redirect '/admin'
   else
-    @redirect '/dashboard'
+    if localStorage.getItem "route"
+      @redirect localStorage.getItem "route"
+      localStorage.removeItem "route"
+    else
+      @redirect '/dashboard'
 
 Router.route '/dashboard', ->
   @render 'Sidebar', {to: 'Sidebar'}

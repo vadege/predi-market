@@ -139,6 +139,7 @@ Template.Contractset.events
     new Clipboard('.share', text: (trigger) ->
       val = trigger.getAttribute('data-value')
       localStorage.setItem 'route', val
+      return val
     )
     $("#display_"+id).show()
     Meteor.setTimeout (->

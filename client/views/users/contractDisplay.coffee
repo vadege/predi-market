@@ -22,6 +22,12 @@ Template.ContractDisplay.helpers
 
   filterUntranslatedText: GlobalHelpers.filterUntranslated
 
+  checkCategory: (category) ->
+    if category.length > 1
+      return category[0]
+    else
+      return category
+
 Template.ContractDisplay.events
 
   'click .redirect': (evt, tmpl) ->

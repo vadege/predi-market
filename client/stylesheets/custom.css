@@ -37,6 +37,9 @@
   width: 5%;
   margin-right: 160px;
 }
+#goToMarket {
+  margin: 10px;
+}
 .tw, .mail {
   margin-bottom: 10px;
   width: 5%;

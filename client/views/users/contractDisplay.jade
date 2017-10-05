@@ -1,0 +1,16 @@
+template(name="ContractDisplay")
+  each Contractset
+    div.panel.contractset(id="contractset-#{_id}")
+      div.panel-heading
+        h3.title
+          span {{filterUntranslatedText title}}
+      div.panel-body
+        div.chart(id='chart_container_#{_id}')
+          +ActivitiesChart set_id=_id
+        table.contractsnippets
+          each Contracts
+            tr
+              +ContractSnippet
+        button.btn.btn-primary.start-trade.pull-right
+          i.fa.fa-exchange
+          span {{_ 'button_change_prices'}}

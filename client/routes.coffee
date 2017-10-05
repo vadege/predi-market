@@ -137,7 +137,7 @@ Router.route '/theory/:_id', ->
 
 Router.route '/contract/:_id', ->
   @render 'Sidebar', {to: 'Sidebar'}
-  @render 'Contractset'
+  @render 'ContractDisplay'
 , {waitOn: ->
      if Meteor?.userId()
        cols = ['Pages', 'Markets', 'Contractsets', 'Contracts', 'Images', 'Filters', 'ContractsHints', 'HintsLikeDisLike', 'ReplyLikeDislike', 'Comments']

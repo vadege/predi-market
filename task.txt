@@ -1,9 +1,0 @@
-Another one for your task list:
-can you add notifications if any user comments/replies to any theory and hint?
-Info for email:
-Subject: New Interaction
-Text: New Comment/Reply:
-Username
-Theory AND linkHint
-& Contract AND link
-Comment/Reply Text

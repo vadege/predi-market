@@ -9,10 +9,10 @@ Template.AddCategory.events
         console.log error
       true
 
-  'click .dropdown': (evt, tmpl) ->
-    evt.preventDefault()
-    id = evt.currentTarget.id
-    $('#'+id).toggleClass("show")
+  # 'click .dropdown': (evt, tmpl) ->
+  #   evt.preventDefault()
+  #   id = evt.currentTarget.id
+  #   $('#'+id).toggleClass("show")
 
   'click .fa-check-square': (evt, tmpl) ->
     evt.preventDefault()

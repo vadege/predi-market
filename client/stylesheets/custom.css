@@ -52,7 +52,8 @@
   background-color: #c71610;
 }
 .share {
-  margin-left: 470px;
+  width: 130px;
+  text-align: -webkit-center;
 }
 .fa-check-square:hover {
   color: #ff3333;
@@ -467,8 +468,6 @@
 
 .logout-class:hover .dropdown-menu {
     display: block;
-    margin-top: 0;
-    margin-left: -50px;
 }
 .count {
   font-size: 20px;
@@ -530,6 +529,9 @@ a, a:hover, a:active{transition: all 0.2s ease-in;}
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+.display_dropdown {
+  top: 100px !important;
 }
 .dropdown-item {
     display: block;

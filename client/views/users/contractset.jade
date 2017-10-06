@@ -47,14 +47,14 @@ template(name='Contractset')
             img.contractset-image(src="{{url store='images'}}")
           +markdown
             {{filterUntranslatedText description}}
+        button.btn.btn-primary.pull-right.share(data-id ="#{_id}" data-value="http://localhost:3003/contract/#{_id}")
+          i.fa.fa-share
+          span {{_ 'Share'}}
         table.contractsnippets
           each Contracts
             tr
               +ContractSnippet
       div.panel-footer.clearfix
-        button.btn.btn-primary.pull-left.share(data-id ="#{_id}" data-value="http://localhost:3003/contract/#{_id}")
-          i.fa.fa-share
-          span {{_ 'Share Contract'}}
         button.btn.btn-primary.start-trade.pull-right
           i.fa.fa-exchange
           span {{_ 'button_change_prices'}}

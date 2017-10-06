@@ -16,7 +16,7 @@
   background-color: #fff;
   border: 1px solid #ccc !important;
 }
-.fa-check-square {
+.fa-check-square, .fa-times {
   text-align: right;
   cursor: pointer;
   font-size: 18px;
@@ -55,7 +55,7 @@
   width: 130px;
   text-align: -webkit-center;
 }
-.fa-check-square:hover {
+.fa-times:hover {
   color: #ff3333;
 }
 .label_category {

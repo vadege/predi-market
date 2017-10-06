@@ -11,28 +11,35 @@ template(name="AddCategory")
         div.row
           button.dropdown-item.col-sm-10(href="javascript:void(0)" value="End Game" data-id=_id) End Game
           if select 'End Game' category
-            i.fa.fa-check-square.col-sm-2(data-name="End Game" data-id="#{_id}")
+            span.selected(data-name="End Game" data-id="#{_id}")
+              i.fa.fa-check-square.col-sm-2.toggleClass(id='display_#{_id}')
         div.row
           button.col-sm-10.dropdown-item(href="javascript:void(0)" value="Houses" data-id=_id) Houses
           if select 'Houses' category
-            i.fa.fa-check-square.col-sm-2(data-name="Houses" data-id="#{_id}")
+            span.selected(data-name="Houses" data-id="#{_id}" id='1')
+              i.fa.fa-check-square.col-sm-2.toggleClass(id='toggle_1')
         div.row
           button.dropdown-item.col-sm-10(href="javascript:void(0)" value="Magic" data-id=_id) Magic
           if select 'Magic' category
-            i.fa.fa-check-square.col-sm-2(data-name="Magic" data-id="#{_id}")
+            span.selected(data-name="Magic" data-id="#{_id}" id='2')
+              i.fa.fa-check-square.col-sm-2.toggleClass(id='toggle_2')
         div.row
           button.dropdown-item.col-sm-10(href="javascript:void(0)" value="New Arrivals" data-id=_id) New Arrivals
           if select 'New Arrivals' category
-            i.fa.fa-check-square.col-sm-2(data-name="New Arrivals" data-id="#{_id}")
+            span.selected(data-name="New Arrivals" data-id="#{_id}" id='3')
+              i.fa.fa-check-square.col-sm-2.toggleClass(id='toggle_3')
         div.row
           button.col-sm-10.dropdown-item(href="javascript:void(0)" value="Power" data-id=_id) Power
           if select 'Power' category
-            i.fa.fa-check-square.col-sm-2(data-name="Power" data-id="#{_id}")
+            span.selected(data-name="Power" data-id="#{_id}" id='4')
+              i.fa.fa-check-square.col-sm-2.toggleClass(id='toggle_4')
         div.row
           button.col-sm-10.dropdown-item(href="javascript:void(0)" value="Prophecies" data-id=_id) Prophecies
           if select 'Prophecies' category
-            i.fa.fa-check-square.col-sm-2(data-name="Prophecies" data-id="#{_id}")
+            span.selected(data-name="Prophecies" data-id="#{_id}" id='5')
+              i.fa.fa-check-square.col-sm-2.toggleClass(id='toggle_5')
         div.row
           button.col-sm-10.dropdown-item(href="javascript:void(0)" value="Trending" data-id=_id) Trending
           if select 'Trending' category
-            i.fa.fa-check-square.col-sm-2(data-name="Trending" data-id="#{_id}")
+            span.selected(data-name="Trending" data-id="#{_id}" id='6')
+              i.fa.fa-check-square.col-sm-2.toggleClass(id='toggle_6')

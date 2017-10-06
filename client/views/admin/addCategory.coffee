@@ -9,12 +9,19 @@ Template.AddCategory.events
         console.log error
       true
 
-  # 'click .dropdown': (evt, tmpl) ->
-  #   evt.preventDefault()
-  #   id = evt.currentTarget.id
-  #   $('#'+id).toggleClass("show")
+  'mouseenter .selected': (evt, tmpl) ->
+    evt.preventDefault()
+    id = evt.currentTarget.id
+    $('#toggle_'+id).removeClass('fa-check-square')
+    $('#toggle_'+id).addClass('fa fa-times')
 
-  'click .fa-check-square': (evt, tmpl) ->
+  'mouseleave .selected': (evt, tmpl) ->
+    evt.preventDefault()
+    id = evt.currentTarget.id
+    $('#toggle_'+id).removeClass('fa-times')
+    $('#toggle_'+id).addClass('fa-check-square')
+
+  'click .selected': (evt, tmpl) ->
     evt.preventDefault()
     id = $(evt.currentTarget).data("id")
     val = $(evt.currentTarget).data("name")

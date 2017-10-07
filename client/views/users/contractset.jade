@@ -40,6 +40,9 @@ template(name='Contractset')
           if isHot
             i.pull-right.fa.fa-fire
           span {{filterUntranslatedText title}}
+          button.btn.btn-primary.pull-right.share(data-id ="#{_id}" data-value="http://localhost:3003/contract/#{_id}")
+            i.fa.fa-share
+            span {{_ 'Share Contract'}}
       div.panel-body
         div.info.clearfix
           with Image
@@ -47,9 +50,6 @@ template(name='Contractset')
             img.contractset-image(src="{{url store='images'}}")
           +markdown
             {{filterUntranslatedText description}}
-        button.btn.btn-primary.pull-right.share(data-id ="#{_id}" data-value="http://localhost:3003/contract/#{_id}")
-          i.fa.fa-share
-          span {{_ 'Share'}}
         table.contractsnippets
           each Contracts
             tr

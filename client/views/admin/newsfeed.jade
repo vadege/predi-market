@@ -1,0 +1,26 @@
+template(name="NewsFeed")
+  div.dropdown.logout-class
+    button.btn.btn-primary.dropdown-toggle(type="button" data-toggle="dropdown") Select Type
+      span.caret
+    ul.dropdown-menu
+      div.row
+        button.dropdown-item.col-sm-10(value="contract") Contract
+      div.row
+        button.dropdown-item.col-sm-10(value="facebook") Facebook
+      div.row
+        button.dropdown-item.col-sm-10(value="hint") Hint
+      div.row
+        button.dropdown-item.col-sm-10(value="twitter Post") Twitter Post
+      div.row
+        button.dropdown-item.col-sm-10(value="youtube Post") Youtube Post
+  if contract
+    div.row.display
+      input.form-control.col-sm-12(type="text" placeholder="Set Contract id...")
+  if hint
+    span Hint
+    input.hint.form-control(type="text" name="hint")
+    span Hint Description
+    input.hint_val.get.form-control(type="text" name="desc")
+  if facebook
+    div.display
+    input.form-control.col-sm-12(type="text" placeholder="Enter post link...")

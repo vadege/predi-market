@@ -45,6 +45,9 @@ Template.AdminMain.helpers
   editTheory: ->
     Session.get('admin_section') is 'editTheory'
 
+  newsFeed: ->
+    Session.get('admin_section') is 'newsFeed'
+
   logOptions: ->
     # handle: activitiesHandle
 

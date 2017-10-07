@@ -928,15 +928,26 @@ Meteor.methods
     contractsetid = []
     while i < filtercategory.length
       val = filtercategory[i].value
-      if contractsetid.indexOf (val.set_id) == -1
-        contractsetid.push(val.set_id)
+      valId = contractsetid.findIndex (d) ->
+        return d.id == val.set_id
+      if valId == -1
+        id = val.set_id
+        count = 1
+        obj = {id, count}
+        contractsetid.push(obj)
       else
-        i++
+        id = contractsetid.filter (d) ->
+          return d.id == val.set_id
+        id[0].count += 1
       i++
     j = 0
     while j < contractsetid.length
-      id = contractsetid[j]
-      Contractsets.update({_id: id}, {$addToSet: {category: "Trending"}})
+      val = contractsetid[j]
+      id = val.id
+      if val.count == 3
+        Contractsets.update({_id: id}, {$addToSet: {category: "Trending"}})
+      else
+        j++
       j++
 
   newArrivals: () ->

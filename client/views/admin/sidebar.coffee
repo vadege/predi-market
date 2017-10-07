@@ -16,6 +16,8 @@ Template.AdminSidebar.events
     Session.set 'admin_section', "hints"
   'click #go_comments': ->
     Session.set 'admin_section', "comments"
+  'click #go_newsFeed': ->
+    Session.set 'admin_section', "newsFeed"
 
   'click #go_theories': (evt, tmpl) ->
     Session.set 'admin_section', "theories"

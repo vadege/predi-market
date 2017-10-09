@@ -1,4 +1,6 @@
 template(name="NewsFeed")
+  div.success.alert.alert-success
+   label Your link has been saved successfully
   div.dropdown.logout-class
     button.btn.btn-primary.dropdown-toggle(type="button" data-toggle="dropdown") Select Type
       span.caret
@@ -10,17 +12,30 @@ template(name="NewsFeed")
       div.row
         button.dropdown-item.col-sm-10(value="hint") Hint
       div.row
+        button.dropdown-item.col-sm-10(value="instagram Post") Instagram Post
+      div.row
         button.dropdown-item.col-sm-10(value="twitter Post") Twitter Post
       div.row
         button.dropdown-item.col-sm-10(value="youtube Post") Youtube Post
   if contract
     div.row.display
-      input.form-control.col-sm-12(type="text" placeholder="Set Contract id...")
+      input.form-control.col-sm-12.val(type="text" placeholder="Set Contract Title...")
   if hint
     span Hint
     input.hint.form-control(type="text" name="hint")
     span Hint Description
     input.hint_val.get.form-control(type="text" name="desc")
   if facebook
-    div.display
-    input.form-control.col-sm-12(type="text" placeholder="Enter post link...")
+    div.display.row
+      input.form-control.col-sm-12.val(type="text" placeholder="Enter post link...")
+  if instagram
+    div.display.row
+      input.form-control.col-sm-12.val(type="text" placeholder="Enter post link...")
+  if twitter
+    div.display.row
+      input.form-control.col-sm-12.val(type="text" placeholder="Enter post link...")
+  if youtube
+    div.display.row
+      input.form-control.col-sm-12.val(type="text" placeholder="Enter post link...")
+  button.btn.btn-success.pull-right.display.submit(type="button")
+    i.fa.fa-paper-plane {{_ " Submit"}}

@@ -13,7 +13,8 @@
 @ReplyLikeDislike = new Meteor.Collection "ReplyLikeDislike"
 @Theories = new Meteor.Collection "Theories"
 @TheoriesComment = new Meteor.Collection "TheoriesComment"
-@TheoriesReplyLikes = new Meteor.Collection "TheoriesReplyLikes" 
+@TheoriesReplyLikes = new Meteor.Collection "TheoriesReplyLikes"
+@NewsFeed = new Meteor.Collection "NewsFeed"
 @Images = new FS.Collection "images",
   stores: [new FS.Store.FileSystem "images", {
     path: "~/images"

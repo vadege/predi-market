@@ -9,6 +9,20 @@
   margin-right: 582px;
   margin-top: 10px;
 }
+.border {
+  border: 0;
+}
+.news-border {
+  height: 500px !important;
+  overflow-y: scroll;
+  margin-top: -15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+.feed-border {
+  margin-left: -10px;
+  margin-top: 10px;
+}
 .btn-secondary {
   width: 100%;
   text-align: left;
@@ -505,7 +519,7 @@ img{max-height: 100%;}
 a, a:hover, a:active{transition: all 0.2s ease-in;}
 .bg-dark{background: url(/body_bg.jpg) no-repeat center top fixed; background-size: cover; color: #fff;}
 .dashlinks{
-  padding:25px;
+  padding:25px 20px;
   display: block;
   text-align: center;
   font-size: 16px;

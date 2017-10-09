@@ -21,8 +21,7 @@ Template.Login.events
 
   'click #forgot_pass': (evt, tmpl) ->
     evt.stopPropagation()
-    value = $(".login-username").val()
-    username = value.toLowerCase()
+    username = $(".login-username").val()
     if username
       unless Meteor.status().connected
         Meteor.reconnect()
@@ -40,9 +39,8 @@ Template.Login.events
 
   'click #log_in': (evt, tmpl) ->
     evt.stopPropagation()
-    value = $(".login-username").val()
+    username = $(".login-username").val()
     password = $(".login-password").val()
-    username = value.toLowerCase()
     if username and password
       unless Meteor.status().connected
         Meteor.reconnect()

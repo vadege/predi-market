@@ -1,0 +1,15 @@
+template(name="NewsDisplay")
+  div.row.news-border
+    each newsFeed
+        if displayType type contract
+          div.col-sm-12.feed-border
+            h3 {{contractset link}}
+        if insta type 'instagram Post'
+          div.col-sm-12.feed-border
+            iframe.border(width="100%" src="{{link}}embed")
+        if twitter type 'twitter Post'
+          div.col-sm-12.feed-border
+            iframe.border(width="100%" src="http://twitframe.com/show?url={{link}}")
+        if facebook type facebook
+          div.col-sm-12.feed-border
+            iframe.border(width="100%" src="{{link}}")

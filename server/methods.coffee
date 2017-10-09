@@ -55,6 +55,15 @@ Meteor.methods
     updateTranslation Filters, filter_id, setter
     filter_id
 
+  addLinkToFeed: (type, link) ->
+    checkAdmin @userId
+    NewsFeed.insert({
+      type: type,
+      link: link,
+      added: Date.now(),
+      active: true
+      })
+
   addHint: (parent_id) ->
     checkAdmin @userId
     value = {
@@ -547,7 +556,7 @@ Meteor.methods
     updateTranslation Contractsets, contractset_id, setter
 
   findContract: (val) ->
-    value = Contractsets.find({title: new RegExp(val, 'i')}).fetch()
+    value = Contractsets.find({$and: [{title: new RegExp(val, 'i')}, {active: true}]}).fetch()
     return value
 
 

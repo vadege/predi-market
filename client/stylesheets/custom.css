@@ -9,8 +9,13 @@
   margin-right: 582px;
   margin-top: 10px;
 }
-.border {
-  border: 0;
+.redirect {
+  margin-bottom: 10px;
+}
+.news-title {
+  font-size: 16px;
+  font-weight: 500;
+  text-align: justify;
 }
 .news-border {
   height: 500px !important;
@@ -20,6 +25,7 @@
   border-radius: 5px;
 }
 .feed-border {
+  margin-bottom: 10px;
   margin-left: -10px;
   margin-top: 10px;
 }
@@ -127,6 +133,7 @@
   margin-right: 55px;
 }
 .show_hint {
+  display: block;
   font-size: 20px;
   border: 1px solid #888;
   border-radius: 1ex;
@@ -337,7 +344,12 @@
 .font {
   font-weight: normal;
 }
+.price {
+  font-weight: bold;
+  font-size: 110%;
+}
 .border {
+  border: 0;
   border: 1px solid #ccc;
   margin-left: 12px;
   border-radius: 5px;

@@ -11,8 +11,14 @@ Template.NewsDisplay.helpers
     Meteor.call 'findContract', title, (error, result) ->
       if error
         console.log error
-      console.log result[0]
-      return result[0].title
+      else
+        Session.set 'result', result
+    if Session.get 'result'
+      return Session.get 'result'
+
+  Contracts: (id)->
+    Contracts.find {$and: [{set_id: id}
+                         {mirror: {$not: true}}]}
 
   insta: (type) ->
     if type == "instagram Post"
@@ -25,3 +31,19 @@ Template.NewsDisplay.helpers
   facebook: (type) ->
     if type == "facebook"
       return true
+
+  youtube: (type) ->
+    if type == "youtube Post"
+      return true
+
+  hint: (type) ->
+    if type == "hint"
+      return true
+
+  filterUntranslatedText: GlobalHelpers.filterUntranslated
+
+  checkCategory: (category) ->
+    if category.length > 1
+      return category[0]
+    else
+      return category

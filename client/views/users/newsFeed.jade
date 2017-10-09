@@ -2,14 +2,31 @@ template(name="NewsDisplay")
   div.row.news-border
     each newsFeed
         if displayType type contract
-          div.col-sm-12.feed-border
-            h3 {{contractset link}}
+          each contractset link
+            div.col-sm-11.border(id="contractset-#{_id}")
+              div
+                h3.title
+                  span {{filterUntranslatedText title}}
+              div
+                table.contractsnippets
+                  each Contracts _id
+                    tr
+                      +ContractSnippet
+                button.btn.btn-primary.redirect.pull-right(id=market_id value="{{checkCategory category}}")
+                  i.fa.fa-exchange
+                  span {{_ 'button_change_prices'}}
         if insta type 'instagram Post'
           div.col-sm-12.feed-border
-            iframe.border(width="100%" src="{{link}}embed")
+            iframe.border(height= "300" width="100%" src="{{link}}embed")
         if twitter type 'twitter Post'
           div.col-sm-12.feed-border
-            iframe.border(width="100%" src="http://twitframe.com/show?url={{link}}")
+            iframe.border(width="100%" height= "300" src="http://twitframe.com/show?url={{link}}")
         if facebook type facebook
           div.col-sm-12.feed-border
-            iframe.border(width="100%" src="{{link}}")
+            iframe.border(width="100%" height= "300" src="{{link}}")
+        if youtube type 'youtube Post'
+          div.col-sm-12.feed-border
+            iframe.border(width="100%" height= "300" src="{{link}}" allowfullscreen)
+        if hint type hint
+          div.col-sm-12.feed-border
+            span.show_hint.border {{link}}

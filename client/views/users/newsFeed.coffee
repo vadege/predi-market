@@ -12,7 +12,7 @@ Template.NewsDisplay.helpers
       if error
         console.log error
       else
-        Session.set 'result', result
+        Session.set 'result', result[0]
     if Session.get 'result'
       return Session.get 'result'
 
@@ -47,3 +47,32 @@ Template.NewsDisplay.helpers
       return category[0]
     else
       return category
+
+Template.NewsDisplay.events
+
+  'click .redirect': (evt, tmpl) ->
+    evt.preventDefault()
+    market_id = evt.currentTarget.id
+    category = evt.currentTarget.value
+    contract_id = $(evt.currentTarget).data("id")
+    Session.set 'order-details', {'set_id': contract_id, 'market_id': market_id}
+    Router.go '/market/' + market_id + '?' + 'category=' + category
+
+
+  'click #go': (evt, tmpl) ->
+    evt.preventDefault()
+    type = $(evt.currentTarget).data("name")
+    value = $(evt.currentTarget).data("value")
+    Meteor.call 'findHint', type, value, (error, result) ->
+      if error
+        console.log error
+      else
+        if type == "user theory"
+          id = result._id
+          Router.go '/theory/' + id
+        else
+          hints = result.hints
+          hint = hints.filter (d) ->
+            return d.hint == value
+          id = hint[0].id
+          Router.go '/hints/' +id

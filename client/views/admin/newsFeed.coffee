@@ -40,17 +40,46 @@ Template.NewsFeed.events
   'click .submit': (evt, tmpl) ->
     evt.preventDefault()
     link = $('.val').val()
+    if link == ""
+      $(".error").show()
+      Meteor.setTimeout (->
+        $(".error").hide()
+      ), 3000
     type = Session.get 'display'
-    console.log type, link
-    Meteor.call 'addLinkToFeed', type, link, (error, result) ->
-      if error
-        console.log error
-      else
-        $('.success').show()
-        Meteor.setTimeout (->
-          $(".success").hide()
-          Session.set 'admin_section', "markets"
-        ), 3000
+    if type == "hint"
+      link = Session.get 'hintVal'
+      typeofHint = $('.val').val()
+      Meteor.call 'addHintToFeed', link, type, typeofHint, (error, result) ->
+        if error
+          console.log error
+        else
+          $('.success').show()
+          Meteor.setTimeout (->
+            $(".success").hide()
+            Session.set 'admin_section', "markets"
+          ), 3000
+    else
+      Meteor.call 'addLinkToFeed', type, link, (error, result) ->
+        if error
+          console.log error
+        else
+          $('.success').show()
+          Meteor.setTimeout (->
+            $(".success").hide()
+            Session.set 'admin_section', "markets"
+          ), 3000
+
+  'blur .hint': (evt, tmpl) ->
+    evt.preventDefault()
+    value = $('.hint').val()
+    if value == ""
+      $(".error").show()
+      Meteor.setTimeout (->
+        $(".error").hide()
+      ), 3000
+    Session.set 'hintVal', value
+
+
 
 Template.NewsFeed.rendered = ->
   Session.set 'display', "contract"

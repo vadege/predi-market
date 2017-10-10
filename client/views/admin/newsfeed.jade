@@ -1,6 +1,8 @@
 template(name="NewsFeed")
   div.success.alert.alert-success
    label Your link has been saved successfully
+  div.error.alert.alert-warning
+   label Please fill the input field first
   div.dropdown.logout-class
     button.btn.btn-primary.dropdown-toggle(type="button" data-toggle="dropdown") Select Type
       span.caret
@@ -23,6 +25,8 @@ template(name="NewsFeed")
   if hint
     span Hint
     input.hint.form-control(type="text" name="hint title")
+    span Type
+    input.form-control.val(type="text" name="hint type")
   if facebook
     div.display.row
       input.form-control.col-sm-12.val(type="text" placeholder="Enter post link...")

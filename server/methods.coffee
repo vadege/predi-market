@@ -64,6 +64,16 @@ Meteor.methods
       active: true
       })
 
+  addHintToFeed: (link, type, typeofHint) ->
+    checkAdmin @userId
+    NewsFeed.insert({
+      type: type,
+      link: link,
+      typeofHint: typeofHint,
+      added: Date.now(),
+      active: true
+      })
+
   addHint: (parent_id) ->
     checkAdmin @userId
     value = {
@@ -559,6 +569,13 @@ Meteor.methods
     value = Contractsets.find({$and: [{title: new RegExp(val, 'i')}, {active: true}]}).fetch()
     return value
 
+  findHint: (type, value) ->
+    if type == "user theory"
+      value = Theories.findOne({title: new RegExp(value, 'i')})
+      return value
+    else
+      value = Contracts.findOne({"hints.hint": new RegExp(value, 'i')})
+      return value
 
   setContractsetLiquidity: (lang, value, contractset_id) ->
     checkAdmin @userId

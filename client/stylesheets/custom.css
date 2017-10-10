@@ -12,6 +12,9 @@
 .redirect {
   margin-bottom: 10px;
 }
+.fb-post {
+  margin-left: -20px !important;
+}
 .news-title {
   font-size: 16px;
   font-weight: 500;

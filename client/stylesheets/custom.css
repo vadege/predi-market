@@ -21,6 +21,7 @@
 }
 .feed-title {
   margin-left: -3px;
+  margin-bottom: 0;
   text-align: center;
   font-size: 30px;
   font-weight: 600;
@@ -639,7 +640,6 @@ transform-origin:0 0 !important;
 .g-recaptcha > * iframe{width:100%;}
 @media screen and (max-width: 1000px) {
   .div-header {display: none;}
-  .news-border {display: none;}
 }
 @media screen and (max-width: 767px) {
     .reply_click {

@@ -96,7 +96,7 @@ Router.route '/leaderboard/:_id', ->
   @render 'Leaderboard'
 , {name: 'leaderboard', waitOn: ->
      if Meteor?.userId()
-       cols = ['Pages', 'Markets', 'Contractsets', 'Contracts']
+       cols = ['Pages', 'Markets', 'Contractsets', 'Contracts', 'ContractsHints']
        _.map cols, (col) ->
          TAPi18n.subscribe col
   }
@@ -108,7 +108,7 @@ Router.route '/hints/:_id', ->
   @render 'CommentSection'
 , {waitOn: ->
      if Meteor?.userId()
-       cols = ['Pages', 'Markets', 'ContractsHints', 'HintsLikeDisLike', 'ReplyLikeDislike', 'Comments']
+       cols = ['Pages', 'Markets', 'Contractsets', 'ContractsHints', 'HintsLikeDisLike', 'ReplyLikeDislike', 'Comments', 'Contracts']
        _.map cols, (col) ->
          TAPi18n.subscribe col
   }
@@ -138,7 +138,7 @@ Router.route '/theory/:_id', ->
   @render 'theoryCommentSection'
 , {waitOn: ->
     if Meteor?.userId()
-      cols = ['Pages', 'Markets', 'Theories', 'TheoriesComment', 'TheoriesReplyLikes']
+      cols = ['Pages', 'Markets', 'Theories', 'TheoriesComment', 'TheoriesReplyLikes', 'Contractsets', 'ContractsHints']
       _.map cols, (col) ->
         TAPi18n.subscribe col
 }

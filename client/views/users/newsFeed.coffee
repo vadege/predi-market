@@ -83,9 +83,11 @@ Template.NewsDisplay.events
           id = result._id
           Router.go '/theory/' + id
         else
+          set_id = result.set_id
+          contractset = Contractsets.findOne({_id: set_id})
+          category = contractset.category[0]
+          Session.set 'category', category
           hints = result.hints
-          contractset = Contractsets.findOne({_id: result.set_id})
-          Session.set 'category', contractset.category[0]
           val = value.toLowerCase()
           hint = hints.filter (d) ->
             hintVal = d.hint.toLowerCase()

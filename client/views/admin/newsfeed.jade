@@ -19,6 +19,8 @@ template(name="NewsFeed")
         button.dropdown-item.col-sm-10(value="twitter Post") Twitter Post
       div.row
         button.dropdown-item.col-sm-10(value="youtube Post") Youtube Post
+      div.row
+        button.dropdown-item.col-sm-10(value="reddit Post") Reddit Post
   if contract
     div.row.display
       input.form-control.col-sm-12.val(type="text" placeholder="Set Contract Title...")
@@ -37,6 +39,9 @@ template(name="NewsFeed")
     div.display.row
       input.form-control.col-sm-12.val(type="text" placeholder="Enter post link...")
   if youtube
+    div.display.row
+      input.form-control.col-sm-12.val(type="text" placeholder="Enter post link...")
+  if reddit
     div.display.row
       input.form-control.col-sm-12.val(type="text" placeholder="Enter post link...")
   button.btn.btn-success.pull-right.display.submit(type="button")

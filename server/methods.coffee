@@ -571,11 +571,11 @@ Meteor.methods
 
   findHint: (type, value) ->
     if type == "user theory"
-      value = Theories.findOne({title: new RegExp(value, 'i')})
-      return value
+      theories = Theories.findOne({$and: [{title: new RegExp(value, 'i')}, {approved: true}]})
+      return theories
     else
-      value = Contracts.findOne({"hints.hint": new RegExp(value, 'i')})
-      return value
+      hints = Contracts.findOne({hints:{$elemMatch:{hint: new RegExp(value, 'i')}}})
+      return hints
 
   setContractsetLiquidity: (lang, value, contractset_id) ->
     checkAdmin @userId

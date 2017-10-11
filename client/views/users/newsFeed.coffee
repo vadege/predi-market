@@ -1,20 +1,26 @@
+Template.NewsDisplay.rendered = ->
+  Meteor.call 'findContract', "", (error, result) ->
+    if error
+      console.log error
+    else
+      Session.set 'contract', result
+
+
 Template.NewsDisplay.helpers
 
   newsFeed: ->
-    NewsFeed.find({}, {sort: {added: -1}}).fetch()
+    if Meteor.user().profile.admin == false
+      NewsFeed.find({}, {sort: {added: -1}}).fetch()
 
   displayType: (type) ->
     if type == "contract"
       return true
 
-  contractset: (title) ->
-    Meteor.call 'findContract', title, (error, result) ->
-      if error
-        console.log error
-      else
-        Session.set 'result', result[0]
-    if Session.get 'result'
-      return Session.get 'result'
+  contractset: (name) ->
+    contractarray = Session.get 'contract'
+    contract = contractarray.filter (d) ->
+      return d.title == name
+    return contract
 
   Contracts: (id)->
     Contracts.find {$and: [{set_id: id}
@@ -38,6 +44,10 @@ Template.NewsDisplay.helpers
 
   hint: (type) ->
     if type == "hint"
+      return true
+
+  reddit: (type) ->
+    if type == "reddit Post"
       return true
 
   filterUntranslatedText: GlobalHelpers.filterUntranslated
@@ -72,7 +82,9 @@ Template.NewsDisplay.events
           Router.go '/theory/' + id
         else
           hints = result.hints
+          val = value.toLowerCase()
           hint = hints.filter (d) ->
-            return d.hint == value
+            hintVal = d.hint.toLowerCase()
+            return hintVal == val && d.approved == true
           id = hint[0].id
           Router.go '/hints/' +id

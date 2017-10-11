@@ -169,6 +169,15 @@ Router.route '/hint/', ->
          TAPi18n.subscribe col
   }
 
+Router.route '/newsfeed', ->
+  @render 'Sidebar', {to: 'Sidebar'}
+  @render 'NewsDisplay'
+, {waitOn: ->
+    if Meteor?.user()
+      subs = _.map ['userData', 'Pages', 'Markets', 'Contractsets', 'Contracts', 'Images', 'Filters', 'Comments', 'Theories'], (col) ->
+        TAPi18n.subscribe col
+}
+
 Router.route '/admin', ->
   if not Meteor?.user()?.profile?.admin
     @redirect '/markets'

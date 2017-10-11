@@ -30,6 +30,11 @@ Template.NewsFeed.helpers
     if val == "youtube Post"
       return true
 
+  reddit: ->
+    val = Session.get 'display'
+    if val == "reddit Post"
+      return true
+
 Template.NewsFeed.events
 
   'click .dropdown-item': (evt, tmpl) ->

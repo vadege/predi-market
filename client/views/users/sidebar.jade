@@ -19,6 +19,10 @@ template(name='Sidebar')
       a(href='/submit-theory' class='#{select}')
         i.fa.fa-lightbulb-o
         span.hidden-collapsed {{_ " User Theories"}}
+    // li
+      a.newsroute(href='/newsfeed')
+        i.fa.fa-newspaper-o
+        span.hidden-collapsed {{_ ' News Feed'}}
     each Pages
       li
         a.go_page(href='/page/#{_id}' class='#{maybe_selected}')

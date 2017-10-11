@@ -5,12 +5,14 @@ Template.NewsDisplay.rendered = ->
     else
       Session.set 'contract', result
 
-
 Template.NewsDisplay.helpers
 
-  newsFeed: ->
+  user: ->
     if Meteor.user().profile.admin == false
-      NewsFeed.find({}, {sort: {added: -1}}).fetch()
+      return true
+
+  newsFeed: ->
+    NewsFeed.find({}, {sort: {added: -1}}).fetch()
 
   displayType: (type) ->
     if type == "contract"
@@ -82,6 +84,8 @@ Template.NewsDisplay.events
           Router.go '/theory/' + id
         else
           hints = result.hints
+          contractset = Contractsets.findOne({_id: result.set_id})
+          Session.set 'category', contractset.category[0]
           val = value.toLowerCase()
           hint = hints.filter (d) ->
             hintVal = d.hint.toLowerCase()

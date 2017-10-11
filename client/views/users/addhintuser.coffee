@@ -6,6 +6,7 @@ Template.AddHintUser.events
   'click .hint': (evt, tmpl) ->
     evt.stopPropagation()
     $(".error").hide()
+
   'click .hint_val': (evt, tmpl) ->
     evt.stopPropagation()
     $(".error").hide()
@@ -52,4 +53,6 @@ Template.AddHintUser.events
     evt.stopPropagation()
     market_id = Session.get 'market_id'
     category = Session.get 'category'
+    contract_id = Session.get 'buttonId'
+    Session.set 'order-details', {'set_id': contract_id, 'market_id': market_id}
     Router.go '/market/' +market_id + '?' + 'category=' + category

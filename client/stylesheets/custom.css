@@ -16,6 +16,15 @@
 .redirect {
   margin-bottom: 10px;
 }
+.feed-title {
+  margin-left: -3px;
+  text-align: center;
+  font-size: 30px;
+  font-weight: 600;
+}
+.owned {
+  margin: 5px;
+}
 .fb-post {
   margin-left: -20px !important;
 }
@@ -27,11 +36,10 @@
 .news-border {
   height: 500px !important;
   overflow-y: auto;
-  margin-top: -15px;
+  margin-top: -20px;
 }
 .feed-border {
   margin-bottom: 10px;
-  /*margin-left: -10px;*/
   margin-top: 10px;
 }
 .btn-secondary {

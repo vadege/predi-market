@@ -1,5 +1,25 @@
 Template.NewsFeed.helpers
 
+  newsFeed: ->
+    news = NewsFeed.find({active: true}, {sort: {added: -1}}).fetch()
+    if news.length > 0
+      return news
+
+  url:(comment) ->
+    re = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig
+    commentUrl = comment.replace(re, "<a id='urlClass' href='$1'>$1</a>")
+    comment = commentUrl.replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1'+ "<br />" +'$2');
+    return comment
+
+  buttonCheck:(active) ->
+    if active == true
+      return true
+
+  format: (date) ->
+    moment.locale TAPi18n.getLanguage()
+    value = moment(date).format('MMMM Do YYYY, h:mm a');
+    value
+
   contract: ->
     val = Session.get 'display'
     if val == "contract"
@@ -83,6 +103,23 @@ Template.NewsFeed.events
         $(".error").hide()
       ), 3000
     Session.set 'hintVal', value
+
+  'click .delete_feed': (evt, tmpl) ->
+    evt.preventDefault()
+    id = evt.currentTarget.id
+    result = confirm('Are you sure you want to news feed?')
+    if result
+      Meteor.call 'newsDelete', id, (error, result) ->
+        if error
+          $('.error_new').show()
+          Meteor.setTimeout (->
+            $(".error_new").hide()
+          ), 1000
+        else
+          $('.delete').show()
+          Meteor.setTimeout (->
+            $(".delete").hide()
+          ), 1000
 
 
 

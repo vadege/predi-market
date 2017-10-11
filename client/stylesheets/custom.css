@@ -13,6 +13,9 @@
   width: 285px;
   margin-left: 15px;
 }
+.news-header {
+  font-size: 20px;
+}
 .title-contract {
   margin-left: -15px;
 }
@@ -460,6 +463,9 @@
 .dislike :hover {
   color: #3b5998 !important;
 }
+.delete_feed {
+  cursor: pointer;
+}
 .delete_click {
   width: 5%;
   color: #a94442 !important;
@@ -505,7 +511,7 @@
   height: auto!important;
 }
 .wide {
-  width: 60%
+  /*width: 60%*/
 }
 .div-header {
   min-width: 450px;

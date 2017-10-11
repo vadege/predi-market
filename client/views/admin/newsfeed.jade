@@ -3,46 +3,72 @@ template(name="NewsFeed")
    label Your link has been saved successfully
   div.error.alert.alert-warning
    label Please fill the input field first
-  div.dropdown.logout-class
-    button.btn.btn-primary.dropdown-toggle(type="button" data-toggle="dropdown") Select Type
-      span.caret
-    ul.dropdown-menu
-      div.row
-        button.dropdown-item.col-sm-10(value="contract") Contract
-      div.row
-        button.dropdown-item.col-sm-10(value="facebook") Facebook
-      div.row
-        button.dropdown-item.col-sm-10(value="hint") Hint
-      div.row
-        button.dropdown-item.col-sm-10(value="instagram Post") Instagram Post
-      div.row
-        button.dropdown-item.col-sm-10(value="twitter Post") Twitter Post
-      div.row
-        button.dropdown-item.col-sm-10(value="youtube Post") Youtube Post
-      div.row
-        button.dropdown-item.col-sm-10(value="reddit Post") Reddit Post
-  if contract
-    div.row.display
-      input.form-control.col-sm-12.val(type="text" placeholder="Set Contract Title...")
-  if hint
-    span Hint
-    input.hint.form-control(type="text" name="hint title")
-    span Type
-    input.form-control.val(type="text" name="hint type")
-  if facebook
-    div.display.row
-      input.form-control.col-sm-12.val(type="text" placeholder="Enter post link...")
-  if instagram
-    div.display.row
-      input.form-control.col-sm-12.val(type="text" placeholder="Enter post link...")
-  if twitter
-    div.display.row
-      input.form-control.col-sm-12.val(type="text" placeholder="Enter post link...")
-  if youtube
-    div.display.row
-      input.form-control.col-sm-12.val(type="text" placeholder="Enter post link...")
-  if reddit
-    div.display.row
-      input.form-control.col-sm-12.val(type="text" placeholder="Enter post link...")
-  button.btn.btn-success.pull-right.display.submit(type="button")
-    i.fa.fa-paper-plane {{_ " Submit"}}
+  div.row
+    div.dropdown.logout-class
+      button.btn.btn-primary.dropdown-toggle(type="button" data-toggle="dropdown") Select Type
+        span.caret
+      ul.dropdown-menu
+        div.row
+          button.dropdown-item.col-sm-10(value="contract") Contract
+        div.row
+          button.dropdown-item.col-sm-10(value="facebook") Facebook
+        div.row
+          button.dropdown-item.col-sm-10(value="hint") Hint
+        div.row
+          button.dropdown-item.col-sm-10(value="instagram Post") Instagram Post
+        div.row
+          button.dropdown-item.col-sm-10(value="twitter Post") Twitter Post
+        div.row
+          button.dropdown-item.col-sm-10(value="youtube Post") Youtube Post
+        div.row
+          button.dropdown-item.col-sm-10(value="reddit Post") Reddit Post
+    if contract
+      div.row.display
+        input.form-control.col-sm-12.val(type="text" placeholder="Set Contract Title...")
+    if hint
+      span Hint
+      input.hint.form-control(type="text" name="hint title")
+      span Type
+      input.form-control.val(type="text" name="hint type")
+    if facebook
+      div.display.row
+        input.form-control.col-sm-12.val(type="text" placeholder="Enter post link...")
+    if instagram
+      div.display.row
+        input.form-control.col-sm-12.val(type="text" placeholder="Enter post link...")
+    if twitter
+      div.display.row
+        input.form-control.col-sm-12.val(type="text" placeholder="Enter post link...")
+    if youtube
+      div.display.row
+        input.form-control.col-sm-12.val(type="text" placeholder="Enter post link...")
+    if reddit
+      div.display.row
+        input.form-control.col-sm-12.val(type="text" placeholder="Enter post link...")
+    button.btn.btn-success.pull-right.display.submit(type="button")
+      i.fa.fa-paper-plane {{_ " Submit"}}
+  div.error_new.alert_warning.alert
+   label Error while saving your response
+  div.delete.alert.alert-success
+   label Theory deleted successfully
+  div.row
+    h3 News Feed List
+    table.table.table-bordered
+      thead
+        tr
+          th Type
+          th Link
+          th Added On
+          th Active
+          th Action
+      tbody
+        each newsFeed
+          tr
+            td {{type}}
+            td {{{url link}}}
+            td {{format added}}
+            td {{active}}
+            td
+              if buttonCheck active true
+                button.btn.btn-danger.delete_feed(type='button' id=_id)
+                  i.fa.fa-trash-o.check

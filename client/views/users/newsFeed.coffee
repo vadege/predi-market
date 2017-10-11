@@ -12,7 +12,7 @@ Template.NewsDisplay.helpers
       return true
 
   newsFeed: ->
-    NewsFeed.find({}, {sort: {added: -1}}).fetch()
+    NewsFeed.find({active: true}, {sort: {added: -1}}).fetch()
 
   displayType: (type) ->
     if type == "contract"

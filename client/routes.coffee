@@ -72,7 +72,11 @@ Router.route '/dashboard', ->
 Router.route '/page/:_id', ->
   @render 'Sidebar', {to: 'Sidebar'}
   @render 'Page'
-, {name: 'page', waitOn: -> TAPi18n.subscribe 'Pages'}
+, {name: 'page', waitOn: ->
+    cols = ['Pages', 'Markets', 'Contractsets', 'Contracts']
+    _.map cols, (cols) ->
+      TAPi18n.subscribe cols
+  }
 
 Router.route '/market/:_id', ->
   Session.set 'market_id', null
@@ -114,7 +118,7 @@ Router.route '/submit-theory', ->
   @render 'showTheory'
 , {waitOn: ->
   if Meteor?.userId()
-    cols = ['Pages', 'Markets', 'Theories']
+    cols = ['Pages', 'Markets', 'Theories', 'Contractsets', 'Contracts']
     _.map cols, (col) ->
       TAPi18n.subscribe col
 }
@@ -124,7 +128,7 @@ Router.route '/add-theory', ->
   @render 'SubmitTheory'
 , {waitOn: ->
     if Meteor?.userId()
-      cols = ['Pages', 'Markets']
+      cols = ['Pages', 'Markets', 'Theories', 'Contractsets', 'Contracts']
       _.map cols, (col) ->
         TAPi18n.subscribe col
 }

@@ -39,8 +39,8 @@ template(name='Contractset')
             i.pull-right.fa.fa-clock-o
           if isHot
             i.pull-right.fa.fa-fire
-          span {{filterUntranslatedText title}}
-          button.btn.btn-primary.pull-right.share(data-id ="#{_id}" data-value="http://localhost:3003/contract/#{_id}")
+          span.col-sm-12.col-md-9.title-contract {{filterUntranslatedText title}}
+          button.btn.btn-primary.col-sm-12.col-md-3.pull-right.share(data-id ="#{_id}" data-value="http://localhost:3003/contract/#{_id}")
             i.fa.fa-share
             span {{_ 'Share Contract'}}
       div.panel-body

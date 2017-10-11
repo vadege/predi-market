@@ -13,6 +13,9 @@
   width: 285px;
   margin-left: 15px;
 }
+.title-contract {
+  margin-left: -15px;
+}
 .redirect {
   margin-bottom: 10px;
 }

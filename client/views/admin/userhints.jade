@@ -18,11 +18,16 @@ template(name="ListHints")
     tbody
       each hints
         tr
-          td {{title}}
-          td {{formattedDate createdAt}}
-          td {{{url hint}}}
-          td.wide {{{url desc}}}
-          td {{username}}
+          td
+            p.hint_div(title="{{title}}") {{title}}
+          td
+            p.hint_div(title="{{formattedDate createdAt}}") {{formattedDate createdAt}}
+          td
+            p.hint_div(title="{{{url hint}}}") {{{url hint}}}
+          td
+            p.hint_div(title="{{{url desc}}}") {{{url desc}}}
+          td
+            p.hint_div(title="{{username}}") {{username}}
           td
             if buttonCheck approved false
               button.btn.btn-success.approve_hint(type='button' id=contract_id value=id)

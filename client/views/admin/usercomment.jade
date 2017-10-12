@@ -7,18 +7,22 @@ template(name="ListComment")
   table.table.table-bordered
     thead
       tr
-        th Commented By
+        th(width="10%") Commented By
         th Date
         th Hint
-        th Comment
-        th Delete
+        th(width="40%") Comment
+        th(width="10%") Delete
     tbody
       each comments
         tr
-          td {{user.name}}
-          td {{formattedDate user.commentedOn}}
-          td {{hint hint_id}}
-          td.wide {{{url comment}}}
+          td
+            p.hint_div(title="{{user.name}}") {{user.name}}
+          td
+            p.hint_div(title="{{formattedDate user.commentedOn}}") {{formattedDate user.commentedOn}}
+          td
+            p.hint_div(title="{{hint hint_id}}") {{hint hint_id}}
+          td
+            p.hint_div(title="{{{url comment}}}") {{{url comment}}}
           td
             button.btn.btn-danger.delete_comment(type='button' id=_id)
               i.fa.fa-trash-o.check

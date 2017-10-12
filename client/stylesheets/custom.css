@@ -16,6 +16,13 @@
 .news-header {
   font-size: 20px;
 }
+.table { table-layout: fixed; }
+.table > tbody> tr > td > p {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-bottom: 0;
+}
 .title-contract {
   margin-left: -15px;
 }
@@ -511,7 +518,7 @@
   height: auto!important;
 }
 .wide {
-  /*width: 60%*/
+  width: 50% !important;
 }
 .div-header {
   min-width: 450px;

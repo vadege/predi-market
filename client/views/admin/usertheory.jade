@@ -9,18 +9,22 @@ template(name="ListTheory")
   table.table.table-bordered
     thead
       tr
-        th Username
-        th Theory Title
-        th Theory Description
-        th Theory Creation Date
-        th Action
+        th(width="10%") Username
+        th(width="20%") Theory Title
+        th(width="40%") Theory Description
+        th(width="15%") Theory Creation Date
+        th(width="15%") Action
     tbody
       each theory
         tr
-          td {{username}}
-          td {{{url title}}}
-          td.wide {{{url desc}}}
-          td {{format addedOn}}
+          td
+            p.hint_div(title="{{username}}") {{username}}
+          td
+            p.hint_div(title="{{{url title}}}") {{{url title}}}
+          td
+            p.hint_div(title="{{{url desc}}}") {{{url desc}}}
+          td
+            p.hint_div(title="{{format addedOn}}") {{format addedOn}}
           td
             if buttonCheck approved false
               button.btn.btn-success.approve_theory(type='button' id=_id)

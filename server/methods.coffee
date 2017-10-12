@@ -74,9 +74,14 @@ Meteor.methods
       active: true
       })
 
-  newsDelete: (id) ->
+  inactivateFeed: (id) ->
     checkAdmin @userId
     val = NewsFeed.update({_id: id}, {$set: {active: false}})
+    return val
+
+  activateFeed: (id) ->
+    checkAdmin @userId
+    val = NewsFeed.update({_id: id}, {$set: {active: true}})
     return val
 
   addHint: (parent_id) ->

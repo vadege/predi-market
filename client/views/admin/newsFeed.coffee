@@ -1,7 +1,7 @@
 Template.NewsFeed.helpers
 
   newsFeed: ->
-    news = NewsFeed.find({active: true}, {sort: {added: -1}}).fetch()
+    news = NewsFeed.find({}, {sort: {added: -1}}).fetch()
     if news.length > 0
       return news
 
@@ -12,8 +12,10 @@ Template.NewsFeed.helpers
     return comment
 
   buttonCheck:(active) ->
-    if active == true
+    if active == false
       return true
+    else
+      return false
 
   format: (date) ->
     moment.locale TAPi18n.getLanguage()
@@ -107,9 +109,9 @@ Template.NewsFeed.events
   'click .delete_feed': (evt, tmpl) ->
     evt.preventDefault()
     id = evt.currentTarget.id
-    result = confirm('Are you sure you want to news feed?')
+    result = confirm('Are you sure you want to deactivate news feed?')
     if result
-      Meteor.call 'newsDelete', id, (error, result) ->
+      Meteor.call 'inactivateFeed', id, (error, result) ->
         if error
           $('.error_new').show()
           Meteor.setTimeout (->
@@ -121,7 +123,24 @@ Template.NewsFeed.events
             $(".delete").hide()
           ), 1000
 
+  'click .approve_feed': (evt, tmpl) ->
+    evt.preventDefault()
+    id = evt.currentTarget.id
+    result = confirm('Are you sure you want to activate news feed?')
+    if result
+      Meteor.call 'activateFeed', id, (err, res) ->
+        if err
+          console.log err
+        else
+          $('.feed-approve').show()
+          Meteor.setTimeout (->
+            $(".feed-approve").hide()
+          ), 3000
 
+  'click #urlClass': (evt, tmpl) ->
+    evt.preventDefault()
+    value = evt.currentTarget.href
+    window.open(value + location.search)
 
 Template.NewsFeed.rendered = ->
   Session.set 'display', "contract"

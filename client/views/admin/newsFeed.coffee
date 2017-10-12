@@ -71,7 +71,7 @@ Template.NewsFeed.events
       $(".error").show()
       Meteor.setTimeout (->
         $(".error").hide()
-      ), 3000
+      ), 2000
     type = Session.get 'display'
     if type == "hint"
       link = Session.get 'hintVal'
@@ -80,11 +80,11 @@ Template.NewsFeed.events
         if error
           console.log error
         else
-          $('.success').show()
+          $('..link-add').show()
           Meteor.setTimeout (->
-            $(".success").hide()
+            $("..link-add").hide()
             Session.set 'admin_section', "markets"
-          ), 3000
+          ), 2000
     else
       Meteor.call 'addLinkToFeed', type, link, (error, result) ->
         if error
@@ -94,7 +94,7 @@ Template.NewsFeed.events
           Meteor.setTimeout (->
             $(".success").hide()
             Session.set 'admin_section', "markets"
-          ), 3000
+          ), 2000
 
   'blur .hint': (evt, tmpl) ->
     evt.preventDefault()

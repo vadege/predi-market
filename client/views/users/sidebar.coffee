@@ -22,8 +22,7 @@ Template.Sidebar.helpers
     Markets.find().count() > 1
 
   market_selected: ->
-    Router.current()?.options?.route?.getName() is "market" ||
-    Router.current()?.options?.route?.getName() is "dashboard"
+    Router.current()?.options?.route?.getName() is "market"
 
   select: ->
     if Router.current()?.options?.route?.getName() is "submit-theory"
@@ -81,7 +80,7 @@ Template.Sidebar.helpers
 Template.Sidebar.rendered = ->
   @autorun ->
     current_route = Router.current()
-    if current_route?.options?.route?.getName() is "market" || current_route?.options?.route?.getName() is "dashboard"
+    if current_route?.options?.route?.getName() is "market"
       FastReactiveDataSource.set "wallet", GlobalHelpers.compute_wallet current_route.params._id
     else
       FastReactiveDataSource.set "wallet", undefined

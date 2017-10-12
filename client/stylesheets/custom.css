@@ -10,6 +10,7 @@
   margin-top: 10px;
 }
 .contractset-news {
+  border: 1px solid #ccc;
   width: 285px;
   margin-left: 15px;
 }
@@ -653,6 +654,7 @@ transform-origin:0 0 !important;
 .g-recaptcha > * iframe{width:100%;}
 @media screen and (max-width: 1000px) {
   .div-header {display: none;}
+  .news-border {display: none;}
 }
 @media screen and (max-width: 767px) {
     .reply_click {

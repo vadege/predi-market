@@ -10,12 +10,12 @@ Template.NewsFeed.helpers
     commentUrl = comment.replace(re, "<a id='urlClass' href='$1'>$1</a>")
     comment = commentUrl.replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1'+ "<br />" +'$2');
     return comment
-
-  buttonCheck:(active) ->
-    if active == false
-      return true
-    else
-      return false
+  #
+  # buttonCheck:(active) ->
+  #   if active == false
+  #     return true
+  #   else
+  #     return false
 
   format: (date) ->
     moment.locale TAPi18n.getLanguage()
@@ -109,7 +109,7 @@ Template.NewsFeed.events
   'click .delete_feed': (evt, tmpl) ->
     evt.preventDefault()
     id = evt.currentTarget.id
-    result = confirm('Are you sure you want to deactivate news feed?')
+    result = confirm('Are you sure you want to delete news feed?')
     if result
       Meteor.call 'inactivateFeed', id, (error, result) ->
         if error
@@ -123,19 +123,19 @@ Template.NewsFeed.events
             $(".delete").hide()
           ), 1000
 
-  'click .approve_feed': (evt, tmpl) ->
-    evt.preventDefault()
-    id = evt.currentTarget.id
-    result = confirm('Are you sure you want to activate news feed?')
-    if result
-      Meteor.call 'activateFeed', id, (err, res) ->
-        if err
-          console.log err
-        else
-          $('.feed-approve').show()
-          Meteor.setTimeout (->
-            $(".feed-approve").hide()
-          ), 3000
+  # 'click .approve_feed': (evt, tmpl) ->
+  #   evt.preventDefault()
+  #   id = evt.currentTarget.id
+  #   result = confirm('Are you sure you want to activate news feed?')
+  #   if result
+  #     Meteor.call 'activateFeed', id, (err, res) ->
+  #       if err
+  #         console.log err
+  #       else
+  #         $('.feed-approve').show()
+  #         Meteor.setTimeout (->
+  #           $(".feed-approve").hide()
+  #         ), 3000
 
   'click #urlClass': (evt, tmpl) ->
     evt.preventDefault()

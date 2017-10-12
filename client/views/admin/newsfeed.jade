@@ -47,12 +47,6 @@ template(name="NewsFeed")
         input.form-control.col-sm-12.val(type="text" placeholder="Enter post link...")
     button.btn.btn-success.pull-right.display.submit(type="button")
       i.fa.fa-paper-plane {{_ " Submit"}}
-  div.error_new.alert_warning.alert
-   label Error while saving your response
-  div.delete.alert.alert-success
-   label News Feed disapproved successfully
-  div.success.feed-approve.alert.alert-success
-   label News Feed approved successfully
   div.row
     h3 News Feed List
     table.table.table-bordered
@@ -61,6 +55,7 @@ template(name="NewsFeed")
           th(width="15%") Type
           th(width="50%") Link
           th Added On
+          th(width="10%") Active
           th(width="10%") Action
       tbody
         each newsFeed
@@ -72,9 +67,7 @@ template(name="NewsFeed")
             td
               p.hint_div(title="{{format added}}") {{format added}}
             td
-              if buttonCheck active true
-                button.btn.btn-success.approve_feed(type='button' id=_id)
-                  i.fa.fa-check.check
-              else
-                button.btn.btn-danger.delete_feed(type='button' id=_id)
-                  i.fa.fa-trash-o.check
+              p {{active}}
+            td
+              button.btn.btn-danger.delete_feed(type='button' id=_id)
+                i.fa.fa-trash-o.check

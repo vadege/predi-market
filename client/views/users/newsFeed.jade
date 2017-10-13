@@ -5,18 +5,19 @@ template(name="NewsDisplay")
       each newsFeed
         if displayType type contract
           each contractset link
-            div.col-sm-12.fedd-border.contractset-news
-              div
-                h3.title
-                  span.news-header {{filterUntranslatedText title}}
-              div
-                table.contractsnippets
-                  each Contracts _id
-                    tr
-                      +ContractSnippet
-                button.btn.btn-primary.redirect.pull-right(id=market_id data-id=_id value="{{checkCategory category}}")
-                  i.fa.fa-exchange
-                  span {{_ 'button_change_prices'}}
+            div.col-sm-12.feed-border.contractset-news
+              div.contractset-news.border
+                div
+                  h3.title
+                    span.news-header {{filterUntranslatedText title}}
+                div
+                  table.contractsnippets
+                    each Contracts _id
+                      tr
+                        +ContractSnippet
+                  button.btn.btn-primary.redirect.pull-right(id=market_id data-id=_id value="{{checkCategory category}}")
+                    i.fa.fa-exchange
+                    span {{_ 'button_change_prices'}}
         if insta type 'instagram Post'
           div.col-sm-12.feed-border
             iframe.border(height= "300" width="100%" src="{{link}}embed")

@@ -10,9 +10,8 @@
   margin-top: 10px;
 }
 .contractset-news {
-  border: 1px solid #ccc;
-  width: 285px;
-  margin-left: 15px;
+  float: left;
+  width: 100%
 }
 .news-header {
   font-size: 20px;

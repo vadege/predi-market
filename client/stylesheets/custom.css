@@ -49,9 +49,10 @@
   text-align: justify;
 }
 .news-border {
-  height: 500px !important;
+  height: 600px !important;
   overflow-y: auto;
   margin-top: -20px;
+  position: fixed;
 }
 .feed-border {
   margin-bottom: 10px;
@@ -601,6 +602,21 @@ a, a:hover, a:active{transition: all 0.2s ease-in;}
 }
 .display_dropdown {
   top: 100px !important;
+}
+.display_dropdown_sub {
+  top: 34px !important;
+}
+.category-class .dropdown-menu {
+  height:200px;
+  overflow-y:auto
+}
+.subcategory-class .dropdown-menu {
+  height: 120px;
+  overflow-y: auto;
+}
+.dropdown-menu .row
+{
+  height:auto
 }
 .display {
   margin-top: 10px;

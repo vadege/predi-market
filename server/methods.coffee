@@ -663,6 +663,28 @@ Meteor.methods
     if num == -1
       Contractsets.update({_id: id}, {$push: {category: value}})
 
+  addSubCategory: (id, catVal, subcategory) ->
+    checkAdmin @userId
+    val = Contractsets.findOne({_id: id}, {fields: {category: 1}})
+    if val
+      categories = val.category
+      categories.map (el) ->
+        if el == catVal
+          categoryArr = {}
+          categoryArr[catVal] = subcategory
+          val = Contractsets.update({_id: id}, {$addToSet: categoryArr})
+
+
+    # categoryArr = val.category
+    # subcategoryArr = categoryArr.catVal
+    # console.log subcategory
+    # if subcategoryArr
+    #   num = subcategoryArr.indexOf (subcategory)
+    #   if num == -1
+    #     Contractsets.update({_id: id}, {$push: {"category.$.catVal": subcategory}})
+    # else
+    #   Contractsets.update({_id: id}, {$push: {"category.$.catVal": subcategory}})
+
   removeCategory: (id, value) ->
     checkAdmin @userId
     Contractsets.update({_id: id}, {$pull: {category: value}})

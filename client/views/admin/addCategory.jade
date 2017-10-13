@@ -2,44 +2,359 @@ template(name="AddCategory")
   div.row.form-group
     label.col-sm-12.label_category Category
     if category
-      div.bootstrap-tagsinput.col-sm-12
+      div.bootstrap-tagsinput.clearfix.col-sm-12
         each category
           span.tag.label.label-info {{this}}
-    div.dropdown.form-group.logout-class(id="category_#{_id}")
+    div.dropdown.form-group.clearfix.logout-class.category-class(id="category_#{_id}")
       button.btn.btn-secondary.dropdown-toggle.col-sm-12(type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false") {{category_name}}
       div.dropdown-menu.display_dropdown(aria-labelledby="dropdownMenuButton" id=_id)
         div.row
-          button.dropdown-item.col-sm-10(href="javascript:void(0)" value="End Game" data-id=_id) End Game
-          if select 'End Game' category
-            span.selected(data-name="End Game" data-id="#{_id}")
-              i.fa.fa-check-square.col-sm-2.toggleClass(id='display_#{_id}')
-        div.row
-          button.col-sm-10.dropdown-item(href="javascript:void(0)" value="Houses" data-id=_id) Houses
-          if select 'Houses' category
-            span.selected(data-name="Houses" data-id="#{_id}" id='1')
+          button.dropdown-item.col-sm-10.category(href="javascript:void(0)" value="Aftermath" data-id=_id) Aftermath
+          if select 'Aftermath' category
+            span.selected(data-name="Aftermath" data-id="#{_id}" id="1")
               i.fa.fa-check-square.col-sm-2.toggleClass(id='toggle_1')
         div.row
-          button.dropdown-item.col-sm-10(href="javascript:void(0)" value="Magic" data-id=_id) Magic
-          if select 'Magic' category
-            span.selected(data-name="Magic" data-id="#{_id}" id='2')
+          button.col-sm-10.dropdown-item.category(href="javascript:void(0)" value="Betrayal" data-id=_id) Betrayal
+          if select 'Betrayal' category
+            span.selected(data-name="Betrayal" data-id="#{_id}" id='2')
               i.fa.fa-check-square.col-sm-2.toggleClass(id='toggle_2')
         div.row
-          button.dropdown-item.col-sm-10(href="javascript:void(0)" value="New Arrivals" data-id=_id) New Arrivals
-          if select 'New Arrivals' category
-            span.selected(data-name="New Arrivals" data-id="#{_id}" id='3')
+          button.dropdown-item.col-sm-10.category(href="javascript:void(0)" value="Camps" data-id=_id) Camps
+          if select 'Camps' category
+            span.selected(data-name="Camps" data-id="#{_id}" id='3')
               i.fa.fa-check-square.col-sm-2.toggleClass(id='toggle_3')
         div.row
-          button.col-sm-10.dropdown-item(href="javascript:void(0)" value="Power" data-id=_id) Power
-          if select 'Power' category
-            span.selected(data-name="Power" data-id="#{_id}" id='4')
+          button.dropdown-item.col-sm-10.category(href="javascript:void(0)" value="Characters" data-id=_id) Characters
+          if select 'Characters' category
+            span.selected(data-name="Characters" data-id="#{_id}" id='4')
               i.fa.fa-check-square.col-sm-2.toggleClass(id='toggle_4')
         div.row
-          button.col-sm-10.dropdown-item(href="javascript:void(0)" value="Prophecies" data-id=_id) Prophecies
-          if select 'Prophecies' category
-            span.selected(data-name="Prophecies" data-id="#{_id}" id='5')
+          button.col-sm-10.dropdown-item.category(href="javascript:void(0)" value="Conspiracy" data-id=_id) Conspiracy
+          if select 'Conspiracy' category
+            span.selected(data-name="Conspiracy" data-id="#{_id}" id='7')
+              i.fa.fa-check-square.col-sm-2.toggleClass(id='toggle_7')
+        div.row
+          button.col-sm-10.dropdown-item.category(href="javascript:void(0)" value="Death" data-id=_id) Death
+          if select 'Death' category
+            span.selected(data-name="Death" data-id="#{_id}" id='5')
               i.fa.fa-check-square.col-sm-2.toggleClass(id='toggle_5')
         div.row
-          button.col-sm-10.dropdown-item(href="javascript:void(0)" value="Trending" data-id=_id) Trending
-          if select 'Trending' category
-            span.selected(data-name="Trending" data-id="#{_id}" id='6')
+          button.col-sm-10.dropdown-item.category(href="javascript:void(0)" value="Fan Favourite" data-id=_id) Fan Favourite
+          if select 'Fan Favourite' category
+            span.selected(data-name="Fan Favourite" data-id="#{_id}" id='6')
               i.fa.fa-check-square.col-sm-2.toggleClass(id='toggle_6')
+        div.row
+          button.col-sm-10.dropdown-item.category(href="javascript:void(0)" value="Finale" data-id=_id) Finale
+          if select 'Finale' category
+            span.selected(data-name="Finale" data-id="#{_id}" id='8')
+              i.fa.fa-check-square.col-sm-2.toggleClass(id='toggle_8')
+        div.row
+          button.col-sm-10.dropdown-item.category(href="javascript:void(0)" value="Governance" data-id=_id) Governance
+          if select 'Governance' category
+            span.selected(data-name="Governance" data-id="#{_id}" id='9')
+              i.fa.fa-check-square.col-sm-2.toggleClass(id='toggle_9')
+        div.row
+          button.col-sm-10.dropdown-item.category(href="javascript:void(0)" value="Identity" data-id=_id) Identity
+          if select 'Identity' category
+            span.selected(data-name="Identity" data-id="#{_id}" id='10')
+              i.fa.fa-check-square.col-sm-2.toggleClass(id='toggle_10')
+        div.row
+          button.col-sm-10.dropdown-item.category(href="javascript:void(0)" value="Institutions" data-id=_id) Institutions
+          if select 'Institutions' category
+            span.selected(data-name="Institutions" data-id="#{_id}" id='11')
+              i.fa.fa-check-square.col-sm-2.toggleClass(id='toggle_11')
+        div.row
+          button.col-sm-10.dropdown-item.category(href="javascript:void(0)" value="Locations" data-id=_id) Locations
+          if select 'Locations' category
+            span.selected(data-name="Locations" data-id="#{_id}" id='12')
+              i.fa.fa-check-square.col-sm-2.toggleClass(id='toggle_12')
+        div.row
+          button.col-sm-10.dropdown-item.category(href="javascript:void(0)" value="Love" data-id=_id) Love
+          if select 'Love' category
+            span.selected(data-name="Love" data-id="#{_id}" id='13')
+              i.fa.fa-check-square.col-sm-2.toggleClass(id='toggle_13')
+        div.row
+          button.col-sm-10.dropdown-item.category(href="javascript:void(0)" value="Magic" data-id=_id) Magic
+          if select 'Magic' category
+            span.selected(data-name="Magic" data-id="#{_id}" id='14')
+              i.fa.fa-check-square.col-sm-2.toggleClass(id='toggle_14')
+        div.row
+          button.col-sm-10.dropdown-item.category(href="javascript:void(0)" value="Meta" data-id=_id) Meta
+          if select 'Meta' category
+            span.selected(data-name="Meta" data-id="#{_id}" id='15')
+              i.fa.fa-check-square.col-sm-2.toggleClass(id='toggle_15')
+        div.row
+          button.col-sm-10.dropdown-item.category(href="javascript:void(0)" value="New Arrivals" data-id=_id) New Arrivals
+          if select 'New Arrivals' category
+            span.selected(data-name="New Arrivals" data-id="#{_id}" id='16')
+              i.fa.fa-check-square.col-sm-2.toggleClass(id='toggle_16')
+        div.row
+          button.col-sm-10.dropdown-item.category(href="javascript:void(0)" value="Noble Houses" data-id=_id) Noble Houses
+          if select 'Noble Houses' category
+            span.selected(data-name="Noble Houses" data-id="#{_id}" id='17')
+              i.fa.fa-check-square.col-sm-2.toggleClass(id='toggle_17')
+        div.row
+          button.col-sm-10.dropdown-item.category(href="javascript:void(0)" value="Peoples" data-id=_id) Peoples
+          if select 'Peoples' category
+            span.selected(data-name="Peoples" data-id="#{_id}" id='18')
+              i.fa.fa-check-square.col-sm-2.toggleClass(id='toggle_18')
+        div.row
+          button.col-sm-10.dropdown-item.category(href="javascript:void(0)" value="Power" data-id=_id) Power
+          if select 'Power' category
+            span.selected(data-name="Power" data-id="#{_id}" id='19')
+              i.fa.fa-check-square.col-sm-2.toggleClass(id='toggle_19')
+        div.row
+          button.col-sm-10.dropdown-item.category(href="javascript:void(0)" value="Prophecies" data-id=_id) Prophecies
+          if select 'Prophecies' category
+            span.selected(data-name="Prophecies" data-id="#{_id}" id='20')
+              i.fa.fa-check-square.col-sm-2.toggleClass(id='toggle_20')
+        div.row
+          button.col-sm-10.dropdown-item.category(href="javascript:void(0)" value="Prophecies" data-id=_id) Prophecies
+          if select 'Prophecies' category
+            span.selected(data-name="Prophecies" data-id="#{_id}" id='21')
+              i.fa.fa-check-square.col-sm-2.toggleClass(id='toggle_21')
+        div.row
+          button.col-sm-10.dropdown-item.category(href="javascript:void(0)" value="Redemption" data-id=_id) Redemption
+          if select 'Redemption' category
+            span.selected(data-name="Redemption" data-id="#{_id}" id='22')
+              i.fa.fa-check-square.col-sm-2.toggleClass(id='toggle_22')
+        div.row
+          button.col-sm-10.dropdown-item.category(href="javascript:void(0)" value="Religion" data-id=_id) Religion
+          if select 'Religion' category
+            span.selected(data-name="Religion" data-id="#{_id}" id='23')
+              i.fa.fa-check-square.col-sm-2.toggleClass(id='toggle_23')
+        div.row
+          button.col-sm-10.dropdown-item.category(href="javascript:void(0)" value="The Great War" data-id=_id) The Great War
+          if select 'The Great War' category
+            span.selected(data-name="The Great War" data-id="#{_id}" id='24')
+              i.fa.fa-check-square.col-sm-2.toggleClass(id='toggle_24')
+        div.row
+          button.col-sm-10.dropdown-item.category(href="javascript:void(0)" value="Tin Foil" data-id=_id) Tin Foil
+          if select 'Tin Foil' category
+            span.selected(data-name="Tin Foil" data-id="#{_id}" id='25')
+              i.fa.fa-check-square.col-sm-2.toggleClass(id='toggle_25')
+        div.row
+          button.col-sm-10.dropdown-item.category(href="javascript:void(0)" value="Trending" data-id=_id) Trending
+          if select 'Trending' category
+            span.selected(data-name="Trending" data-id="#{_id}" id='26')
+              i.fa.fa-check-square.col-sm-2.toggleClass(id='toggle_26')
+    if select 'Power' category
+      span Power
+      div.dropdown.form-group.logout-class.subcategory-class.clearfix
+        button.btn.btn-secondary.dropdown-toggle.col-sm-12(type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false") Select Category
+        div.dropdown-menu.display_dropdown_sub(aria-labelledby="dropdownMenuButton" id=_id)
+          div.row
+            button.col-sm-10.dropdown-item.subcategory(href="javascript:void(0)" data-value="Power" value="Alliances" data-id=_id) Alliances
+            if selectSub 'Alliances' Power
+              span.selected(data-name="Alliances" data-value="Power" data-id="#{_id}" id='pow_4')
+                i.fa.fa-check-square.col-sm-2.toggleClass(id='pow_4')
+          div.row
+            button.col-sm-10.dropdown-item.subcategory(href="javascript:void(0)" data-value="Power" value="Economic" data-id=_id) Economic
+            if selectSub 'Economic' Power
+              span.selected(data-name="Economic" data-value="Power" data-id="#{_id}" id='pow_3')
+                i.fa.fa-check-square.col-sm-2.toggleClass(id='pow_3')
+          div.row
+            button.col-sm-10.dropdown-item.subcategory(href="javascript:void(0)" data-value="Power" value="General" data-id=_id) General
+            if selectSub 'General' Power
+              span.selected(data-name="General" data-value="Power" data-id="#{_id}" id='pow_1')
+                i.fa.fa-check-square.col-sm-2.toggleClass(id='pow_1')
+          div.row
+            button.col-sm-10.dropdown-item.subcategory(href="javascript:void(0)" data-value="Power" value="Political" data-id=_id) Political
+            if selectSub 'Political' Power
+              span.selected(data-name="Political" data-value="Power" data-id="#{_id}" id='pow_2')
+                i.fa.fa-check-square.col-sm-2.toggleClass(id='pow_2')
+    if select 'Characters' category
+      span Characters
+      div.dropdown.form-group.logout-class.subcategory-class.clearfix
+        button.btn.btn-secondary.dropdown-toggle.col-sm-12(type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false") Select Category
+        div.dropdown-menu.display_dropdown_sub(aria-labelledby="dropdownMenuButton" id=_id)
+          div.row
+            button.col-sm-10.dropdown-item.subcategory(href="javascript:void(0)" data-value="Characters" value="Major Characters" data-id=_id) Major Characters
+            if selectSub 'Major Characters' Characters
+              span.selected(data-name="Major Characters" data-value="Characters" data-id="#{_id}" id='ch_1')
+                i.fa.fa-check-square.col-sm-2.toggleClass(id='ch_1')
+          div.row
+            button.col-sm-10.dropdown-item.subcategory(href="javascript:void(0)" data-value="Characters" value="Multi" data-id=_id) Multi
+            if selectSub 'Multi' Characters
+              span.selected(data-name="Multi" data-value="Characters" data-id="#{_id}" id='ch_2')
+                i.fa.fa-check-square.col-sm-2.toggleClass(id='ch_2')
+          div.row
+            button.col-sm-10.dropdown-item.subcategory(href="javascript:void(0)" data-value="Characters" value="Secondary Characters" data-id=_id) Secondary Characters
+            if selectSub 'Secondary Characters' Characters
+              span.selected(data-name="Secondary Characters" data-value="Characters" data-id="#{_id}" id='ch_3')
+                i.fa.fa-check-square.col-sm-2.toggleClass(id='ch_3')
+    if select 'Camps' category
+      span Camps
+      div.dropdown.form-group.logout-class.subcategory-class.clearfix
+        button.btn.btn-secondary.dropdown-toggle.col-sm-12(type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false") Select Category
+        div.dropdown-menu.display_dropdown_sub(aria-labelledby="dropdownMenuButton" id=_id)
+          div.row
+            button.col-sm-10.dropdown-item.subcategory(href="javascript:void(0)" data-value="Camps" value="Team Cersei" data-id=_id) Team Cersei
+            if selectSub 'Team Cersei' Camps
+              span.selected(data-name="Team Cersei" data-value="Power" data-id="#{_id}" id='ch_1')
+                i.fa.fa-check-square.col-sm-2.toggleClass(id='ch_1')
+          div.row
+            button.col-sm-10.dropdown-item.subcategory(href="javascript:void(0)" data-value="Camps" value="Team Dany" data-id=_id) Team Dany
+            if selectSub 'Team Dany' Camps
+              span.selected(data-name="Team Dany" data-value="Religion" data-id="#{_id}" id='ch_2')
+                i.fa.fa-check-square.col-sm-2.toggleClass(id='ch_2')
+          div.row
+            button.col-sm-10.dropdown-item.subcategory(href="javascript:void(0)" data-value="Camps" value="Team NK" data-id=_id) Team NK
+            if selectSub 'Team NK' Camps
+              span.selected(data-name="Team NK" data-value="Religion" data-id="#{_id}" id='ch_3')
+                i.fa.fa-check-square.col-sm-2.toggleClass(id='ch_3')
+    if select 'Religion' category
+      span Religion
+      div.dropdown.form-group.logout-class.subcategory-class.clearfix
+        button.btn.btn-secondary.dropdown-toggle.col-sm-12(type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false") Select Category
+        div.dropdown-menu.display_dropdown_sub(aria-labelledby="dropdownMenuButton" id=_id)
+          div.row
+            button.col-sm-10.dropdown-item.subcategory(href="javascript:void(0)" data-value="Religion" value="Drowned God" data-id=_id) Drowned God
+            if selectSub 'Drowned God' Religion
+              span.selected(data-name="Drowned God" data-value="Religion" data-id="#{_id}" id='ch_1')
+                i.fa.fa-check-square.col-sm-2.toggleClass(id='ch_1')
+          div.row
+            button.col-sm-10.dropdown-item.subcategory(href="javascript:void(0)" data-value="Religion" value="Great Other" data-id=_id) Great Other
+            if selectSub 'Great Other' Religion
+              span.selected(data-name="Great Other" data-value="Religion" data-id="#{_id}" id='ch_2')
+                i.fa.fa-check-square.col-sm-2.toggleClass(id='ch_2')
+          div.row
+            button.col-sm-10.dropdown-item.subcategory(href="javascript:void(0)" data-value="Religion" value="Lord of Light" data-id=_id) Lord of Light
+            if selectSub 'Lord of Light' Religion
+              span.selected(data-name="Lord of Light" data-value="Religion" data-id="#{_id}" id='ch_3')
+                i.fa.fa-check-square.col-sm-2.toggleClass(id='ch_3')
+          div.row
+            button.col-sm-10.dropdown-item.subcategory(href="javascript:void(0)" data-value="Religion" value="New Gods" data-id=_id) New Gods
+            if selectSub 'New Gods' Characters
+              span.selected(data-name="New Gods" data-value="Religion" data-id="#{_id}" id='ch_3')
+                i.fa.fa-check-square.col-sm-2.toggleClass(id='ch_3')
+          div.row
+            button.col-sm-10.dropdown-item.subcategory(href="javascript:void(0)" data-value="Religion" value="Old Gods" data-id=_id) Old Gods
+            if selectSub 'Old Gods' Religion
+              span.selected(data-name="Old Gods" data-value="Religion" data-id="#{_id}" id='ch_3')
+                i.fa.fa-check-square.col-sm-2.toggleClass(id='ch_3')
+    if select 'Noble Houses' category
+      span Noble Houses
+      div.dropdown.form-group.logout-class.subcategory-class.clearfix
+        button.btn.btn-secondary.dropdown-toggle.col-sm-12(type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false") Select Category
+        div.dropdown-menu.display_dropdown_sub(aria-labelledby="dropdownMenuButton" id=_id)
+          div.row
+            button.col-sm-10.dropdown-item.subcategory(href="javascript:void(0)" data-value="Noble Houses" value="House Clegane" data-id=_id) House Clegane
+            if selectSub 'House Clegane' [Noble Houses]
+              span.selected(data-name="House Clegane" data-value="Noble Houses" data-id="#{_id}" id='ch_1')
+                i.fa.fa-check-square.col-sm-2.toggleClass(id='ch_1')
+          div.row
+            button.col-sm-10.dropdown-item.subcategory(href="javascript:void(0)" data-value="Noble Houses" value="House Greyjoy" data-id=_id) House Greyjoy
+            if selectSub 'House Greyjoy' [Noble Houses]
+              span.selected(data-name="House Greyjoy" data-value="Noble Houses" data-id="#{_id}" id='ch_2')
+                i.fa.fa-check-square.col-sm-2.toggleClass(id='ch_2')
+          div.row
+            button.col-sm-10.dropdown-item.subcategory(href="javascript:void(0)" data-value="Noble Houses" value="House Lannister" data-id=_id) House Lannister
+            if selectSub 'House Lannister' [Noble Houses]
+              span.selected(data-name="House Lannister" data-value="Noble Houses" data-id="#{_id}" id='ch_3')
+                i.fa.fa-check-square.col-sm-2.toggleClass(id='ch_3')
+          div.row
+            button.col-sm-10.dropdown-item.subcategory(href="javascript:void(0)" data-value="Noble Houses" value="House Stark" data-id=_id) House Stark
+            if selectSub 'House Stark' [Noble Houses]
+              span.selected(data-name="House Stark" data-value="Noble Houses" data-id="#{_id}" id='ch_3')
+                i.fa.fa-check-square.col-sm-2.toggleClass(id='ch_3')
+          div.row
+            button.col-sm-10.dropdown-item.subcategory(href="javascript:void(0)" data-value="Noble Houses" value="House Targaryen" data-id=_id) House Targaryen
+            if selectSub 'House Targaryen' [Noble Houses]
+              span.selected(data-name="House Targaryen" data-value="Noble Houses" data-id="#{_id}" id='ch_3')
+                i.fa.fa-check-square.col-sm-2.toggleClass(id='ch_3')
+    if select 'Peoples' category
+      span Peoples
+      div.dropdown.form-group.logout-class.subcategory-class.clearfix
+        button.btn.btn-secondary.dropdown-toggle.col-sm-12(type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false") Select Category
+        div.dropdown-menu.display_dropdown_sub(aria-labelledby="dropdownMenuButton" id=_id)
+          div.row
+            button.col-sm-10.dropdown-item.subcategory(href="javascript:void(0)" data-value="Peoples" value="Children of the Forest" data-id=_id) Children of the Forest
+            if selectSub 'Children of the Forest' Peoples
+              span.selected(data-name="Children of the Forest" data-value="Peoples" data-id="#{_id}" id='ch_1')
+                i.fa.fa-check-square.col-sm-2.toggleClass(id='ch_1')
+          div.row
+            button.col-sm-10.dropdown-item.subcategory(href="javascript:void(0)" data-value="Peoples" value="Dothraki" data-id=_id) Dothraki
+            if selectSub 'Dothraki' Peoples
+              span.selected(data-name="Dothraki" data-value="Peoples" data-id="#{_id}" id='ch_2')
+                i.fa.fa-check-square.col-sm-2.toggleClass(id='ch_2')
+          div.row
+            button.col-sm-10.dropdown-item.subcategory(href="javascript:void(0)" data-value="Peoples" value="Free Folk" data-id=_id) Free Folk
+            if selectSub 'Free Folk' Peoples
+              span.selected(data-name="Free Folk" data-value="Peoples" data-id="#{_id}" id='ch_3')
+                i.fa.fa-check-square.col-sm-2.toggleClass(id='ch_3')
+          div.row
+            button.col-sm-10.dropdown-item.subcategory(href="javascript:void(0)" data-value="Peoples" value="Hill tribes" data-id=_id) Hill tribes
+            if selectSub 'Hill tribes' Peoples
+              span.selected(data-name="Hill tribes" data-value="Peoples" data-id="#{_id}" id='ch_3')
+                i.fa.fa-check-square.col-sm-2.toggleClass(id='ch_3')
+          div.row
+            button.col-sm-10.dropdown-item.subcategory(href="javascript:void(0)" data-value="Peoples" value="Ironborn" data-id=_id) Ironborn
+            if selectSub 'Ironborn' Peoples
+              span.selected(data-name="Ironborn" data-value="Peoples" data-id="#{_id}" id='ch_3')
+                i.fa.fa-check-square.col-sm-2.toggleClass(id='ch_3')
+          div.row
+            button.col-sm-10.dropdown-item.subcategory(href="javascript:void(0)" data-value="Peoples" value="Qartheen" data-id=_id) Qartheen
+            if selectSub 'Qartheen' Peoples
+              span.selected(data-name="Qartheen" data-value="Peoples" data-id="#{_id}" id='ch_3')
+                i.fa.fa-check-square.col-sm-2.toggleClass(id='ch_3')
+          div.row
+            button.col-sm-10.dropdown-item.subcategory(href="javascript:void(0)" data-value="Peoples" value="The Others" data-id=_id) The Others
+            if selectSub 'The Others' Peoples
+              span.selected(data-name="The Others" data-value="Peoples" data-id="#{_id}" id='ch_3')
+                i.fa.fa-check-square.col-sm-2.toggleClass(id='ch_3')
+          div.row
+            button.col-sm-10.dropdown-item.subcategory(href="javascript:void(0)" data-value="Peoples" value="Westerosi" data-id=_id) Westerosi
+            if selectSub 'Westerosi' Peoples
+              span.selected(data-name="Westerosi" data-value="Peoples" data-id="#{_id}" id='ch_3')
+                i.fa.fa-check-square.col-sm-2.toggleClass(id='ch_3')
+    if select 'Institutions' category
+      span Institutions
+      div.dropdown.form-group.logout-class.subcategory-class.clearfix
+        button.btn.btn-secondary.dropdown-toggle.col-sm-12(type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false") Select Category
+        div.dropdown-menu.display_dropdown_sub(aria-labelledby="dropdownMenuButton" id=_id)
+          div.row
+            button.col-sm-10.dropdown-item.subcategory(href="javascript:void(0)" data-value="Institutions" value="Faceless Men" data-id=_id) Faceless Men
+            if selectSub 'Faceless Men' Institutions
+              span.selected(data-name="Faceless Men" data-value="Institutions" data-id="#{_id}" id='ch_1')
+                i.fa.fa-check-square.col-sm-2.toggleClass(id='ch_1')
+          div.row
+            button.col-sm-10.dropdown-item.subcategory(href="javascript:void(0)" data-value="Institutions" value="Hand of the King" data-id=_id) Hand of the King
+            if selectSub 'Hand of the King' Institutions
+              span.selected(data-name="Hand of the King" data-value="Institutions" data-id="#{_id}" id='ch_2')
+                i.fa.fa-check-square.col-sm-2.toggleClass(id='ch_2')
+          div.row
+            button.col-sm-10.dropdown-item.subcategory(href="javascript:void(0)" data-value="Institutions" value="Iron Bank" data-id=_id) Iron Bank
+            if selectSub 'Iron Bank' Institutions
+              span.selected(data-name="Iron Bank" data-value="Institutions" data-id="#{_id}" id='ch_3')
+                i.fa.fa-check-square.col-sm-2.toggleClass(id='ch_3')
+          div.row
+            button.col-sm-10.dropdown-item.subcategory(href="javascript:void(0)" data-value="Institutions" value="Kingsguard" data-id=_id) Kingsguard
+            if selectSub 'Kingsguard' Institutions
+              span.selected(data-name="Kingsguard" data-value="Institutions" data-id="#{_id}" id='ch_3')
+                i.fa.fa-check-square.col-sm-2.toggleClass(id='ch_3')
+          div.row
+            button.col-sm-10.dropdown-item.subcategory(href="javascript:void(0)" data-value="Institutions" value="Nights Watch" data-id=_id) Night's Watch
+            if selectSub 'Nights Watch' Institutions
+              span.selected(data-name="Nights Watch" data-value="Institutions" data-id="#{_id}" id='ch_3')
+                i.fa.fa-check-square.col-sm-2.toggleClass(id='ch_3')
+          div.row
+            button.col-sm-10.dropdown-item.subcategory(href="javascript:void(0)" data-value="Institutions" value="Small council" data-id=_id) Small council
+            if selectSub 'Small council' Institutions
+              span.selected(data-name="Small council" data-value="Institutions" data-id="#{_id}" id='ch_3')
+                i.fa.fa-check-square.col-sm-2.toggleClass(id='ch_3')
+    if select 'Tin Foil' category
+      span Tin Foil
+      div.dropdown.form-group.logout-class.subcategory-class.clearfix
+        button.btn.btn-secondary.dropdown-toggle.col-sm-12(type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false") Select Category
+        div.dropdown-menu.display_dropdown_sub(aria-labelledby="dropdownMenuButton" id=_id)
+          div.row
+            button.col-sm-10.dropdown-item.subcategory(href="javascript:void(0)" data-value="Tin Foil" value="Beyond Repair" data-id=_id) Beyond Repair
+            if selectSub 'Beyond Repair' [Tin Foil]
+              span.selected(data-name="Beyond Repair" data-value="Tin Foil" data-id="#{_id}" id='ch_1')
+                i.fa.fa-check-square.col-sm-2.toggleClass(id='ch_1')
+          div.row
+            button.col-sm-10.dropdown-item.subcategory(href="javascript:void(0)" data-value="Tin Foil" value="Mental" data-id=_id) Mental
+            if selectSub 'Mental' [Tin Foil]
+              span.selected(data-name="Mental" data-value="Tin Foil" data-id="#{_id}" id='ch_2')
+                i.fa.fa-check-square.col-sm-2.toggleClass(id='ch_2')

@@ -80,10 +80,9 @@ Template.NewsFeed.events
         if error
           console.log error
         else
-          $('..link-add').show()
+          $('.link-add').show()
           Meteor.setTimeout (->
-            $("..link-add").hide()
-            Session.set 'admin_section', "markets"
+            $(".link-add").hide()
           ), 2000
     else
       Meteor.call 'addLinkToFeed', type, link, (error, result) ->

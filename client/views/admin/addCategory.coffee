@@ -1,5 +1,5 @@
 Template.AddCategory.events
-  'click .dropdown-item': (evt, tmpl) ->
+  'click .category': (evt, tmpl) ->
     evt.preventDefault()
     val = evt.currentTarget.value
     Session.set 'category_name', val
@@ -20,6 +20,17 @@ Template.AddCategory.events
     id = evt.currentTarget.id
     $('#toggle_'+id).removeClass('fa-times')
     $('#toggle_'+id).addClass('fa-check-square')
+
+  'click .subcategory': (evt,tmpl) ->
+    evt.preventDefault()
+    val = evt.currentTarget.value
+    category = $(evt.currentTarget).data("value")
+    id = $(evt.currentTarget).data("id")
+    Session.set 'subcategory_name', val
+    Meteor.call 'addSubCategory', id, category, val, (error, result) ->
+      if error
+        console.log error
+      true
 
   'click .selected': (evt, tmpl) ->
     evt.preventDefault()
@@ -47,3 +58,18 @@ Template.AddCategory.helpers
       return category_name
     else
       return "Category"
+
+  # subcategory_name: ->
+  #   subcategory_name = Session.get 'subcategory_name'
+  #   if subcategory_name
+  #     return subcategory_name
+  #   else
+  #     return "Subcategory"
+
+  selectSub: (value, category) ->
+    i = 0
+    if category
+      while i < category.length
+        if value == category[i]
+          return true
+        i++
